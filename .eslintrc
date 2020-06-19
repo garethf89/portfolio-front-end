@@ -1,0 +1,75 @@
+{
+    "extends": "gatsby-standard",
+    "plugins": ["prefer-arrow"],
+    "rules": {
+        "no-unsafe-finally": "off",
+        "camelcase": "error",
+        "comma-dangle": "off",
+        "curly": "error",
+        "dot-notation": "error",
+        "eol-last": "error",
+        "eqeqeq": ["error", "smart"],
+        "guard-for-in": "error",
+        "id-blacklist": [
+            "error",
+            "any",
+            "Number",
+            "number",
+            "String",
+            "string",
+            "Boolean",
+            "boolean",
+            "Undefined",
+            "undefined"
+        ],
+        "id-match": "error",
+        "max-len": [
+            "error",
+            {
+                "code": 140
+            }
+        ],
+        "no-bitwise": "error",
+        "no-caller": "error",
+        "no-cond-assign": "error",
+        "no-console": "warn",
+        "no-debugger": "error",
+        "no-empty": "error",
+        "no-eval": "error",
+        "no-fallthrough": "error",
+        "no-multiple-empty-lines": "off",
+        "no-new-wrappers": "error",
+        "no-redeclare": "error",
+        "no-shadow": [
+            "error",
+            {
+                "hoist": "all"
+            }
+        ],
+        "no-trailing-spaces": "error",
+        "no-underscore-dangle": "error",
+        "no-unused-expressions": "error",
+        "no-unused-labels": "error",
+        "no-var": "error",
+        "prefer-arrow/prefer-arrow-functions": [
+            "warn",
+            {
+                "disallowPrototype": true,
+                "singleReturnOnly": true,
+                "classPropertiesAllowed": true
+            }
+        ],
+        "quote-props": ["error", "as-needed"],
+        "radix": "error",
+        "spaced-comment": "error",
+        "space-before-function-paren": [
+            "error",
+            {
+                "anonymous": "never",
+                "asyncArrow": "never",
+                "named": "never"
+            }
+        ],
+        "use-isnan": "error"
+    }
+}
