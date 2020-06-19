@@ -54,7 +54,7 @@ const SEO = ({ pageTitle, pageDescription, pageImage }) => {
                 crossOrigin
             />
             <link
-                href={`https://fonts.googleapis.com/css2?family=Muli:wght@200;400;600&display=swap`}
+                href={`https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap`}
                 rel="stylesheet"
             />
             {/* OpenGraph tags */}
