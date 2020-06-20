@@ -1,4 +1,4 @@
-import Container from "./container"
+import Container from "./Global/Container"
 import React from "react"
 import styled from "@emotion/styled"
 
