@@ -1,7 +1,8 @@
+import { useColorMode, useThemeUI } from "theme-ui"
+
 import { Download } from "../../svgs/index"
 import React from "react"
 import styled from "@emotion/styled"
-import theme from "../../gatsby-plugin-theme-ui/index"
 
 const DownloadIcon = styled(Download)`
     width: 1.25rem;
@@ -97,8 +98,10 @@ const ButtonStyled = styled.button`
 `
 
 const Button = ({ icon, children, type = "button", color, click }) => {
-    const colorTheme = color ? theme.button[color] : theme.button.light
-
+    const context = useThemeUI()
+    const { theme } = context
+    const [colorMode] = useColorMode()
+    const colorTheme = { ...theme.button[colorMode] }
     return (
         <ButtonStyled
             onClick={click ? e => click(e) : null}

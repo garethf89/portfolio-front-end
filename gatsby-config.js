@@ -18,9 +18,9 @@ try {
 }
 module.exports = {
     siteMetadata: {
-        title: "Gatsby Contentful Starter",
-        description: "Gatsby Contentful Starter",
-        siteUrl: "http://TODO",
+        title: "Gareth Ferguson Portfolio",
+        description: "Gareth Ferguson Portfolio",
+        siteUrl: "http://garethferguson.co.uk",
         author: "Gareth Ferguson",
         image: "/images/Logo.jpg",
         menuLinks: [

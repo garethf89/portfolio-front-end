@@ -5,6 +5,7 @@ import styled from "@emotion/styled"
 
 const HeaderStyles = styled.header`
     font-size: 2rem;
+    display: none;
 `
 
 const Header = ({ siteTitle }) => (

@@ -1,12 +1,26 @@
 import Container from "../components/Global/Container"
+import HomeHeader from "../components/Headers/HomeHeader"
 import React from "react"
+import { useStaticQuery } from "gatsby"
 
-const IndexPage = () => (
-    <Container>
-        <h1>Hi people</h1>
-        <p>Welcome to your new Gatsby site.</p>
-        <p>Now go build something great.</p>
-    </Container>
-)
+const IndexPage = () => {
+    const data = useStaticQuery(graphql`
+        query Home {
+            page: contentfulHomePage {
+                title
+                introText {
+                    json
+                }
+            }
+        }
+    `)
+
+    return (
+        <>
+            <HomeHeader text={data.page.introText.json} />
+            <Container></Container>
+        </>
+    )
+}
 
 export default IndexPage

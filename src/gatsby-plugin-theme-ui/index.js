@@ -1,8 +1,12 @@
 export default {
+    useCustomProperties: true,
+    initialColorMode: "default",
     colors: {
         background: "#ffffff",
         text: "#121212",
         sectionBackground: "#20222F",
+        sectionText: "#fff",
+        sectionTextSecondary: "#A9A9A9",
     },
     fonts: {
         body: '"Ubuntu", Roboto, Helvetica, Arial, sans-serif',
@@ -20,7 +24,7 @@ export default {
         large: "79.38em",
     },
     button: {
-        light: {
+        default: {
             border: "#fff",
             background: "transparent",
             color: "#fff",
@@ -29,7 +33,6 @@ export default {
             border: "#000",
             background: "#000",
             color: "#fff",
-            before: "rgba(255, 255, 255, 0.4)",
         },
     },
 }

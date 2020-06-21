@@ -34,7 +34,7 @@ const Root = styled.div`
 
 const ThemeWrapper = props => {
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={props.theme}>
             <Root>
                 <Global styles={globalStyles} />
                 {props.children}
