@@ -11,13 +11,20 @@ const IndexPage = () => {
                 introText {
                     json
                 }
+                stats {
+                    number
+                    description
+                }
             }
         }
     `)
 
     return (
         <>
-            <HomeHeader text={data.page.introText.json} />
+            <HomeHeader
+                stats={data.page.stats}
+                text={data.page.introText.json}
+            />
             <Container></Container>
         </>
     )
