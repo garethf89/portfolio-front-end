@@ -52,7 +52,7 @@ const ButtonStyled = styled.button`
     padding: 0;
     padding-right: 3rem;
     cursor: pointer;
-    transition: 1s ease-in-out;
+    transition: 0.5s ease-in-out;
 
     .bg-line {
         fill: #5ca4ea;
@@ -84,6 +84,7 @@ const ButtonStyled = styled.button`
         outline: 0;
     }
 
+    &:focus,
     &:hover {
         background: rgba(0, 0, 0, 0.6);
         .border__line {
@@ -96,6 +97,14 @@ const ButtonStyled = styled.button`
         padding-right: 5rem;
     }
 `
+
+const ButtonIcons = {
+    Download: <DownloadIcon />,
+}
+
+const renderButton = icon => {
+    return ButtonIcons[icon]
+}
 
 const Button = ({ icon, children, type = "button", color, click }) => {
     const context = useThemeUI()
@@ -121,7 +130,7 @@ const Button = ({ icon, children, type = "button", color, click }) => {
             <ButtonContent>{children}</ButtonContent>
             {icon && (
                 <ButtonIcon colors={colorTheme}>
-                    <DownloadIcon />
+                    {renderButton(icon)}
                 </ButtonIcon>
             )}
         </ButtonStyled>
