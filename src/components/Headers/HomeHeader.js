@@ -1,8 +1,9 @@
 import Button from "../Common/Button"
 import Container from "../Global/Container"
-import HomeHeaderContent from "./HomeHeaderContent"
+import HomeHeaderContent from "../Home/HomeHeaderContent"
 import Lines from "../Animation/Lines"
 import React from "react"
+import Stats from "../Home/Stats"
 import styled from "@emotion/styled"
 import theme from "../../gatsby-plugin-theme-ui/index"
 
@@ -20,33 +21,37 @@ const HomeContainer = styled(Container)`
     color: ${theme.colors.sectionText};
     @media (min-width: ${props => props.theme.responsive.medium}) {
         display: flex;
+        justify-content: space-between;
     }
 `
 
 const HomeSection = styled.div`
     @media (min-width: ${props => props.theme.responsive.medium}) {
         width: 60%;
+        margin-right: 5.5rem;
     }
 `
 
 const HomeSectionStats = styled.div`
+    margin-top: 3rem;
     @media (min-width: ${props => props.theme.responsive.medium}) {
+        margin-top: 0;
         width: 40%;
     }
-
-    width: 40%;
 `
 
-const HomeHeader = ({ text }) => {
+const HomeHeader = ({ text, stats }) => {
     return (
         <HomeHeaderStyles>
             <Lines id="HeaderAni" />
             <HomeContainer>
                 <HomeSection>
                     <HomeHeaderContent text={text} />
-                    <Button icon>Download CV</Button>
+                    <Button icon="Download">Download CV</Button>
                 </HomeSection>
-                <HomeSectionStats></HomeSectionStats>
+                <HomeSectionStats>
+                    <Stats stats={stats} />
+                </HomeSectionStats>
             </HomeContainer>
         </HomeHeaderStyles>
     )

@@ -11,10 +11,13 @@ const common = props => css`
 `
 
 const H1 = styled.h1`
-    font-size: 52px;
+    font-size: 42px;
     line-height: 1.2;
     font-weight: 200;
     ${common}
+    @media (min-width: ${props => props.theme.responsive.medium}) {
+      font-size: 52px;
+    }
 `
 const H2 = styled.h2`
     font-size: 38px;
