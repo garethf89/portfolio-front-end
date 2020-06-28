@@ -4,7 +4,6 @@ import React, { useContext, useEffect, useState } from "react"
 
 import Footer from "./footer"
 import { Global } from "@emotion/core"
-import Header from "./header"
 import SEO from "./seo"
 import globalStyles from "../styles/globals"
 import { globals } from "../state/state"
@@ -51,7 +50,6 @@ const TemplateWrap = ({ children, description, image, data, path }) => {
                 pageDescription={description}
                 pageImage={image}
             />
-            <Header siteTitle={title} />
             <main>{children}</main>
             <Footer wide={home} />
         </Root>

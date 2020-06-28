@@ -1,5 +1,5 @@
-import Container from "../components/Global/Container"
-import HomeHeader from "../components/Headers/HomeHeader"
+import Header from "../components/Header/Header"
+import HomeHeader from "../components/HeadPanels/HomeHeader"
 import React from "react"
 import { useStaticQuery } from "gatsby"
 
@@ -21,11 +21,11 @@ const IndexPage = () => {
 
     return (
         <>
+            <Header siteTitle={data.page.title} />
             <HomeHeader
                 stats={data.page.stats}
                 text={data.page.introText.json}
             />
-            <Container></Container>
         </>
     )
 }

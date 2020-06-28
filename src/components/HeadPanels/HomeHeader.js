@@ -8,7 +8,7 @@ import styled from "@emotion/styled"
 import theme from "../../gatsby-plugin-theme-ui/index"
 
 const HomeHeaderStyles = styled.section`
-    padding: 6rem 0;
+    padding: 9rem 0 3rem;
     position: relative;
     background: ${theme.colors.sectionBackground};
     @media (min-width: ${props => props.theme.responsive.medium}) {
@@ -22,6 +22,7 @@ const HomeContainer = styled(Container)`
     @media (min-width: ${props => props.theme.responsive.medium}) {
         display: flex;
         justify-content: space-between;
+        padding: 0 calc(0.65rem + ${props => props.theme.container.padding});
     }
 `
 

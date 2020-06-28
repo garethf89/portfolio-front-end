@@ -23,6 +23,9 @@ export default {
         medium: "50em",
         large: "79.38em",
     },
+    container: {
+        padding: "1.5rem",
+    },
     button: {
         default: {
             border: "#fff",
