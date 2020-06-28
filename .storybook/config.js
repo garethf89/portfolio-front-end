@@ -1,6 +1,7 @@
 import { addDecorator, configure } from "@storybook/react"
 
 import { Global } from "@emotion/core"
+import { GlobalsStateProvider } from "../src/state/state"
 import React from "react"
 import { ThemeProvider } from "theme-ui"
 import { action } from "@storybook/addon-actions"
@@ -34,12 +35,14 @@ const Root = styled.div`
 
 const ThemeWrapper = props => {
     return (
-        <ThemeProvider theme={props.theme}>
-            <Root>
-                <Global styles={globalStyles} />
-                {props.children}
-            </Root>
-        </ThemeProvider>
+        <GlobalsStateProvider>
+            <ThemeProvider theme={props.theme}>
+                <Root>
+                    <Global styles={globalStyles} />
+                    {props.children}
+                </Root>
+            </ThemeProvider>
+        </GlobalsStateProvider>
     )
 }
 

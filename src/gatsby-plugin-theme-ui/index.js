@@ -7,6 +7,7 @@ export default {
         sectionBackground: "#20222F",
         sectionText: "#fff",
         sectionTextSecondary: "#A9A9A9",
+        navText: "#fff",
     },
     fonts: {
         body: '"Ubuntu", Roboto, Helvetica, Arial, sans-serif',

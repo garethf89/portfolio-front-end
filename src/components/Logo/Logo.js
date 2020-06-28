@@ -14,6 +14,7 @@ const HeaderLink = styled.a`
     vertical-align: top;
     height: 3rem;
     width: 3rem;
+    outline: 0;
 `
 
 const Logo = ({ siteTitle }) => {
@@ -41,8 +42,10 @@ const Logo = ({ siteTitle }) => {
 
     return (
         <HeaderLink
+            tabIndex={1}
             aria-label={siteTitle}
             to="/"
+            onKeyUp={hover}
             onMouseEnter={hover}
             id="HeaderLogo"
         ></HeaderLink>

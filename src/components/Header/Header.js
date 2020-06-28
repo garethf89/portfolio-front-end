@@ -1,5 +1,6 @@
 import Container from "../Global/Container"
 import Logo from "../Logo/Logo"
+import Navigation from "../Navigation/Navigation"
 import PropTypes from "prop-types"
 import React from "react"
 import styled from "@emotion/styled"
@@ -16,12 +17,15 @@ const HeaderStyles = styled.header`
 
 const HomeContainer = styled(Container)`
     max-width: calc(${props => props.theme.sizes.maxWidth} + 9rem);
+    display: flex;
+    justify-content: space-between;
 `
 
 const Header = ({ siteTitle }) => (
     <HeaderStyles>
         <HomeContainer>
             <Logo siteTitle />
+            <Navigation />
         </HomeContainer>
     </HeaderStyles>
 )

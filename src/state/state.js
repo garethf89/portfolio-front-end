@@ -1,11 +1,13 @@
 import React, { createContext, useReducer } from "react"
 
-const initialStateGlobals = {}
+const initialStateGlobals = { theme: "light" }
 
 export const globals = createContext()
 
 const reducer = (state, action) => {
     switch (action.type) {
+        case "THEME":
+            return { ...state, theme: action.theme }
         default:
             return {}
     }
