@@ -1,6 +1,9 @@
+import { text, withKnobs } from "@storybook/addon-knobs"
+
 import Button from "./Button"
 import { DarkBackground } from "../../stories/DarkBackground"
 import React from "react"
+
 export const ButtonWithIcons = () => (
     <DarkBackground>
         <Button
@@ -9,19 +12,20 @@ export const ButtonWithIcons = () => (
             type="submit"
             color="light"
         >
-            Download CV
+            {text("Label", "Download CV")}
         </Button>
     </DarkBackground>
 )
 export default {
-    title: "Common",
+    title: "Common /Buttons",
     component: ButtonWithIcons,
+    decorators: [withKnobs],
 }
 
 export const ButtonWithoutIcon = () => (
     <DarkBackground>
         <Button click={e => alert("CLICKED")} type="submit" color="light">
-            Download CV
+            {text("Label", "Download CV")}
         </Button>
     </DarkBackground>
 )
