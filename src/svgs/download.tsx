@@ -1,6 +1,6 @@
 import * as React from "react"
 
-const SvgDownload = props => {
+const SvgDownload = (props: React.SVGProps<SVGSVGElement>) => {
     return (
         <svg
             className=""

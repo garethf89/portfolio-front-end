@@ -58,7 +58,7 @@ module.exports = {
         {
             resolve: "gatsby-plugin-transition-link",
             options: {
-                layout: require.resolve(`./src/components/layout.js`),
+                layout: require.resolve(`./src/components/layout.tsx`),
                 injectPageProps: false,
             },
         },
@@ -95,6 +95,9 @@ module.exports = {
                     // "/*": ["Cache-Control: max-age=604800"],
                 },
             },
+        },
+        {
+            resolve: `gatsby-plugin-typescript`,
         },
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.dev/offline

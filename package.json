@@ -24,6 +24,7 @@
     "gatsby-plugin-sharp": "^2.6.0",
     "gatsby-plugin-theme-ui": "^0.3.0",
     "gatsby-plugin-transition-link": "^1.18.0",
+    "gatsby-plugin-typescript": "^2.4.13",
     "gatsby-source-contentful": "^2.3.15",
     "gatsby-source-filesystem": "^2.3.0",
     "gatsby-transformer-sharp": "^2.5.0",
@@ -71,13 +72,13 @@
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "setup": "node ./bin/setup.js",
-    "lint:js": "eslint 'src/**/*.js'",
-    "lint:css": "stylelint 'src/**/*.js'",
+    "lint:js": "eslint 'src/**/*.tsx'",
+    "lint:css": "stylelint 'src/**/*.tsx'",
     "check-pretty": "prettier --list-different {,src/**/}*.{js,jsx,json,css,scss}",
-    "format": "prettier --write \"src/**/*.js\"",
+    "format": "prettier --write \"src/**/*.tsx\"",
     "storybook": "NODE_ENV=production start-storybook -p 6006",
     "build-storybook": "NODE_ENV=production build-storybook -o public/components",
-    "analyze-size": "source-map-explorer public/app*.js"
+    "analyze-size": "source-map-explorer public/app*.tsx"
   },
   "repository": {
     "type": "git",

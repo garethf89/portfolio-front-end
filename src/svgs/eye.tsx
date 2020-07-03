@@ -1,7 +1,6 @@
 import * as React from "react"
 
-const Eye = props => {
-    // const SvgComponent = (props: React.SVGProps<SVGSVGElement>) => {
+const Eye = (props: React.SVGProps<SVGSVGElement>) => {
     return (
         <svg
             role="img"

@@ -1,6 +1,6 @@
 import * as React from "react"
 
-const Tick = props => {
+const Tick = (props: React.SVGProps<SVGSVGElement>) => {
     return (
         <svg
             role="img"

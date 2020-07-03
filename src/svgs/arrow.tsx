@@ -1,6 +1,6 @@
 import * as React from "react"
 
-const Arrow = props => {
+const Arrow = (props: React.SVGProps<SVGSVGElement>) => {
     return (
         <svg
             role="img"
