@@ -11,8 +11,8 @@ const Wrapper = styled.section`
     max-width: calc(${props => props.theme.sizes.maxWidth} + 3rem);
 `
 
-const Container = ({ children, className }) => {
-    return <Wrapper className={className}>{children}</Wrapper>
+const Container = props => {
+    return <Wrapper {...props}>{props.children}</Wrapper>
 }
 
 export default Container

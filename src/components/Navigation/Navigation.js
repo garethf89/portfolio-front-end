@@ -40,7 +40,7 @@ const Navigation = () => {
                 {menuLinks.map(link => (
                     <NavLi key={link.name}>
                         <NavigationLink to={link.slug}>
-                            {link.name}
+                            <span>{link.name}</span>
                         </NavigationLink>
                     </NavLi>
                 ))}

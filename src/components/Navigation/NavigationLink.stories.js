@@ -4,7 +4,9 @@ import React from "react"
 
 export const NavigationLinkText = () => (
     <DarkBackground>
-        <NavigationLink to="/">Test</NavigationLink>
+        <NavigationLink to="/">
+            <span>Test</span>
+        </NavigationLink>
     </DarkBackground>
 )
 

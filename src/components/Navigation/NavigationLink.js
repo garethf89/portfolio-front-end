@@ -20,7 +20,11 @@ const StyledLink = styled(props => <Link {...props} />)`
     letter-spacing: 2px;
     cursor: pointer;
 
-    &::after {
+    span {
+        position: relative;
+    }
+
+    span::after {
         transition: all 0.5s ease-in-out;
         content: " ";
         background: ${props => props.theme.colors.navText};
@@ -34,7 +38,7 @@ const StyledLink = styled(props => <Link {...props} />)`
     &:focus,
     &:hover {
         opacity: 0.8;
-        &::after {
+        span::after {
             width: 100%;
         }
     }
@@ -42,11 +46,15 @@ const StyledLink = styled(props => <Link {...props} />)`
 
 const StyledButton = StyledLink.withComponent("button")
 
-const NavigationLink = ({ children, button, click }) => {
+const NavigationLink = ({ children, button, to, click, hover }) => {
     if (button) {
-        return <StyledButton onClick={click}>{children}</StyledButton>
+        return (
+            <StyledButton onMouseEnter={hover} onClick={click}>
+                {children}
+            </StyledButton>
+        )
     }
-    return <StyledLink>{children}</StyledLink>
+    return <StyledLink to={to}>{children}</StyledLink>
 }
 
 export default NavigationLink

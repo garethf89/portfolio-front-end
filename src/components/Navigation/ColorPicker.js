@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react"
 
+import Arrow from "../../svgs/arrow"
 import NavigationLink from "./NavigationLink"
 import Tick from "../../svgs/tick"
 import { globals } from "../../state/state"
@@ -8,7 +9,7 @@ import styled from "@emotion/styled"
 const Options = styled.div`
     display: block;
     transition: opacity 0.5s ease-in-out;
-    opacity: ${props => (props.visibility ? 1 : 0)};
+    opacity: ${props => (props.visibilityStatus ? 1 : 0)};
     margin: 1rem -0.5rem 0;
 
     > button {
@@ -26,8 +27,14 @@ const Options = styled.div`
 `
 
 const Icon = styled(Tick)`
-    height: 1rem;
-    display: ${props => (props.active ? "inline-block" : "none")};
+    margin-top: 0.25rem;
+    display: ${props => (props.activeStatus ? "inline-block" : "none")};
+    vertical-align: middle;
+`
+
+const StyledArrow = styled(Arrow)`
+    margin-left: 0.75rem;
+    margin-top: -0.65rem;
     vertical-align: middle;
 `
 
@@ -53,18 +60,23 @@ const ColorPicker = () => {
             <NavigationLink
                 role="help"
                 button
-                click={() => setVisibility(!visibility)}
+                hover={() => setVisibility(true)}
             >
-                Choose Theme
+                <span>Choose Theme</span>
+                <StyledArrow width="0.75rem" />
             </NavigationLink>
-            <Options visibility={visibility}>
+            <Options visibilityStatus={visibility}>
                 {buttonThemes.map((link, i) => (
                     <NavigationLink
                         key={i}
                         button
                         click={() => setTheme(link.state)}
                     >
-                        {link.name} <Icon active={activeTheme === link.state} />
+                        {link.name}{" "}
+                        <Icon
+                            height="0.75rem"
+                            activeStatus={activeTheme === link.state}
+                        />
                     </NavigationLink>
                 ))}
             </Options>

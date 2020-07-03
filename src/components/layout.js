@@ -32,7 +32,8 @@ const TemplateWrap = ({ children, description, image, data, path }) => {
         if (!initGlobals) {
             if (process.env.NODE_ENV === "production") {
                 Sentry.init({
-                    dsn: "",
+                    dsn:
+                        "https://23f3f26328754be8baa6040caea128b7@sentry.io/1876648",
                 })
             }
             if (!supportsWebP()) {
