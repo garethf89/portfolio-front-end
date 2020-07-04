@@ -15,7 +15,7 @@ const H1 = styled.h1`
     line-height: 1.2;
     font-weight: 200;
     ${common}
-    @media (min-width: ${props => props.theme.responsive.medium}) {
+    @media (min-width: ${props => props.theme.breakpoint.medium}) {
       font-size: 52px;
     }
 `

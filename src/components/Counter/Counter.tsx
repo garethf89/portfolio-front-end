@@ -21,13 +21,12 @@ const CounterIcon = styled(Eye)`
     margin-right: 0.5rem;
 `
 
-const Counter = () => {
+const Counter = (): React.ReactElement<any> => {
     const [count, setCount] = useState(1)
-    const [init, setInit] = useState(false)
 
-    const startSocket = s => {
+    const startSocket = (s: SocketIOClient.Emitter) => {
         s.on("connect", () => {
-            s.on("count", msg => {
+            s.on("count", (msg: any) => {
                 setCount(msg.count)
             })
         })
@@ -35,7 +34,6 @@ const Counter = () => {
 
     useEffect(() => {
         const socket = io.connect(connectionString)
-
         startSocket(socket)
     }, [])
 

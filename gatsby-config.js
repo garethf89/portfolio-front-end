@@ -65,13 +65,13 @@ module.exports = {
         {
             resolve: `gatsby-plugin-manifest`,
             options: {
-                name: `Gatsby Contentful Starter`,
-                short_name: `GCS`,
+                name: `Gareth Ferguson Portfolio`,
+                short_name: `Gareth Ferguson`,
                 start_url: `/`,
-                background_color: `#000000`,
-                theme_color: `#000000`,
+                background_color: `#20222F`,
+                theme_color: `#20222F`,
                 display: `minimal-ui`,
-                icon: `static/images/Logo.png`,
+                icon: `static/images/Logo.jpg`,
             },
         },
         {

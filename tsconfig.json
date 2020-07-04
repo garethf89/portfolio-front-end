@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "jsx": "react",
+        "declaration": false,
+        "removeComments": false,
+        "module": "commonjs",
+        "target": "es6",
+        "lib": ["es2017", "dom"],
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "outDir": "public",
+        "esModuleInterop": true,
+        "baseUrl": ".",
+        "paths": {
+            "*": ["node_modules/*", "typings/*"]
+        },
+        "skipLibCheck": true,
+        "experimentalDecorators": true,
+        "noUnusedLocals": true
+    },
+    "include": ["**/*"]
+}

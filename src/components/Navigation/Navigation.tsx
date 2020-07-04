@@ -8,7 +8,7 @@ import { useSiteMetadata } from "../../hooks/use-site-metadata"
 
 const NavigationStyles = styled.nav`
     display: none;
-    @media (min-width: ${props => props.theme.responsive.medium}) {
+    @media (min-width: ${props => props.theme.breakpoint.medium}) {
         display: block;
     }
 `

@@ -10,7 +10,18 @@ import PropTypes from "prop-types"
 import React from "react"
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 
-const SEO = ({ pageTitle, pageDescription, pageImage }) => {
+interface SeoProps {
+    pageDescription: string
+    pageTitle: string
+    pageImage: string
+    children?: any
+}
+
+const SEO = ({
+    pageTitle,
+    pageDescription,
+    pageImage,
+}: SeoProps): React.ReactElement<any> => {
     const { siteUrl, image, title, description } = useSiteMetadata()
 
     const metaDescription = pageDescription || description

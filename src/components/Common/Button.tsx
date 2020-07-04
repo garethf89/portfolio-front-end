@@ -7,7 +7,7 @@ import styled from "@emotion/styled"
 const DownloadIcon = styled(Download)`
     width: 1.25rem;
     height: auto;
-    @media (min-width: ${props => props.theme.responsive.medium}) {
+    @media (min-width: ${props => props.theme.breakpoint.medium}) {
         width: 2rem;
         height: 27px;
     }
@@ -20,8 +20,7 @@ const ButtonIcon = styled.span`
     top: 0;
     bottom: 0;
     padding: 1em 0.75rem;
-    border-left: 1px solid ${props => props.colors.border};
-    @media (min-width: ${props => props.theme.responsive.medium}) {
+    @media (min-width: ${props => props.theme.breakpoint.medium}) {
         padding: 1em;
     }
 `
@@ -29,7 +28,7 @@ const ButtonIcon = styled.span`
 const ButtonContent = styled.span`
     padding: 1rem 1.25rem;
     display: block;
-    @media (min-width: ${props => props.theme.responsive.medium}) {
+    @media (min-width: ${props => props.theme.breakpoint.medium}) {
         padding: 1rem 1.25rem 1.8rem;
     }
 `
@@ -92,7 +91,7 @@ const ButtonStyled = styled.button`
         }
     }
 
-    @media (min-width: ${props => props.theme.responsive.medium}) {
+    @media (min-width: ${props => props.theme.breakpoint.medium}) {
         min-width: 314px;
         padding-right: 5rem;
     }
@@ -109,13 +108,15 @@ const renderButton = icon => {
 const Button = ({ icon, children, type = "button", color, click }) => {
     const context = useThemeUI()
     const { theme } = context
-    const [colorMode] = useColorMode()
-    const colorTheme = { ...theme.button[colorMode] }
+    const [colorMode, setMode] = useColorMode("default")
+    const colorTheme = { ...theme.buttons[colorMode] }
+    console.log(theme)
     return (
         <ButtonStyled
             onClick={click ? e => click(e) : null}
             type={type}
             colors={colorTheme}
+            mode={colorMode}
         >
             <svg
                 viewBox="0 0 180 60"

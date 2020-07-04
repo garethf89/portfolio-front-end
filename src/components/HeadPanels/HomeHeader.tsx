@@ -11,7 +11,7 @@ const HomeHeaderStyles = styled.section`
     padding: 9rem 0 3rem;
     position: relative;
     background: ${props => props.theme.colors.sectionBackground};
-    @media (min-width: ${props => props.theme.responsive.medium}) {
+    @media (min-width: ${props => props.theme.breakpoint.medium}) {
         padding: 12rem 0 6rem;
     }
 `
@@ -19,7 +19,7 @@ const HomeContainer = styled(Container)`
     position: relative;
     z-index: 1;
     color: ${props => props.theme.colors.sectionText};
-    @media (min-width: ${props => props.theme.responsive.medium}) {
+    @media (min-width: ${props => props.theme.breakpoint.medium}) {
         display: flex;
         justify-content: space-between;
         padding: 0 calc(0.65rem + ${props => props.theme.container.padding});
@@ -27,7 +27,7 @@ const HomeContainer = styled(Container)`
 `
 
 const HomeSection = styled.div`
-    @media (min-width: ${props => props.theme.responsive.medium}) {
+    @media (min-width: ${props => props.theme.breakpoint.medium}) {
         width: 60%;
         margin-right: 5.5rem;
     }
@@ -35,7 +35,7 @@ const HomeSection = styled.div`
 
 const HomeSectionStats = styled.div`
     margin-top: 3rem;
-    @media (min-width: ${props => props.theme.responsive.medium}) {
+    @media (min-width: ${props => props.theme.breakpoint.medium}) {
         margin-top: 0;
         width: 40%;
     }

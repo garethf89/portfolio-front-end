@@ -48,6 +48,8 @@
     "@storybook/addon-links": "^5.3.19",
     "@storybook/addons": "^5.3.19",
     "@storybook/react": "^5.3.19",
+    "@types/socket.io-client": "^1.4.33",
+    "@types/theme-ui": "^0.3.4",
     "babel-loader": "^8.1.0",
     "eslint": "^7.1.0",
     "eslint-config-gatsby-standard": "^2.2.0",

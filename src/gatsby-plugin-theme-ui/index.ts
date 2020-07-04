@@ -1,6 +1,8 @@
-export default {
+import { Theme } from "theme-ui"
+
+const theme: Theme = {
     useCustomProperties: true,
-    initialColorMode: "default",
+    initialColorModeName: "default",
     colors: {
         background: "#ffffff",
         text: "#121212",
@@ -12,14 +14,11 @@ export default {
     fonts: {
         body: '"Ubuntu", Roboto, Helvetica, Arial, sans-serif',
     },
-    logo: {
-        width: "3.75rem",
-    },
     sizes: {
         maxWidth: "1160px",
         contentMaxWidth: "686px",
     },
-    responsive: {
+    breakpoint: {
         small: "35em",
         medium: "50em",
         large: "79.38em",
@@ -27,7 +26,7 @@ export default {
     container: {
         padding: "1.5rem",
     },
-    button: {
+    buttons: {
         default: {
             border: "#fff",
             background: "transparent",
@@ -40,3 +39,5 @@ export default {
         },
     },
 }
+
+export default theme

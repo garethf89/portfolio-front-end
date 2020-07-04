@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 
 import Arrow from "../../svgs/arrow"
 import NavigationLink from "./NavigationLink"
@@ -54,6 +54,18 @@ const ColorPicker = () => {
         dispatch({ type: "THEME", theme: theme })
         setVisibility(false)
     }
+
+    const handleClickOutside = (event: MouseEvent) => {
+        setVisibility(false)
+    }
+
+    useEffect(() => {
+        if (visibility) {
+            document.addEventListener("click", handleClickOutside)
+        } else {
+            document.removeEventListener("click", handleClickOutside)
+        }
+    }, [visibility])
 
     return (
         <>
