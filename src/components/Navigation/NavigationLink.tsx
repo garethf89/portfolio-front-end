@@ -1,4 +1,5 @@
-import { Link } from "gatsby"
+import { GatsbyLinkProps, Link } from "gatsby"
+
 import React from "react"
 import styled from "@emotion/styled"
 
@@ -7,7 +8,7 @@ const StyledLink = styled(props => <Link {...props} />)`
     text-transform: uppercase;
     text-decoration: none;
     display: inline-block;
-    color: ${props => props.theme.colors.navText};
+    color: ${(props: StyledComponentProps) => props.theme.colors.navText};
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
     position: relative;
@@ -27,7 +28,8 @@ const StyledLink = styled(props => <Link {...props} />)`
     span::after {
         transition: all 0.5s ease-in-out;
         content: " ";
-        background: ${props => props.theme.colors.navText};
+        background: ${(props: StyledComponentProps) =>
+            props.theme.colors.navText};
         position: absolute;
         bottom: -4px;
         left: 0;
@@ -46,7 +48,19 @@ const StyledLink = styled(props => <Link {...props} />)`
 
 const StyledButton = StyledLink.withComponent("button")
 
-const NavigationLink = ({ children, button, to, click, hover }) => {
+interface NavigationLinkProps extends GatsbyLinkProps<any> {
+    button?: boolean
+    click?: () => void
+    hover?: () => void
+}
+
+const NavigationLink = ({
+    children,
+    button,
+    to,
+    click,
+    hover,
+}: NavigationLinkProps) => {
     if (button) {
         return (
             <StyledButton onMouseEnter={hover} onClick={click}>

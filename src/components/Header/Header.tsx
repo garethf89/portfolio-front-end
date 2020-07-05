@@ -16,12 +16,18 @@ const HeaderStyles = styled.header`
 `
 
 const HomeContainer = styled(Container)`
-    max-width: calc(${props => props.theme.sizes.maxWidth} + 9rem);
+    max-width: calc(
+        ${(props: StyledComponentProps) => props.theme.sizes.maxWidth} + 9rem
+    );
     display: flex;
     justify-content: space-between;
 `
 
-const Header = ({ siteTitle }) => (
+interface HeaderProps {
+    siteTitle: string
+}
+
+const Header = ({ siteTitle }: HeaderProps) => (
     <HeaderStyles>
         <HomeContainer>
             <Logo siteTitle />

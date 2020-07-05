@@ -1,4 +1,4 @@
-import { DarkBackground } from "../../stories/DarkBackground"
+import { DarkBackground } from "../../../stories/DarkBackground"
 import React from "react"
 import Stats from "./Stats"
 

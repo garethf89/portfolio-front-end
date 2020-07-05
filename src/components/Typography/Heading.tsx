@@ -2,7 +2,7 @@ import React from "react"
 import { css } from "@emotion/core"
 import styled from "@emotion/styled"
 /* stylelint-disable */
-const common = props => css`
+const common = (props: StyledComponentProps) => css`
     font-family: ${props.theme.fonts.body};
     a {
         text-decoration: none;
@@ -15,7 +15,8 @@ const H1 = styled.h1`
     line-height: 1.2;
     font-weight: 200;
     ${common}
-    @media (min-width: ${props => props.theme.breakpoint.medium}) {
+    @media (min-width: ${(props: StyledComponentProps) =>
+        props.theme.breakpoint.medium}) {
       font-size: 52px;
     }
 `
@@ -45,7 +46,21 @@ const H5 = styled.h5`
     ${common}
 `
 
-const Heading = ({ level, text, className, children, override }) => {
+interface HeadingProps {
+    level: string
+    text?: string
+    className?: string
+    children?: any
+    override?: string
+}
+
+const Heading = ({
+    level,
+    text,
+    className,
+    children,
+    override,
+}: HeadingProps) => {
     if (level === "h1") {
         return (
             <H1 as={override} level={level} className={className}>

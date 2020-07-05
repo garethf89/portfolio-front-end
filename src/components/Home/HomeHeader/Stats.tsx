@@ -1,4 +1,5 @@
-import Heading from "../Typography/Heading"
+import Heading from "../../Typography/Heading"
+import { IStat } from "../../../../@types/generated/contentful"
 import React from "react"
 import styled from "@emotion/styled"
 
@@ -7,7 +8,8 @@ const StatsContainer = styled.ul`
     margin: 0;
     padding: 0;
     position: relative;
-    @media (min-width: ${props => props.theme.breakpoint.small}) {
+    @media (min-width: ${(props: StyledComponentProps) =>
+            props.theme.breakpoint.small}) {
         display: flex;
         flex-wrap: wrap;
     }
@@ -21,11 +23,13 @@ const Stat = styled.li`
     &:last-of-type {
         margin-bottom: 0;
     }
-    @media (min-width: ${props => props.theme.breakpoint.small}) {
+    @media (min-width: ${(props: StyledComponentProps) =>
+            props.theme.breakpoint.small}) {
         width: 33.33%;
         margin-right: 0;
     }
-    @media (min-width: ${props => props.theme.breakpoint.medium}) {
+    @media (min-width: ${(props: StyledComponentProps) =>
+            props.theme.breakpoint.medium}) {
         width: 50%;
     }
 `
@@ -40,15 +44,20 @@ const StatDesc = styled.span`
     display: inline-block;
     vertical-align: middle;
     margin-left: 1rem;
-    @media (min-width: ${props => props.theme.breakpoint.small}) {
+    @media (min-width: ${(props: StyledComponentProps) =>
+            props.theme.breakpoint.small}) {
         margin-left: 2px;
     }
 `
 
-const Stats = ({ stats }) => {
+interface StatProps {
+    stats: IStat[]
+}
+
+const Stats = ({ stats }: StatProps) => {
     return (
         <StatsContainer>
-            {stats.map((stat, i) => (
+            {stats.map((stat: any, i) => (
                 <Stat key={i}>
                     <StatNumber className="" level="h1" override="span">
                         {stat.number}+

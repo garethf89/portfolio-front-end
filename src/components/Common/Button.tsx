@@ -7,7 +7,8 @@ import styled from "@emotion/styled"
 const DownloadIcon = styled(Download)`
     width: 1.25rem;
     height: auto;
-    @media (min-width: ${props => props.theme.breakpoint.medium}) {
+    @media (min-width: ${(props: StyledComponentProps) =>
+            props.theme.breakpoint.medium}) {
         width: 2rem;
         height: 27px;
     }
@@ -20,7 +21,8 @@ const ButtonIcon = styled.span`
     top: 0;
     bottom: 0;
     padding: 1em 0.75rem;
-    @media (min-width: ${props => props.theme.breakpoint.medium}) {
+    @media (min-width: ${(props: StyledComponentProps) =>
+            props.theme.breakpoint.medium}) {
         padding: 1em;
     }
 `
@@ -28,7 +30,8 @@ const ButtonIcon = styled.span`
 const ButtonContent = styled.span`
     padding: 1rem 1.25rem;
     display: block;
-    @media (min-width: ${props => props.theme.breakpoint.medium}) {
+    @media (min-width: ${(props: StyledComponentProps) =>
+            props.theme.breakpoint.medium}) {
         padding: 1rem 1.25rem 1.8rem;
     }
 `
@@ -37,13 +40,13 @@ const ButtonStyled = styled.button`
     display: block;
     text-align: left;
     text-decoration: none;
-    border: 1px solid ${props => props.colors.border};
-    background: ${props => props.colors.background};
+    border: 1px solid ${(props: StyledComponentProps) => props.colors.border};
+    background: ${(props: StyledComponentProps) => props.colors.background};
     position: relative;
-    color: ${props => props.colors.color};
+    color: ${(props: StyledComponentProps) => props.colors.color};
     overflow: hidden;
     width: auto;
-    font-family: ${props => props.theme.fonts.body};
+    font-family: ${(props: StyledComponentProps) => props.theme.fonts.body};
     text-transform: uppercase;
     font-size: 16px;
     letter-spacing: 2px;
@@ -91,32 +94,47 @@ const ButtonStyled = styled.button`
         }
     }
 
-    @media (min-width: ${props => props.theme.breakpoint.medium}) {
+    @media (min-width: ${(props: StyledComponentProps) =>
+            props.theme.breakpoint.medium}) {
         min-width: 314px;
         padding-right: 5rem;
     }
 `
 
-const ButtonIcons = {
+const ButtonIcons: any = {
     Download: <DownloadIcon />,
 }
 
-const renderButton = icon => {
+const renderButton = (icon: ButtonTypes) => {
     return ButtonIcons[icon]
 }
 
-const Button = ({ icon, children, type = "button", color, click }) => {
+type ButtonTypes = "Download"
+
+interface ButtonProps {
+    icon?: ButtonTypes
+    type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"]
+    children: any
+    color?: string
+    click?: () => void
+}
+
+const Button = ({
+    icon,
+    children,
+    type = "button",
+    color,
+    click,
+}: ButtonProps) => {
     const context = useThemeUI()
     const { theme } = context
-    const [colorMode, setMode] = useColorMode("default")
-    const colorTheme = { ...theme.buttons[colorMode] }
-    console.log(theme)
+    const [colorMode] = useColorMode()
+    const colorTheme: any = { ...theme.buttons[colorMode] }
     return (
         <ButtonStyled
             onClick={click ? e => click(e) : null}
             type={type}
             colors={colorTheme}
-            mode={colorMode}
         >
             <svg
                 viewBox="0 0 180 60"

@@ -14,7 +14,7 @@ const HeaderAnimation = styled.div`
     z-index: 0;
 `
 
-const Lines = ({ id }) => {
+const Lines = ({ id }: React.HTMLAttributes<any>) => {
     useEffect(() => {
         lottie.loadAnimation({
             container: document.getElementById("HeaderAni"),

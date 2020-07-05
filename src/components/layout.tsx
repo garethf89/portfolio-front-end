@@ -2,7 +2,6 @@ import * as Sentry from "@sentry/browser"
 
 import React, { useContext, useEffect, useState } from "react"
 
-import Footer from "./footer"
 import { Global } from "@emotion/core"
 import SEO from "./seo"
 import globalStyles from "../styles/globals"
@@ -11,7 +10,7 @@ import styled from "@emotion/styled"
 import { supportsWebP } from "../helpers/support/webp"
 
 const Root = styled.div`
-    font-family: ${props => props.theme.fonts.body};
+    font-family: ${(props: StyledComponentProps) => props.theme.fonts.body};
     p,
     li {
         font-size: 1.13rem;
@@ -52,7 +51,6 @@ const TemplateWrap = ({ children, description, image, data, path }) => {
                 pageImage={image}
             />
             <main>{children}</main>
-            <Footer wide={home} />
         </Root>
     )
 }

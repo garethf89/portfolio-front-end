@@ -6,10 +6,15 @@ import Tick from "../../svgs/tick"
 import { globals } from "../../state/state"
 import styled from "@emotion/styled"
 
-const Options = styled.div`
+interface OptionsProps {
+    visibilityStatus: boolean
+}
+
+const Options = styled.div<OptionsProps>`
     display: block;
     transition: opacity 0.5s ease-in-out;
-    opacity: ${props => (props.visibilityStatus ? 1 : 0)};
+    opacity: ${(props: StyledComponentProps) =>
+        props.visibilityStatus ? 1 : 0};
     margin: 1rem -0.5rem 0;
 
     > button {
@@ -26,9 +31,14 @@ const Options = styled.div`
     }
 `
 
-const Icon = styled(Tick)`
+interface IconProps {
+    activeStatus: boolean
+}
+
+const Icon = styled(Tick)<IconProps>`
     margin-top: 0.25rem;
-    display: ${props => (props.activeStatus ? "inline-block" : "none")};
+    display: ${(props: StyledComponentProps) =>
+        props.activeStatus ? "inline-block" : "none"};
     vertical-align: middle;
 `
 
@@ -38,7 +48,7 @@ const StyledArrow = styled(Arrow)`
     vertical-align: middle;
 `
 
-const ColorPicker = () => {
+const ColorPicker = (): React.ReactElement<any> => {
     const { state, dispatch } = useContext(globals)
 
     const [visibility, setVisibility] = useState(false)
@@ -50,7 +60,7 @@ const ColorPicker = () => {
         { name: "Dark", state: "dark" },
     ]
 
-    const setTheme = theme => {
+    const setTheme = (theme: string) => {
         dispatch({ type: "THEME", theme: theme })
         setVisibility(false)
     }
@@ -72,6 +82,7 @@ const ColorPicker = () => {
             <NavigationLink
                 role="help"
                 button
+                to="/"
                 hover={() => setVisibility(true)}
             >
                 <span>Choose Theme</span>
@@ -83,6 +94,7 @@ const ColorPicker = () => {
                         key={i}
                         button
                         click={() => setTheme(link.state)}
+                        to="/"
                     >
                         {link.name}{" "}
                         <Icon

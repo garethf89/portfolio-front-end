@@ -2,10 +2,11 @@ import * as animationData from "../../animations/Logo"
 
 import React, { useEffect, useState } from "react"
 
+import { Link } from "gatsby"
 import lottie from "lottie-web"
 import styled from "@emotion/styled"
 
-const HeaderLink = styled.a`
+const HeaderLink = styled(Link)`
     z-index: 3;
     pointer-events: auto;
     cursor: pointer;
@@ -17,7 +18,11 @@ const HeaderLink = styled.a`
     outline: 0;
 `
 
-const Logo = ({ siteTitle }) => {
+interface LogoProps {
+    siteTitle: string
+}
+
+const Logo = ({ siteTitle }: LogoProps): React.ReactElement<any> => {
     let [headIconDark, updateHeadDark] = useState(null)
 
     useEffect(() => {

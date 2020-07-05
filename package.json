@@ -6,12 +6,13 @@
   "author": "Gareth Ferguson <gareth.f@hotmail.co.uk>",
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^13.4.0",
-    "@contentful/rich-text-types": "^14.1.0",
+    "@contentful/rich-text-types": "^14.1.1",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "@sentry/browser": "^5.17.0",
     "chalk": "^4.0.0",
     "contentful-import": "^7.7.12",
+    "contentful-management": "^5.27.3",
     "eslint-plugin-prefer-arrow": "^1.2.0",
     "fs": "^0.0.1-security",
     "gatsby": "^2.21.0",
@@ -51,6 +52,7 @@
     "@types/socket.io-client": "^1.4.33",
     "@types/theme-ui": "^0.3.4",
     "babel-loader": "^8.1.0",
+    "contentful-typescript-codegen": "^3.2.1",
     "eslint": "^7.1.0",
     "eslint-config-gatsby-standard": "^2.2.0",
     "prettier": "^2.0.5",
@@ -80,7 +82,8 @@
     "format": "prettier --write \"src/**/*.tsx\"",
     "storybook": "NODE_ENV=production start-storybook -p 6006",
     "build-storybook": "NODE_ENV=production build-storybook -o public/components",
-    "analyze-size": "source-map-explorer public/app*.tsx"
+    "analyze-size": "source-map-explorer public/app*.tsx",
+    "contentful-codegen": "contentful-typescript-codegen --output @types/generated/contentful.d.ts"
   },
   "repository": {
     "type": "git",

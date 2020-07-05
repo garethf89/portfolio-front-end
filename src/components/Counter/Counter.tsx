@@ -11,7 +11,7 @@ const CounterStyled = styled.aside`
     display: block;
     width: 100%;
     text-align: right;
-    color: ${props => props.theme.colors.sectionText};
+    color: ${(props: StyledComponentProps) => props.theme.colors.sectionText};
 `
 
 const CounterIcon = styled(Eye)`

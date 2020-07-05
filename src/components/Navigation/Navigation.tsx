@@ -1,14 +1,13 @@
-import React, { useContext } from "react"
-
 import ColorPicker from "./ColorPicker"
 import NavigationLink from "./NavigationLink"
-import { globals } from "../../state/state"
+import React from "react"
 import styled from "@emotion/styled"
 import { useSiteMetadata } from "../../hooks/use-site-metadata"
 
 const NavigationStyles = styled.nav`
     display: none;
-    @media (min-width: ${props => props.theme.breakpoint.medium}) {
+    @media (min-width: ${(props: StyledComponentProps) =>
+            props.theme.breakpoint.medium}) {
         display: block;
     }
 `
@@ -31,8 +30,6 @@ const NavLi = styled.li`
 
 const Navigation = () => {
     const { menuLinks } = useSiteMetadata()
-
-    const { state } = useContext(globals)
 
     return (
         <NavigationStyles>

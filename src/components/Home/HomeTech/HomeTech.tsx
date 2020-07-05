@@ -1,19 +1,22 @@
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 
-import Heading from "../Typography/Heading"
+import Container from "../../Global/Container"
+import FaceImage from "../FaceImage/FaceImage"
+import Heading from "../../Typography/Heading"
 import React from "react"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import styled from "@emotion/styled"
 
 const StyledParagraph = styled(Heading)`
     font-weight: 200;
     margin-top: 0;
-    color: ${props => props.theme.colors.sectionTextSecondary};
-    max-width: ${props => props.theme.sizes.contentMaxWidth};
+    color: ${(props: StyledComponentProps) =>
+        props.theme.colors.sectionTextSecondary};
+    max-width: ${(props: StyledComponentProps) =>
+        props.theme.sizes.contentMaxWidth};
 `
 
 const BoldElement = styled.span`
-    color: ${props => props.theme.colors.sectionText};
+    color: ${(props: StyledComponentProps) => props.theme.colors.sectionText};
 `
 
 const Bold = ({ children }) => (
@@ -38,17 +41,23 @@ const options = {
         [BLOCKS.PARAGRAPH]: (node, children) => {
             return <Text>{children}</Text>
         },
-        [BLOCKS.HEADING_1]: (node, children) => (
-            <Heading level="h1">{children}</Heading>
-        ),
     },
 }
 
-export const HomeHeaderContentText = ({ text }) =>
-    documentToReactComponents(text, options)
+const TechContainer = styled(Container)`
+    margin-top: -70px;
+`
 
-const HomeHeaderContent = ({ text, className }) => {
-    return <HomeHeaderContentText className={className} text={text} />
+interface HomeTechProps {
+    image: any
 }
 
-export default HomeHeaderContent
+const HomeTech = ({ image }: HomeTechProps) => {
+    return (
+        <TechContainer align="center">
+            <FaceImage />
+        </TechContainer>
+    )
+}
+
+export default HomeTech
