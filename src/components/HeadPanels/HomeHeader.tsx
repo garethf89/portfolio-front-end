@@ -1,5 +1,5 @@
 import Button from "../Common/Button"
-import Container from "../Global/Container"
+import Container from "../Global/Container/Container"
 import Counter from "../Counter/Counter"
 import { Document } from "@contentful/rich-text-types"
 import HomeHeaderContent from "../Home/HomeHeader/HomeHeaderContent"

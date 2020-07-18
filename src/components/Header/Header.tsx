@@ -1,9 +1,10 @@
-import Container from "../Global/Container"
+import Container from "../Global/Container/Container"
 import Logo from "../Logo/Logo"
 import Navigation from "../Navigation/Navigation"
 import PropTypes from "prop-types"
 import React from "react"
 import styled from "@emotion/styled"
+import theme from "../../gatsby-plugin-theme-ui"
 
 const HeaderStyles = styled.header`
     font-size: 2rem;
@@ -15,24 +16,20 @@ const HeaderStyles = styled.header`
     padding: 3rem 0;
 `
 
-const HomeContainer = styled(Container)`
-    max-width: calc(
-        ${(props: StyledComponentProps) => props.theme.sizes.maxWidth} + 9rem
-    );
-    display: flex;
-    justify-content: space-between;
-`
-
 interface HeaderProps {
     siteTitle: string
 }
 
 const Header = ({ siteTitle }: HeaderProps) => (
     <HeaderStyles>
-        <HomeContainer>
-            <Logo siteTitle />
+        <Container
+            useflex
+            justifyContent="space-between"
+            maxWidth={`calc(${theme.sizes["maxWidth"]} + 9rem)`}
+        >
+            <Logo siteTitle={siteTitle} />
             <Navigation />
-        </HomeContainer>
+        </Container>
     </HeaderStyles>
 )
 

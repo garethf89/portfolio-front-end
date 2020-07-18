@@ -16,6 +16,17 @@ const IndexPage = () => {
                     number
                     description
                 }
+                skillsText {
+                    json
+                }
+                skills {
+                    name
+                    icon {
+                        file {
+                            url
+                        }
+                    }
+                }
             }
         }
     `)
@@ -27,7 +38,10 @@ const IndexPage = () => {
                 stats={data.page.stats}
                 text={data.page.introText.json}
             />
-            <HomeTech image={data.page.faceMedia} />
+            <HomeTech
+                text={data.page.skillsText.json}
+                skills={data.page.skills}
+            />
         </>
     )
 }

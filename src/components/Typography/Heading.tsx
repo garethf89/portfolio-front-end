@@ -1,6 +1,10 @@
+import { FlexboxProps, SpaceProps } from "styled-system"
+
 import React from "react"
+import { StyledProps } from "../../types/types"
 import { css } from "@emotion/core"
 import styled from "@emotion/styled"
+
 /* stylelint-disable */
 const common = (props: StyledComponentProps) => css`
     font-family: ${props.theme.fonts.body};
@@ -10,7 +14,7 @@ const common = (props: StyledComponentProps) => css`
     }
 `
 
-const H1 = styled.h1`
+const H1 = styled.h1<StyledProps>`
     font-size: 42px;
     line-height: 1.2;
     font-weight: 200;
@@ -27,9 +31,9 @@ const H2 = styled.h2`
     ${common}
 `
 
-const H3 = styled.h3`
+const H3 = styled.h3<StyledProps>`
     font-size: 30px;
-    line-height: 1;
+    line-height: 1.3;
     font-weight: 200;
     ${common}
 `
@@ -46,13 +50,14 @@ const H5 = styled.h5`
     ${common}
 `
 
-interface HeadingProps {
+type HeadingProps = {
     level: string
     text?: string
     className?: string
     children?: any
     override?: string
-}
+} & SpaceProps &
+    FlexboxProps
 
 const Heading = ({
     level,
@@ -60,10 +65,11 @@ const Heading = ({
     className,
     children,
     override,
+    ...props
 }: HeadingProps) => {
     if (level === "h1") {
         return (
-            <H1 as={override} level={level} className={className}>
+            <H1 as={override} className={className} {...props}>
                 {text}
                 {children}
             </H1>
@@ -81,7 +87,7 @@ const Heading = ({
 
     if (level === "h3") {
         return (
-            <H3 as={override} className={className}>
+            <H3 as={override} className={className} {...props}>
                 {text}
                 {children}
             </H3>
@@ -90,7 +96,7 @@ const Heading = ({
 
     if (level === "h4") {
         return (
-            <H4 as={override} className={className}>
+            <H4 as={override} className={className} {...props}>
                 {text}
                 {children}
             </H4>
@@ -98,7 +104,7 @@ const Heading = ({
     }
     if (level === "h5") {
         return (
-            <H5 as={override} className={className}>
+            <H5 as={override} className={className} {...props}>
                 {text}
                 {children}
             </H5>

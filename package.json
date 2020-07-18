@@ -10,6 +10,7 @@
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "@sentry/browser": "^5.17.0",
+    "@types/styled-system": "^5.1.9",
     "chalk": "^4.0.0",
     "contentful-import": "^7.7.12",
     "contentful-management": "^5.27.3",
@@ -37,7 +38,9 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.0.0",
+    "react-inlinesvg": "^2.0.0",
     "socket.io-client": "^2.3.0",
+    "styled-system": "^5.1.5",
     "theme-ui": "^0.3.1"
   },
   "devDependencies": {

@@ -1,5 +1,6 @@
 import { BLOCKS, Document, MARKS } from "@contentful/rich-text-types"
 
+import Bold from "../../Typography/Bold"
 import Heading from "../../Typography/Heading"
 import React from "react"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
@@ -14,20 +15,10 @@ const StyledParagraph = styled(Heading)`
         props.theme.sizes.contentMaxWidth};
 `
 
-const BoldElement = styled.span`
-    color: ${(props: StyledComponentProps) => props.theme.colors.sectionText};
-`
-
 interface BlockParams {
     children?: React.ReactNode
 }
 
-const Bold = ({ children }: BlockParams): React.ReactElement<any> => (
-    <>
-        <BoldElement>{children}</BoldElement>
-        <br />
-    </>
-)
 const Text = ({ children }: BlockParams): React.ReactElement<any> => {
     return <StyledParagraph level="h1">{children}</StyledParagraph>
 }

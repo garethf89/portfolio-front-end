@@ -1,33 +1,32 @@
-import { BLOCKS, MARKS } from "@contentful/rich-text-types"
+import { BLOCKS, Document, INLINES, MARKS } from "@contentful/rich-text-types"
 
-import Container from "../../Global/Container"
+import Bold from "../../Typography/Bold"
+import Container from "../../Global/Container/Container"
 import FaceImage from "../FaceImage/FaceImage"
 import Heading from "../../Typography/Heading"
+import { ISkillFields } from "../../../../@types/generated/contentful"
+import Inlinelink from "../../Typography/Inlinelink"
 import React from "react"
+import Skill from "../../Skills/Skill"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import styled from "@emotion/styled"
 
 const StyledParagraph = styled(Heading)`
     font-weight: 200;
-    margin-top: 0;
-    color: ${(props: StyledComponentProps) =>
-        props.theme.colors.sectionTextSecondary};
-    max-width: ${(props: StyledComponentProps) =>
-        props.theme.sizes.contentMaxWidth};
+    margin-top: 1rem;
+`
+const Skills = styled.ul`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0;
+    list-style-type: none;
+    margin: 4rem 0 0;
 `
 
-const BoldElement = styled.span`
-    color: ${(props: StyledComponentProps) => props.theme.colors.sectionText};
-`
-
-const Bold = ({ children }) => (
-    <>
-        <BoldElement>{children}</BoldElement>
-        <br />
-    </>
-)
 const Text = ({ children }) => {
     return (
-        <StyledParagraph as="p" level="h1">
+        <StyledParagraph override="p" level="h3">
             {children}
         </StyledParagraph>
     )
@@ -41,22 +40,35 @@ const options = {
         [BLOCKS.PARAGRAPH]: (node, children) => {
             return <Text>{children}</Text>
         },
+        [INLINES.HYPERLINK]: (node, children) => {
+            return <Inlinelink to={node.data.uri}>{children}</Inlinelink>
+        },
     },
 }
 
-const TechContainer = styled(Container)`
-    margin-top: -70px;
-`
-
-interface HomeTechProps {
-    image: any
+interface TextProps {
+    text?: Document
 }
 
-const HomeTech = ({ image }: HomeTechProps) => {
+export const HomeHeaderContentText = ({ text }: TextProps): any =>
+    documentToReactComponents(text, options)
+
+interface HomeTechProps {
+    skills: ISkillFields[]
+    text: Document
+}
+
+const HomeTech = ({ skills, text }: HomeTechProps) => {
     return (
-        <TechContainer align="center">
+        <Container p="5rem 1.5rem 2.5rem" textAlign="center" maxWidth="876px">
             <FaceImage />
-        </TechContainer>
+            <HomeHeaderContentText text={text} />
+            <Skills>
+                {skills.map((skill: ISkillFields, i) => (
+                    <Skill icon={skill.icon.file.url}>{skill.name}</Skill>
+                ))}
+            </Skills>
+        </Container>
     )
 }
 
