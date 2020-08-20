@@ -1,4 +1,4 @@
-import { GlobalsStateProvider } from "./src/state/state"
+import { GlobalsStateProvider } from "./src/state/state.tsx"
 import React from "react"
 
 // eslint-disable-next-line react/display-name,react/prop-types
