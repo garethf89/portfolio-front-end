@@ -33,7 +33,9 @@ const Counter = (): React.ReactElement<any> => {
     }
 
     useEffect(() => {
-        const socket = io.connect(connectionString)
+        const socket = io.connect(connectionString, {
+            reconnection: false,
+        })
         startSocket(socket)
     }, [])
 
