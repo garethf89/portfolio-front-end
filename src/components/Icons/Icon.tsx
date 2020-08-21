@@ -1,39 +1,31 @@
-import React, { SVGAttributes } from "react"
+import React, { CSSProperties, SVGAttributes } from "react"
+import { StyledDefaultProps, styledSystem } from "../../system/StyledSystem"
 
-const sizes = {
-    small: {
-        width: "40px",
-        height: "40px",
-    },
-    medium: {
-        width: "80px",
-        height: "80px",
-    },
-    large: {
-        width: "100px",
-        height: "100px",
-    },
+import { iconSystem } from "./iconSystem"
+
+interface IconPropsType {
+    "data-icon"?: boolean
+    iconSize?: "small" | "medium" | "large"
+    iconSrc?: React.ReactElement
+    iconSvg?: string
 }
 
-const defaultProps = {
-    role: "img",
-    display: "inline-block",
-    verticalAlign: "middle",
-    ["data-icon"]: true,
-}
+type IconProps = IconPropsType & SVGAttributes<any> & CSSProperties
 
-type IconProps = {
-    children: React.ReactElement
-    size?: "small" | "medium" | "large"
-} & SVGAttributes<any>
+const Icon = (component: React.FC, props: IconProps = {}) => {
+    const IconSystem = styledSystem<IconProps & StyledDefaultProps>([
+        iconSystem,
+    ])(component)
 
-const Icon = ({ children, size = "small", ...props }: IconProps) => {
-    const svgProps = {
-        width: sizes[size].width,
-        height: sizes[size].height,
-        ...defaultProps,
+    IconSystem.defaultProps = {
+        ...props,
+        role: "img",
+        display: "inline-block",
+        verticalAlign: "middle",
+        ["data-icon"]: true,
     }
-    return <>{React.cloneElement(children, { ...svgProps, ...props })}</>
+
+    return IconSystem
 }
 
 export default Icon

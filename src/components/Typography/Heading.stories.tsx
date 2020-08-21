@@ -6,7 +6,7 @@ import React from "react"
 export const Headings = () => (
     <div>
         <Heading level="h1">H1 - {text("Heading", "Heading", "Props")}</Heading>
-        <Heading level="h1" overrride="h2">
+        <Heading level="h1" override="h2">
             H2 with H1 Styles - {text("Heading", "Heading", "Props")}
         </Heading>
         <Heading level="h2">H2 - {text("Heading", "Heading", "Props")}</Heading>

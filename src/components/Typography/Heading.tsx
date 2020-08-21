@@ -1,6 +1,6 @@
-import { FlexboxProps, SpaceProps } from "styled-system"
+import React, { CSSProperties, HTMLAttributes } from "react"
+import { StyledDefaultProps, styledSystem } from "../../system/StyledSystem"
 
-import React from "react"
 import { StyledProps } from "../../types/types"
 import { css } from "@emotion/core"
 import styled from "@emotion/styled"
@@ -24,6 +24,7 @@ const H1 = styled.h1<StyledProps>`
       font-size: 52px;
     }
 `
+
 const H2 = styled.h2`
     font-size: 38px;
     line-height: 1;
@@ -50,73 +51,50 @@ const H5 = styled.h5`
     ${common}
 `
 
-type HeadingProps = {
-    level: string
+const Variants = {
+    h1: H1,
+    h2: H2,
+    h3: H3,
+    h4: H4,
+    h5: H5,
+}
+
+const Default = styled.p`
+    ${common}
+`
+
+export type HeadingProps = {
+    level?: string
     text?: string
     className?: string
     children?: any
     override?: string
-} & SpaceProps &
-    FlexboxProps
+} & HTMLAttributes<any> &
+    CSSProperties &
+    StyledDefaultProps
 
-const Heading = ({
-    level,
-    text,
-    className,
+const Heading: React.FC<HeadingProps> = ({
     children,
     override,
+    level,
+    text,
     ...props
-}: HeadingProps) => {
-    if (level === "h1") {
-        return (
-            <H1 as={override} className={className} {...props}>
-                {text}
-                {children}
-            </H1>
-        )
-    }
+}) => {
+    const C: React.ElementType =
+        level && Variants[level] ? Variants[level] : Default
 
-    if (level === "h2") {
-        return (
-            <H2 as={override} className={className}>
-                {text}
-                {children}
-            </H2>
-        )
-    }
-
-    if (level === "h3") {
-        return (
-            <H3 as={override} className={className} {...props}>
-                {text}
-                {children}
-            </H3>
-        )
-    }
-
-    if (level === "h4") {
-        return (
-            <H4 as={override} className={className} {...props}>
-                {text}
-                {children}
-            </H4>
-        )
-    }
-    if (level === "h5") {
-        return (
-            <H5 as={override} className={className} {...props}>
-                {text}
-                {children}
-            </H5>
-        )
-    }
+    const StyledHeading = styledSystem<HeadingProps>()(C)
 
     return (
-        <p className={className}>
+        <StyledHeading as={override} {...props}>
             {text}
             {children}
-        </p>
+        </StyledHeading>
     )
+}
+
+Heading.defaultProps = {
+    display: "block",
 }
 
 export default Heading

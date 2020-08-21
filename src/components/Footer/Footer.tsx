@@ -1,6 +1,6 @@
+import Heading, { HeadingProps } from "../Typography/Heading"
+
 import Container from "../Global/Container/Container"
-import Heading from "../Typography/Heading"
-import Icon from "../Icons/Icon"
 import { Link } from "gatsby"
 import LinkedInIcon from "../../svgs/linkedin"
 import React from "react"
@@ -24,7 +24,7 @@ const FooterLink = styled.a`
 
 const FooterContent = styled.div``
 
-const FooterHeading = styled(Heading)`
+const FooterHeading = styled(Heading)<HeadingProps>`
     margin-bottom: 2rem;
     text-align: left;
 
@@ -40,7 +40,7 @@ const Footer = (): React.ReactElement<any> => {
     return (
         <FooterOuter>
             <Container p="2.5rem 1.5rem" useflex justifyContent="space-between">
-                <FooterHeading level="h3">
+            <FooterHeading level="h3" marginTop="25px">
                     <Link to="/contact">Contact Me</Link>
                 </FooterHeading>
                 <FooterContent>
@@ -48,9 +48,11 @@ const Footer = (): React.ReactElement<any> => {
                         rel="noopener"
                         href="//uk.linkedin.com/in/garethferguson1"
                     >
-                        <Icon size="small" width="30px" height="30px">
-                            <LinkedInIcon />
-                        </Icon>
+                        <LinkedInIcon
+                            iconSize="small"
+                            width="30px"
+                            height="30px"
+                        />
                     </FooterLink>
                     <FooterCopyright>Gareth Ferguson {year}</FooterCopyright>
                 </FooterContent>
