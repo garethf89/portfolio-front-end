@@ -11,8 +11,6 @@ module.exports = {
             },
         },
         "@storybook/addon-knobs/register",
-        "@storybook/addon-actions",
-        "@storybook/addon-links",
         "@storybook/addon-a11y",
         "@storybook/addon-graphql",
     ],
