@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from "react"
 
-const initialStateGlobals = { theme: "light" }
+export const initialStateGlobals = { theme: "light" }
 
 export const globals = createContext<any>(initialStateGlobals)
 

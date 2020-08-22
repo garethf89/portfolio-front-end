@@ -1,8 +1,7 @@
-import * as animationData from "../../animations/Logo"
-
 import React, { useEffect, useState } from "react"
 
 import { Link } from "gatsby"
+import { Logo as animationData } from "../../animations/Logo"
 import lottie from "lottie-web"
 import styled from "@emotion/styled"
 
@@ -16,6 +15,10 @@ const HeaderLink = styled(Link)`
     height: 3rem;
     width: 3rem;
     outline: 0;
+    svg path {
+        stroke: ${(props: StyledComponentProps) =>
+            props.dark ? props.theme.colors.logoDark : ""};
+    }
 `
 
 interface LogoProps {

@@ -1,4 +1,4 @@
-module.exports = {
+const Lines = {
     v: "5.6.3",
     fr: 24,
     ip: 0,
@@ -554,3 +554,5 @@ module.exports = {
     ],
     markers: [],
 }
+
+export default Lines

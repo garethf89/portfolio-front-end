@@ -1,15 +1,24 @@
 import { Theme } from "theme-ui"
 
-const theme: Theme = {
+interface ThemeType extends Theme {
+    breakpoint: any
+    container: any
+}
+
+// Using Theme-UI as a basic outline but this will be a custom object
+const theme: ThemeType = {
     useCustomProperties: true,
     initialColorModeName: "default",
     colors: {
         background: "#ffffff",
-        text: "#121212",
+        text: "#20222f",
         sectionBackground: "#20222F",
         sectionText: "#fff",
         sectionTextSecondary: "#A9A9A9",
         navText: "#fff",
+        sectionSecondaryBackground: "#F6F6F6",
+        sectionSecondaryLines: "#D5D5D5",
+        logoDark: "#20222f",
     },
     fonts: {
         body: '"Ubuntu", Roboto, Helvetica, Arial, sans-serif',

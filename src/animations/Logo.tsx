@@ -1,4 +1,4 @@
-module.exports = {
+export const Logo = {
     v: "5.6.3",
     fr: 24,
     ip: 0,

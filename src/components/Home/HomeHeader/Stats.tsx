@@ -1,5 +1,5 @@
 import Heading from "../../Typography/Heading"
-import { IStat } from "../../../../@types/generated/contentful"
+import { IStatFields } from "../../../../@types/generated/contentful"
 import React from "react"
 import styled from "@emotion/styled"
 
@@ -41,17 +41,23 @@ const StatNumber = styled(Heading)`
 `
 
 const StatDesc = styled.span`
-    display: inline-block;
     vertical-align: middle;
+    font-weight: 200;
+    display: inline-block;
     margin-left: 1rem;
     @media (min-width: ${(props: StyledComponentProps) =>
             props.theme.breakpoint.small}) {
-        margin-left: 2px;
+        display: block;
+        margin-left: 0;
+    }
+    @media (min-width: ${(props: StyledComponentProps) =>
+            props.theme.breakpoint.medium}) {
+        margin-top: 0.5rem;
     }
 `
 
 interface StatProps {
-    stats: IStat[]
+    stats: IStatFields[]
 }
 
 const Stats = ({ stats }: StatProps) => {

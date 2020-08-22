@@ -1,14 +1,12 @@
-import * as Sentry from "@sentry/browser"
-
-import React, { useContext, useEffect, useState } from "react"
-
-import Footer from "./Footer/Footer"
 import { Global } from "@emotion/core"
-import SEO from "./seo"
-import globalStyles from "../styles/globals"
-import { globals } from "../state/state"
 import styled from "@emotion/styled"
+import * as Sentry from "@sentry/browser"
+import React, { useContext, useEffect, useState } from "react"
 import { supportsWebP } from "../helpers/support/webp"
+import { globals } from "../state/state"
+import globalStyles from "../styles/globals"
+import Footer from "./Footer/Footer"
+import SEO from "./seo"
 
 const Root = styled.div`
     font-family: ${(props: StyledComponentProps) => props.theme.fonts.body};
@@ -19,8 +17,6 @@ const TemplateWrap = ({ children, description, image, data, path }) => {
     const [initGlobals, setInitGlobals] = useState(false)
 
     const { title } = (data && data.page) || ""
-
-    const home = path === "/"
 
     useEffect(() => {
         if (!initGlobals) {

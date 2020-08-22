@@ -57,12 +57,12 @@ const SEO = ({
             <link
                 rel="preconnect"
                 href="https://fonts.gstatic.com/"
-                crossOrigin
+                crossOrigin="true"
             />
             <link
                 rel="preconnect"
                 href="https://images.ctfassets.net/"
-                crossOrigin
+                crossOrigin="true"
             />
             <link
                 href={`https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap`}

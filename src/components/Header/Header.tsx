@@ -18,9 +18,10 @@ const HeaderStyles = styled.header`
 
 interface HeaderProps {
     siteTitle: string
+    nav?: boolean
 }
 
-const Header = ({ siteTitle }: HeaderProps) => (
+const Header = ({ nav, siteTitle }: HeaderProps) => (
     <HeaderStyles>
         <Container
             useflex
@@ -28,7 +29,7 @@ const Header = ({ siteTitle }: HeaderProps) => (
             maxWidth={`calc(${theme.sizes["maxWidth"]} + 9rem)`}
         >
             <Logo siteTitle={siteTitle} />
-            <Navigation />
+            {nav && <Navigation />}
         </Container>
     </HeaderStyles>
 )

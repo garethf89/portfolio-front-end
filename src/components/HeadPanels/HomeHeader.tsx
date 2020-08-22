@@ -3,7 +3,7 @@ import Container from "../Global/Container/Container"
 import Counter from "../Counter/Counter"
 import { Document } from "@contentful/rich-text-types"
 import HomeHeaderContent from "../Home/HomeHeader/HomeHeaderContent"
-import { IStat } from "../../../@types/generated/contentful"
+import { IStatFields } from "../../../@types/generated/contentful"
 import Lines from "../Animation/Lines"
 import React from "react"
 import Stats from "../Home/HomeHeader/Stats"
@@ -55,7 +55,7 @@ const HomeSectionStats = styled.div`
 
 interface HomeHeaderProps {
     text: Document
-    stats: IStat[]
+    stats: IStatFields[]
 }
 
 const HomeHeader = ({ text, stats }: HomeHeaderProps) => {

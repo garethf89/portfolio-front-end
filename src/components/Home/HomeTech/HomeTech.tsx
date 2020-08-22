@@ -4,7 +4,6 @@ import Bold from "../../Typography/Bold"
 import Container from "../../Global/Container/Container"
 import FaceImage from "../FaceImage/FaceImage"
 import Heading from "../../Typography/Heading"
-import { ISkillFields } from "../../../../@types/generated/contentful"
 import Inlinelink from "../../Typography/Inlinelink"
 import React from "react"
 import Skill from "../../Skills/Skill"
@@ -54,7 +53,7 @@ export const HomeHeaderContentText = ({ text }: TextProps): any =>
     documentToReactComponents(text, options)
 
 interface HomeTechProps {
-    skills: ISkillFields[]
+    skills: ISkillFieldsType[]
     text: Document
 }
 
@@ -64,8 +63,10 @@ const HomeTech = ({ skills, text }: HomeTechProps) => {
             <FaceImage />
             <HomeHeaderContentText text={text} />
             <Skills>
-                {skills.map((skill: ISkillFields, i) => (
-                    <Skill icon={skill.icon.file.url}>{skill.name}</Skill>
+                {skills.map((skill: ISkillFieldsType, i) => (
+                    <Skill key={i} icon={skill.icon.svg.content}>
+                        {skill.name}
+                    </Skill>
                 ))}
             </Skills>
         </Container>

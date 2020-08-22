@@ -4,6 +4,10 @@ import { Download } from "../../svgs/index"
 import React from "react"
 import styled from "@emotion/styled"
 
+type ButtonObjectProps = {
+    colors: { [key: string]: string }
+}
+
 const DownloadIcon = styled(Download)`
     width: 1.25rem;
     height: auto;
@@ -14,7 +18,7 @@ const DownloadIcon = styled(Download)`
     }
 `
 
-const ButtonIcon = styled.span`
+const ButtonIcon = styled.span<ButtonObjectProps>`
     display: block;
     position: absolute;
     right: 0;
@@ -36,7 +40,7 @@ const ButtonContent = styled.span`
     }
 `
 
-const ButtonStyled = styled.button`
+const ButtonStyled = styled.button<ButtonObjectProps>`
     display: block;
     text-align: left;
     text-decoration: none;
@@ -132,15 +136,11 @@ const Button = ({
     const colorTheme: any = { ...theme.buttons[colorMode] }
     return (
         <ButtonStyled
-            onClick={click ? e => click(e) : null}
+            onClick={click ? e => click() : null}
             type={type}
             colors={colorTheme}
         >
-            <svg
-                viewBox="0 0 180 60"
-                className="border"
-                preserveAspectRatio="none"
-            >
+            <svg viewBox="0 0 180 60" className="border">
                 <polyline
                     points="179,1 179,59 1,59 1,1 179,1"
                     className="border__line"

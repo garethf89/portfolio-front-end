@@ -5,26 +5,34 @@ import React, { useEffect } from "react"
 import lottie from "lottie-web"
 import styled from "@emotion/styled"
 
-const HeaderAnimation = styled.div`
+const HeaderAnimation = styled.div<any>`
     position: absolute;
     left: -20%;
     right: -20%;
     top: -20%;
     bottom: -20%;
     z-index: 0;
+    svg path {
+        stroke: ${(props: StyledComponentProps) =>
+            props.dark ? `${props.theme.colors.sectionSecondaryLines}` : ``};
+    }
 `
 
-const Lines = ({ id }: React.HTMLAttributes<any>) => {
+interface LinesProps extends React.HTMLAttributes<any> {
+    dark?: boolean
+}
+
+const Lines = ({ id, dark }: LinesProps) => {
     useEffect(() => {
         lottie.loadAnimation({
             container: document.getElementById("HeaderAni"),
             renderer: "svg",
             loop: true,
             autoplay: true,
-            animationData: animationData,
+            animationData: animationData.default,
         })
     }, [])
-    return <HeaderAnimation id={id}></HeaderAnimation>
+    return <HeaderAnimation dark={dark} id={id}></HeaderAnimation>
 }
 
 export default Lines
