@@ -5,3 +5,20 @@ declare type StyledComponentProps = {
 }
 
 type NotFunction<T> = T extends Function ? never : T
+
+declare module "*.css"
+
+// Contentful Fixes as it is currently lacking in TS
+
+interface ExpandedAssetType extends Asset {
+    svg: {
+        content: string
+    }
+}
+interface ISkillFieldsType extends ISkillFields {
+    /** Name */
+    name?: string | undefined
+
+    /** Icon */
+    icon?: ExpandedAssetType
+}
