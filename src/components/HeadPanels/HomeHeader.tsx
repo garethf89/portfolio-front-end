@@ -1,3 +1,5 @@
+import React, { useContext, useEffect } from "react"
+
 import Button from "../Common/Button"
 import Container from "../Global/Container/Container"
 import Counter from "../Counter/Counter"
@@ -5,8 +7,8 @@ import { Document } from "@contentful/rich-text-types"
 import HomeHeaderContent from "../Home/HomeHeader/HomeHeaderContent"
 import { IStatFields } from "../../../@types/generated/contentful"
 import Lines from "../Animation/Lines"
-import React from "react"
 import Stats from "../Home/HomeHeader/Stats"
+import { globals } from "../../state/state"
 import styled from "@emotion/styled"
 
 const HomeHeaderStyles = styled.section`
@@ -59,6 +61,14 @@ interface HomeHeaderProps {
 }
 
 const HomeHeader = ({ text, stats }: HomeHeaderProps) => {
+    const { state, dispatch } = useContext(globals)
+
+    useEffect(() => {
+        if (state.logo !== "light") {
+            dispatch({ type: "LOGO", logo: "light" })
+        }
+    }, [])
+
     return (
         <HomeHeaderStyles>
             <Lines id="HeaderAni" />

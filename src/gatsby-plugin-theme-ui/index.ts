@@ -17,7 +17,7 @@ const theme: ThemeType = {
         sectionTextSecondary: "#A9A9A9",
         navText: "#fff",
         sectionSecondaryBackground: "#F6F6F6",
-        sectionSecondaryLines: "#D5D5D5",
+        sectionSecondaryLines: "#4A4A4A",
         logoDark: "#20222f",
     },
     fonts: {

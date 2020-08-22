@@ -1,8 +1,8 @@
 import PageHeader from "../components/HeadPanels/PageHeader"
 import React from "react"
 
-const NotFoundPage = () => {
-    const headerText = "Page not found!"
+const ContactPage = () => {
+    const headerText = "Contact me using the form below"
     return (
         <>
             <PageHeader text={headerText} />
@@ -10,4 +10,4 @@ const NotFoundPage = () => {
     )
 }
 
-export default NotFoundPage
+export default ContactPage

@@ -1,18 +1,21 @@
 import React, { createContext, useReducer } from "react"
 
-export const initialStateGlobals = { theme: "light" }
+export const initialStateGlobals = { theme: "light", logo: "light" }
 
 export const globals = createContext<any>(initialStateGlobals)
 
 type Action = {
     type: string
     theme?: string
+    logo?: string
 }
 
 const reducer = (state: any, action: Action) => {
     switch (action.type) {
         case "THEME":
             return { ...state, theme: action.theme }
+        case "LOGO":
+            return { ...state, logo: action.logo }
         default:
             return {}
     }

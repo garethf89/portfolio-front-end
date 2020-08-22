@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 
 import { Link } from "gatsby"
 import { Logo as animationData } from "../../animations/Logo"
+import { globals } from "../../state/state"
 import lottie from "lottie-web"
 import styled from "@emotion/styled"
 
@@ -16,6 +17,7 @@ const HeaderLink = styled(Link)`
     width: 3rem;
     outline: 0;
     svg path {
+        transition: stroke 0.5s ease-in-out;
         stroke: ${(props: StyledComponentProps) =>
             props.dark ? props.theme.colors.logoDark : ""};
     }
@@ -27,6 +29,10 @@ interface LogoProps {
 
 const Logo = ({ siteTitle }: LogoProps): React.ReactElement<any> => {
     let [headIconDark, updateHeadDark] = useState(null)
+
+    const { state } = useContext(globals)
+
+    const isDark = state.logo === "dark"
 
     useEffect(() => {
         updateHeadDark(
@@ -56,6 +62,7 @@ const Logo = ({ siteTitle }: LogoProps): React.ReactElement<any> => {
             onKeyUp={hover}
             onMouseEnter={hover}
             id="HeaderLogo"
+            dark={isDark}
         ></HeaderLink>
     )
 }
