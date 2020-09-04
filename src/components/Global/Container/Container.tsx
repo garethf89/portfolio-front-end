@@ -13,6 +13,7 @@ import React from "react"
 type ContainerProps = {
     children: any
     useflex?: boolean
+    vPadding?: boolean
     as?: string
 } & SpaceProps &
     TypographyProps &

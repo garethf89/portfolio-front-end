@@ -1,22 +1,14 @@
 import { useColorMode, useThemeUI } from "theme-ui"
 
+import ArrowLight from "../../svgs/light-arrow"
 import { Download } from "../../svgs/index"
 import React from "react"
 import styled from "@emotion/styled"
 
 type ButtonObjectProps = {
     colors: { [key: string]: string }
+    header?: boolean
 }
-
-const DownloadIcon = styled(Download)`
-    width: 1.25rem;
-    height: auto;
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
-        width: 2rem;
-        height: 27px;
-    }
-`
 
 const ButtonIcon = styled.span<ButtonObjectProps>`
     display: block;
@@ -25,18 +17,22 @@ const ButtonIcon = styled.span<ButtonObjectProps>`
     top: 0;
     bottom: 0;
     padding: 1em 0.75rem;
+    border-left: 1px solid
+        ${(props: StyledComponentProps) =>
+            props.colors === "dark" ? "#4A4A4A" : "#fff"};
+
     @media (min-width: ${(props: StyledComponentProps) =>
             props.theme.breakpoint.medium}) {
         padding: 1em;
     }
 `
 
-const ButtonContent = styled.span`
+const ButtonContent = styled.span<ButtonObjectProps>`
     padding: 1rem 1.25rem;
     display: block;
     @media (min-width: ${(props: StyledComponentProps) =>
             props.theme.breakpoint.medium}) {
-        padding: 1rem 1.25rem 1.8rem;
+        padding: 1rem 1.25rem 1.7rem;
     }
 `
 
@@ -76,7 +72,8 @@ const ButtonStyled = styled.button<ButtonObjectProps>`
         z-index: 1;
 
         &__line {
-            stroke: #fff;
+            stroke: ${(props: StyledComponentProps) =>
+                props.colors === "dark" ? "#4A4A4A" : "#fff"};
             stroke-width: 2px;
             stroke-dasharray: 40 480;
             stroke-dashoffset: 40;
@@ -92,7 +89,10 @@ const ButtonStyled = styled.button<ButtonObjectProps>`
 
     &:focus,
     &:hover {
-        background: rgba(0, 0, 0, 0.6);
+        background: ${(props: StyledComponentProps) =>
+            props.colors === "dark"
+                ? "rgba(0, 0, 0, 0.1)"
+                : "rgba(0, 0, 0, 0.6)"};
         .border__line {
             stroke-dashoffset: -480;
         }
@@ -100,26 +100,32 @@ const ButtonStyled = styled.button<ButtonObjectProps>`
 
     @media (min-width: ${(props: StyledComponentProps) =>
             props.theme.breakpoint.medium}) {
-        min-width: 314px;
+        min-width: ${(props: StyledComponentProps) =>
+            props.header ? "314px" : "0"};
         padding-right: 5rem;
     }
 `
 
 const ButtonIcons: any = {
-    Download: <DownloadIcon />,
+    Arrow: ArrowLight,
+    Download: Download,
 }
 
 const renderButton = (icon: ButtonTypes) => {
-    return ButtonIcons[icon]
+    const ButtonToUse = ButtonIcons[icon]
+
+    return <ButtonToUse />
 }
 
-type ButtonTypes = "Download"
+export type ButtonTypes = "Download" | "Arrow"
 
 interface ButtonProps {
     icon?: ButtonTypes
     type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"]
     children: any
     color?: string
+    header?: boolean
+    disabled?: boolean
     click?: () => void
 }
 
@@ -128,25 +134,34 @@ const Button = ({
     children,
     type = "button",
     color,
+    header,
+    disabled,
     click,
 }: ButtonProps) => {
     const context = useThemeUI()
     const { theme } = context
     const [colorMode] = useColorMode()
-    const colorTheme: any = { ...theme.buttons[colorMode] }
+    const colorTheme: any = color ? color : { ...theme.buttons[colorMode] }
+
     return (
         <ButtonStyled
             onClick={click ? e => click() : null}
             type={type}
             colors={colorTheme}
+            header={header}
+            disabled={disabled}
         >
-            <svg viewBox="0 0 180 60" className="border">
+            <svg
+                viewBox="0 0 180 60"
+                className="border"
+                preserveAspectRatio="none"
+            >
                 <polyline
                     points="179,1 179,59 1,59 1,1 179,1"
                     className="border__line"
                 />
             </svg>
-            <ButtonContent>{children}</ButtonContent>
+            <ButtonContent colors={colorTheme}>{children}</ButtonContent>
             {icon && (
                 <ButtonIcon colors={colorTheme}>
                     {renderButton(icon)}

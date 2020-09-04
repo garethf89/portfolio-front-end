@@ -8,7 +8,7 @@ const baseStyle = props => css`
     position: relative;
     margin: 0 auto auto;
     width: 100%;
-    padding: 0 1.5rem;
+    padding: ${props.vPadding ? "5rem" : "0"} 1.5rem;
     text-align: left;
     max-width: ${props.theme.sizes.maxWidth};
     max-width: calc(${props.theme.sizes.maxWidth} + 3rem);

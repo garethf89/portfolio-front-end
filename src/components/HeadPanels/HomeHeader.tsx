@@ -75,7 +75,9 @@ const HomeHeader = ({ text, stats }: HomeHeaderProps) => {
             <HomeContainer>
                 <HomeSection>
                     <HomeHeaderContent text={text} />
-                    <Button icon="Download">Download CV</Button>
+                    <Button header={true} icon="Download">
+                        Download CV
+                    </Button>
                 </HomeSection>
                 <HomeSectionStats>
                     <Stats stats={stats} />

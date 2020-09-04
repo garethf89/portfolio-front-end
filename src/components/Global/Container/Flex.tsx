@@ -12,7 +12,7 @@ const baseStyle = props => css`
     padding: 0 1.5rem;
     text-align: left;
     max-width: ${props.theme.sizes.maxWidth};
-    // max-width: calc(${props.theme.sizes.maxWidth} + 3rem);
+    max-width: calc(${props.theme.sizes.maxWidth} + 3rem);
     flex-direction: column;
     @media (min-width: ${props.theme.breakpoint.small}) {
         flex-direction: row;

@@ -1,3 +1,5 @@
+import ContactForm from "../containers/ContactForm"
+import Container from "../components/Global/Container/Container"
 import PageHeader from "../components/HeadPanels/PageHeader"
 import React from "react"
 
@@ -6,6 +8,9 @@ const ContactPage = () => {
     return (
         <>
             <PageHeader text={headerText} />
+            <Container vPadding={true}>
+                <ContactForm />
+            </Container>
         </>
     )
 }

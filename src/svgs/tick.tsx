@@ -1,19 +1,16 @@
 import * as React from "react"
 
+import Icon from "../components/Icons/Icon"
+
 const Tick = (props: React.SVGProps<SVGSVGElement>) => {
     return (
-        <svg
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"
-            {...props}
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
             <path
                 fill="currentColor"
-                d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+                d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.25 16.518l-4.5-4.319 1.396-1.435 3.078 2.937 6.105-6.218 1.421 1.409-7.5 7.626z"
             ></path>
         </svg>
     )
 }
 
-export default Tick
+export default Icon(Tick)

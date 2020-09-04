@@ -19,7 +19,7 @@ const HeaderLink = styled(Link)`
     svg path {
         transition: stroke 0.5s ease-in-out;
         stroke: ${(props: StyledComponentProps) =>
-            props.dark ? props.theme.colors.logoDark : ""};
+            props.dark === "true" ? props.theme.colors.logoDark : ""};
     }
 `
 
@@ -32,7 +32,7 @@ const Logo = ({ siteTitle }: LogoProps): React.ReactElement<any> => {
 
     const { state } = useContext(globals)
 
-    const isDark = state.logo === "dark"
+    const isDark = state.logo === "dark" ? "true" : "false"
 
     useEffect(() => {
         updateHeadDark(

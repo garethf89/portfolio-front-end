@@ -43,8 +43,8 @@ const theme: ThemeType = {
         },
         dark: {
             border: "#000",
-            background: "#000",
-            color: "#fff",
+            background: "#F6F6F6",
+            color: "#000",
         },
     },
 }
