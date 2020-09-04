@@ -11,7 +11,12 @@ const baseStyle = props => css`
     padding: ${props.vPadding ? "5rem" : "0"} 1.5rem;
     text-align: left;
     max-width: ${props.theme.sizes.maxWidth};
-    max-width: calc(${props.theme.sizes.maxWidth} + 3rem);
+    @media (min-width: ${props.theme.breakpoint.medium}) {
+        flex-direction: row;
+        padding-left: 3rem;
+        padding-right: 3rem;
+        max-width: calc(${props.theme.sizes.maxWidth});
+    }
 `
 
 const BoxElement = styled.section(baseStyle, space, color, layout, typography)

@@ -59,7 +59,14 @@ interface HomeTechProps {
 
 const HomeTech = ({ skills, text }: HomeTechProps) => {
     return (
-        <Container p="5rem 1.5rem 2.5rem" textAlign="center" maxWidth="876px">
+        <Container
+            padding={[
+                "5rem 1.5rem 2.5rem",
+                "5rem 1.5rem 2.5rem",
+                "5rem 1.5rem 2.5rem",
+            ]}
+            textAlign="center"
+        >
             <FaceImage />
             <HomeHeaderContentText text={text} />
             <Skills>

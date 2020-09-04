@@ -83,7 +83,7 @@ const ContactForm = () => {
                                 </Alert>
                             )}
                             {!success && (
-                                <Flex flexWrap="wrap" padding="0">
+                                <Flex flexWrap="wrap" padding={[0, 0, 0]}>
                                     <FormSection>
                                         <FormContainer>
                                             <Label

@@ -39,8 +39,12 @@ const Footer = (): React.ReactElement<any> => {
     const year = new Date().getFullYear()
     return (
         <FooterOuter>
-            <Container p="2.5rem 1.5rem" useflex justifyContent="space-between">
-            <FooterHeading level="h3" marginTop="25px">
+            <Container
+                padding={["2.5rem 1.5rem", "2.5rem 1.5rem", "3.5rem 1.5rem"]}
+                useflex
+                justifyContent="space-between"
+            >
+                <FooterHeading level="h3" marginTop="25px">
                     <Link to="/contact">Contact Me</Link>
                 </FooterHeading>
                 <FooterContent>

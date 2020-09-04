@@ -27,6 +27,7 @@ const theme: ThemeType = {
         maxWidth: "1160px",
         contentMaxWidth: "686px",
     },
+    breakpoints: ["35em", "50em", "79.38em"],
     breakpoint: {
         small: "35em",
         medium: "50em",

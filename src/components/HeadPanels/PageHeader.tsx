@@ -25,7 +25,10 @@ const StyledTitle = styled(Heading)`
 `
 
 const InnerContainer = styled.div`
-    max-width: 50%;
+    @media (min-width: ${(props: StyledComponentProps) =>
+            props.theme.breakpoint.medium}) {
+        max-width: 50%;
+    }
 `
 
 interface PageHeaderProps {
