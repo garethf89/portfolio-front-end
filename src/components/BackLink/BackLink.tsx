@@ -1,9 +1,9 @@
 import Arrow from "../../svgs/arrow"
-import { Link } from "gatsby"
+import FadeLink from "../Link/Link"
 import React from "react"
 import styled from "@emotion/styled"
 
-const BackLinkStyled = styled(Link)`
+const BackLinkStyled = styled(FadeLink)`
     display: block;
     color: #000;
     text-decoration: none;

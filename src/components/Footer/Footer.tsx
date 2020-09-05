@@ -1,7 +1,7 @@
 import Heading, { HeadingProps } from "../Typography/Heading"
 
 import Container from "../Global/Container/Container"
-import { Link } from "gatsby"
+import FadeLink from "../Link/Link"
 import LinkedInIcon from "../../svgs/linkedin"
 import React from "react"
 import styled from "@emotion/styled"
@@ -45,7 +45,7 @@ const Footer = (): React.ReactElement<any> => {
                 justifyContent="space-between"
             >
                 <FooterHeading level="h3" marginTop="25px">
-                    <Link to="/contact">Contact Me</Link>
+                    <FadeLink to="/contact">Contact Me</FadeLink>
                 </FooterHeading>
                 <FooterContent>
                     <FooterLink

@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react"
 
-import { Link } from "gatsby"
+import FadeLink from "../Link/Link"
 import { Logo as animationData } from "../../animations/Logo"
 import { globals } from "../../state/state"
 import lottie from "lottie-web"
 import styled from "@emotion/styled"
 
-const HeaderLink = styled(Link)`
+const HeaderLink = styled(FadeLink)`
     z-index: 3;
     pointer-events: auto;
     cursor: pointer;

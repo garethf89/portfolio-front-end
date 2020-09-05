@@ -1,9 +1,9 @@
-import { GatsbyLinkProps, Link } from "gatsby"
-
-import React from "react"
 import styled from "@emotion/styled"
+import { GatsbyLinkProps } from "gatsby"
+import React from "react"
+import FadeLink from "../Link/Link"
 
-const StyledLink = styled(props => <Link {...props} />)`
+const StyledLink = styled(props => <FadeLink {...props} />)`
     font-size: 16px;
     text-transform: uppercase;
     text-decoration: none;

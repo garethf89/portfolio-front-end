@@ -1,8 +1,8 @@
-import { Link } from "gatsby"
+import FadeLink from "../Link/Link"
 import React from "react"
 import styled from "@emotion/styled"
 
-const LinkElement = styled(Link)`
+const LinkElement = styled(FadeLink)`
     font-weight: 400;
     display: inline;
     position: relative;
