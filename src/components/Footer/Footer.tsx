@@ -40,7 +40,7 @@ const Footer = (): React.ReactElement<any> => {
     return (
         <FooterOuter>
             <Container
-                padding={["2.5rem 1.5rem", "2.5rem 1.5rem", "3.5rem 1.5rem"]}
+                padding={["2.5rem 1.5rem", "2.5rem 1.5rem", "2.5rem 1.5rem"]}
                 useflex
                 justifyContent="space-between"
             >
