@@ -9,7 +9,7 @@ const baseStyle = props => css`
     margin: 0 auto auto;
     width: 100%;
     display: flex;
-    padding: 0 1.5rem;
+    padding: ${props.vPadding ? "4rem" : "0"} 1.5rem;
     text-align: left;
     max-width: ${props.theme.sizes.maxWidth};
     flex-direction: column;
@@ -17,7 +17,7 @@ const baseStyle = props => css`
         flex-direction: row;
     }
     @media (min-width: ${props.theme.breakpoint.medium}) {
-        padding: 0 3rem;
+        padding: ${props.vPadding ? "4rem" : "0"} 3rem;
     }
 `
 

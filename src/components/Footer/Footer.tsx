@@ -13,8 +13,7 @@ const FooterCopyright = styled.p`
 `
 
 const FooterOuter = styled.footer`
-    background: ${(props: StyledComponentProps) =>
-        props.theme.colors.sectionBackground};
+    background: ${(props: StyledComponentProps) => props.theme.colors.footerBg};
     color: ${(props: StyledComponentProps) => props.theme.colors.sectionText};
 `
 
@@ -35,15 +34,21 @@ const FooterHeading = styled(Heading)<HeadingProps>`
     }
 `
 
+const FooterContainer = styled(Container)`
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    @media (min-width: ${(props: StyledComponentProps) =>
+            props.theme.breakpoint.medium}) {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+`
+
 const Footer = (): React.ReactElement<any> => {
     const year = new Date().getFullYear()
     return (
         <FooterOuter>
-            <Container
-                padding={["2.5rem 1.5rem", "2.5rem 1.5rem", "2.5rem 1.5rem"]}
-                useflex
-                justifyContent="space-between"
-            >
+            <FooterContainer useflex justifyContent="space-between">
                 <FooterHeading level="h3" marginTop="25px">
                     <FadeLink to="/contact">Contact Me</FadeLink>
                 </FooterHeading>
@@ -60,7 +65,7 @@ const Footer = (): React.ReactElement<any> => {
                     </FooterLink>
                     <FooterCopyright>Gareth Ferguson {year}</FooterCopyright>
                 </FooterContent>
-            </Container>
+            </FooterContainer>
         </FooterOuter>
     )
 }

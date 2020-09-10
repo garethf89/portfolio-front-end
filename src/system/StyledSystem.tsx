@@ -32,7 +32,7 @@ const systems = compose(
 export const systemProps = systems.propNames
 
 const allowedProps = ["as", "transform"]
-const blacklist = ["display"]
+const blacklist = ["display", "opacity"]
 
 export type StyledDefaultProps = {
     as?: string

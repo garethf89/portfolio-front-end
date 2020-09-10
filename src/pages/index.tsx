@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import Header from "../components/Header/Header"
 import HomeHeader from "../components/HeadPanels/HomeHeader"
 import HomeTech from "../components/Home/HomeTech/HomeTech"
+import LastFM from "../components/LastFM/LastFM"
 import React from "react"
 
 const IndexPage = () => {
@@ -23,8 +24,8 @@ const IndexPage = () => {
                 skills {
                     name
                     icon {
-                        svg { 
-                          content
+                        svg {
+                            content
                         }
                         file {
                             url
@@ -46,6 +47,7 @@ const IndexPage = () => {
                 text={data.page.skillsText.json}
                 skills={data.page.skills}
             />
+            <LastFM />
         </>
     )
 }

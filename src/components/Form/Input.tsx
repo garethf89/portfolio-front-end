@@ -18,7 +18,7 @@ const InputStyled = styled(Field)`
 type InputProps = React.InputHTMLAttributes<any>
 
 const Input = (props: InputProps) => {
-    const [field, meta] = useField(props.name)
+    const [fied, meta] = useField(props.name)
     const error = meta.touched && meta.error
     return (
         <>

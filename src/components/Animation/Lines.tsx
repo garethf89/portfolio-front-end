@@ -25,7 +25,7 @@ interface LinesProps extends React.HTMLAttributes<any> {
 const Lines = ({ id, dark }: LinesProps) => {
     useEffect(() => {
         lottie.loadAnimation({
-            container: document.getElementById("HeaderAni"),
+            container: document.getElementById(id),
             renderer: "svg",
             loop: true,
             autoplay: true,

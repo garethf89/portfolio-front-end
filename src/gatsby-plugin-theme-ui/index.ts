@@ -19,6 +19,7 @@ const theme: ThemeType = {
         sectionSecondaryBackground: "#F6F6F6",
         sectionSecondaryLines: "#4A4A4A",
         logoDark: "#20222f",
+        footerBg: "#14161F",
     },
     fonts: {
         body: '"Ubuntu", Roboto, Helvetica, Arial, sans-serif',

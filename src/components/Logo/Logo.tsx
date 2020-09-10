@@ -56,7 +56,7 @@ const Logo = ({ siteTitle }: LogoProps): React.ReactElement<any> => {
 
     return (
         <HeaderLink
-            tabIndex={1}
+            tab-index={1}
             aria-label={siteTitle}
             to="/"
             onKeyUp={hover}

@@ -45,7 +45,14 @@ const H4 = styled.h4`
     ${common}
 `
 const H5 = styled.h5`
-    font-size: 30px;
+    font-size: 24px;
+    line-height: 1;
+    font-weight: 200;
+    ${common}
+`
+
+const H6 = styled.h6`
+    font-size: 18px;
     line-height: 1;
     font-weight: 200;
     ${common}
@@ -57,6 +64,7 @@ const Variants = {
     h3: H3,
     h4: H4,
     h5: H5,
+    h6: H6,
 }
 
 const Default = styled.p`

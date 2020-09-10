@@ -8,7 +8,7 @@ const ContactPage = () => {
     return (
         <>
             <PageHeader text={headerText} />
-            <Container vPadding={true}>
+            <Container vPadding>
                 <ContactForm />
             </Container>
         </>
