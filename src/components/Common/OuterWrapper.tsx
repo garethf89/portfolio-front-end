@@ -1,3 +1,4 @@
+import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 
 export const OuterWrapper = styled.div`

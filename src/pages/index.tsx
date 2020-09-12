@@ -15,7 +15,7 @@ const IndexPage = () => {
                     json
                 }
                 stats {
-                    number
+                    amount
                     description
                 }
                 skillsText {
@@ -38,7 +38,7 @@ const IndexPage = () => {
 
     return (
         <>
-            <Header nav={true} siteTitle={data.page.title} />
+            <Header nav siteTitle={data.page.title} />
             <HomeHeader
                 stats={data.page.stats}
                 text={data.page.introText.json}

@@ -3,7 +3,7 @@ import axios from "axios"
 const url = `${process.env.REACT_APP_API_URL}/lastFm`
 const data = { name: "DirtyG" }
 
-export const lastFmService = async () => {
+export const lastFmService = async() => {
     try {
         const res = await axios({
             method: "post",

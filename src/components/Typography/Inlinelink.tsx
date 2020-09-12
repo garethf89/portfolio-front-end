@@ -1,5 +1,6 @@
 import FadeLink from "../Link/Link"
 import React from "react"
+import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 
 const LinkElement = styled(FadeLink)`

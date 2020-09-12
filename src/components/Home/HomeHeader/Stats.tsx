@@ -1,6 +1,7 @@
 import Heading from "../../Typography/Heading"
 import { IStatFields } from "../../../../@types/generated/contentful"
 import React from "react"
+import { StyledComponentProps } from "../../../../@types/types"
 import styled from "@emotion/styled"
 
 const StatsContainer = styled.ul`
@@ -66,7 +67,7 @@ const Stats = ({ stats }: StatProps) => {
             {stats.map((stat: any, i) => (
                 <Stat key={i}>
                     <StatNumber className="" level="h1" override="span">
-                        {stat.number}+
+                        {stat.amount}+
                     </StatNumber>
                     <StatDesc>{stat.description}</StatDesc>
                 </Stat>

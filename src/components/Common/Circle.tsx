@@ -8,7 +8,7 @@ const Wrapper = styled.div`
     }
 `
 interface CircleProps {
-    children: any
+    children: any;
 }
 
 const Circle = (props: CircleProps) => {

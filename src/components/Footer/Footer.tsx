@@ -4,6 +4,7 @@ import Container from "../Global/Container/Container"
 import FadeLink from "../Link/Link"
 import LinkedInIcon from "../../svgs/linkedin"
 import React from "react"
+import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 
 const FooterCopyright = styled.p`
@@ -49,12 +50,13 @@ const Footer = (): React.ReactElement<any> => {
     return (
         <FooterOuter>
             <FooterContainer useflex justifyContent="space-between">
-                <FooterHeading level="h3" marginTop="25px">
+                <FooterHeading level="h3" override="h5" marginTop="25px">
                     <FadeLink to="/contact">Contact Me</FadeLink>
                 </FooterHeading>
                 <FooterContent>
                     <FooterLink
                         rel="noopener"
+                        aria-label="LinkedIn"
                         href="//uk.linkedin.com/in/garethferguson1"
                     >
                         <LinkedInIcon

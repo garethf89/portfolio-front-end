@@ -9,12 +9,12 @@ import { withKnobs } from "@storybook/addon-knobs"
 
 export const Form = () => (
     <LightContainer>
-        <Label required={true} htmlFor="name">
+        <Label required htmlFor="name">
             Name
         </Label>
         <Input id="name" name="name" />
         <Spacer />
-        <Label required={true} htmlFor="message">
+        <Label required htmlFor="message">
             Message
         </Label>
         <TextArea as="textarea" id="message" name="message" type="textarea" />

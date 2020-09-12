@@ -5,15 +5,15 @@ import Stats from "./Stats"
 const statsData: Array<IStatFields> = [
     {
         description: "Years of experience",
-        number: 10,
+        amount: 10,
     },
     {
         description: "Technologies used",
-        number: 20,
+        amount: 20,
     },
     {
         description: "Projects worked on",
-        number: 15,
+        amount: 15,
     },
 ]
 export const StatsComponent = () => (

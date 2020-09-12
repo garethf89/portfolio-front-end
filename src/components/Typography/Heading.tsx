@@ -1,7 +1,7 @@
 import React, { CSSProperties, HTMLAttributes } from "react"
+import { StyledComponentProps, StyledProps } from "../../../@types/types"
 import { StyledDefaultProps, styledSystem } from "../../system/StyledSystem"
 
-import { StyledProps } from "../../types/types"
 import { css } from "@emotion/core"
 import styled from "@emotion/styled"
 
@@ -21,7 +21,7 @@ const H1 = styled.h1<StyledProps>`
     ${common}
     @media (min-width: ${(props: StyledComponentProps) =>
         props.theme.breakpoint.medium}) {
-      font-size: 52px;
+        font-size: 52px;
     }
 `
 
@@ -72,11 +72,11 @@ const Default = styled.p`
 `
 
 export type HeadingProps = {
-    level?: string
-    text?: string
-    className?: string
-    children?: any
-    override?: string
+    level?: string;
+    text?: string;
+    className?: string;
+    children?: any;
+    override?: string;
 } & HTMLAttributes<any> &
     CSSProperties &
     StyledDefaultProps

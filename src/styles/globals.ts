@@ -1,8 +1,8 @@
-import { css } from "@emotion/core"
-import normalize from "normalize.css"
+import { css } from "@emotion/core";
+import emotionNormalize from 'emotion-normalize';
 
 /* stylelint-disable */
 export const globalStyles = css`
-    ${normalize}
+    ${emotionNormalize}
 `
 export default globalStyles

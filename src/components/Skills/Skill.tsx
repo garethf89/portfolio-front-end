@@ -1,6 +1,7 @@
 import Heading from "../Typography/Heading"
 import IconExternal from "../Icons/IconExternal"
 import React from "react"
+import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 
 const SkillContainer = styled.li`
@@ -29,14 +30,30 @@ const SkillText = styled(Heading)`
 `
 
 interface SkillProps {
-    children: React.ReactNode
-    icon: string
+    children: React.ReactNode;
+    icon: string;
+    id: string;
+    title?: string;
 }
 
-const Skill = ({ children, icon }: SkillProps): React.ReactElement<any> => (
+const Skill = ({
+    children,
+    id,
+    icon,
+    title,
+}: SkillProps): React.ReactElement<any> => (
     <SkillContainer>
-        <IconExternal iconSize="medium" margin="0 auto" iconSvg={icon} />
-        <SkillText level="h4">{children}</SkillText>
+        <IconExternal
+            aria-describedby={id}
+            aria-labelledby={id}
+            title={title}
+            iconSize="medium"
+            margin="0 auto"
+            iconSvg={icon}
+        />
+        <SkillText id={id} level="h4" override="p">
+            {children}
+        </SkillText>
     </SkillContainer>
 )
 

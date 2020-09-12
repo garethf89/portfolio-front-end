@@ -1,8 +1,8 @@
 import { Theme } from "theme-ui"
 
 interface ThemeType extends Theme {
-    breakpoint: any
-    container: any
+    breakpoint: any;
+    container: any;
 }
 
 // Using Theme-UI as a basic outline but this will be a custom object

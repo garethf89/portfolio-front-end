@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 
 import FadeLink from "../Link/Link"
+import { StyledComponentProps } from "../../../@types/types"
 import { Logo as animationData } from "../../animations/Logo"
 import { globals } from "../../state/state"
 import lottie from "lottie-web"
@@ -24,11 +25,11 @@ const HeaderLink = styled(FadeLink)`
 `
 
 interface LogoProps {
-    siteTitle: string
+    siteTitle: string;
 }
 
 const Logo = ({ siteTitle }: LogoProps): React.ReactElement<any> => {
-    let [headIconDark, updateHeadDark] = useState(null)
+    const [headIconDark, updateHeadDark] = useState(null)
 
     const { state } = useContext(globals)
 

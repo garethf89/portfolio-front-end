@@ -1,7 +1,7 @@
 export type StyledComponentProps = {
-    theme: any
+    theme: any;
 }
 
 export interface StyledProps {
-    as?: string
+    as?: string;
 }

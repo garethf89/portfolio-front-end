@@ -9,22 +9,28 @@ import {
 import { iconSystem } from "./iconSystem"
 
 interface IconPropsType {
-    "data-icon"?: boolean
-    iconSize?: "small" | "medium" | "large"
-    iconSrc?: React.ReactElement
-    iconSvg?: string
+    "data-icon"?: boolean;
+    iconSize?: "small" | "medium" | "large";
+    iconSrc?: React.ReactElement;
+    iconSvg?: string;
+    title?: string;
 }
 
 export type IconProps = IconPropsType & SVGAttributes<any> & CSSProperties
 
-export const IconExternal = ({ iconSvg, ...props }: IconProps) => {
+export const IconExternal = ({ iconSvg, title, ...props }: IconProps) => {
     let attr = {}
 
     const htmlToReactWithReplace = (icon: string) => {
         const replace = domNode => {
             attr = { ...domNode.attribs }
             if (domNode.name === "svg") {
-                return <>{domToReact(domNode.children)}</>
+                return (
+                    <>
+                        {title && <title>{title}</title>}
+                        {domToReact(domNode.children)}
+                    </>
+                )
             }
         }
         return HTMLReactParser(icon, { replace })
@@ -41,7 +47,7 @@ export const IconExternal = ({ iconSvg, ...props }: IconProps) => {
         role: "img",
         display: "inline-block",
         verticalAlign: "middle",
-        ["data-icon"]: true,
+        "data-icon": true,
     }
 
     return (

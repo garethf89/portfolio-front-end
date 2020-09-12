@@ -8,6 +8,7 @@ import HomeHeaderContent from "../Home/HomeHeader/HomeHeaderContent"
 import { IStatFields } from "../../../@types/generated/contentful"
 import Lines from "../Animation/Lines"
 import Stats from "../Home/HomeHeader/Stats"
+import { StyledComponentProps } from "../../../@types/types"
 import { globals } from "../../state/state"
 import styled from "@emotion/styled"
 
@@ -56,11 +57,11 @@ const HomeSectionStats = styled.div`
 `
 
 interface HomeHeaderProps {
-    text: Document
-    stats: IStatFields[]
+    text: Document;
+    stats: IStatFields[];
 }
 
-const HomeHeader = ({ text, stats }: HomeHeaderProps) => {
+const HomeHeader = ({ text, stats }: HomeHeaderProps): React.ReactElement => {
     const { state, dispatch } = useContext(globals)
 
     useEffect(() => {
@@ -75,7 +76,7 @@ const HomeHeader = ({ text, stats }: HomeHeaderProps) => {
             <HomeContainer>
                 <HomeSection>
                     <HomeHeaderContent text={text} />
-                    <Button header={true} icon="Download">
+                    <Button header icon="Download">
                         Download CV
                     </Button>
                 </HomeSection>

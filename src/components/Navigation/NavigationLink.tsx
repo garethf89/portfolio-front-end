@@ -1,7 +1,8 @@
-import styled from "@emotion/styled"
+import FadeLink from "../Link/Link"
 import { GatsbyLinkProps } from "gatsby"
 import React from "react"
-import FadeLink from "../Link/Link"
+import { StyledComponentProps } from "../../../@types/types"
+import styled from "@emotion/styled"
 
 const StyledLink = styled(props => <FadeLink {...props} />)`
     font-size: 16px;
@@ -49,9 +50,9 @@ const StyledLink = styled(props => <FadeLink {...props} />)`
 const StyledButton = StyledLink.withComponent("button")
 
 interface NavigationLinkProps extends GatsbyLinkProps<any> {
-    button?: boolean
-    click?: () => void
-    hover?: () => void
+    button?: boolean;
+    click?: () => void;
+    hover?: () => void;
 }
 
 const NavigationLink = ({

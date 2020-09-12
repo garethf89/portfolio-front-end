@@ -1,5 +1,6 @@
 import Cross from "../../svgs/cross"
 import React from "react"
+import { StyledComponentProps } from "../../../@types/types"
 import Tick from "../../svgs/tick"
 import styled from "@emotion/styled"
 
@@ -13,7 +14,7 @@ const AlertStyled = styled.div`
 `
 
 type AlertProps = {
-    variant: "success" | "error"
+    variant: "success" | "error";
 } & React.HTMLAttributes<any>
 
 const variants = {
@@ -32,7 +33,7 @@ const variants = {
 const Alert = ({ children, variant = "error", ...props }: AlertProps) => {
     const variantUsed = variants[variant]
     const variantProps = { ...variantUsed, icon: null }
-    const Icon = variantUsed["icon"]
+    const Icon = variantUsed.icon
     return (
         <AlertStyled role="alert" {...variantProps} {...props}>
             <Icon

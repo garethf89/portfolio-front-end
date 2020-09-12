@@ -1,12 +1,15 @@
-import { Global } from "@emotion/core"
-import styled from "@emotion/styled"
 import * as Sentry from "@sentry/browser"
+
 import React, { useContext, useEffect, useState } from "react"
-import { supportsWebP } from "../helpers/support/webp"
-import { globals } from "../state/state"
-import globalStyles from "../styles/globals"
+
 import Footer from "./Footer/Footer"
+import { Global } from "@emotion/core"
 import SEO from "./seo"
+import { StyledComponentProps } from "../../@types/types"
+import globalStyles from "../styles/globals"
+import { globals } from "../state/state"
+import styled from "@emotion/styled"
+import { supportsWebP } from "../helpers/support/webp"
 
 const Root = styled.div`
     font-family: ${(props: StyledComponentProps) => props.theme.fonts.body};

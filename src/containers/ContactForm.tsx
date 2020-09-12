@@ -8,6 +8,7 @@ import Button from "../components/Common/Button"
 import Flex from "../components/Global/Container/Flex"
 import Input from "../components/Form/Input"
 import Label from "../components/Form/Label"
+import { StyledComponentProps } from "../../@types/types"
 import TextArea from "../components/Form/Textarea"
 import styled from "@emotion/styled"
 import { submitEmail } from "../services/email"
@@ -26,9 +27,9 @@ const FormSection = styled.div`
 `
 
 interface Values {
-    personName: string
-    personEnq: string
-    personEmail: string
+    personName: string;
+    personEnq: string;
+    personEmail: string;
 }
 
 const ContactSchema = Yup.object().shape({
@@ -41,7 +42,7 @@ const ContactSchema = Yup.object().shape({
     ),
 })
 
-const ContactForm = () => {
+const ContactForm = (): React.ReactElement => {
     const [hasError, setError] = useState(null)
     const [success, setSuccess] = useState(null)
     return (
@@ -53,7 +54,7 @@ const ContactForm = () => {
                     personName: "",
                 }}
                 validationSchema={ContactSchema}
-                onSubmit={async (
+                onSubmit={async(
                     values: Values,
                     { setSubmitting }: FormikHelpers<Values>
                 ) => {
@@ -92,7 +93,7 @@ const ContactForm = () => {
                                                         ? errors.personName
                                                         : null
                                                 }
-                                                required={true}
+                                                required
                                                 htmlFor="personName"
                                             >
                                                 Name
@@ -109,7 +110,7 @@ const ContactForm = () => {
                                                         ? errors.personEmail
                                                         : null
                                                 }
-                                                required={true}
+                                                required
                                                 htmlFor="personEmail"
                                             >
                                                 Email
@@ -124,7 +125,7 @@ const ContactForm = () => {
                                     <FormSection>
                                         <FormContainer>
                                             <Label
-                                                required={true}
+                                                required
                                                 htmlFor="personEnq"
                                                 error={
                                                     touched.personEnq

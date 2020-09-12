@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react"
+import { StyledComponentProps, StyledProps } from "../../../@types/types"
 
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 import LastFMLogo from "../../svgs/lastfm"
 import Lines from "../Animation/Lines"
 import { OuterWrapper } from "../Common/OuterWrapper"
-import { StyledProps } from "../../types/types"
 import { lastFmService } from "../../services/lastfm"
 import styled from "@emotion/styled"
 
@@ -20,8 +20,8 @@ const Albums = styled.div`
 `
 
 interface AlbumProps extends StyledProps {
-    last?: boolean
-    bg?: string
+    last?: boolean;
+    bg?: string;
 }
 
 const Album = styled.div<AlbumProps>`
@@ -48,7 +48,7 @@ const AlbumInfo = styled.div`
     }
 `
 
-const AlbumArtC = styled.div`
+const AlbumArtContainer = styled.div`
     max-width: 100px;
     height: auto;
     margin-right: 1rem;
@@ -62,18 +62,16 @@ const AlbumArtC = styled.div`
     }
 `
 
-const AlbumArtI = styled.img`
+const AlbumArtInner = styled.img`
     max-width: 100%;
     height: auto;
 `
 
-type LastFMProps = {}
-
-const LastFM = ({ ...props }: LastFMProps) => {
+const LastFM = (): React.ReactElement => {
     const [albums, setAlbums] = useState(null)
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchData = async() => {
             const lfm = await lastFmService()
             setAlbums(lfm)
         }
@@ -100,12 +98,12 @@ const LastFM = ({ ...props }: LastFMProps) => {
                     {albums &&
                         albums.map((album, i) => (
                             <Album key={i} last={i === 2}>
-                                <AlbumArtC>
-                                    <AlbumArtI
+                                <AlbumArtContainer>
+                                    <AlbumArtInner
                                         alt={`${album.name} cover`}
                                         src={album.image[3]["#text"]}
                                     />
-                                </AlbumArtC>
+                                </AlbumArtContainer>
                                 <AlbumInfo>
                                     <Heading
                                         marginTop={0}

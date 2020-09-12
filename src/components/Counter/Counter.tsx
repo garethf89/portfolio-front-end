@@ -3,6 +3,8 @@ import * as io from "socket.io-client"
 import React, { useEffect, useState } from "react"
 
 import Eye from "../../svgs/eye"
+import { SocketIOClient } from "@types/socket.io-client"
+import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 
 const connectionString = process.env.REACT_APP_API_URL

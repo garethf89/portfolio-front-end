@@ -6,15 +6,14 @@
  */
 
 import { Helmet } from "react-helmet"
-import PropTypes from "prop-types"
 import React from "react"
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 
 interface SeoProps {
-    pageDescription: string
-    pageTitle: string
-    pageImage: string
-    children?: any
+    pageDescription: string;
+    pageTitle: string;
+    pageImage: string;
+    children?: any;
 }
 
 const SEO = ({
@@ -98,13 +97,6 @@ SEO.defaultProps = {
     lang: `en`,
     meta: [],
     description: ``,
-}
-
-SEO.propTypes = {
-    description: PropTypes.string,
-    lang: PropTypes.string,
-    meta: PropTypes.arrayOf(PropTypes.object),
-    title: PropTypes.string,
 }
 
 export default SEO

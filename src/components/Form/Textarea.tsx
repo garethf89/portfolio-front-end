@@ -2,6 +2,7 @@ import { Field, useField } from "formik"
 
 import { FormError } from "./FormError"
 import React from "react"
+import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 
 const TextAreaStyled = styled(Field)`
@@ -19,7 +20,7 @@ const TextAreaStyled = styled(Field)`
 type InputProps = React.InputHTMLAttributes<any> & { as?: string }
 
 const TextArea = ({ children, ...props }: InputProps) => {
-    const [field, meta] = useField(props.name)
+    const [_field, meta] = useField(props.name)
     return (
         <>
             <TextAreaStyled error={meta.touched ? meta.error : null} {...props}>

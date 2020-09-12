@@ -1,7 +1,6 @@
 import Container from "../Global/Container/Container"
 import Logo from "../Logo/Logo"
 import Navigation from "../Navigation/Navigation"
-import PropTypes from "prop-types"
 import React from "react"
 import styled from "@emotion/styled"
 import theme from "../../gatsby-plugin-theme-ui"
@@ -17,8 +16,8 @@ const HeaderStyles = styled.header`
 `
 
 interface HeaderProps {
-    siteTitle: string
-    nav?: boolean
+    siteTitle: string;
+    nav?: boolean;
 }
 
 const Header = ({ nav, siteTitle }: HeaderProps) => (
@@ -26,17 +25,13 @@ const Header = ({ nav, siteTitle }: HeaderProps) => (
         <Container
             useflex
             justifyContent="space-between"
-            maxWidth={`calc(${theme.sizes["maxWidth"]} + 9rem)`}
+            maxWidth={`calc(${theme.sizes.maxWidth} + 9rem)`}
         >
             <Logo siteTitle={siteTitle} />
             {nav && <Navigation />}
         </Container>
     </HeaderStyles>
 )
-
-Header.propTypes = {
-    siteTitle: PropTypes.string,
-}
 
 Header.defaultProps = {
     siteTitle: ``,

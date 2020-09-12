@@ -2,6 +2,7 @@ import { Field, useField } from "formik"
 
 import { FormError } from "./FormError"
 import React from "react"
+import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 
 const InputStyled = styled(Field)`

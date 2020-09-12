@@ -2,6 +2,7 @@ import * as animationData from "../../animations/Lines"
 
 import React, { useEffect } from "react"
 
+import { StyledComponentProps } from "../../../@types/types"
 import lottie from "lottie-web"
 import styled from "@emotion/styled"
 
@@ -19,7 +20,7 @@ const HeaderAnimation = styled.div<any>`
 `
 
 interface LinesProps extends React.HTMLAttributes<any> {
-    dark?: boolean
+    dark?: boolean;
 }
 
 const Lines = ({ id, dark }: LinesProps) => {

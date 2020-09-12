@@ -1,4 +1,5 @@
 import React from "react"
+import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 
 const LabelStyled = styled.label`
@@ -16,8 +17,8 @@ const Required = styled.span`
 `
 
 type LabelProps = {
-    required: boolean
-    error?: string
+    required: boolean;
+    error?: string;
 } & React.LabelHTMLAttributes<any>
 
 const Label = ({ children, required = false, ...props }: LabelProps) => (

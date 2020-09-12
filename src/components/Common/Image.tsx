@@ -1,4 +1,4 @@
-import { GatsbyImageProps, default as Img } from "gatsby-image"
+import Img, { GatsbyImageProps } from "gatsby-image"
 
 import React from "react"
 

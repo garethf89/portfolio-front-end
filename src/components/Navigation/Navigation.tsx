@@ -1,6 +1,7 @@
 import ColorPicker from "./ColorPicker"
 import NavigationLink from "./NavigationLink"
 import React from "react"
+import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 import { useSiteMetadata } from "../../hooks/use-site-metadata"
 

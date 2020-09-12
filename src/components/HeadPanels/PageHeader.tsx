@@ -4,6 +4,7 @@ import BackLink from "../BackLink/BackLink"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 import Lines from "../Animation/Lines"
+import { StyledComponentProps } from "../../../@types/types"
 import { globals } from "../../state/state"
 import styled from "@emotion/styled"
 
@@ -32,7 +33,7 @@ const InnerContainer = styled.div`
 `
 
 interface PageHeaderProps {
-    text: string
+    text: string;
 }
 
 const PageHeader = ({ text }: PageHeaderProps) => {

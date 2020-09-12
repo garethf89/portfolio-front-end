@@ -3,11 +3,12 @@ import { useColorMode, useThemeUI } from "theme-ui"
 import ArrowLight from "../../svgs/light-arrow"
 import { Download } from "../../svgs/index"
 import React from "react"
+import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 
 type ButtonObjectProps = {
-    colors: { [key: string]: string }
-    header?: boolean
+    colors: { [key: string]: string };
+    header?: boolean;
 }
 
 const ButtonIcon = styled.span<ButtonObjectProps>`
@@ -120,13 +121,13 @@ const renderButton = (icon: ButtonTypes) => {
 export type ButtonTypes = "Download" | "Arrow"
 
 interface ButtonProps {
-    icon?: ButtonTypes
-    type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"]
-    children: any
-    color?: string
-    header?: boolean
-    disabled?: boolean
-    click?: () => void
+    icon?: ButtonTypes;
+    type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
+    children: any;
+    color?: string;
+    header?: boolean;
+    disabled?: boolean;
+    click?: () => void;
 }
 
 const Button = ({
@@ -141,11 +142,11 @@ const Button = ({
     const context = useThemeUI()
     const { theme } = context
     const [colorMode] = useColorMode()
-    const colorTheme: any = color ? color : { ...theme.buttons[colorMode] }
+    const colorTheme = color || { ...theme.buttons[colorMode] }
 
     return (
         <ButtonStyled
-            onClick={click ? e => click() : null}
+            onClick={click ? () => click() : null}
             type={type}
             colors={colorTheme}
             header={header}
@@ -170,5 +171,5 @@ const Button = ({
         </ButtonStyled>
     )
 }
-
+Button.displayName = "Button"
 export default Button

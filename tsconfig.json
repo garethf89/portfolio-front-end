@@ -5,19 +5,16 @@
         "removeComments": false,
         "module": "commonjs",
         "target": "es6",
-        "lib": ["es2017", "dom"],
+        "lib": ["es2017", "es2019", "esnext", "dom"],
         "noImplicitAny": false,
         "moduleResolution": "node",
         "sourceMap": true,
         "outDir": "public",
         "esModuleInterop": true,
         "baseUrl": ".",
-        "paths": {
-            "*": ["node_modules/*", "typings/*"]
-        },
         "skipLibCheck": true,
         "experimentalDecorators": true,
-        "noUnusedLocals": true
+        "noUnusedLocals": false
     },
-    "include": ["**/*"]
+    "include": ["src/**/*.ts"]
 }

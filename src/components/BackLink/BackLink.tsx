@@ -12,7 +12,7 @@ const BackLinkStyled = styled(FadeLink)`
 `
 
 interface BackLinkProps {
-    text?: string
+    text?: string;
 }
 
 const BackLink: React.FC<BackLinkProps> = ({
