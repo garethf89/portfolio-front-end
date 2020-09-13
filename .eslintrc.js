@@ -1,6 +1,6 @@
 module.exports = {
     extends: ["plugin:@typescript-eslint/recommended", "gatsby-standard"],
-    plugins: ["@typescript-eslint", "prefer-arrow"],
+    plugins: ["@typescript-eslint", "prefer-arrow", "prettier"],
     env: {
         es6: true,
         browser: true,
@@ -20,6 +20,7 @@ module.exports = {
     },
 
     rules: {
+        "prettier/prettier": "error",
         "no-unsafe-finally": "off",
         "@typescript-eslint/camelcase": "off",
         "comma-dangle": "off",

@@ -46,7 +46,7 @@ const H4 = styled.h4`
 `
 const H5 = styled.h5`
     font-size: 24px;
-    line-height: 1;
+    line-height: 1.2;
     font-weight: 200;
     ${common}
 `
@@ -72,11 +72,11 @@ const Default = styled.p`
 `
 
 export type HeadingProps = {
-    level?: string;
-    text?: string;
-    className?: string;
-    children?: any;
-    override?: string;
+    level?: string
+    text?: string
+    className?: string
+    children?: any
+    override?: string
 } & HTMLAttributes<any> &
     CSSProperties &
     StyledDefaultProps

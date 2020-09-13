@@ -3,7 +3,7 @@ const path = require(`path`)
 
 module.exports = async ({ graphql, actions }) => {
     const { createPage } = actions
-    const projectTemplate = path.resolve(`src/templates/project.js`)
+    const projectTemplate = path.resolve(`src/templates/project.tsx`)
     // Create a page for each "page"
     const pagesQuery = await graphql(query.data.projects)
     const pages = pagesQuery.data.allContentfulProject.edges

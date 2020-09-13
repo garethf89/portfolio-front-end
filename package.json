@@ -74,6 +74,7 @@
     "eslint-config-gatsby-standard": "^2.2.0",
     "eslint-import-resolver-typescript": "^2.3.0",
     "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "prettier": "^2.0.5",
     "source-map-explorer": "^2.4.2",
     "storybook-addon-theme-ui": "^0.1.5",

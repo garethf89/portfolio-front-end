@@ -7,4 +7,4 @@
 // You can delete this file if you're not using it
 
 exports.createSchemaCustomization = require("./src/gatsby/node/createSchemaCustomization")
-// exports.createPages = require("./src/gatsby/node/createPages") // enable this once set up
+exports.createPages = require("./src/gatsby/node/createPages")

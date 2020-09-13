@@ -1,5 +1,6 @@
 import { graphql, useStaticQuery } from "gatsby"
 
+import CaseStudies from "../components/CaseStudies/CaseStudies"
 import Header from "../components/Header/Header"
 import HomeHeader from "../components/HeadPanels/HomeHeader"
 import HomeTech from "../components/Home/HomeTech/HomeTech"
@@ -32,6 +33,12 @@ const IndexPage = () => {
                         }
                     }
                 }
+                caseStudies {
+                    slug
+                    intro {
+                        json
+                    }
+                }
             }
         }
     `)
@@ -47,6 +54,8 @@ const IndexPage = () => {
                 text={data.page.skillsText.json}
                 skills={data.page.skills}
             />
+            <CaseStudies data={data.page.caseStudies} />
+
             <LastFM />
         </>
     )

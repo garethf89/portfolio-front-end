@@ -10,10 +10,10 @@ import React from "react"
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 
 interface SeoProps {
-    pageDescription: string;
-    pageTitle: string;
-    pageImage: string;
-    children?: any;
+    pageDescription: string
+    pageTitle: string
+    pageImage: string
+    children?: any
 }
 
 const SEO = ({
