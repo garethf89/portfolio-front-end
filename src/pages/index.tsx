@@ -5,6 +5,7 @@ import Header from "../components/Header/Header"
 import HomeHeader from "../components/HeadPanels/HomeHeader"
 import HomeTech from "../components/Home/HomeTech/HomeTech"
 import LastFM from "../components/LastFM/LastFM"
+import Projects from "../components/Projects/Projects"
 import React from "react"
 
 const IndexPage = () => {
@@ -39,6 +40,23 @@ const IndexPage = () => {
                         json
                     }
                 }
+                projects {
+                    id
+                    slug
+                    headline
+                    title
+                    coverImage {
+                        icon1x: fixed(width: 375) {
+                            src
+                            srcWebp
+                        }
+                        icon2x: fixed(width: 750) {
+                            src
+                            srcWebp
+                            tracedSVG
+                        }
+                    }
+                }
             }
         }
     `)
@@ -55,7 +73,7 @@ const IndexPage = () => {
                 skills={data.page.skills}
             />
             <CaseStudies data={data.page.caseStudies} />
-
+            <Projects data={data.page.projects} />
             <LastFM />
         </>
     )

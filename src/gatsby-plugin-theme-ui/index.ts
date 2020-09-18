@@ -1,8 +1,8 @@
 import { Theme } from "theme-ui"
 
 interface ThemeType extends Theme {
-    breakpoint: any;
-    container: any;
+    breakpoint: any
+    container: any
 }
 
 // Using Theme-UI as a basic outline but this will be a custom object
@@ -41,11 +41,13 @@ const theme: ThemeType = {
         default: {
             border: "#fff",
             background: "transparent",
+            bgHover: "rgba(0, 0, 0, 0.6)",
             color: "#fff",
         },
         dark: {
             border: "#000",
             background: "#F6F6F6",
+            bgHover: "rgba(0, 0, 0, 0.1)",
             color: "#000",
         },
     },

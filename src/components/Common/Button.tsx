@@ -7,8 +7,8 @@ import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 
 type ButtonObjectProps = {
-    colors: { [key: string]: string };
-    header?: boolean;
+    colors: { [key: string]: string }
+    header?: boolean
 }
 
 const ButtonIcon = styled.span<ButtonObjectProps>`
@@ -19,8 +19,7 @@ const ButtonIcon = styled.span<ButtonObjectProps>`
     bottom: 0;
     padding: 1em 0.75rem;
     border-left: 1px solid
-        ${(props: StyledComponentProps) =>
-            props.colors === "dark" ? "#4A4A4A" : "#fff"};
+        ${(props: StyledComponentProps) => props.colors.border};
 
     @media (min-width: ${(props: StyledComponentProps) =>
             props.theme.breakpoint.medium}) {
@@ -73,8 +72,7 @@ const ButtonStyled = styled.button<ButtonObjectProps>`
         z-index: 1;
 
         &__line {
-            stroke: ${(props: StyledComponentProps) =>
-                props.colors === "dark" ? "#4A4A4A" : "#fff"};
+            stroke: ${(props: StyledComponentProps) => props.colors.border};
             stroke-width: 2px;
             stroke-dasharray: 40 480;
             stroke-dashoffset: 40;
@@ -83,17 +81,18 @@ const ButtonStyled = styled.button<ButtonObjectProps>`
         }
     }
 
+    &:visited,
     &:active,
     &:focus {
         outline: 0;
+        border: 1px solid
+            ${(props: StyledComponentProps) => props.colors.border};
     }
 
     &:focus,
     &:hover {
-        background: ${(props: StyledComponentProps) =>
-            props.colors === "dark"
-                ? "rgba(0, 0, 0, 0.1)"
-                : "rgba(0, 0, 0, 0.6)"};
+        background: ${(props: StyledComponentProps) => props.colors.bgHover};
+
         .border__line {
             stroke-dashoffset: -480;
         }
@@ -121,34 +120,46 @@ const renderButton = (icon: ButtonTypes) => {
 export type ButtonTypes = "Download" | "Arrow"
 
 interface ButtonProps {
-    icon?: ButtonTypes;
-    type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
-    children: any;
-    color?: string;
-    header?: boolean;
-    disabled?: boolean;
-    click?: () => void;
+    icon?: ButtonTypes
+    type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"]
+    children: any
+    color?: string
+    header?: boolean
+    disabled?: boolean
+    click?: () => void
+    href?: string
+    as?: string
 }
 
 const Button = ({
+    as,
     icon,
     children,
     type = "button",
     color,
     header,
     disabled,
+    href,
     click,
 }: ButtonProps) => {
     const context = useThemeUI()
     const { theme } = context
     const [colorMode] = useColorMode()
-    const colorTheme = color || { ...theme.buttons[colorMode] }
+
+    let colorTheme = () => {
+        if (color && theme.buttons[color]) {
+            return { ...theme.buttons[color] }
+        }
+        return { ...theme.buttons.default }
+    }
 
     return (
         <ButtonStyled
+            as={as}
+            href={href}
             onClick={click ? () => click() : null}
             type={type}
-            colors={colorTheme}
+            colors={colorTheme()}
             header={header}
             disabled={disabled}
         >

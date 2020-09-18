@@ -6,6 +6,7 @@ module.exports.data = {
         id
         slug
         title
+        headline
       }
     }
   }

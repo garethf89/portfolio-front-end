@@ -1,4 +1,5 @@
 import { IProjectFields } from "../../@types/generated/contentful"
+import PageHeader from "../components/HeadPanels/PageHeader"
 import React from "react"
 import { graphql } from "gatsby"
 
@@ -10,9 +11,18 @@ interface ProjectProps {
 }
 
 const ProjectTemplate = ({ id, data }: ProjectProps): React.ReactElement => {
-    const { title, slug } = data.page
+    const { coverImage, headline, link, title } = data.page
 
-    return <div>{title}</div>
+    return (
+        <>
+            <PageHeader
+                link={link}
+                image={coverImage}
+                text={headline}
+                title={title}
+            />
+        </>
+    )
 }
 
 export const query = graphql`
@@ -21,6 +31,19 @@ export const query = graphql`
             id
             title
             slug
+            headline
+            link
+            coverImage {
+                coverM: fixed(width: 800) {
+                    src
+                    srcWebp
+                }
+                coverL: fixed(width: 1200) {
+                    src
+                    srcWebp
+                    tracedSVG
+                }
+            }
         }
     }
 `

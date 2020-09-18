@@ -1,7 +1,6 @@
-let support
-export const supportsWebP = () => {
-    if (typeof support !== "undefined") return support
+import memoize from "lodash/memoize"
 
+export const supportsWebP = memoize(() => {
     if (typeof document === `undefined`) {
         // No browser
         return true
@@ -10,7 +9,8 @@ export const supportsWebP = () => {
     const elem =
         typeof document === "object" ? document.createElement("canvas") : false
 
-    support = elem.toDataURL("image/webp").indexOf("data:image/webp") === 0
+    const support =
+        elem.toDataURL("image/webp").indexOf("data:image/webp") === 0
 
     return support
-}
+})
