@@ -17,8 +17,8 @@ const Required = styled.span`
 `
 
 type LabelProps = {
-    required: boolean;
-    error?: string;
+    required: boolean
+    error?: string
 } & React.LabelHTMLAttributes<any>
 
 const Label = ({ children, required = false, ...props }: LabelProps) => (

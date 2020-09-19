@@ -25,7 +25,7 @@ const HeaderLink = styled(FadeLink)`
 `
 
 interface LogoProps {
-    siteTitle: string;
+    siteTitle: string
 }
 
 const Logo = ({ siteTitle }: LogoProps): React.ReactElement<any> => {

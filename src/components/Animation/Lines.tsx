@@ -20,7 +20,7 @@ const HeaderAnimation = styled.div<any>`
 `
 
 interface LinesProps extends React.HTMLAttributes<any> {
-    dark?: boolean;
+    dark?: boolean
 }
 
 const Lines = ({ id, dark }: LinesProps) => {

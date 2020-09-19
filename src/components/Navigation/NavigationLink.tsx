@@ -50,9 +50,9 @@ const StyledLink = styled(props => <FadeLink {...props} />)`
 const StyledButton = StyledLink.withComponent("button")
 
 interface NavigationLinkProps extends GatsbyLinkProps<any> {
-    button?: boolean;
-    click?: () => void;
-    hover?: () => void;
+    button?: boolean
+    click?: () => void
+    hover?: () => void
 }
 
 const NavigationLink = ({

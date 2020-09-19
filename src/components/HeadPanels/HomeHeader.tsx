@@ -57,8 +57,8 @@ const HomeSectionStats = styled.div`
 `
 
 interface HomeHeaderProps {
-    text: Document;
-    stats: IStatFields[];
+    text: Document
+    stats: IStatFields[]
 }
 
 const HomeHeader = ({ text, stats }: HomeHeaderProps): React.ReactElement => {

@@ -47,15 +47,15 @@ const options = {
 }
 
 interface TextProps {
-    text?: Document;
+    text?: Document
 }
 
 export const HomeHeaderContentText = ({ text }: TextProps): any =>
     documentToReactComponents(text, options)
 
 interface HomeTechProps {
-    skills: ISkillFields[];
-    text: Document;
+    skills: ISkillFields[]
+    text: Document
 }
 
 const HomeTech = ({ skills, text }: HomeTechProps): React.ReactElement => {

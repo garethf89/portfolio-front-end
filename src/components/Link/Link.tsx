@@ -4,9 +4,9 @@ import React from "react"
 const duration = 0.25
 
 type LinkProps = {
-    to: string;
-    children?: any;
-    dark?: string;
+    to: string
+    children?: any
+    dark?: string
 } & React.LinkHTMLAttributes<any>
 
 const FadeLink = ({ children, to, ...props }: LinkProps): AniLink => {

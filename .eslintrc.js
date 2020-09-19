@@ -80,7 +80,7 @@ module.exports = {
             "error",
             {
                 anonymous: "never",
-                asyncArrow: "never",
+                asyncArrow: "always",
                 named: "never",
             },
         ],
@@ -99,7 +99,7 @@ module.exports = {
             },
         ],
         "@typescript-eslint/member-delimiter-style": [
-            "error",
+            "off",
             {
                 multiline: {
                     delimiter: "semi",

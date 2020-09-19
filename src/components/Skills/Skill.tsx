@@ -30,10 +30,10 @@ const SkillText = styled(Heading)`
 `
 
 interface SkillProps {
-    children: React.ReactNode;
-    icon: string;
-    id: string;
-    title?: string;
+    children: React.ReactNode
+    icon: string
+    id: string
+    title?: string
 }
 
 const Skill = ({

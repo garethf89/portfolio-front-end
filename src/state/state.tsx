@@ -5,9 +5,9 @@ export const initialStateGlobals = { theme: "light", logo: "light" }
 export const globals = createContext<any>(initialStateGlobals)
 
 type Action = {
-    type: string;
-    theme?: string;
-    logo?: string;
+    type: string
+    theme?: string
+    logo?: string
 }
 
 const reducer = (state: any, action: Action) => {
@@ -22,7 +22,7 @@ const reducer = (state: any, action: Action) => {
 }
 
 interface StateProps {
-    children?: React.ReactNode;
+    children?: React.ReactNode
 }
 
 export const GlobalsStateProvider = ({ children }: StateProps) => {

@@ -146,7 +146,7 @@ const Button = ({
     const { theme } = context
     const [colorMode] = useColorMode()
 
-    let colorTheme = () => {
+    const colorTheme = () => {
         if (color && theme.buttons[color]) {
             return { ...theme.buttons[color] }
         }

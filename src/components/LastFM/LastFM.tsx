@@ -20,8 +20,8 @@ const Albums = styled.div`
 `
 
 interface AlbumProps extends StyledProps {
-    last?: boolean;
-    bg?: string;
+    last?: boolean
+    bg?: string
 }
 
 const Album = styled.div<AlbumProps>`
@@ -71,7 +71,7 @@ const LastFM = (): React.ReactElement => {
     const [albums, setAlbums] = useState(null)
 
     useEffect(() => {
-        const fetchData = async() => {
+        const fetchData = async () => {
             const lfm = await lastFmService()
             setAlbums(lfm)
         }

@@ -14,7 +14,7 @@ const AlertStyled = styled.div`
 `
 
 type AlertProps = {
-    variant: "success" | "error";
+    variant: "success" | "error"
 } & React.HTMLAttributes<any>
 
 const variants = {

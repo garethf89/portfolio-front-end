@@ -63,7 +63,7 @@ type Icon = Document & {
     icon: Document & Record<string, string>
 }
 
-interface IProject extends IProjectFields {}
+type IProject = IProjectFields
 
 const Projects = ({ data }: ProjectProps): React.ReactElement<ProjectProps> => {
     const webP = supportsWebP()

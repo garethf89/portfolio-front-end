@@ -9,11 +9,11 @@ import {
 import { iconSystem } from "./iconSystem"
 
 interface IconPropsType {
-    "data-icon"?: boolean;
-    iconSize?: "small" | "medium" | "large";
-    iconSrc?: React.ReactElement;
-    iconSvg?: string;
-    title?: string;
+    "data-icon"?: boolean
+    iconSize?: "small" | "medium" | "large"
+    iconSrc?: React.ReactElement
+    iconSvg?: string
+    title?: string
 }
 
 export type IconProps = IconPropsType & SVGAttributes<any> & CSSProperties

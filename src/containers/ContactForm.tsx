@@ -27,9 +27,9 @@ const FormSection = styled.div`
 `
 
 interface Values {
-    personName: string;
-    personEnq: string;
-    personEmail: string;
+    personName: string
+    personEnq: string
+    personEmail: string
 }
 
 const ContactSchema = Yup.object().shape({
@@ -45,6 +45,21 @@ const ContactSchema = Yup.object().shape({
 const ContactForm = (): React.ReactElement => {
     const [hasError, setError] = useState(null)
     const [success, setSuccess] = useState(null)
+
+    const submitForm = async (
+        values: Values,
+        { setSubmitting }: FormikHelpers<Values>
+    ) => {
+        try {
+            await submitEmail(values)
+            setError(false)
+            setSuccess(true)
+        } catch (e) {
+            setError(true)
+        }
+        setSubmitting(false)
+    }
+
     return (
         <>
             <Formik
@@ -54,19 +69,7 @@ const ContactForm = (): React.ReactElement => {
                     personName: "",
                 }}
                 validationSchema={ContactSchema}
-                onSubmit={async(
-                    values: Values,
-                    { setSubmitting }: FormikHelpers<Values>
-                ) => {
-                    try {
-                        await submitEmail(values)
-                        setError(false)
-                        setSuccess(true)
-                    } catch (e) {
-                        setError(true)
-                    }
-                    setSubmitting(false)
-                }}
+                onSubmit={submitForm}
             >
                 {({ errors, touched, isSubmitting, isValidating }) => {
                     return (

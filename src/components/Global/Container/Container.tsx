@@ -11,10 +11,10 @@ import Flex from "./Flex"
 import React from "react"
 
 type ContainerProps = {
-    children: any;
-    useflex?: boolean;
-    vPadding?: boolean;
-    as?: string;
+    children: any
+    useflex?: boolean
+    vPadding?: boolean
+    as?: string
 } & SpaceProps &
     TypographyProps &
     ColorProps &

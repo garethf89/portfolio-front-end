@@ -16,8 +16,8 @@ const HeaderStyles = styled.header`
 `
 
 interface HeaderProps {
-    siteTitle: string;
-    nav?: boolean;
+    siteTitle: string
+    nav?: boolean
 }
 
 const Header = ({ nav, siteTitle }: HeaderProps) => (

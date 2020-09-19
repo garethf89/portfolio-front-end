@@ -1,13 +1,13 @@
 import React, { ElementType, forwardRef, useMemo } from "react"
 import {
-  color,
-  compose,
-  flexbox,
-  layout,
-  position,
-  space,
-  system,
-  typography
+    color,
+    compose,
+    flexbox,
+    layout,
+    position,
+    space,
+    system,
+    typography,
 } from "styled-system"
 
 import isPropValid from "@emotion/is-prop-valid"
@@ -35,7 +35,7 @@ const allowedProps = ["as", "transform"]
 const blacklist = ["display", "opacity"]
 
 export type StyledDefaultProps = {
-    as?: string;
+    as?: string
 }
 
 const propForward = () => {
@@ -49,11 +49,9 @@ const propForward = () => {
 // Add some defaults
 export const SSC = styled("div")(propForward())
 
-export const styledSystem = <Props extends Record<string, unknown>>(customSystems = []) => <
-    T extends ElementType
->(
-    Component: T
-) => {
+export const styledSystem = <Props extends Record<string, unknown>>(
+    customSystems = []
+) => <T extends ElementType>(Component: T) => {
     const ForwardedComponent = forwardRef<HTMLElement, Props>(
         ({ ...originalProps }, originalRef) => {
             const useSystems = useMemo(() => systems, [])
@@ -75,12 +73,18 @@ export const styledSystem = <Props extends Record<string, unknown>>(customSystem
             )
 
             const SystemComponent = styled(SystemBase, shouldForwardProp)(
-                customSystems.length ? customSystems.map(s => s(originalProps)) : null,
+                customSystems.length
+                    ? customSystems.map(s => s(originalProps))
+                    : null,
                 useSystems
             )
 
             return (
-                <SystemComponent __use={Component} {...originalProps} ref={originalRef}>
+                <SystemComponent
+                    __use={Component}
+                    {...originalProps}
+                    ref={originalRef}
+                >
                     {originalProps.children}
                 </SystemComponent>
             )

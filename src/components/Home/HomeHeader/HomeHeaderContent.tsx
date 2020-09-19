@@ -17,7 +17,7 @@ const StyledParagraph = styled(Heading)`
 `
 
 interface BlockParams {
-    children?: React.ReactNode;
+    children?: React.ReactNode
 }
 
 const Text = ({ children }: BlockParams): React.ReactElement<any> => {
@@ -43,7 +43,7 @@ const options = {
 }
 
 interface HomeHeaderContentTextProps {
-    text?: Document;
+    text?: Document
 }
 
 export const HomeHeaderContentText = ({
@@ -51,8 +51,8 @@ export const HomeHeaderContentText = ({
 }: HomeHeaderContentTextProps): any => documentToReactComponents(text, options)
 
 interface HomeHeaderContentProps {
-    className?: string;
-    text?: Document;
+    className?: string
+    text?: Document
 }
 
 const HomeHeaderContent = (
