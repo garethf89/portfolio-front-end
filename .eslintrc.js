@@ -112,6 +112,7 @@ module.exports = {
             },
         ],
         "react/display-name": "off",
+        "value-keyword-case": "off",
     },
     parser: "@typescript-eslint/parser",
     parserOptions: {

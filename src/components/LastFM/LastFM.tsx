@@ -84,7 +84,7 @@ const LastFM = (): React.ReactElement => {
         <OuterWrapper>
             <Lines id="LFMAni" />
             <Container vPadding>
-                <Heading marginTop={0} level="h3">
+                <Heading marginTop={0} marginBottom="3rem" level="h2">
                     <LastFMLogo
                         verticalAlign="middle"
                         marginRight="1rem"

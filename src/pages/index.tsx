@@ -1,6 +1,7 @@
 import { graphql, useStaticQuery } from "gatsby"
 
 import CaseStudies from "../components/CaseStudies/CaseStudies"
+import Clients from "../components/Clients/Clients"
 import Header from "../components/Header/Header"
 import HomeHeader from "../components/HeadPanels/HomeHeader"
 import HomeTech from "../components/Home/HomeTech/HomeTech"
@@ -57,6 +58,31 @@ const IndexPage = () => {
                         }
                     }
                 }
+                logos {
+                    name
+                    logo {
+                        file {
+                            contentType
+                            details {
+                                image {
+                                    height
+                                    width
+                                }
+                            }
+                        }
+                        svg {
+                            content
+                        }
+                        icon1x: fixed(width: 100) {
+                            src
+                            srcWebp
+                        }
+                        icon2x: fixed(width: 200) {
+                            src
+                            srcWebp
+                        }
+                    }
+                }
             }
         }
     `)
@@ -74,6 +100,7 @@ const IndexPage = () => {
             />
             <CaseStudies data={data.page.caseStudies} />
             <Projects data={data.page.projects} />
+            <Clients data={data.page.logos} />
             <LastFM />
         </>
     )

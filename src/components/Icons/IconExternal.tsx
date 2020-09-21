@@ -11,7 +11,6 @@ import { iconSystem } from "./iconSystem"
 interface IconPropsType {
     "data-icon"?: boolean
     iconSize?: "small" | "medium" | "large"
-    iconSrc?: React.ReactElement
     iconSvg?: string
     title?: string
 }

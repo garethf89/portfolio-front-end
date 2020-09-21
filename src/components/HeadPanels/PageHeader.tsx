@@ -82,8 +82,8 @@ const ButtonWrapper = styled.div`
     margin-bottom: 1rem;
 `
 type PageImageType = {
-    coverM: { src: string; srcWebP: string }
-    coverL: { src: string; srcWebP: string; tracedSVG: string }
+    coverM: { src: string; srcWebp: string }
+    coverL: { src: string; srcWebp: string; tracedSVG: string }
 } & Asset
 
 interface PageHeaderProps {

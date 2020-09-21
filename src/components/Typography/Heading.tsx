@@ -30,6 +30,8 @@ const H2 = styled.h2`
     line-height: 1;
     font-weight: 200;
     ${common}
+    margin-bottom: 4rem;
+    margin-top: 0;
 `
 
 const H3 = styled.h3<StyledProps>`

@@ -89,15 +89,18 @@ interface Project extends IProjectFields {
     intro: Intro
 }
 
-export const CaseStudyText = ({ data }: CaseStudyTextProps): React.ReactNode =>
-    documentToReactComponents(data, options)
+export const CaseStudyText = ({
+    data,
+}: CaseStudyTextProps): React.ReactElement => {
+    return documentToReactComponents(data, options) as React.ReactElement
+}
 
 const CaseStudies = ({ data }: CSProps): React.ReactElement<CSProps> => {
     return (
         <OuterWrapper>
             <CaseStudyContainer vPadding>
                 <Lines id="LinesCaseStudies" />
-                <Heading level="h3">Case Studies</Heading>
+                <Heading level="h2">Case Studies</Heading>
                 <CaseStudyWrapper>
                     {data.map((project: Project, i: number) => {
                         return (
