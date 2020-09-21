@@ -60,14 +60,7 @@ interface HomeTechProps {
 
 const HomeTech = ({ skills, text }: HomeTechProps): React.ReactElement => {
     return (
-        <Container
-            padding={[
-                "5rem 1.5rem 2.5rem",
-                "5rem 1.5rem 2.5rem",
-                "5rem 1.5rem 2.5rem",
-            ]}
-            textAlign="center"
-        >
+        <Container vPadding textAlign="center">
             <FaceImage />
             <HomeHeaderContentText text={text} />
             <Skills>

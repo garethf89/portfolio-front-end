@@ -88,7 +88,7 @@ type PageImageType = {
 
 interface PageHeaderProps {
     text: string
-    image: PageImageType
+    image?: PageImageType
     link: string
 }
 
@@ -97,10 +97,12 @@ const PageHeader = ({ image, link, text, title }: PageHeaderProps) => {
 
     const webp = supportsWebP()
 
-    const imageSrc = {
-        small: webp ? image.coverM.srcWebp : image.coverM.src,
-        large: webp ? image.coverL.srcWebp : image.coverL.src,
-    }
+    const imageSrc = image
+        ? {
+              small: webp ? image.coverM.srcWebp : image.coverM.src,
+              large: webp ? image.coverL.srcWebp : image.coverL.src,
+          }
+        : {}
 
     useEffect(() => {
         if (state.logo !== "dark") {

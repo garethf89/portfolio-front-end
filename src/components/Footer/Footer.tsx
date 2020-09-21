@@ -50,7 +50,7 @@ const Footer = (): React.ReactElement<any> => {
     return (
         <FooterOuter>
             <FooterContainer useflex justifyContent="space-between">
-                <FooterHeading level="h3" override="h5" marginTop="25px">
+                <FooterHeading level="h3" marginTop="25px">
                     <FadeLink to="/contact">Contact Me</FadeLink>
                 </FooterHeading>
                 <FooterContent>

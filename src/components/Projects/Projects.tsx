@@ -4,6 +4,7 @@ import FadeLink from "../Link/Link"
 import Heading from "../Typography/Heading"
 import { IProjectFields } from "../../../@types/generated/contentful"
 import React from "react"
+import { SROnly } from "../Common/SROnly"
 import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 import { supportsWebP } from "../../helpers/support/webp"
@@ -110,12 +111,14 @@ const Projects = ({ data }: ProjectProps): React.ReactElement<ProjectProps> => {
                     return (
                         <Project key={i}>
                             <FadeLink to={project.slug}>
+                                <SROnly>{project.title}</SROnly>
                                 <ProjectImageContainer image={imageSrc}>
                                     <ProjectImage image={imageSrc} />
                                 </ProjectImageContainer>
                             </FadeLink>
                             <Heading level="h5" override="p">
                                 <FadeLink to={project.slug}>
+                                    <SROnly>{project.title}</SROnly>
                                     {project.headline}
                                 </FadeLink>
                             </Heading>

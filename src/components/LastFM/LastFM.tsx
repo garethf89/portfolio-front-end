@@ -109,10 +109,11 @@ const LastFM = (): React.ReactElement => {
                                         marginTop={0}
                                         marginBottom={"1rem"}
                                         level="h5"
+                                        override="p"
                                     >
                                         {album.name}
                                     </Heading>
-                                    <Heading level="h6" margin={0}>
+                                    <Heading level="h6" override="p" margin={0}>
                                         {album.artist.name}
                                     </Heading>
                                 </AlbumInfo>
