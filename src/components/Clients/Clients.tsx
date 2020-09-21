@@ -1,12 +1,11 @@
-import React, { useState } from "react"
-
-import Container from "../Global/Container/Container"
-import Heading from "../Typography/Heading"
-import IconExternal from "../Icons/IconExternal"
-import { StyledComponentProps } from "../../../@types/types"
 import css from "@emotion/css"
 import styled from "@emotion/styled"
+import React, { useState } from "react"
+import { StyledComponentProps } from "../../../@types/types"
 import { supportsWebP } from "../../helpers/support/webp"
+import Container from "../Global/Container/Container"
+import IconExternal from "../Icons/IconExternal"
+import Heading from "../Typography/Heading"
 
 const ClientsContainer = styled(Container)`
     margin-top: 2rem;
@@ -17,23 +16,31 @@ const LogoWrapper = styled.div`
     max-width: 800px;
     text-align: center;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
     @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
-        display: flex;
-        justify-content: space-around;
+            props.theme.breakpoint.small}) {
+        flex-wrap: nowrap;
     }
 `
 
 const LogoCommon = css`
+    flex: 1;
+
     flex-basis: 19%;
     margin-right: 5%;
     filter: grayscale(1);
     opacity: 0.4;
-    max-width: 120px;
+    max-width: 75px;
     height: auto;
     transition: opacity 0.15s ease-in;
     &:hover {
         opacity: 1;
+    }
+    @media (min-width: ${(props: StyledComponentProps) =>
+            props.theme.breakpoint.small}) {
+        max-width: 120px;
     }
 `
 
