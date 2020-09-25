@@ -1,11 +1,12 @@
-import css from "@emotion/css"
-import styled from "@emotion/styled"
 import React, { useState } from "react"
-import { StyledComponentProps } from "../../../@types/types"
-import { supportsWebP } from "../../helpers/support/webp"
+
 import Container from "../Global/Container/Container"
-import IconExternal from "../Icons/IconExternal"
 import Heading from "../Typography/Heading"
+import IconExternal from "../Icons/IconExternal"
+import { StyledComponentProps } from "../../../@types/types"
+import { css } from "@emotion/core"
+import styled from "@emotion/styled"
+import { supportsWebP } from "../../helpers/support/webp"
 
 const ClientsContainer = styled(Container)`
     margin-top: 2rem;
@@ -25,9 +26,8 @@ const LogoWrapper = styled.div`
     }
 `
 
-const LogoCommon = css`
+const LogoCommon = props => css`
     flex: 1;
-
     flex-basis: 19%;
     margin-right: 5%;
     filter: grayscale(1);
@@ -38,8 +38,7 @@ const LogoCommon = css`
     &:hover {
         opacity: 1;
     }
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.small}) {
+    @media (min-width: ${props.theme.breakpoint.small}) {
         max-width: 120px;
     }
 `
@@ -81,7 +80,12 @@ const Clients = ({ data }: ClientProps): React.ReactElement<ClientProps> => {
     return (
         <>
             <ClientsContainer vPadding>
-                <Heading level="h2" textAlign="center" marginBottom="3rem">
+                <Heading
+                    level="h3"
+                    override="h2"
+                    textAlign="center"
+                    marginBottom="3rem"
+                >
                     Clients I have worked with
                 </Heading>
                 <LogoWrapper>

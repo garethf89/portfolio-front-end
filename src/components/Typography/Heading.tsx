@@ -8,6 +8,7 @@ import styled from "@emotion/styled"
 /* stylelint-disable */
 const common = (props: StyledComponentProps) => css`
     font-family: ${props.theme.fonts.body};
+    line-height: 1.2;
     a {
         text-decoration: none;
         color: inherit;

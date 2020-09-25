@@ -89,7 +89,7 @@ type PageImageType = {
 interface PageHeaderProps {
     text: string
     image?: PageImageType
-    link: string
+    link?: string
 }
 
 const PageHeader = ({ image, link, text, title }: PageHeaderProps) => {
