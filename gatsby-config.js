@@ -9,7 +9,8 @@ try {
         },
     }
 } finally {
-    const { spaceId, accessToken } = contentfulConfig.development
+    const { spaceId, accessToken } =
+        contentfulConfig.development ?? contentfulConfig.production
     if (!spaceId || !accessToken) {
         throw new Error(
             "Contentful space ID and access token need to be provided."
@@ -100,7 +101,7 @@ module.exports = {
             resolve: `gatsby-plugin-typescript`,
         },
         `gatsby-transformer-inline-svg`,
-                // this (optional) plugin enables Progressive Web App + Offline functionality
+        // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.dev/offline
         // `gatsby-plugin-offline`,
     ],
