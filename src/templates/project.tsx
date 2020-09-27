@@ -1,4 +1,5 @@
 import { IProjectFields } from "../../@types/generated/contentful"
+import PageContent from "../components/PageContent/PageContent"
 import PageHeader from "../components/HeadPanels/PageHeader"
 import React from "react"
 import { graphql } from "gatsby"
@@ -11,7 +12,7 @@ interface ProjectProps {
 }
 
 const ProjectTemplate = ({ id, data }: ProjectProps): React.ReactElement => {
-    const { coverImage, headline, link, title } = data.page
+    const { coverImage, headline, link, title, pageContent } = data.page
 
     return (
         <>
@@ -21,6 +22,7 @@ const ProjectTemplate = ({ id, data }: ProjectProps): React.ReactElement => {
                 text={headline}
                 title={title}
             />
+            <PageContent content={pageContent} />
         </>
     )
 }
@@ -33,6 +35,32 @@ export const query = graphql`
             slug
             headline
             link
+            pageContent {
+                ... on ContentfulPageContentText {
+                    body {
+                        json
+                    }
+                    internal {
+                        type
+                    }
+                }
+                ... on ContentfulPageContentImage {
+                    image {
+                        title
+                        description
+                        file {
+                            url
+                        }
+                        fixed(quality: 100, width: 2400) {
+                            srcWebp
+                            src
+                        }
+                    }
+                    internal {
+                        type
+                    }
+                }
+            }
             coverImage {
                 coverM: fixed(width: 800) {
                     src
