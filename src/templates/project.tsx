@@ -1,4 +1,4 @@
-import { IProjectFields } from "../../@types/generated/contentful"
+import { IProjectFieldsTypes } from "../../@types/types"
 import PageContent from "../components/PageContent/PageContent"
 import PageHeader from "../components/HeadPanels/PageHeader"
 import React from "react"
@@ -7,7 +7,7 @@ import { graphql } from "gatsby"
 interface ProjectProps {
     id: string
     data: {
-        page: IProjectFields
+        page: IProjectFieldsTypes
     }
 }
 
@@ -51,9 +51,25 @@ export const query = graphql`
                         file {
                             url
                         }
-                        fixed(quality: 100, width: 2400) {
-                            srcWebp
+                        progressive: fixed(width: 20, quality: 80) {
                             src
+                            srcWebp
+                        }
+                        S: fluid(maxWidth: 800, quality: 90) {
+                            src
+                            srcWebp
+                        }
+                        S2X: fluid(maxWidth: 1600, quality: 90) {
+                            src
+                            srcWebp
+                        }
+                        L: fluid(maxWidth: 1100, quality: 90) {
+                            src
+                            srcWebp
+                        }
+                        L2X: fluid(maxWidth: 2200, quality: 90) {
+                            src
+                            srcWebp
                         }
                     }
                     internal {
@@ -62,14 +78,25 @@ export const query = graphql`
                 }
             }
             coverImage {
-                coverM: fixed(width: 800) {
+                progressive: fixed(width: 20, quality: 80) {
                     src
                     srcWebp
                 }
-                coverL: fixed(width: 1200) {
+                S: fluid(maxWidth: 800, quality: 90) {
                     src
                     srcWebp
-                    tracedSVG
+                }
+                S2X: fluid(maxWidth: 1600, quality: 90) {
+                    src
+                    srcWebp
+                }
+                L: fluid(maxWidth: 1100, quality: 90) {
+                    src
+                    srcWebp
+                }
+                L2X: fluid(maxWidth: 2200, quality: 90) {
+                    src
+                    srcWebp
                 }
             }
         }

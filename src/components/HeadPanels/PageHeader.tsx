@@ -1,16 +1,14 @@
+import ProgressiveImage, { ResponsiveImage } from "../Utils/ProgressiveImage"
 import React, { useContext, useEffect } from "react"
 
-import { Asset } from "contentful-management/dist/typings/entities/entry-fields"
 import BackLink from "../BackLink/BackLink"
 import Button from "../Common/Button"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
-import IconExternal from "../Icons/IconExternal"
 import Lines from "../Animation/Lines"
 import { StyledComponentProps } from "../../../@types/types"
 import { globals } from "../../state/state"
 import styled from "@emotion/styled"
-import { supportsWebP } from "../../helpers/support/webp"
 
 const HeaderStyles = styled.section`
     overflow: hidden;
@@ -55,7 +53,7 @@ const PageImage = styled.div`
     }
 `
 
-const PageImageElement = styled.img`
+const PageImageElement = styled(ProgressiveImage)`
     width: 100%;
     position: absolute;
     object-fit: fill;
@@ -70,39 +68,25 @@ const PageImageElement = styled.img`
     }
 `
 
-const TraceImage = styled(IconExternal)`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-`
-
 const ButtonWrapper = styled.div`
     max-width: 320px;
     margin-bottom: 1rem;
 `
-type PageImageType = {
-    coverM: { src: string; srcWebp: string }
-    coverL: { src: string; srcWebp: string; tracedSVG: string }
-} & Asset
 
 interface PageHeaderProps {
     text: string
-    image?: PageImageType
+    image?: ResponsiveImage
     link?: string
+    title: string
 }
 
-const PageHeader = ({ image, link, text, title }: PageHeaderProps) => {
+const PageHeader = ({
+    image,
+    link,
+    text,
+    title,
+}: PageHeaderProps): React.ReactElement => {
     const { state, dispatch } = useContext(globals)
-
-    const webp = supportsWebP()
-
-    const imageSrc = image
-        ? {
-              small: webp ? image.coverM.srcWebp : image.coverM.src,
-              large: webp ? image.coverL.srcWebp : image.coverL.src,
-          }
-        : {}
 
     useEffect(() => {
         if (state.logo !== "dark") {
@@ -115,15 +99,12 @@ const PageHeader = ({ image, link, text, title }: PageHeaderProps) => {
             <Lines dark id="HeaderAni" />
             {image && (
                 <PageImage>
-                    <TraceImage
-                        margin="0 auto"
-                        width="1000px"
-                        iconSvg={decodeURIComponent(image.coverL.tracedSVG)}
-                    />
                     <PageImageElement
                         alt={`Background image for ${title}`}
-                        srcSet={`${imageSrc.small} 1x, ${imageSrc.large} 2x`}
-                        src={imageSrc.large}
+                        sizes="(min-width: 50em) 50vw, 100vw"
+                        image={image}
+                        absolute
+                        loadingImage
                     />
                 </PageImage>
             )}

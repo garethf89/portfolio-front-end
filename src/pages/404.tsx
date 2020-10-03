@@ -8,7 +8,7 @@ const NotFoundPage = (): React.ReactElement => {
     const headerText = "Page not found!"
     return (
         <>
-            <PageHeader text={headerText} />
+            <PageHeader title="404" text={headerText} />
             <Container vPadding>
                 <Heading level="h2">Try these pages instead</Heading>
                 <SuggestedProjects />

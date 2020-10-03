@@ -1,8 +1,9 @@
-import { BLOCKS, MARKS } from "@contentful/rich-text-types"
+import { BLOCKS, Document, MARKS } from "@contentful/rich-text-types"
 import {
     IPageContentImage,
-    IPageContentTextFields,
+    IPageContentText,
 } from "../../../@types/generated/contentful"
+import ProgressiveImage, { ResponsiveImage } from "../Utils/ProgressiveImage"
 
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
@@ -51,7 +52,7 @@ const options = {
 }
 
 type ContentProps = {
-    content: (IPageContentTextFields | IPageContentImage)[] | undefined
+    content: (IPageContentText | IPageContentImage)[] | undefined
     className?: string
 }
 
@@ -59,8 +60,10 @@ interface ContentElement {
     internal: {
         type: string
     }
-    body?: any
-    image?: any
+    body?: {
+        json: Document
+    }
+    image?: ResponsiveImage
 }
 
 const PageContent = ({ content }: ContentProps): React.ReactElement => {
@@ -68,18 +71,20 @@ const PageContent = ({ content }: ContentProps): React.ReactElement => {
         <Container>
             {content.map((c, i) => {
                 if (
-                    (c as ContentElement).internal.type ===
+                    ((c as unknown) as ContentElement).internal.type ===
                     "ContentfulPageContentText"
                 ) {
                     return documentToReactComponents(
-                        (c as ContentElement).body.json,
+                        ((c as unknown) as ContentElement).body.json,
                         options
                     )
                 }
                 return (
-                    <Image
+                    <ProgressiveImage
                         key={i}
-                        src={(c as ContentElement).image.fixed.src}
+                        sizes="100vw"
+                        alt={"test"}
+                        image={((c as unknown) as ContentElement).image}
                     />
                 )
             })}
