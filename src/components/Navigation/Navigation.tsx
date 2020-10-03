@@ -1,14 +1,13 @@
+import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
 import ColorPicker from "./ColorPicker"
 import NavigationLink from "./NavigationLink"
 import React from "react"
-import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 import { useSiteMetadata } from "../../hooks/use-site-metadata"
 
 const NavigationStyles = styled.nav`
     display: none;
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         display: block;
     }
 `

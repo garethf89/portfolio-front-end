@@ -1,5 +1,6 @@
 import { BLOCKS, Document, MARKS } from "@contentful/rich-text-types"
 
+import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui/index"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 import { IProjectFields } from "../../../@types/generated/contentful"
@@ -22,8 +23,7 @@ const CaseStudyContainer = styled(Container)``
 const CaseStudyWrapper = styled.div`
     position: relative;
 
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         display: flex;
         justify-content: space-between;
     }
@@ -34,8 +34,7 @@ const CaseStudy = styled.div`
     &:last-of-type {
         margin-bottom: 0;
     }
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         width: 30%;
         margin-bottom: 0;
     }

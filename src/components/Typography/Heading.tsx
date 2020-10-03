@@ -2,6 +2,7 @@ import React, { CSSProperties, HTMLAttributes } from "react"
 import { StyledComponentProps, StyledProps } from "../../../@types/types"
 import { StyledDefaultProps, styledSystem } from "../../system/StyledSystem"
 
+import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
 import { css } from "@emotion/core"
 import styled from "@emotion/styled"
 
@@ -20,8 +21,7 @@ const H1 = styled.h1<StyledProps>`
     line-height: 1.2;
     font-weight: 200;
     ${common}
-    @media (min-width: ${(props: StyledComponentProps) =>
-        props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         font-size: 52px;
     }
 `

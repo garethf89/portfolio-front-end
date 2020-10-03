@@ -1,6 +1,7 @@
 import ProgressiveImage, { ResponsiveImage } from "../Utils/ProgressiveImage"
 import React, { useContext, useEffect } from "react"
 
+import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui/index"
 import BackLink from "../BackLink/BackLink"
 import Button from "../Common/Button"
 import Container from "../Global/Container/Container"
@@ -21,16 +22,14 @@ const HeaderStyles = styled.section`
 const StyledTitle = styled(Heading)`
     margin: 2rem 0 2.3rem 0;
     font-weight: 700;
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         margin: 3rem 1rem 6.3rem 0;
     }
 `
 
 const InnerContainer = styled.div`
     padding: 2rem 0;
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         max-width: 50%;
         padding: 5rem 0;
     }
@@ -41,8 +40,7 @@ const PageImage = styled.div`
     position: relative;
     overflow: hidden;
 
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         padding-top: 0;
         max-width: 50%;
         width: 50%;
@@ -62,8 +60,7 @@ const PageImageElement = styled(ProgressiveImage)`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         width: auto;
     }
 `

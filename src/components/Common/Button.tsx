@@ -1,6 +1,7 @@
 import { useColorMode, useThemeUI } from "theme-ui"
 
 import ArrowLight from "../../svgs/light-arrow"
+import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui/index"
 import { Download } from "../../svgs/index"
 import React from "react"
 import { StyledComponentProps } from "../../../@types/types"
@@ -21,8 +22,7 @@ const ButtonIcon = styled.span<ButtonObjectProps>`
     border-left: 1px solid
         ${(props: StyledComponentProps) => props.colors.border};
 
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         padding: 1em;
     }
 `
@@ -30,8 +30,7 @@ const ButtonIcon = styled.span<ButtonObjectProps>`
 const ButtonContent = styled.span<ButtonObjectProps>`
     padding: 1rem 1.25rem;
     display: block;
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         padding: 1rem 1.25rem 1.7rem;
     }
 `
@@ -98,8 +97,7 @@ const ButtonStyled = styled.button<ButtonObjectProps>`
         }
     }
 
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         min-width: ${(props: StyledComponentProps) =>
             props.header ? "314px" : "0"};
         padding-right: 5rem;

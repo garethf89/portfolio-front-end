@@ -1,12 +1,18 @@
 import { Theme } from "theme-ui"
 
-interface ThemeType extends Theme {
-    breakpoint: any
-    container: any
+// interface ThemeType extends Theme {
+//     breakpoint: any
+//     container: any
+// }
+
+export const BREAKPOINTS = {
+    SMALL: "35em",
+    MEDIUM: "50em",
+    LARGE: "79.38em",
 }
 
 // Using Theme-UI as a basic outline but this will be a custom object
-const theme: ThemeType = {
+const theme: Theme = {
     useCustomProperties: true,
     initialColorModeName: "default",
     colors: {
@@ -28,12 +34,7 @@ const theme: ThemeType = {
         maxWidth: "1160px",
         contentMaxWidth: "686px",
     },
-    breakpoints: ["35em", "50em", "79.38em"],
-    breakpoint: {
-        small: "35em",
-        medium: "50em",
-        large: "79.38em",
-    },
+    breakpoints: [BREAKPOINTS.SMALL, BREAKPOINTS.MEDIUM, BREAKPOINTS.LARGE],
     container: {
         padding: "1.5rem",
     },

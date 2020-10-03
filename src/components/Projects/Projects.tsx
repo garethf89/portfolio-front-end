@@ -1,3 +1,4 @@
+import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
 import Container from "../Global/Container/Container"
 import { Document } from "@contentful/rich-text-types"
 import FadeLink from "../Link/Link"
@@ -16,8 +17,7 @@ const ProjectsContainer = styled(Container)`
 const ProjectWrapper = styled.div`
     position: relative;
 
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.small}) {
+    @media (min-width: ${BREAKPOINTS.SMALL}) {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -32,13 +32,11 @@ const Project = styled.div`
     &:last-of-type {
         margin-bottom: 0;
     }
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.small}) {
+    @media (min-width: ${BREAKPOINTS.SMALL}) {
         width: 48%;
         margin-bottom: 0;
     }
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         width: 32%;
         margin-bottom: 2rem;
         :nth-of-type(n + 4) {

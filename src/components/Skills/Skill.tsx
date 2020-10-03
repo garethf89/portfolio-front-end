@@ -1,7 +1,7 @@
+import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
 import Heading from "../Typography/Heading"
 import IconExternal from "../Icons/IconExternal"
 import React from "react"
-import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 
 const SkillContainer = styled.li`
@@ -14,8 +14,7 @@ const SkillContainer = styled.li`
     padding: 0 0;
     margin-bottom: 2rem;
 
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.small}) {
+    @media (min-width: ${BREAKPOINTS.SMALL}) {
         width: 16.6%;
         &:nth-of-type(n + 7) {
             margin-bottom: 0;

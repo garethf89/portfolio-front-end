@@ -1,7 +1,7 @@
+import { BREAKPOINTS } from "../../../gatsby-plugin-theme-ui"
 import Heading from "../../Typography/Heading"
 import { IStatFields } from "../../../../@types/generated/contentful"
 import React from "react"
-import { StyledComponentProps } from "../../../../@types/types"
 import styled from "@emotion/styled"
 
 const StatsContainer = styled.ul`
@@ -9,8 +9,7 @@ const StatsContainer = styled.ul`
     margin: 0;
     padding: 0;
     position: relative;
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.small}) {
+    @media (min-width: ${BREAKPOINTS.SMALL}) {
         display: flex;
         flex-wrap: wrap;
     }
@@ -24,13 +23,11 @@ const Stat = styled.li`
     &:last-of-type {
         margin-bottom: 0;
     }
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.small}) {
+    @media (min-width: ${BREAKPOINTS.SMALL}) {
         width: 33.33%;
         margin-right: 0;
     }
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         width: 50%;
     }
 `
@@ -46,13 +43,11 @@ const StatDesc = styled.span`
     font-weight: 200;
     display: inline-block;
     margin-left: 1rem;
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.small}) {
+    @media (min-width: ${BREAKPOINTS.SMALL}) {
         display: block;
         margin-left: 0;
     }
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         margin-top: 0.5rem;
     }
 `

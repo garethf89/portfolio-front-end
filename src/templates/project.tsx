@@ -11,7 +11,7 @@ interface ProjectProps {
     }
 }
 
-const ProjectTemplate = ({ id, data }: ProjectProps): React.ReactElement => {
+const ProjectTemplate = ({ data }: ProjectProps): React.ReactElement => {
     const { coverImage, headline, link, title, pageContent } = data.page
 
     return (

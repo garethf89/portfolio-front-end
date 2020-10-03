@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react"
 
+import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui/index"
 import Button from "../Common/Button"
 import Container from "../Global/Container/Container"
 import Counter from "../Counter/Counter"
@@ -17,8 +18,7 @@ const HomeHeaderStyles = styled.section`
     position: relative;
     background: ${(props: StyledComponentProps) =>
         props.theme.colors.sectionBackground};
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         padding: 12rem 0 8rem;
     }
 `
@@ -26,8 +26,7 @@ const HomeContainer = styled(Container)`
     position: relative;
     z-index: 1;
     color: ${(props: StyledComponentProps) => props.theme.colors.sectionText};
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         display: flex;
         justify-content: space-between;
         padding: 0
@@ -40,8 +39,7 @@ const HomeContainer = styled(Container)`
 `
 
 const HomeSection = styled.div`
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         width: 60%;
         margin-right: 5.5rem;
     }
@@ -49,8 +47,7 @@ const HomeSection = styled.div`
 
 const HomeSectionStats = styled.div`
     margin-top: 3rem;
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         margin-top: 0;
         width: 40%;
     }

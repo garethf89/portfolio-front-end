@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 
+import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
 import { StyledComponentProps } from "../../../@types/types"
 import { css } from "@emotion/core"
 import styled from "@emotion/styled"
@@ -25,7 +26,7 @@ interface ProgressiveImageProps {
     loadingImage?: boolean
 }
 
-const ImageCommon = props => css`
+const ImageCommon = () => css`
     width: 100%;
     position: absolute;
     object-fit: fill;
@@ -34,9 +35,12 @@ const ImageCommon = props => css`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    @media (min-width: ${props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         width: auto;
     }
+`
+const ImageBlock = () => css`
+    max-width: 100%;
 `
 
 interface ImgProps extends StyledComponentProps {
@@ -45,9 +49,10 @@ interface ImgProps extends StyledComponentProps {
 }
 
 const MainImage = styled.img<ImgProps>`
-    ${(props: ImgProps) => (props.absolute ? ImageCommon : "")}
+    ${(props: ImgProps) => (props.absolute ? ImageCommon : ImageBlock)}
     opacity: ${(props: ImgProps) => (props.loaded ? 1 : 0)};
     transition: opacity 0.25s ease-in;
+    display: block;
 `
 
 const BlurryImage = styled.img`

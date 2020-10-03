@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 
+import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 import { Link } from "gatsby"
@@ -28,8 +29,7 @@ const SuggestedProjectLinkContainer = styled.div`
             transform: scale(1.1);
         }
     }
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         width: 44%;
         margin-bottom: 0;
         margin-right: 0;
@@ -64,8 +64,7 @@ const SuggestedProjectLinkBG = styled.span<SuggestedProjectProps>`
     background-repeat: no-repeat;
     width: 100%;
     transition: all 0.5s ease-in-out;
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         max-width: none;
     }
 `

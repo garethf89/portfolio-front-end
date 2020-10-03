@@ -1,9 +1,9 @@
 import React, { useState } from "react"
 
+import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui/index"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 import IconExternal from "../Icons/IconExternal"
-import { StyledComponentProps } from "../../../@types/types"
 import { css } from "@emotion/core"
 import styled from "@emotion/styled"
 import { supportsWebP } from "../../helpers/support/webp"
@@ -20,13 +20,12 @@ const LogoWrapper = styled.div`
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.small}) {
+    @media (min-width: ${BREAKPOINTS.SMALL}) {
         flex-wrap: nowrap;
     }
 `
 
-const LogoCommon = props => css`
+const LogoCommon = () => css`
     flex: 1;
     flex-basis: 19%;
     margin-right: 5%;
@@ -38,7 +37,7 @@ const LogoCommon = props => css`
     &:hover {
         opacity: 1;
     }
-    @media (min-width: ${props.theme.breakpoint.small}) {
+    @media (min-width: ${BREAKPOINTS.SMALL}) {
         max-width: 120px;
     }
 `

@@ -1,5 +1,6 @@
 import Heading, { HeadingProps } from "../Typography/Heading"
 
+import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui/index"
 import Container from "../Global/Container/Container"
 import FadeLink from "../Link/Link"
 import LinkedInIcon from "../../svgs/linkedin"
@@ -28,8 +29,7 @@ const FooterHeading = styled(Heading)<HeadingProps>`
     margin-bottom: 2rem;
     text-align: left;
 
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.small}) {
+    @media (min-width: ${BREAKPOINTS.SMALL}) {
         margin: 0;
         align-self: center;
     }
@@ -38,8 +38,7 @@ const FooterHeading = styled(Heading)<HeadingProps>`
 const FooterContainer = styled(Container)`
     padding-top: 2rem;
     padding-bottom: 2rem;
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         padding-top: 2rem;
         padding-bottom: 2rem;
     }

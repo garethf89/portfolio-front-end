@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react"
-import { StyledComponentProps, StyledProps } from "../../../@types/types"
 
+import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 import LastFMLogo from "../../svgs/lastfm"
 import Lines from "../Animation/Lines"
 import { OuterWrapper } from "../Common/OuterWrapper"
+import { StyledProps } from "../../../@types/types"
 import { lastFmService } from "../../services/lastfm"
 import styled from "@emotion/styled"
 
 const Albums = styled.div`
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -30,8 +30,7 @@ const Album = styled.div<AlbumProps>`
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 2rem;
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.small}) {
+    @media (min-width: ${BREAKPOINTS.SMALL}) {
         flex-wrap: nowrap;
         flex: 1;
         margin-right: 2rem;
@@ -42,8 +41,7 @@ const Album = styled.div<AlbumProps>`
 const AlbumInfo = styled.div`
     flex: 1;
     flex-basis: 40%;
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.small}) {
+    @media (min-width: ${BREAKPOINTS.SMALL}) {
         flex-basis: 56%;
     }
 `
@@ -54,8 +52,7 @@ const AlbumArtContainer = styled.div`
     margin-right: 1rem;
     min-width: 80px;
     margin-bottom: 1rem;
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         flex: 1;
         flex-basis: 52%;
         margin-bottom: 0;

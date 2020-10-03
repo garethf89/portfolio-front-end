@@ -4,11 +4,11 @@ import { Form, Formik, FormikHelpers } from "formik"
 import React, { useState } from "react"
 
 import Alert from "../components/Alert/Alert"
+import { BREAKPOINTS } from "../gatsby-plugin-theme-ui"
 import Button from "../components/Common/Button"
 import Flex from "../components/Global/Container/Flex"
 import Input from "../components/Form/Input"
 import Label from "../components/Form/Label"
-import { StyledComponentProps } from "../../@types/types"
 import TextArea from "../components/Form/Textarea"
 import styled from "@emotion/styled"
 import { submitEmail } from "../services/email"
@@ -20,8 +20,7 @@ const FormContainer = styled.div`
 const FormSection = styled.div`
     flex: 1;
     flex-basis: 100%;
-    @media (min-width: ${(props: StyledComponentProps) =>
-            props.theme.breakpoint.medium}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         flex-basis: 50%;
     }
 `
