@@ -6,7 +6,10 @@ import { StyledComponentProps } from "../../../@types/types"
 import lottie from "lottie-web"
 import styled from "@emotion/styled"
 
-const HeaderAnimation = styled.div<any>`
+interface LinesProps extends React.ComponentProps<"div"> {
+    dark?: boolean
+}
+const HeaderAnimation = styled.div<LinesProps>`
     position: absolute;
     left: -20%;
     right: -20%;
@@ -19,11 +22,7 @@ const HeaderAnimation = styled.div<any>`
     }
 `
 
-interface LinesProps extends React.HTMLAttributes<any> {
-    dark?: boolean
-}
-
-const Lines = ({ id, dark }: LinesProps) => {
+const Lines = ({ id, dark }: LinesProps): React.ReactElement => {
     useEffect(() => {
         lottie.loadAnimation({
             container: document.getElementById(id),

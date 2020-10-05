@@ -112,12 +112,12 @@ const PageHeader = ({
                     {link && (
                         <ButtonWrapper>
                             <Button
-                                color="dark"
+                                variant="primary"
                                 href={link}
                                 as="a"
                                 icon="Arrow"
                             >
-                                Visit Site
+                                {"Visit Site"}
                             </Button>
                         </ButtonWrapper>
                     )}

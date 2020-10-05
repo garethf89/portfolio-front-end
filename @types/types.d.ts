@@ -2,7 +2,9 @@ import { ResponsiveImage } from "../src/components/Utils/ProgressiveImage"
 import { IProjectFields } from "./generated/contentful"
 
 export type StyledComponentProps = {
-    theme: any
+    theme?: any
+    [key: string]: any
+    [x: string]: any
 }
 
 export interface StyledProps {

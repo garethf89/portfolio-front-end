@@ -26,6 +26,12 @@ const theme: Theme = {
         sectionSecondaryLines: "#4A4A4A",
         logoDark: "#20222f",
         footerBg: "#14161F",
+        buttonBorderPrimary: "#000",
+        buttonColorPrimary: "#000",
+        buttonBackgroundPrimary: "#F6F6F6",
+        buttonBorderSecondary: "#fff",
+        buttonColorSecondary: "#fff",
+        buttonBackgroundSecondary: "transparent",
     },
     fonts: {
         body: '"Ubuntu", Roboto, Helvetica, Arial, sans-serif',
@@ -35,21 +41,27 @@ const theme: Theme = {
         contentMaxWidth: "686px",
     },
     breakpoints: [BREAKPOINTS.SMALL, BREAKPOINTS.MEDIUM, BREAKPOINTS.LARGE],
-    container: {
+    space: {
         padding: "1.5rem",
     },
     buttons: {
-        default: {
-            border: "#fff",
-            background: "transparent",
-            bgHover: "rgba(0, 0, 0, 0.6)",
-            color: "#fff",
+        primary: {
+            color: "buttonColorPrimary",
+            bg: "buttonBackgroundPrimary",
+            borderColor: "buttonBorderPrimary",
+            borderRadius: 0,
+            "&:hover": {
+                bg: "rgba(0, 0, 0, 0.1)",
+            },
         },
-        dark: {
-            border: "#000",
-            background: "#F6F6F6",
-            bgHover: "rgba(0, 0, 0, 0.1)",
-            color: "#000",
+        secondary: {
+            color: "buttonColorSecondary",
+            bg: "buttonBackgroundSecondary",
+            borderColor: "buttonBorderSecondary",
+            borderRadius: 0,
+            "&:hover": {
+                bg: "rgba(0, 0, 0, 0.6)",
+            },
         },
     },
 }

@@ -146,10 +146,10 @@ const ContactForm = (): React.ReactElement => {
                                         </FormContainer>
 
                                         <Button
+                                            variant="primary"
                                             disabled={
                                                 isValidating || isSubmitting
                                             }
-                                            color="dark"
                                             icon="Arrow"
                                             type="submit"
                                         >

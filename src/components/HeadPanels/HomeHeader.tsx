@@ -33,7 +33,7 @@ const HomeContainer = styled(Container)`
             calc(
                 0.65rem +
                     ${(props: StyledComponentProps) =>
-                        props.theme.container.padding}
+                        props.theme.space.padding}
             );
     }
 `
@@ -73,7 +73,7 @@ const HomeHeader = ({ text, stats }: HomeHeaderProps): React.ReactElement => {
             <HomeContainer>
                 <HomeSection>
                     <HomeHeaderContent text={text} />
-                    <Button header icon="Download">
+                    <Button header icon="Download" variant="secondary">
                         Download CV
                     </Button>
                 </HomeSection>

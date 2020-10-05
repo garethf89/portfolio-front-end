@@ -8,7 +8,7 @@ import { Spacer } from "../../stories/Spacer"
 
 const Buttons = [{ icon: "Download" }, { icon: "Arrow" }]
 
-export const ButtonWithIcons = () => (
+export const ButtonWithIcons = (): React.ReactElement => (
     <>
         <DarkBackground>
             {Buttons.map(button => (
@@ -17,6 +17,7 @@ export const ButtonWithIcons = () => (
                         click={() => alert("CLICKED")}
                         icon={button.icon as ButtonTypes}
                         type="submit"
+                        variant="secondary"
                     >
                         {text("Label", "Download CV")}
                     </Button>
@@ -31,7 +32,7 @@ export const ButtonWithIcons = () => (
                         click={() => alert("CLICKED")}
                         icon={button.icon as ButtonTypes}
                         type="submit"
-                        color="dark"
+                        variant="primary"
                     >
                         {text("Label", "Download CV")}
                     </Button>
@@ -50,12 +51,20 @@ export default {
 export const ButtonWithoutIcon = () => (
     <>
         <DarkBackground>
-            <Button click={() => alert("CLICKED")} type="submit">
+            <Button
+                variant="secondary"
+                click={() => alert("CLICKED")}
+                type="submit"
+            >
                 {text("Label", "Download CV")}
             </Button>
         </DarkBackground>
         <LightContainer>
-            <Button click={() => alert("CLICKED")} type="submit" color="dark">
+            <Button
+                variant="primary"
+                click={() => alert("CLICKED")}
+                type="submit"
+            >
                 {text("Label", "Download CV")}
             </Button>
         </LightContainer>

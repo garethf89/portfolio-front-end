@@ -70,6 +70,7 @@
     "babel-plugin-remove-graphql-queries": "^2.9.14",
     "babel-preset-react-app": "^9.1.2",
     "contentful-typescript-codegen": "^3.2.1",
+    "csstype": "^3.0.3",
     "eslint": "^7.1.0",
     "eslint-config-gatsby-standard": "^2.2.0",
     "eslint-import-resolver-typescript": "^2.3.0",
