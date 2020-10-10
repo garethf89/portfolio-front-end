@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import Icon from "../components/Icons/Icon"
+import Icon, { IconPropsType } from "../components/Icons/Icon"
 
 const SvgDownload = (props: React.SVGProps<SVGSVGElement>) => {
     return (
@@ -26,4 +26,5 @@ const SvgDownload = (props: React.SVGProps<SVGSVGElement>) => {
     )
 }
 
-export default Icon(SvgDownload)
+export default (props: IconPropsType): React.ReactElement =>
+    Icon({ Component: SvgDownload, ...props })

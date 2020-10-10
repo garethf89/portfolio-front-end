@@ -20,7 +20,7 @@ const BackLink: React.FC<BackLinkProps> = ({
 }): React.ReactElement => {
     return (
         <BackLinkStyled to="/">
-            <Arrow iconSize="small" width="30px" height="30px" />
+            <Arrow iconSize="xs" />
             {text}
         </BackLinkStyled>
     )

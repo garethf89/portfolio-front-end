@@ -1,31 +1,32 @@
-import React, { CSSProperties, SVGAttributes } from "react"
-import { StyledDefaultProps, styledSystem } from "../../system/StyledSystem"
-
+import React from "react"
 import { iconSystem } from "./iconSystem"
+import { styledSystem } from "../../system/StyledSystem"
 
-interface IconPropsType {
+export interface IconPropsType {
     "data-icon"?: boolean
-    iconSize?: "small" | "medium" | "large"
+    iconSize?: "xs" | "small" | "medium" | "large"
     iconSrc?: React.ReactElement
     iconSvg?: string
 }
 
-type IconProps = IconPropsType & SVGAttributes<any> & CSSProperties
+interface Test extends IconPropsType {
+    Component: React.ComponentType
+}
 
-const Icon = (component: React.FC, props: IconProps = {}) => {
-    const IconSystem = styledSystem<IconProps & StyledDefaultProps>([
-        iconSystem,
-    ])(component)
-
-    IconSystem.defaultProps = {
-        ...props,
+export default ({ Component, ...iconProps }: Test): React.ReactElement => {
+    const defaultProps = {
+        ...iconProps,
         role: "img",
         display: "inline-block",
         verticalAlign: "middle",
         "data-icon": true,
     }
 
-    return IconSystem
-}
+    const Icon = styledSystem({
+        Component: Component,
+        customSystems: [iconSystem],
+        StyleProps: defaultProps,
+    })
 
-export default Icon
+    return Icon
+}

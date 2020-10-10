@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import Icon from "../components/Icons/Icon"
+import Icon, { IconPropsType } from "../components/Icons/Icon"
 
 const LSIcon = (props: React.SVGProps<SVGSVGElement>) => {
     return (
@@ -10,4 +10,5 @@ const LSIcon = (props: React.SVGProps<SVGSVGElement>) => {
     )
 }
 
-export default Icon(LSIcon)
+export default (props: IconPropsType): React.ReactElement =>
+    Icon({ Component: LSIcon, ...props })

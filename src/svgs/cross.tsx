@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import Icon from "../components/Icons/Icon"
+import Icon, { IconPropsType } from "../components/Icons/Icon"
 
 const Cross = (props: React.SVGProps<SVGSVGElement>) => {
     return (
@@ -13,4 +13,5 @@ const Cross = (props: React.SVGProps<SVGSVGElement>) => {
     )
 }
 
-export default Icon(Cross)
+export default (props: IconPropsType): React.ReactElement =>
+    Icon({ Component: Cross, ...props })

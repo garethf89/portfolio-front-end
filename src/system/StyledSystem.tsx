@@ -1,4 +1,4 @@
-import React, { ElementType, forwardRef, useMemo } from "react"
+import React, { forwardRef } from "react"
 import {
     color,
     compose,
@@ -6,6 +6,7 @@ import {
     layout,
     position,
     space,
+    styleFn,
     system,
     typography,
 } from "styled-system"
@@ -38,58 +39,40 @@ export type StyledDefaultProps = {
     as?: string
 }
 
-const propForward = () => {
-    return {
-        shouldForwardProp: prop => {
-            return !systemProps.includes(prop) && !allowedProps.includes(prop)
-        },
-    }
+interface SystemExpectedProps {
+    Component: React.ComponentType
+    customSystems?: Array<styleFn>
+    StyleProps: any
 }
 
-// Add some defaults
-export const SSC = styled("div")(propForward())
-
-export const styledSystem = <Props extends Record<string, unknown>>(
-    customSystems = []
-) => <T extends ElementType>(Component: T) => {
-    const ForwardedComponent = forwardRef<HTMLElement, Props>(
-        ({ ...originalProps }, originalRef) => {
-            const useSystems = useMemo(() => systems, [])
-
-            const SystemBase = forwardRef<HTMLElement, any>(
-                ({ __use, children, ...props }, ref) => {
-                    const filteredProps = pickBy(props, (val, key) => {
-                        if (allowedProps.includes(key)) {
-                            return true
-                        }
-                        if (blacklist.includes(key)) {
-                            return false
-                        }
-                        return isPropValid(key)
-                    })
-                    filteredProps.ref = ref
-                    return React.createElement(__use, filteredProps, children)
+export const styledSystem = ({
+    Component,
+    customSystems = [],
+    StyleProps,
+}: SystemExpectedProps): React.ReactElement => {
+    if (!Component) {
+        return
+    }
+    const SystemBase = forwardRef<HTMLElement, unknown>(
+        ({ children, ...props }, ref) => {
+            const filteredProps = pickBy(props, (val, key) => {
+                if (allowedProps.includes(key)) {
+                    return true
                 }
-            )
+                if (blacklist.includes(key)) {
+                    return false
+                }
+                return isPropValid(key)
+            })
+            filteredProps.ref = ref
 
-            const SystemComponent = styled(SystemBase, shouldForwardProp)(
-                customSystems.length
-                    ? customSystems.map(s => s(originalProps))
-                    : null,
-                useSystems
-            )
-
-            return (
-                <SystemComponent
-                    __use={Component}
-                    {...originalProps}
-                    ref={originalRef}
-                >
-                    {originalProps.children}
-                </SystemComponent>
-            )
+            return React.createElement(Component, filteredProps)
         }
     )
 
-    return ForwardedComponent
+    const SystemComponent = styled(SystemBase, shouldForwardProp)(
+        customSystems.length ? customSystems.map(s => s(StyleProps)) : null,
+        systems
+    )
+    return <SystemComponent {...StyleProps} />
 }

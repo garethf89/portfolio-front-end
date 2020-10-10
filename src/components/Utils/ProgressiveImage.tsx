@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
-import { StyledComponentProps } from "../../../@types/types"
 import { css } from "@emotion/core"
 import styled from "@emotion/styled"
 import { supportsWebP } from "../../helpers/support/webp"
@@ -43,7 +42,7 @@ const ImageBlock = () => css`
     max-width: 100%;
 `
 
-interface ImgProps extends StyledComponentProps {
+interface ImgProps extends React.ComponentProps<"img"> {
     loaded?: boolean
     absolute?: boolean
 }

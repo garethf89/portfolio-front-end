@@ -3,6 +3,10 @@ import { variant } from "styled-system"
 export const iconSystem = variant({
     prop: "iconSize",
     variants: {
+        xs: {
+            width: "30px",
+            height: "30px",
+        },
         small: {
             width: "40px",
             height: "40px",

@@ -1,8 +1,8 @@
 import * as React from "react"
 
-import Icon from "../components/Icons/Icon"
+import Icon, { IconPropsType } from "../components/Icons/Icon"
 
-const Tick = (props: React.SVGProps<SVGSVGElement>) => {
+const Tick = (props: React.SVGProps<SVGSVGElement>): React.ReactElement => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
             <path
@@ -13,4 +13,5 @@ const Tick = (props: React.SVGProps<SVGSVGElement>) => {
     )
 }
 
-export default Icon(Tick)
+export default (props: IconPropsType): React.ReactElement =>
+    Icon({ Component: Tick, ...props })

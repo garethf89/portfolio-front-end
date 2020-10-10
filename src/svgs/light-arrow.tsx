@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import Icon from "../components/Icons/Icon"
+import Icon, { IconPropsType } from "../components/Icons/Icon"
 
 const ArrowLight = (props: React.SVGProps<SVGSVGElement>) => {
     return (
@@ -20,4 +20,5 @@ const ArrowLight = (props: React.SVGProps<SVGSVGElement>) => {
     )
 }
 
-export default Icon(ArrowLight)
+export default (props: IconPropsType): React.ReactElement =>
+    Icon({ Component: ArrowLight, ...props })

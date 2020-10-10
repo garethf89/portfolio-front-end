@@ -1,8 +1,8 @@
 import * as React from "react"
 
-import Icon from "../components/Icons/Icon"
+import Icon, { IconPropsType } from "../components/Icons/Icon"
 
-const Sun = (props: React.SVGProps<SVGSVGElement>) => {
+const Sun = (props: React.SVGProps<SVGSVGElement>): React.ReactElement => {
     return (
         <svg viewBox="0 0 512 512" {...props}>
             <path
@@ -27,4 +27,5 @@ const Sun = (props: React.SVGProps<SVGSVGElement>) => {
     )
 }
 
-export default Icon(Sun)
+export default (props: IconPropsType): React.ReactElement =>
+    Icon({ Component: Sun, ...props })

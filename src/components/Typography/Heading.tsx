@@ -1,4 +1,4 @@
-import React, { CSSProperties, HTMLAttributes } from "react"
+import React, { CSSProperties, Ref } from "react"
 import { StyledComponentProps, StyledProps } from "../../../@types/types"
 import { StyledDefaultProps, styledSystem } from "../../system/StyledSystem"
 
@@ -78,9 +78,10 @@ export type HeadingProps = {
     level?: string
     text?: string
     className?: string
-    children?: any
+    children?: React.ReactNode
     override?: string
-} & HTMLAttributes<any> &
+    ref?: Ref<HTMLElement>
+} & React.ComponentProps<"h1"> &
     CSSProperties &
     StyledDefaultProps
 
@@ -91,17 +92,25 @@ const Heading: React.FC<HeadingProps> = ({
     text,
     ...props
 }) => {
-    const C: React.ElementType =
-        level && Variants[level] ? Variants[level] : Default
+    const C = level && Variants[level] ? Variants[level] : Default
 
-    const StyledHeading = styledSystem<HeadingProps>()(C)
-
-    return (
-        <StyledHeading as={override} {...props}>
+    const RenderedHeading = (systemProps: unknown) => (
+        <C as={override} {...systemProps}>
             {text}
             {children}
-        </StyledHeading>
+        </C>
     )
+
+    const defaultProps = {
+        ...props,
+    }
+
+    const StyledHeading = styledSystem({
+        Component: RenderedHeading,
+        StyleProps: defaultProps,
+    })
+
+    return StyledHeading
 }
 
 Heading.defaultProps = {

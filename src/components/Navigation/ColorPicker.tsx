@@ -10,7 +10,7 @@ const NavigationLinkLabel = styled.span`
     margin-right: 0.5rem;
 `
 
-const ColorPicker = (): React.ReactElement<any> => {
+const ColorPicker = (): React.ReactElement => {
     const { state, dispatch } = useContext(globals)
 
     const activeTheme = state?.theme ?? initialStateGlobals.theme
@@ -30,6 +30,7 @@ const ColorPicker = (): React.ReactElement<any> => {
                 if (link.stateLink === activeTheme) {
                     return
                 }
+                const LinkIcon = link.iconLink
                 return (
                     <NavigationLink
                         key={i}
@@ -38,7 +39,7 @@ const ColorPicker = (): React.ReactElement<any> => {
                         to="/"
                     >
                         <NavigationLinkLabel>Theme</NavigationLinkLabel>
-                        <link.iconLink iconSize="small" />
+                        <LinkIcon iconSize="xs" />
                     </NavigationLink>
                 )
             })}
