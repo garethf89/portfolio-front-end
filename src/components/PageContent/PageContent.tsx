@@ -67,6 +67,9 @@ interface ContentElement {
 }
 
 const PageContent = ({ content }: ContentProps): React.ReactElement => {
+    if (!content) {
+        return <></>
+    }
     return (
         <Container>
             {content.map((c, i) => {

@@ -56,12 +56,6 @@ export const IconExternal = ({
     })
 
     return IconSystem
-
-    return (
-        <IconSystem as="svg" {...attr} {...props}>
-            {Render}
-        </IconSystem>
-    )
 }
 
 export default IconExternal

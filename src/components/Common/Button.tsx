@@ -131,7 +131,7 @@ type BorderColor = {
 }
 
 const Button = ({
-    as,
+    as = "button",
     icon,
     children,
     type = "button",

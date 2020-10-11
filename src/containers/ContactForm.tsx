@@ -1,7 +1,6 @@
 import * as Yup from "yup"
 
 import { Form, Formik, FormikHelpers } from "formik"
-import React, { useState } from "react"
 
 import Alert from "../components/Alert/Alert"
 import { BREAKPOINTS } from "../gatsby-plugin-theme-ui"
@@ -9,9 +8,10 @@ import Button from "../components/Common/Button"
 import Flex from "../components/Global/Container/Flex"
 import Input from "../components/Form/Input"
 import Label from "../components/Form/Label"
+import React from "react"
 import TextArea from "../components/Form/Textarea"
 import styled from "@emotion/styled"
-import { submitEmail } from "../services/email"
+import { useEmail } from "../services/email"
 
 const FormContainer = styled.div`
     margin-bottom: 2.5rem;
@@ -42,20 +42,12 @@ const ContactSchema = Yup.object().shape({
 })
 
 const ContactForm = (): React.ReactElement => {
-    const [hasError, setError] = useState(null)
-    const [success, setSuccess] = useState(null)
-
+    const { submit, status, error } = useEmail()
     const submitForm = async (
         values: Values,
         { setSubmitting }: FormikHelpers<Values>
     ) => {
-        try {
-            await submitEmail(values)
-            setError(false)
-            setSuccess(true)
-        } catch (e) {
-            setError(true)
-        }
+        await submit(values)
         setSubmitting(false)
     }
 
@@ -73,19 +65,19 @@ const ContactForm = (): React.ReactElement => {
                 {({ errors, touched, isSubmitting, isValidating }) => {
                     return (
                         <Form noValidate>
-                            {hasError && (
+                            {error && (
                                 <Alert variant="error">
                                     {
                                         "There has been a problem submitting the form, please contact me direct at gareth.f@hotmail.co.uk"
                                     }
                                 </Alert>
                             )}
-                            {success && (
+                            {status === "success" && (
                                 <Alert variant="success">
                                     Thank you for your enquiry!
                                 </Alert>
                             )}
-                            {!success && (
+                            {status !== "success" && (
                                 <Flex flexWrap="wrap" padding={[0, 0, 0]}>
                                     <FormSection>
                                         <FormContainer>

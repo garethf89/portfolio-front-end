@@ -37,6 +37,7 @@ export const query = graphql`
             link
             pageContent {
                 ... on ContentfulPageContentText {
+                    __typename
                     body {
                         json
                     }
@@ -45,6 +46,7 @@ export const query = graphql`
                     }
                 }
                 ... on ContentfulPageContentImage {
+                    __typename
                     image {
                         title
                         description
