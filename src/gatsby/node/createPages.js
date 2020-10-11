@@ -10,11 +10,12 @@ module.exports = async ({ graphql, actions }) => {
     pages.forEach((page, i) => {
         const slug = page.node.slug
         createPage({
-            path: `/${slug}`,
+            path: slug,
             component: projectTemplate,
             context: {
                 id: page.node.id,
                 title: page.node.title,
+                slug: slug,
             },
         })
     })
