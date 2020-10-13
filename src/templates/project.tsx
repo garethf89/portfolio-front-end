@@ -36,46 +36,48 @@ export const query = graphql`
             headline
             link
             pageContent {
-                ... on ContentfulPageContentText {
-                    __typename
-                    body {
-                        json
-                    }
-                    internal {
-                        type
-                    }
-                }
-                ... on ContentfulPageContentImage {
-                    __typename
-                    image {
-                        title
-                        description
-                        file {
-                            url
+                ... on Node {
+                    ... on ContentfulPageContentText {
+                        __typename
+                        body {
+                            json
                         }
-                        progressive: fixed(width: 20, quality: 80) {
-                            src
-                            srcWebp
-                        }
-                        S: fluid(maxWidth: 800, quality: 90) {
-                            src
-                            srcWebp
-                        }
-                        S2X: fluid(maxWidth: 1600, quality: 90) {
-                            src
-                            srcWebp
-                        }
-                        L: fluid(maxWidth: 1100, quality: 90) {
-                            src
-                            srcWebp
-                        }
-                        L2X: fluid(maxWidth: 2200, quality: 90) {
-                            src
-                            srcWebp
+                        internal {
+                            type
                         }
                     }
-                    internal {
-                        type
+                    ... on ContentfulPageContentImage {
+                        __typename
+                        image {
+                            title
+                            description
+                            file {
+                                url
+                            }
+                            progressive: fixed(width: 20, quality: 80) {
+                                src
+                                srcWebp
+                            }
+                            S: fluid(maxWidth: 800, quality: 90) {
+                                src
+                                srcWebp
+                            }
+                            S2X: fluid(maxWidth: 1600, quality: 90) {
+                                src
+                                srcWebp
+                            }
+                            L: fluid(maxWidth: 1100, quality: 90) {
+                                src
+                                srcWebp
+                            }
+                            L2X: fluid(maxWidth: 2200, quality: 90) {
+                                src
+                                srcWebp
+                            }
+                        }
+                        internal {
+                            type
+                        }
                     }
                 }
             }
