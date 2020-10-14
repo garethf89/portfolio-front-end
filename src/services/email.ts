@@ -3,7 +3,7 @@ import { useCallback, useState } from "react"
 
 import { Response } from "express"
 
-const url = `${process.env.REACT_APP_API_URL}/formEmail`
+const url = `${process.env.GATSBY_REACT_APP_API_URL}/formEmail`
 
 type EmailFormData = {
     personEnq: string

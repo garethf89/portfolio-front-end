@@ -7,7 +7,7 @@ import { SocketIOClient } from "@types/socket.io-client"
 import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 
-const connectionString = process.env.REACT_APP_API_URL
+const connectionString = process.env.GATSBY_REACT_APP_API_URL
 
 const CounterStyled = styled.aside`
     display: block;
