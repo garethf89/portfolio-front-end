@@ -9,6 +9,7 @@ import styled from "@emotion/styled"
 interface LinesProps extends React.ComponentProps<"div"> {
     dark?: boolean
 }
+
 const HeaderAnimation = styled.div<LinesProps>`
     position: absolute;
     left: -20%;
@@ -17,7 +18,7 @@ const HeaderAnimation = styled.div<LinesProps>`
     bottom: -20%;
     z-index: 0;
     svg path {
-        stroke: ${(props: StyledComponentProps) =>
+        stroke: ${(props: StyledComponentProps & LinesProps) =>
             props.dark ? `${props.theme.colors.sectionSecondaryLines}` : ``};
     }
 `

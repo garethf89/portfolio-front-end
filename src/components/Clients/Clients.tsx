@@ -7,6 +7,7 @@ import IconExternal from "../Icons/IconExternal"
 import { css } from "@emotion/core"
 import styled from "@emotion/styled"
 import { supportsWebP } from "../../helpers/support/webp"
+import { useThemeUI } from "theme-ui"
 
 const ClientsContainer = styled(Container)`
     margin-top: 2rem;
@@ -76,6 +77,9 @@ interface ClientProps {
 
 const Clients = ({ data }: ClientProps): React.ReactElement<ClientProps> => {
     const [webP] = useState(() => supportsWebP)
+    const context = useThemeUI()
+    const { theme } = context
+
     return (
         <>
             <ClientsContainer vPadding>
@@ -83,7 +87,7 @@ const Clients = ({ data }: ClientProps): React.ReactElement<ClientProps> => {
                     level="h3"
                     override="h2"
                     textAlign="center"
-                    marginBottom="3rem"
+                    marginBottom={`${theme.space.common[3]}`}
                 >
                     Clients I have worked with
                 </Heading>

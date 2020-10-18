@@ -8,6 +8,7 @@ import { ISkillFields } from "../../../../@types/generated/contentful"
 import Inlinelink from "../../Typography/Inlinelink"
 import React from "react"
 import Skill from "../../Skills/Skill"
+import { StyledComponentProps } from "../../../../@types/types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import styled from "@emotion/styled"
 
@@ -21,7 +22,7 @@ const Skills = styled.ul`
     justify-content: space-between;
     padding: 0;
     list-style-type: none;
-    margin: 4rem 0 0;
+    margin: ${(props: StyledComponentProps) => props.theme.space.common[4]} 0 0;
 `
 
 const Text = ({ children }) => {

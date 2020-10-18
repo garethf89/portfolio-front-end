@@ -14,7 +14,8 @@ import { supportsWebP } from "../../helpers/support/webp"
 const SuggestedProjectLinkContainer = styled.div`
     display: inline-block;
     width: 100%;
-    margin-bottom: 4rem;
+    margin-bottom: ${(props: StyledComponentProps) =>
+        props.theme.space.common[4]};
     margin-right: 1rem;
     &:last-of-type {
         margin-bottom: 0;

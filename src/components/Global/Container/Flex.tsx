@@ -10,7 +10,8 @@ const baseStyle = props => css`
     margin: 0 auto auto;
     width: 100%;
     display: flex;
-    padding: ${props.vPadding ? "4rem" : "0"} 1.5rem;
+    padding: ${props.vPadding ? props.theme.space.common[4] : "0"}
+        ${props.theme.space.common[1]};
     text-align: left;
     max-width: ${props.theme.sizes.maxWidth};
     flex-direction: column;
@@ -18,7 +19,8 @@ const baseStyle = props => css`
         flex-direction: row;
     }
     @media (min-width: ${BREAKPOINTS.MEDIUM}) {
-        padding: ${props.vPadding ? "4rem" : "0"} 3rem;
+        padding: ${props.vPadding ? props.theme.space.common[4] : "0"}
+            ${props.theme.space.common[3]};
     }
 `
 

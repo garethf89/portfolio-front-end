@@ -5,9 +5,11 @@ import {
 } from "../../../@types/generated/contentful"
 import ProgressiveImage, { ResponsiveImage } from "../Utils/ProgressiveImage"
 
+import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 import React from "react"
+import { StyledComponentProps } from "../../../@types/types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import styled from "@emotion/styled"
 
@@ -15,11 +17,25 @@ const StyledParagraph = styled.p`
     font-size: 1.13rem;
     line-height: 1.6;
     font-weight: 200;
+    margin-bottom: ${(props: StyledComponentProps) =>
+        props.theme.space.common[2]};
 `
 
 export const Image = styled.img`
     max-width: 100%;
-    margin-bottom: 3.75rem;
+    margin-bottom: ${(props: StyledComponentProps) =>
+        props.theme.space.common[4]};
+`
+
+const ContentContainer = styled(Container)`
+    max-width: ${(props: StyledComponentProps) =>
+        props.theme.sizes.contentMaxWidth};
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+        max-width: calc(
+            ${(props: StyledComponentProps) =>
+                    props.theme.sizes.contentMaxWidth} + 6rem
+        );
+    }
 `
 
 const Bold = ({ children }) => <span className="bold">{children}</span>
@@ -71,8 +87,9 @@ const PageContent = ({ content }: ContentProps): React.ReactElement => {
         return <></>
     }
     return (
-        <Container>
+        <ContentContainer vPadding>
             {content.map((c, i) => {
+                console.log(c)
                 if (
                     ((c as unknown) as ContentElement).internal.type ===
                     "ContentfulPageContentText"
@@ -91,7 +108,7 @@ const PageContent = ({ content }: ContentProps): React.ReactElement => {
                     />
                 )
             })}
-        </Container>
+        </ContentContainer>
     )
 }
 

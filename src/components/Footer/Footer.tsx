@@ -26,7 +26,8 @@ const FooterLink = styled.a`
 const FooterContent = styled.div``
 
 const FooterHeading = styled(Heading)<HeadingProps>`
-    margin-bottom: 2rem;
+    margin-bottom: ${(props: StyledComponentProps) =>
+        props.theme.space.common[3]};
     text-align: left;
 
     @media (min-width: ${BREAKPOINTS.SMALL}) {

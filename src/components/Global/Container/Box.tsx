@@ -9,13 +9,14 @@ const baseStyle = props => css`
     position: relative;
     margin: 0 auto auto;
     width: 100%;
-    padding: ${props.vPadding ? "4rem" : "0"} 1.5rem;
+    padding: ${props.vPadding ? props.theme.space.common[4] : "0"}
+        ${props.theme.space.common[1]};
     text-align: left;
     max-width: ${props.theme.sizes.maxWidth};
     @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         flex-direction: row;
-        padding-left: 3rem;
-        padding-right: 3rem;
+        padding-left: ${props.theme.space.common[3]};
+        padding-right: ${props.theme.space.common[3]};
         max-width: calc(${props.theme.sizes.maxWidth});
     }
 `

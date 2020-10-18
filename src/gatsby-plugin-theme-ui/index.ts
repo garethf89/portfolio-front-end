@@ -43,6 +43,8 @@ const theme: Theme = {
     breakpoints: [BREAKPOINTS.SMALL, BREAKPOINTS.MEDIUM, BREAKPOINTS.LARGE],
     space: {
         padding: "1.5rem",
+        common: ["1rem", "1.5rem", "2rem", "3rem", "4rem"], // Used for content
+        l: [], // Used for large, full width content
     },
     buttons: {
         primary: {

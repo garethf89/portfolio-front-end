@@ -77,13 +77,6 @@ module.exports = {
             },
         },
         {
-            resolve: `gatsby-plugin-schema-snapshot`,
-            options: {
-                path: `./src/gatsby/schema/schema.gql`,
-                update: false,
-            },
-        },
-        {
             resolve: "gatsby-source-contentful",
             options:
                 process.env.NODE_ENV === "development"
