@@ -1,7 +1,8 @@
 import React, { useState } from "react"
+import { SerializedStyles, css } from "@emotion/core"
 
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
-import { css } from "@emotion/core"
+import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 import { supportsWebP } from "../../helpers/support/webp"
 
@@ -23,6 +24,7 @@ interface ProgressiveImageProps {
     alt: string
     absolute?: boolean
     loadingImage?: boolean
+    styles?: (props: StyledComponentProps) => SerializedStyles
 }
 
 const ImageCommon = () => css`
@@ -45,9 +47,11 @@ const ImageBlock = () => css`
 interface ImgProps extends React.ComponentProps<"img"> {
     loaded?: boolean
     absolute?: boolean
+    styles?: (props: StyledComponentProps) => SerializedStyles
 }
 
 const MainImage = styled.img<ImgProps>`
+    ${(props: ImgProps) => props.styles}
     ${(props: ImgProps) => (props.absolute ? ImageCommon : ImageBlock)}
     opacity: ${(props: ImgProps) => (props.loaded ? 1 : 0)};
     transition: opacity 0.25s ease-in;
@@ -65,6 +69,7 @@ const ProgressiveImage = ({
     absolute,
     loadingImage,
     sizes = "100vw",
+    styles,
 }: ProgressiveImageProps): React.ReactElement => {
     const [loaded, setLoaded] = useState(null)
 
@@ -93,6 +98,7 @@ const ProgressiveImage = ({
                 srcSet={srcSet}
                 aria-hidden={!loaded}
                 absolute={absolute}
+                styles={styles}
             />
         </div>
     )
