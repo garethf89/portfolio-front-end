@@ -12,7 +12,7 @@ interface ProjectProps {
 }
 
 const ProjectTemplate = ({ data }: ProjectProps): React.ReactElement => {
-    const { coverImage, headline, link, title, pageContent } = data.page
+    const { coverImage, headline, link, title, pageContent, skills } = data.page
 
     return (
         <>
@@ -22,7 +22,7 @@ const ProjectTemplate = ({ data }: ProjectProps): React.ReactElement => {
                 text={headline}
                 title={title}
             />
-            <PageContent content={pageContent} />
+            <PageContent content={pageContent} skills={skills} />
         </>
     )
 }
@@ -78,6 +78,17 @@ export const query = graphql`
                         internal {
                             type
                         }
+                    }
+                }
+            }
+            skills {
+                name
+                icon {
+                    svg {
+                        content
+                    }
+                    file {
+                        url
                     }
                 }
             }

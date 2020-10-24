@@ -73,10 +73,10 @@ export interface ILogo extends Entry<ILogoFields> {
 
 export interface IPageContentImageFields {
     /** Title */
-    title?: string | undefined
+    title: string
 
     /** Image */
-    image?: Asset | undefined
+    image: Asset
 }
 
 export interface IPageContentImage extends Entry<IPageContentImageFields> {
@@ -138,7 +138,7 @@ export interface IProjectFields {
     pageContent?: (IPageContentImage | IPageContentText)[] | undefined
 
     /** Skills */
-    skills?: Entry<{ [fieldId: string]: unknown }>[] | undefined
+    skills?: ISkill[] | undefined
 
     /** Slug */
     slug: string

@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react"
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
+import { ISkill } from "../../../@types/generated/contentful"
+import PageSkills from "./PageSkills"
 import ProgressiveImage from "../Utils/ProgressiveImage"
 import { StyledComponentProps } from "../../../@types/types"
 import { css } from "@emotion/core"
@@ -28,14 +30,14 @@ const StyledParagraph = styled.p`
         props.theme.space.common[2]};
 `
 const StyledParagraphIntro = styled.p`
-    font-size: 1.13rem;
+    font-size: 1.88rem;
     line-height: 1.6;
     font-weight: 700;
     margin-bottom: ${(props: StyledComponentProps) =>
         props.theme.space.common[3]};
 `
 
-const ContentContainer = styled(Container)`
+export const ContentContainer = styled(Container)`
     max-width: ${(props: StyledComponentProps) =>
         props.theme.sizes.contentMaxWidth};
     @media (min-width: ${BREAKPOINTS.MEDIUM}) {
@@ -105,6 +107,7 @@ const options = {
 type ContentProps = {
     content: (IPageContentText | IPageContentImage)[] | undefined
     className?: string
+    skills: ISkill[]
 }
 
 interface ContentElement {
@@ -118,7 +121,7 @@ interface ContentElement {
     isIntro?: boolean
 }
 
-const PageContent = ({ content }: ContentProps): React.ReactElement => {
+const PageContent = ({ content, skills }: ContentProps): React.ReactElement => {
     const [formatContent, setFormatContent] = useState(null)
     useEffect(() => {
         let objectToSet = Object.values({ ...content })
@@ -140,7 +143,7 @@ const PageContent = ({ content }: ContentProps): React.ReactElement => {
         return <></>
     }
     return (
-        <ContentContainer vPadding>
+        <ContentContainer>
             {formatContent.map((c, i) => {
                 if (
                     ((c as unknown) as ContentElement).internal.type ===
@@ -168,6 +171,7 @@ const PageContent = ({ content }: ContentProps): React.ReactElement => {
                     />
                 )
             })}
+            <PageSkills skills={skills} />
         </ContentContainer>
     )
 }
