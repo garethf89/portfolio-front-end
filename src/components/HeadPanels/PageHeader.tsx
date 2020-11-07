@@ -72,7 +72,7 @@ const ButtonWrapper = styled.div`
 
 interface PageHeaderProps {
     text: string
-    image?: ResponsiveImage
+    image?: unknown
     link?: string
     title: string
 }
@@ -99,7 +99,7 @@ const PageHeader = ({
                     <PageImageElement
                         alt={`Background image for ${title}`}
                         sizes="(min-width: 50em) 50vw, 100vw"
-                        image={image}
+                        image={image as ResponsiveImage}
                         absolute
                         loadingImage
                     />

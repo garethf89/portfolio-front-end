@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { SerializedStyles, css } from "@emotion/core"
 
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
+import { Entry } from "contentful"
 import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 import { supportsWebP } from "../../helpers/support/webp"
@@ -10,13 +11,22 @@ interface ImageSource {
     src: string
     srcWebp: string
 }
+
 export interface ResponsiveImage {
     progressive: ImageSource
     S: ImageSource
     S2X: ImageSource
     L: ImageSource
     L2X: ImageSource
+    title: string
 }
+
+export interface ImageFieldsCustom {
+    title: string
+    image: ResponsiveImage
+}
+
+export type ContentfulImageFields = Entry<ImageFieldsCustom>
 
 interface ProgressiveImageProps {
     image: ResponsiveImage

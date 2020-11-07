@@ -1,6 +1,6 @@
-import { ISkill, ISkillFields } from "../../../@types/generated/contentful"
-
 import Heading from "../Typography/Heading"
+import { ISkill } from "../../../@types/generated/contentful"
+import { ISkillFieldsCustom } from "../../../@types/types"
 import React from "react"
 import Skill from "../Skills/Skill"
 import styled from "@emotion/styled"
@@ -30,7 +30,7 @@ const PageSkills = ({ skills }: PageSkillProps): React.ReactElement => {
                 Technology Used
             </Heading>
             <SkillContainer>
-                {(skills as ISkillFields[]).map((skill, i) => (
+                {(skills as ISkillFieldsCustom[]).map((skill, i) => (
                     <Skill
                         key={i}
                         id={`skill${i}`}

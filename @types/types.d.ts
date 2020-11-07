@@ -1,9 +1,10 @@
+import { Asset } from "contentful"
 import * as CSS from "csstype"
 import { ObjectOrArray, Theme } from "styled-system"
 import { ResponsiveImage } from "../src/components/Utils/ProgressiveImage"
 import { IProjectFields } from "./generated/contentful"
 
-interface CustomTheme extends Theme {
+export interface CustomTheme extends Theme {
     space?: {
         common: ObjectOrArray<CSS.Property.Margin<number | string>>
         l: ObjectOrArray<CSS.Property.Margin<number | string>>
@@ -27,4 +28,15 @@ export interface StyledProps {
 
 export type IProjectFieldsTypes = IProjectFields & {
     coverImage: ResponsiveImage
+}
+
+interface CustomAsset extends Asset {
+    svg: { content: string }
+}
+export interface ISkillFieldsCustom {
+    /** Name */
+    name?: string | undefined
+
+    /** Icon */
+    icon?: CustomAsset | undefined
 }

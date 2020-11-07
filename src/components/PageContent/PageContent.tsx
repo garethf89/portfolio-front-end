@@ -1,21 +1,27 @@
-import { BLOCKS, MARKS } from "@contentful/rich-text-types"
+import {
+    BLOCKS,
+    Document,
+    MARKS,
+    TopLevelBlockEnum,
+} from "@contentful/rich-text-types"
+import {
+    IPageContentTextFields,
+    ISkill,
+} from "../../../@types/generated/contentful"
+import ProgressiveImage, { ImageFieldsCustom } from "../Utils/ProgressiveImage"
 import React, { useEffect, useState } from "react"
 
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
 import Container from "../Global/Container/Container"
+import ContainerBreak from "../Utils/ContainerBreak"
 import Heading from "../Typography/Heading"
-import { ISkill } from "../../../@types/generated/contentful"
 import PageSkills from "./PageSkills"
-import ProgressiveImage from "../Utils/ProgressiveImage"
 import { StyledComponentProps } from "../../../@types/types"
 import { css } from "@emotion/core"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import styled from "@emotion/styled"
 
-enum EXTRABLOCKS {
-    INTRO = "intro",
-}
-const CUSTOMBLOCKS = { ...BLOCKS, ...EXTRABLOCKS }
+const CUSTOMBLOCKS = { ...BLOCKS, INTRO: "intro" as TopLevelBlockEnum }
 
 const ImageStyles = (props: StyledComponentProps) => css`
     max-width: 100%;
@@ -104,37 +110,84 @@ const options = {
     },
 }
 
+type Filter<T, U> = T extends U ? T : never
+
+// Text
+
+type CustomTextAttributes = {
+    type: string
+    isIntro?: boolean
+    body?: {
+        json: Document
+    }
+}
+
+type TextTypes = Filter<
+    AllContent,
+    CustomTextAttributes & IPageContentTextFields
+>
+
+// Image
+
+type ImageTypes = Filter<AllContent, ImageFieldsCustom>
+
+// All
+
+export type AllContent = ImageFieldsCustom &
+    IPageContentTextFields &
+    CustomTextAttributes
+
 type ContentProps = {
-    content: (IPageContentText | IPageContentImage)[] | undefined
+    content: unknown[]
     className?: string
     skills: ISkill[]
 }
 
-interface ContentElement {
-    internal: {
-        type: string
-    }
-    body?: {
-        json: Document
-    }
-    image?: ResponsiveImage
-    isIntro?: boolean
+interface OutputTextComponentProps {
+    text: TextTypes
+    name: number | string
+}
+const OutputTextComponent = ({
+    text,
+    name,
+}: OutputTextComponentProps): React.ReactElement => {
+    return (
+        <React.Fragment key={`inlinetext-${name}`}>
+            {documentToReactComponents(text.body.json, options)}
+        </React.Fragment>
+    )
+}
+
+interface OutputImageComponentProps {
+    image: ImageTypes
+    name: number | string
+    type: string
+}
+const OutputImageComponent = ({
+    image,
+    name,
+    type,
+}: OutputImageComponentProps): React.ReactElement => {
+    return (
+        <ProgressiveImage
+            key={`${type}-${name}`}
+            sizes="100vw"
+            alt={image.title}
+            image={image.image}
+            styles={ImageStyles}
+        />
+    )
 }
 
 const PageContent = ({ content, skills }: ContentProps): React.ReactElement => {
-    const [formatContent, setFormatContent] = useState(null)
-    useEffect(() => {
-        let objectToSet = Object.values({ ...content })
+    const [formatContent, setFormatContent] = useState<AllContent[]>(null)
 
-        objectToSet = objectToSet.map((c, i) => {
-            if (
-                ((c as any) as ContentElement).internal.type ===
-                    "ContentfulPageContentText" &&
-                i === 0
-            ) {
-                return { ...c, isIntro: true }
+    useEffect(() => {
+        const objectToSet: AllContent[] = content.map((c: AllContent, i) => {
+            if (c.type === "ContentfulPageContentText" && i === 0) {
+                return { ...c, isIntro: true } as TextTypes
             }
-            return c
+            return c as TextTypes | ImageTypes
         })
         setFormatContent(objectToSet)
     }, [content])
@@ -142,32 +195,40 @@ const PageContent = ({ content, skills }: ContentProps): React.ReactElement => {
     if (!formatContent) {
         return <></>
     }
+
     return (
         <ContentContainer>
-            {formatContent.map((c, i) => {
-                if (
-                    ((c as unknown) as ContentElement).internal.type ===
-                    "ContentfulPageContentText"
-                ) {
+            {formatContent.map((c: AllContent, i) => {
+                if (c.type === "ContentfulPageContentText") {
                     if (c.isIntro) {
                         c.body.json.content[0].nodeType = CUSTOMBLOCKS.INTRO
                     }
                     return (
-                        <React.Fragment key={`inlinetext-${i}`}>
-                            {documentToReactComponents(
-                                ((c as unknown) as ContentElement).body.json,
-                                options
-                            )}
-                        </React.Fragment>
+                        <OutputTextComponent
+                            key={i}
+                            name={i}
+                            text={c as TextTypes}
+                        />
+                    )
+                }
+                if (c.type === "ContentfulPageContentFullSizeImage") {
+                    return (
+                        <ContainerBreak key={i}>
+                            <OutputImageComponent
+                                key={i}
+                                name={i}
+                                image={c as ImageTypes}
+                                type="imagefull"
+                            />
+                        </ContainerBreak>
                     )
                 }
                 return (
-                    <ProgressiveImage
-                        key={`image-${i}`}
-                        sizes="100vw"
-                        alt={"test"}
-                        image={((c as unknown) as ContentElement).image}
-                        styles={ImageStyles}
+                    <OutputImageComponent
+                        key={i}
+                        image={c as ImageTypes}
+                        name={i}
+                        type="image"
                     />
                 )
             })}

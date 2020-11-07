@@ -71,6 +71,32 @@ export interface ILogo extends Entry<ILogoFields> {
     }
 }
 
+export interface IPageContentFullSizeImageFields {
+    /** Title */
+    title: string
+
+    /** Image */
+    image: Asset
+}
+
+export interface IPageContentFullSizeImage
+    extends Entry<IPageContentFullSizeImageFields> {
+    sys: {
+        id: string
+        type: string
+        createdAt: string
+        updatedAt: string
+        locale: string
+        contentType: {
+            sys: {
+                id: "pageContentFullSizeImage"
+                linkType: "ContentType"
+                type: "Link"
+            }
+        }
+    }
+}
+
 export interface IPageContentImageFields {
     /** Title */
     title: string
@@ -135,7 +161,9 @@ export interface IProjectFields {
     coverImage?: Asset | undefined
 
     /** Page Content */
-    pageContent?: (IPageContentImage | IPageContentText)[] | undefined
+    pageContent?:
+        | (IPageContentFullSizeImage | IPageContentImage | IPageContentText)[]
+        | undefined
 
     /** Skills */
     skills?: ISkill[] | undefined
@@ -217,6 +245,7 @@ export interface IStat extends Entry<IStatFields> {
 export type CONTENT_TYPE =
     | "homePage"
     | "logo"
+    | "pageContentFullSizeImage"
     | "pageContentImage"
     | "pageContentText"
     | "project"
