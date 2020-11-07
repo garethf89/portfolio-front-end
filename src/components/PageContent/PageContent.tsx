@@ -1,6 +1,7 @@
 import {
     BLOCKS,
     Document,
+    INLINES,
     MARKS,
     TopLevelBlockEnum,
 } from "@contentful/rich-text-types"
@@ -15,17 +16,23 @@ import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
 import Container from "../Global/Container/Container"
 import ContainerBreak from "../Utils/ContainerBreak"
 import Heading from "../Typography/Heading"
+import InlineLink from "../Typography/Inlinelink"
 import PageSkills from "./PageSkills"
 import { StyledComponentProps } from "../../../@types/types"
 import { css } from "@emotion/core"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import styled from "@emotion/styled"
 
-const CUSTOMBLOCKS = { ...BLOCKS, INTRO: "intro" as TopLevelBlockEnum }
+const CUSTOMBLOCKS = {
+    ...BLOCKS,
+    ...INLINES,
+    INTRO: "intro" as TopLevelBlockEnum,
+}
 
 const ImageStyles = (props: StyledComponentProps) => css`
     max-width: 100%;
     margin-bottom: ${props.theme.space.common[2]};
+    margin-top: ${props.theme.space.common[3]};
 `
 
 const StyledParagraph = styled.p`
@@ -36,11 +43,11 @@ const StyledParagraph = styled.p`
         props.theme.space.common[2]};
 `
 const StyledParagraphIntro = styled.p`
-    font-size: 1.88rem;
+    font-size: 1.58rem;
     line-height: 1.6;
     font-weight: 700;
     margin-bottom: ${(props: StyledComponentProps) =>
-        props.theme.space.common[3]};
+        props.theme.space.common[2]};
 `
 
 export const ContentContainer = styled(Container)`
@@ -107,6 +114,9 @@ const options = {
         [CUSTOMBLOCKS.HEADING_5]: (node, children) => (
             <Heading level="h5">{children}</Heading>
         ),
+        [CUSTOMBLOCKS.HYPERLINK]: (node, children) => (
+            <InlineLink to={node.data.uri}>{children}</InlineLink>
+        ),
     },
 }
 
@@ -172,7 +182,7 @@ const OutputImageComponent = ({
         <ProgressiveImage
             key={`${type}-${name}`}
             sizes="100vw"
-            alt={image.title}
+            alt={image.image.title}
             image={image.image}
             styles={ImageStyles}
         />
