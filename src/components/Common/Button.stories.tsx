@@ -1,72 +1,66 @@
-import Button, { ButtonTypes } from "./Button"
-import { text, withKnobs } from "@storybook/addon-knobs"
-
+import React from "react"
 import { DarkBackground } from "../../stories/DarkBackground"
 import { LightContainer } from "../../stories/LightContainer"
-import React from "react"
 import { Spacer } from "../../stories/Spacer"
+import Button, { ButtonTypes } from "./Button"
 
 const Buttons = [{ icon: "Download" }, { icon: "Arrow" }]
 
-export const ButtonWithIcons = (): React.ReactElement => (
+const ButtonStory = ({ label, variant, icons }): React.ReactElement => (
     <>
-        <DarkBackground>
-            {Buttons.map(button => (
-                <>
-                    <Button
-                        click={() => alert("CLICKED")}
-                        icon={button.icon as ButtonTypes}
-                        type="submit"
-                        variant="secondary"
-                    >
-                        {text("Label", "Download CV")}
-                    </Button>
-                    <Spacer />
-                </>
-            ))}
-        </DarkBackground>
-        <LightContainer>
-            {Buttons.map(button => (
-                <>
-                    <Button
-                        click={() => alert("CLICKED")}
-                        icon={button.icon as ButtonTypes}
-                        type="submit"
-                        variant="primary"
-                    >
-                        {text("Label", "Download CV")}
-                    </Button>
-                    <Spacer />
-                </>
-            ))}
-        </LightContainer>
+        {variant === "primary" && (
+            <DarkBackground>
+                {Buttons.map(button => (
+                    <>
+                        <Button
+                            click={() => alert("CLICKED")}
+                            icon={icons ? (button.icon as ButtonTypes) : null}
+                            type="submit"
+                            variant="secondary"
+                        >
+                            {label}
+                        </Button>
+                        <Spacer />
+                    </>
+                ))}
+            </DarkBackground>
+        )}
+        {variant === "secondary" && (
+            <LightContainer>
+                {Buttons.map(button => (
+                    <>
+                        <Button
+                            click={() => alert("CLICKED")}
+                            icon={icons ? (button.icon as ButtonTypes) : null}
+                            type="submit"
+                            variant="primary"
+                        >
+                            {label}
+                        </Button>
+                        <Spacer />
+                    </>
+                ))}
+            </LightContainer>
+        )}
     </>
 )
+
 export default {
-    title: "Common /Buttons",
-    component: ButtonWithIcons,
-    decorators: [withKnobs],
+    title: "Common /Button",
 }
 
-export const ButtonWithoutIcon = () => (
-    <>
-        <DarkBackground>
-            <Button
-                variant="secondary"
-                click={() => alert("CLICKED")}
-                type="submit"
-            >
-                {text("Label", "Download CV")}
-            </Button>
-        </DarkBackground>
-        <LightContainer>
-            <Button
-                variant="primary"
-                click={() => alert("CLICKED")}
-                type="submit"
-            >
-                {text("Label", "Download CV")}
-            </Button>
-        </LightContainer>
-    </>
-)
+const Template = args => <ButtonStory {...args} />
+
+const commonArgs = { label: "Download CV", icons: true }
+
+export const Primary = Template.bind({})
+Primary.args = {
+    ...commonArgs,
+    variant: "primary",
+}
+
+export const Secondary = Template.bind({})
+Secondary.args = {
+    ...commonArgs,
+    variant: "secondary",
+}

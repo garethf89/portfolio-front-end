@@ -57,7 +57,6 @@
     "@storybook/addon-actions": "^6.0.16",
     "@storybook/addon-essentials": "^6.0.16",
     "@storybook/addon-graphql": "^6.0.16",
-    "@storybook/addon-knobs": "^6.0.16",
     "@storybook/addons": "^6.0.16",
     "@storybook/react": "^6.0.16",
     "@types/express": "^4.17.8",

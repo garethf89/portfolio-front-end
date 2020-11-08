@@ -5,7 +5,6 @@ import React from "react"
 import { Spacer } from "../../stories/Spacer"
 import TextArea from "./Textarea"
 import { withFormik } from "storybook-formik"
-import { withKnobs } from "@storybook/addon-knobs"
 
 export const Form = () => (
     <LightContainer>
@@ -35,5 +34,4 @@ Form.story = {
 export default {
     title: "Form /Form Elements",
     component: Form,
-    decorators: [withKnobs],
 }
