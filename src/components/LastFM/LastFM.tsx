@@ -69,8 +69,12 @@ const LastFM = (): React.ReactElement => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const lfm = await lastFmService()
-            setAlbums(lfm)
+            try {
+                const lfm = await lastFmService()
+                setAlbums(lfm)
+            } catch (e) {
+                setAlbums(null)
+            }
         }
         fetchData()
     }, [])

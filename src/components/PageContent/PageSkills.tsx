@@ -20,6 +20,7 @@ const SkillContainer = styled.div`
 const PageSkills = ({ skills }: PageSkillProps): React.ReactElement => {
     const context = useThemeUI()
     const { theme } = context
+
     return (
         <PageSkillContainer>
             <Heading
@@ -30,16 +31,17 @@ const PageSkills = ({ skills }: PageSkillProps): React.ReactElement => {
                 Technology Used
             </Heading>
             <SkillContainer>
-                {(skills as ISkillFieldsCustom[]).map((skill, i) => (
-                    <Skill
-                        key={i}
-                        id={`skill${i}`}
-                        icon={skill.icon.svg.content}
-                        title={skill.name}
-                    >
-                        {skill.name}
-                    </Skill>
-                ))}
+                {skills &&
+                    (skills as ISkillFieldsCustom[]).map((skill, i) => (
+                        <Skill
+                            key={i}
+                            id={`skill${i}`}
+                            icon={skill.icon.svg.content}
+                            title={skill.name}
+                        >
+                            {skill.name}
+                        </Skill>
+                    ))}
             </SkillContainer>
         </PageSkillContainer>
     )
