@@ -20,7 +20,7 @@ try {
 }
 module.exports = {
     siteMetadata: {
-        title: "Gareth Ferguson Portfolio",
+        title: "Gareth Ferguson",
         description: "Gareth Ferguson Portfolio",
         siteUrl: "http://garethferguson.co.uk",
         author: "Gareth Ferguson",
