@@ -14,7 +14,8 @@ const PageSkillContainer = styled.div``
 
 const SkillContainer = styled.div`
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: start;
 `
 
 const PageSkills = ({ skills }: PageSkillProps): React.ReactElement => {
