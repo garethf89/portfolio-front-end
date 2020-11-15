@@ -2,6 +2,7 @@ import { Global } from "@emotion/core"
 import { GlobalsStateProvider } from "../src/state/state"
 import React from "react"
 import { ThemeProvider } from "theme-ui"
+import TransitionLinkProvider from "gatsby-plugin-transition-link/context/InternalProvider"
 import { action } from "@storybook/addon-actions"
 import globalStyles from "../src/styles/globals"
 import styled from "@emotion/styled"
@@ -27,14 +28,16 @@ const Root = styled.div`
 
 const ThemeWrapper = props => {
     return (
-        <GlobalsStateProvider>
-            <ThemeProvider theme={props.theme}>
-                <Root>
-                    <Global styles={globalStyles} />
-                    {props.children}
-                </Root>
-            </ThemeProvider>
-        </GlobalsStateProvider>
+        <TransitionLinkProvider>
+            <GlobalsStateProvider>
+                <ThemeProvider theme={props.theme}>
+                    <Root>
+                        <Global styles={globalStyles} />
+                        {props.children}
+                    </Root>
+                </ThemeProvider>
+            </GlobalsStateProvider>{" "}
+        </TransitionLinkProvider>
     )
 }
 export const decorators = [

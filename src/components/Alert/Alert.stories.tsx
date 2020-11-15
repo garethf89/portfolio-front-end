@@ -1,14 +1,37 @@
 import Alert from "./Alert"
 import React from "react"
 
-export const Alerts = () => (
+const alertTypes = ["success", "error"]
+
+const Alerts = ({ variant, label }) => (
     <>
-        <Alert variant="error">An error has occured</Alert>
-        <Alert variant="success">Success</Alert>
+        <Alert variant={variant}>{label}</Alert>
     </>
 )
 
 export default {
-    title: "Alert",
+    title: "Form /Alert",
     component: Alerts,
+    argTypes: {
+        variant: {
+            control: {
+                type: "select",
+                options: alertTypes,
+            },
+        },
+    },
+}
+
+const commonArgs = { label: "An alert message" }
+
+export const Success = Alerts.bind({})
+Success.args = {
+    ...commonArgs,
+    variant: "success",
+}
+
+export const Error = Alerts.bind({})
+Error.args = {
+    ...commonArgs,
+    variant: "error",
 }

@@ -1,7 +1,7 @@
-import React from "react"
 import Heading from "./Heading"
+import React from "react"
 
-export const Headings = ({ heading }) => (
+const HeadingsStory = ({ heading }) => (
     <div>
         <Heading level="h1">H1 - {heading}</Heading>
         <Heading level="h1" override="h2">
@@ -15,9 +15,10 @@ export const Headings = ({ heading }) => (
 )
 
 export default {
-    title: "Typography",
-    component: Headings,
-    args: {
-        heading: "Heading",
-    },
+    title: "Typography /Headings",
+}
+
+export const Headings = HeadingsStory.bind({})
+Headings.args = {
+    heading: "Heading",
 }

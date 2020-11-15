@@ -1,8 +1,11 @@
-import React from "react"
+import Button, { ButtonTypes } from "./Button"
+
 import { DarkBackground } from "../../stories/DarkBackground"
 import { LightContainer } from "../../stories/LightContainer"
+import React from "react"
 import { Spacer } from "../../stories/Spacer"
-import Button, { ButtonTypes } from "./Button"
+
+const buttonTypes = ["primary", "secondary"]
 
 const Buttons = [{ icon: "Download" }, { icon: "Arrow" }]
 
@@ -47,19 +50,25 @@ const ButtonStory = ({ label, variant, icons }): React.ReactElement => (
 
 export default {
     title: "Common /Button",
+    argTypes: {
+        variant: {
+            control: {
+                type: "select",
+                options: buttonTypes,
+            },
+        },
+    },
 }
-
-const Template = args => <ButtonStory {...args} />
 
 const commonArgs = { label: "Download CV", icons: true }
 
-export const Primary = Template.bind({})
+export const Primary = ButtonStory.bind({})
 Primary.args = {
     ...commonArgs,
     variant: "primary",
 }
 
-export const Secondary = Template.bind({})
+export const Secondary = ButtonStory.bind({})
 Secondary.args = {
     ...commonArgs,
     variant: "secondary",

@@ -6,32 +6,36 @@ import { Spacer } from "../../stories/Spacer"
 import TextArea from "./Textarea"
 import { withFormik } from "storybook-formik"
 
-export const Form = () => (
+const FormStory = ({ nameLabel, messageLabel }) => (
     <LightContainer>
         <Label required htmlFor="name">
-            Name
+            {nameLabel}
         </Label>
         <Input id="name" name="name" />
         <Spacer />
         <Label required htmlFor="message">
-            Message
+            {messageLabel}
         </Label>
         <TextArea as="textarea" id="message" name="message" type="textarea" />
     </LightContainer>
 )
 
-Form.story = {
-    decorators: [withFormik],
-    parameters: {
-        formik: {
-            initialValues: {
-                foo: "Initialized",
-            },
-        },
-    },
-}
-
 export default {
     title: "Form /Form Elements",
-    component: Form,
+    component: FormStory,
+    decorators: [withFormik],
+}
+
+export const Form = FormStory.bind({})
+Form.args = {
+    nameLabel: "Name",
+    messageLabel: "Message",
+}
+
+Form.parameters = {
+    formik: {
+        initialValues: {
+            foo: "Initialized",
+        },
+    },
 }

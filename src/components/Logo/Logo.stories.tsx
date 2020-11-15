@@ -2,13 +2,15 @@ import { DarkBackground } from "../../stories/DarkBackground"
 import Logo from "./Logo"
 import React from "react"
 
-export const LogoIcon = () => (
+const LogoStory = () => (
     <DarkBackground>
         <Logo siteTitle="Test" />
     </DarkBackground>
 )
 
 export default {
-    title: "Logo",
-    component: LogoIcon,
+    title: "Navigation /Logo",
 }
+export const LogoIconLight = LogoStory.bind({})
+
+export const LogoIconDark = LogoStory.bind({})

@@ -28,7 +28,7 @@ interface LogoProps {
     siteTitle: string
 }
 
-const Logo = ({ siteTitle }: LogoProps): React.ReactElement<any> => {
+const Logo = ({ siteTitle }: LogoProps): React.ReactElement => {
     const [headIconDark, updateHeadDark] = useState(null)
 
     const { state } = useContext(globals)

@@ -1,6 +1,5 @@
 import { IStatFields } from "../../../../@types/generated/contentful"
-import React from "react"
-import Stats from "./Stats"
+import StatsComponent from "./Stats"
 
 const statsData: Array<IStatFields> = [
     {
@@ -16,14 +15,9 @@ const statsData: Array<IStatFields> = [
         amount: 15,
     },
 ]
-export const StatsComponent = () => (
-    <>
-        <Stats stats={statsData} />
-    </>
-)
+
 export default {
-    title: "Stats",
-    component: StatsComponent,
+    title: "Components /Stats",
     parameters: {
         backgrounds: {
             default: "dark",
@@ -33,4 +27,17 @@ export default {
             ],
         },
     },
+    argTypes: {
+        stats: {
+            control: {
+                type: "object",
+                options: Object.values(statsData),
+            },
+        },
+    },
+}
+
+export const Stats = StatsComponent.bind({})
+Stats.args = {
+    stats: statsData,
 }

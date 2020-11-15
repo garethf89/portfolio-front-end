@@ -11,6 +11,6 @@ export const NavigationLinkText = () => (
 )
 
 export default {
-    title: "Navigation",
+    title: "Navigation / Links",
     component: NavigationLinkText,
 }

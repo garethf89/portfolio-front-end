@@ -9,6 +9,6 @@ export const ColorPickerOptions = () => (
 )
 
 export default {
-    title: "Navigation",
+    title: "Navigation / Color Picker",
     component: ColorPickerOptions,
 }
