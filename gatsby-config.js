@@ -32,6 +32,13 @@ module.exports = {
                 anchor: "work",
             },
             {
+                name: "Storybook",
+                slug:
+                    process.env.NODE_ENV === "development"
+                        ? "http://localhost:6006"
+                        : "https://gareth-ferguson-storybook.netlify.app/",
+            },
+            {
                 name: "Contact",
                 slug: "/contact/",
             },
