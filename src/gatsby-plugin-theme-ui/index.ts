@@ -11,27 +11,42 @@ export const BREAKPOINTS = {
     LARGE: "79.38em",
 }
 
+const COLORS = {
+    black: "#000",
+    white: "#fff",
+    darkColor1: "#20222f",
+    darkColor2: "#1B1D28",
+}
+
 // Using Theme-UI as a basic outline but this will be a custom object
 const theme: Theme = {
     useCustomProperties: true,
     initialColorModeName: "default",
     colors: {
-        background: "#ffffff",
-        text: "#20222f",
-        sectionBackground: "#20222F",
-        sectionText: "#fff",
+        background: COLORS.white,
+        text: COLORS.darkColor1,
+        sectionBackground: COLORS.darkColor1,
+        sectionText: COLORS.white,
         sectionTextSecondary: "#A9A9A9",
-        navText: "#fff",
+        navText: COLORS.white,
         sectionSecondaryBackground: "#F6F6F6",
         sectionSecondaryLines: "#4A4A4A",
-        logoDark: "#20222f",
+        logoDark: COLORS.darkColor1,
         footerBg: "#14161F",
-        buttonBorderPrimary: "#000",
-        buttonColorPrimary: "#000",
+        clientsBackground: "transparent",
+        buttonBorderPrimary: COLORS.black,
+        buttonColorPrimary: COLORS.black,
         buttonBackgroundPrimary: "#F6F6F6",
-        buttonBorderSecondary: "#fff",
-        buttonColorSecondary: "#fff",
+        buttonBorderSecondary: COLORS.white,
+        buttonColorSecondary: COLORS.white,
         buttonBackgroundSecondary: "transparent",
+        modes: {
+            dark: {
+                background: COLORS.darkColor2,
+                text: COLORS.white,
+                clientsBackground: COLORS.white,
+            },
+        },
     },
     fonts: {
         body: '"Ubuntu", Roboto, Helvetica, Arial, sans-serif',

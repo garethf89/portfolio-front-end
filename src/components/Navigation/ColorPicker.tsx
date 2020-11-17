@@ -5,6 +5,7 @@ import Moon from "../../svgs/moon"
 import NavigationLink from "./NavigationLink"
 import Sun from "../../svgs/sun"
 import styled from "@emotion/styled"
+import { useColorMode } from "theme-ui"
 
 const NavigationLinkLabel = styled.span`
     margin-right: 0.5rem;
@@ -12,6 +13,7 @@ const NavigationLinkLabel = styled.span`
 
 const ColorPicker = (): React.ReactElement => {
     const { state, dispatch } = useContext(globals)
+    const [colorMode, setColorMode] = useColorMode()
 
     const activeTheme = state?.theme ?? initialStateGlobals.theme
 
@@ -21,6 +23,7 @@ const ColorPicker = (): React.ReactElement => {
     ]
 
     const setTheme = (theme: string) => {
+        setColorMode(theme)
         dispatch({ type: "THEME", theme: theme })
     }
 

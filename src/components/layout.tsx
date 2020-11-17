@@ -11,7 +11,7 @@ import { globals } from "../state/state"
 import styled from "@emotion/styled"
 import { supportsWebP } from "../helpers/support/webp"
 
-const Root = styled.div`
+const Root = styled.main`
     font-family: ${(props: StyledComponentProps) => props.theme.fonts.body};
 `
 
@@ -37,16 +37,16 @@ const TemplateWrap = ({ children, description, image, data, path }) => {
         }
     }, [])
     return (
-        <Root>
+        <>
             <Global styles={globalStyles} />
             <SEO
                 pageTitle={title}
                 pageDescription={description}
                 pageImage={image}
             />
-            <main>{children}</main>
+            <Root>{children}</Root>
             <Footer />
-        </Root>
+        </>
     )
 }
 

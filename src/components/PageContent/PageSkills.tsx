@@ -10,7 +10,8 @@ interface PageSkillProps {
     skills: ISkill[]
 }
 
-const PageSkillContainer = styled.div``
+const PageSkillContainer = styled.div`
+=`
 
 const SkillContainer = styled.div`
     display: flex;

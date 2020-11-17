@@ -1,13 +1,18 @@
 import React, { useState } from "react"
+import { useColorMode, useThemeUI } from "theme-ui"
 
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui/index"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 import IconExternal from "../Icons/IconExternal"
+import { StyledComponentProps } from "../../../@types/types"
 import { css } from "@emotion/core"
 import styled from "@emotion/styled"
 import { supportsWebP } from "../../helpers/support/webp"
-import { useThemeUI } from "theme-ui"
+
+type ClientsProps = {
+    mode: string
+}
 
 const ClientsContainer = styled(Container)`
     margin-top: 2rem;
@@ -21,17 +26,20 @@ const LogoWrapper = styled.div`
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    background: ${(props: StyledComponentProps) =>
+        props.theme.colors.clientsBackground};
+    border-radius: 5px;
     @media (min-width: ${BREAKPOINTS.SMALL}) {
         flex-wrap: nowrap;
     }
 `
 
-const LogoCommon = () => css`
+const LogoCommon = (props: StyledComponentProps & ClientsProps) => css`
     flex: 1;
     flex-basis: 19%;
     margin-right: 5%;
-    filter: grayscale(1);
-    opacity: 0.4;
+    filter: ${props.mode === "dark" ? "none" : "grayscale(1)"};
+    opacity: ${props.mode === "dark" ? "1" : "0.4"}
     max-width: 75px;
     height: auto;
     transition: opacity 0.15s ease-in;
@@ -80,6 +88,8 @@ const Clients = ({ data }: ClientProps): React.ReactElement<ClientProps> => {
     const context = useThemeUI()
     const { theme } = context
 
+    const [colorMode] = useColorMode()
+
     return (
         <>
             <ClientsContainer vPadding>
@@ -111,12 +121,14 @@ const Clients = ({ data }: ClientProps): React.ReactElement<ClientProps> => {
                             <React.Fragment key={i}>
                                 {svg ? (
                                     <IconLogo
+                                        mode={colorMode}
                                         width="100px"
                                         iconSvg={imageSrc as string}
                                         key={i}
                                     />
                                 ) : (
                                     <Logo
+                                        mode={colorMode}
                                         alt={logo.name}
                                         srcSet={`${imageSrc.small} 1x, ${imageSrc.large} 2x`}
                                         src={imageSrc.large}
