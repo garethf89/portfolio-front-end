@@ -34,7 +34,7 @@ const ThemeWrapper = props => {
     return (
         <TransitionLinkProvider>
             <GlobalsStateProvider>
-                <ThemeProvider theme={props.theme}>
+                <ThemeProvider mode="light" theme={theme}>
                     <Root>
                         <Global styles={globalStyles} />
                         {props.children}

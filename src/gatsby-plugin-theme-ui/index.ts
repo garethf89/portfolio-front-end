@@ -21,7 +21,8 @@ const COLORS = {
 // Using Theme-UI as a basic outline but this will be a custom object
 const theme: Theme = {
     useCustomProperties: true,
-    initialColorModeName: "default",
+    useLocalStorage: false,
+    initialColorModeName: "light",
     colors: {
         background: COLORS.white,
         text: COLORS.darkColor1,
