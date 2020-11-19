@@ -40,7 +40,7 @@ const ThemeWrapper = props => {
                         {props.children}
                     </Root>
                 </ThemeProvider>
-            </GlobalsStateProvider>{" "}
+            </GlobalsStateProvider>
         </TransitionLinkProvider>
     )
 }
