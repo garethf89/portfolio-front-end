@@ -52,6 +52,9 @@ export interface ILogoFields {
 
     /** Logo */
     logo?: Asset | undefined
+
+    /** Dark */
+    dark?: boolean | undefined
 }
 
 export interface ILogo extends Entry<ILogoFields> {

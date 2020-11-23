@@ -60,6 +60,7 @@ const IndexPage = () => {
                 }
                 logos {
                     name
+                    dark
                     logo {
                         file {
                             contentType

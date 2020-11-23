@@ -11,7 +11,7 @@ export const BREAKPOINTS = {
     LARGE: "79.38em",
 }
 
-const COLORS = {
+export const COLORS = {
     black: "#000",
     white: "#fff",
     darkColor1: "#20222f",
