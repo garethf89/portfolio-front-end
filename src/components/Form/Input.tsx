@@ -1,5 +1,6 @@
 import { Field, useField } from "formik"
 
+import { COLORS } from "../../gatsby-plugin-theme-ui"
 import { FormError } from "./FormError"
 import React from "react"
 import { StyledComponentProps } from "../../../@types/types"
@@ -10,10 +11,12 @@ const InputStyled = styled(Field)`
     border: none;
     outline: none;
     border-bottom: 2px solid
-        ${(props: StyledComponentProps) => (props.error ? "#e55353" : "#000")};
+        ${(props: StyledComponentProps) =>
+            props.error ? "#e55353" : props.theme.colors.text};
     padding-bottom: 0.5rem;
     width: 100%;
     max-width: 250px;
+    background: ${COLORS.transparent};
 `
 
 type InputProps = React.InputHTMLAttributes<any>

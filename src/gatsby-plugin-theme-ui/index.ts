@@ -1,10 +1,5 @@
 import { Theme } from "theme-ui"
 
-// interface ThemeType extends Theme {
-//     breakpoint: any
-//     container: any
-// }
-
 export const BREAKPOINTS = {
     SMALL: "35em",
     MEDIUM: "50em",
@@ -12,8 +7,11 @@ export const BREAKPOINTS = {
 }
 
 export const COLORS = {
+    transparent: "transparent",
     black: "#000",
     white: "#fff",
+    lightGrey1: "#F6F6F6",
+    lightGrey2: "#4A4A4A",
     darkColor1: "#20222f",
     darkColor2: "#1B1D28",
 }
@@ -30,22 +28,24 @@ const theme: Theme = {
         sectionText: COLORS.white,
         sectionTextSecondary: "#A9A9A9",
         navText: COLORS.white,
-        sectionSecondaryBackground: "#F6F6F6",
-        sectionSecondaryLines: "#4A4A4A",
+        sectionSecondaryBackground: COLORS.lightGrey1,
+        sectionSecondaryLines: COLORS.lightGrey2,
         logoDark: COLORS.darkColor1,
         footerBg: "#14161F",
-        clientsBackground: "transparent",
+        clientsBackground: COLORS.transparent,
         buttonBorderPrimary: COLORS.black,
         buttonColorPrimary: COLORS.black,
-        buttonBackgroundPrimary: "#F6F6F6",
+        buttonBackgroundPrimary: COLORS.lightGrey1,
         buttonBorderSecondary: COLORS.white,
         buttonColorSecondary: COLORS.white,
-        buttonBackgroundSecondary: "transparent",
+        buttonBackgroundSecondary: COLORS.transparent,
         modes: {
             dark: {
                 background: COLORS.darkColor2,
                 text: COLORS.white,
                 clientsBackground: COLORS.white,
+                sectionSecondaryBackground: COLORS.darkColor1,
+                sectionSecondaryLines: "",
             },
         },
     },

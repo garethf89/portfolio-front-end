@@ -17,6 +17,7 @@ const HeaderStyles = styled.section`
     color: ${(props: StyledComponentProps) => props.theme.colors.text};
     background: ${(props: StyledComponentProps) =>
         props.theme.colors.sectionSecondaryBackground};
+    overflow: hidden;
 `
 
 const StyledTitle = styled(Heading)`
