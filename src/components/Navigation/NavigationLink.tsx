@@ -2,14 +2,15 @@ import FadeLink from "../Link/Link"
 import { GatsbyLinkProps } from "gatsby"
 import React from "react"
 import { StyledComponentProps } from "../../../@types/types"
+import { css } from "@emotion/core"
 import styled from "@emotion/styled"
 
-const StyledLink = styled(props => <FadeLink {...props} />)`
+const StyledLink = (props: StyledComponentProps) => css`
     font-size: 16px;
     text-transform: uppercase;
     text-decoration: none;
     display: inline-block;
-    color: ${(props: StyledComponentProps) => props.theme.colors.navText};
+    color: ${props.theme.colors.navText};
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
     position: relative;
@@ -29,15 +30,13 @@ const StyledLink = styled(props => <FadeLink {...props} />)`
     span::after {
         transition: all 0.5s ease-in-out;
         content: " ";
-        background: ${(props: StyledComponentProps) =>
-            props.theme.colors.navText};
+        background: ${props.theme.colors.navText};
         position: absolute;
         bottom: -4px;
         left: 0;
         width: 0%;
         height: 1px;
     }
-
     &:focus,
     &:hover {
         opacity: 0.8;
@@ -47,10 +46,20 @@ const StyledLink = styled(props => <FadeLink {...props} />)`
     }
 `
 
-const StyledButton = StyledLink.withComponent("button")
+const StyledInternal = styled(props => <FadeLink {...props} />)`
+    ${StyledLink}
+`
+
+const StyledExternal = styled.a`
+    ${StyledLink}
+`
+
+const StyledButton = StyledInternal.withComponent("button")
+const StyledButtonExternal = StyledExternal.withComponent("button")
 
 interface NavigationLinkProps extends GatsbyLinkProps<any> {
     button?: boolean
+    internal: boolean
     click?: () => void
     hover?: () => void
 }
@@ -61,7 +70,8 @@ const NavigationLink = ({
     to,
     click,
     hover,
-}: NavigationLinkProps) => {
+    internal = false,
+}: NavigationLinkProps): React.ReactElement => {
     if (button) {
         return (
             <StyledButton onMouseEnter={hover} onClick={click}>
@@ -69,7 +79,11 @@ const NavigationLink = ({
             </StyledButton>
         )
     }
-    return <StyledLink to={to}>{children}</StyledLink>
+    return internal ? (
+        <StyledInternal to={to}>{children}</StyledInternal>
+    ) : (
+        <StyledExternal href={to}>{children}</StyledExternal>
+    )
 }
 
 export default NavigationLink

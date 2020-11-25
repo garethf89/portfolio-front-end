@@ -34,13 +34,16 @@ const Navigation = () => {
     return (
         <NavigationStyles>
             <NavList>
-                {menuLinks.map(link => (
-                    <NavLi key={link.name}>
-                        <NavigationLink to={link.slug}>
-                            <span>{link.name}</span>
-                        </NavigationLink>
-                    </NavLi>
-                ))}
+                {menuLinks.map(link => {
+                    const internal = /^\/(?!\/)/.test(link.slug)
+                    return (
+                        <NavLi key={link.name}>
+                            <NavigationLink internal={internal} to={link.slug}>
+                                <span>{link.name}</span>
+                            </NavigationLink>
+                        </NavLi>
+                    )
+                })}
                 <NavLi>
                     <ColorPicker />
                 </NavLi>

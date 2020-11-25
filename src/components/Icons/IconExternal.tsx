@@ -23,9 +23,13 @@ export const IconExternal = ({
     const htmlToReactWithReplace = (icon: string, styledProps: unknown) => {
         const replace = domNode => {
             attr = { ...domNode.attribs }
+            if (attr["xmlns:xlink"]) {
+                delete attr["xmlns:xlink"]
+            }
+            console.log(attr)
             if (domNode.name === "svg") {
                 return (
-                    <svg {...domNode.attribs} {...styledProps}>
+                    <svg {...attr} {...styledProps}>
                         {title && <title>{title}</title>}
                         {domToReact(domNode.children)}
                     </svg>
