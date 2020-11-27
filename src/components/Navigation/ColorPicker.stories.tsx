@@ -1,14 +1,15 @@
-import ColorPicker from "./ColorPicker"
+import { default as ColorPickerComponent } from "./ColorPicker"
 import { DarkBackground } from "../../stories/DarkBackground"
 import React from "react"
 
-export const ColorPickerOptions = () => (
+const ColorPickerStory = () => (
     <DarkBackground>
-        <ColorPicker />
+        <ColorPickerComponent />
     </DarkBackground>
 )
 
 export default {
-    title: "Navigation / Color Picker",
-    component: ColorPickerOptions,
+    title: "Navigation /Color Picker",
 }
+
+export const ColorPicker = ColorPickerStory.bind({})

@@ -35,14 +35,14 @@ const ImageStyles = (props: StyledComponentProps) => css`
     margin-top: ${props.theme.space.common[3]};
 `
 
-const StyledParagraph = styled.p`
+export const StyledParagraph = styled.p`
     font-size: 1.13rem;
     line-height: 1.6;
     font-weight: 200;
     margin-bottom: ${(props: StyledComponentProps) =>
         props.theme.space.common[2]};
 `
-const StyledParagraphIntro = styled.p`
+export const StyledParagraphIntro = styled.p`
     font-size: 1.58rem;
     line-height: 1.6;
     font-weight: 700;
@@ -168,12 +168,12 @@ const OutputTextComponent = ({
     )
 }
 
-interface OutputImageComponentProps {
+export interface OutputImageComponentProps {
     image: ImageTypes
     name: number | string
     type: string
 }
-const OutputImageComponent = ({
+export const OutputImageComponent = ({
     image,
     name,
     type,

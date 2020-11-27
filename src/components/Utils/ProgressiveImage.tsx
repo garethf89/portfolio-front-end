@@ -71,6 +71,9 @@ const MainImage = styled.img<ImgProps>`
 const BlurryImage = styled.img`
     ${ImageCommon}
     filter: blur(20px);
+    &[aria-hidden="true"] {
+        display: none;
+    }
 `
 
 const ProgressiveImage = ({
