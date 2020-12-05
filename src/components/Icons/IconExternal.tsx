@@ -26,7 +26,6 @@ export const IconExternal = ({
             if (attr["xmlns:xlink"]) {
                 delete attr["xmlns:xlink"]
             }
-            console.log(attr)
             if (domNode.name === "svg") {
                 return (
                     <svg {...attr} {...styledProps}>
