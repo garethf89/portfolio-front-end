@@ -47,7 +47,7 @@ const AlbumInfo = styled.div`
 `
 
 const AlbumArtContainer = styled.div`
-    max-width: 100px;
+    max-width: 80px;
     height: auto;
     margin-right: 1rem;
     min-width: 80px;
@@ -85,13 +85,13 @@ const LastFM = (): React.ReactElement => {
         <OuterWrapper>
             <Lines id="LFMAni" />
             <Container vPadding>
-                <Heading marginTop={0} marginBottom="3rem" level="h2">
+                <Heading marginTop={0} marginBottom="3rem" level="h5">
                     <LastFMLogo
                         verticalAlign="middle"
                         marginRight="1rem"
                         marginBottom="0.4rem"
                         opacity="0.5"
-                        width="60px"
+                        width="20px"
                     />
                     Recently played
                 </Heading>
@@ -109,7 +109,7 @@ const LastFM = (): React.ReactElement => {
                                     <Heading
                                         marginTop={0}
                                         marginBottom={"1rem"}
-                                        level="h5"
+                                        level="h6"
                                         override="p"
                                     >
                                         {album.name}
