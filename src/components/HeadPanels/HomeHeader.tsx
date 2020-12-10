@@ -73,7 +73,14 @@ const HomeHeader = ({ text, stats }: HomeHeaderProps): React.ReactElement => {
             <HomeContainer>
                 <HomeSection>
                     <HomeHeaderContent text={text} />
-                    <Button header icon="Download" variant="secondary">
+                    <Button
+                        as="a"
+                        href="/cv.pdf"
+                        header
+                        icon="Download"
+                        variant="secondary"
+                        download
+                    >
                         Download CV
                     </Button>
                 </HomeSection>

@@ -124,6 +124,7 @@ interface ButtonProps {
     href?: string
     as?: React.ElementType
     variant: string
+    download?: boolean
 }
 
 type BorderColor = {
