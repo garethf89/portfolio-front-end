@@ -1,4 +1,9 @@
-import { BLOCKS, Document, MARKS } from "@contentful/rich-text-types"
+import { BLOCKS, MARKS } from "@contentful/rich-text-types"
+import {
+    ContentfulRichTextGatsbyReference,
+    RenderRichTextData,
+    StyledComponentProps,
+} from "../../../@types/types"
 
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui/index"
 import Container from "../Global/Container/Container"
@@ -8,8 +13,7 @@ import Lines from "../Animation/Lines"
 import { OuterWrapper } from "../Common/OuterWrapper"
 import React from "react"
 import ReadMore from "../Typography/ReadMore"
-import { StyledComponentProps } from "../../../@types/types"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import { renderRichText } from "gatsby-source-contentful/rich-text"
 import styled from "@emotion/styled"
 
 const StyledParagraph = styled(Heading)`
@@ -39,10 +43,6 @@ const CaseStudy = styled.div`
         margin-bottom: 0;
     }
 `
-
-interface CSProps {
-    data: IProjectFields[]
-}
 
 interface BlockParams {
     children?: React.ReactNode
@@ -77,21 +77,23 @@ const options = {
 }
 
 interface CaseStudyTextProps {
-    data?: Document
+    data?: Document<ContentfulRichTextGatsbyReference>
 }
 
-type Intro = Document & {
-    json: Document & Record<string, string>
-}
+type Intro = RenderRichTextData<ContentfulRichTextGatsbyReference>
 
-interface Project extends IProjectFields {
+type Project = Omit<IProjectFields, "intro"> & {
     intro: Intro
+}
+
+interface CSProps {
+    data: Project[]
 }
 
 export const CaseStudyText = ({
     data,
 }: CaseStudyTextProps): React.ReactElement => {
-    return documentToReactComponents(data, options) as React.ReactElement
+    return renderRichText(data, options) as React.ReactElement
 }
 
 const CaseStudies = ({ data }: CSProps): React.ReactElement<CSProps> => {
@@ -104,7 +106,7 @@ const CaseStudies = ({ data }: CSProps): React.ReactElement<CSProps> => {
                     {data.map((project: Project, i: number) => {
                         return (
                             <CaseStudy key={i}>
-                                <CaseStudyText data={project.intro.json} />
+                                <CaseStudyText data={project.intro} />
                                 <ReadMore to={`/${project.slug}`}>
                                     Read more
                                 </ReadMore>

@@ -1,10 +1,14 @@
 import { BLOCKS, Document, MARKS } from "@contentful/rich-text-types"
+import {
+    ContentfulRichTextGatsbyReference,
+    RenderRichTextData,
+    StyledComponentProps,
+} from "../../../../@types/types"
 
 import Bold from "../../Typography/Bold"
 import Heading from "../../Typography/Heading"
 import React from "react"
-import { StyledComponentProps } from "../../../../@types/types"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import { renderRichText } from "gatsby-source-contentful/rich-text"
 import styled from "@emotion/styled"
 
 const StyledParagraph = styled(Heading)`
@@ -43,16 +47,16 @@ const options = {
 }
 
 interface HomeHeaderContentTextProps {
-    text?: Document
+    text?: RenderRichTextData<ContentfulRichTextGatsbyReference>
 }
 
 export const HomeHeaderContentText = ({
     text,
-}: HomeHeaderContentTextProps): any => documentToReactComponents(text, options)
+}: HomeHeaderContentTextProps): any => renderRichText(text, options)
 
 interface HomeHeaderContentProps {
     className?: string
-    text?: Document
+    text?: RenderRichTextData<ContentfulRichTextGatsbyReference>
 }
 
 const HomeHeaderContent = (

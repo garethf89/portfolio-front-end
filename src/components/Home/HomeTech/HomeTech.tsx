@@ -1,4 +1,9 @@
 import { BLOCKS, Document, INLINES, MARKS } from "@contentful/rich-text-types"
+import {
+    ContentfulRichTextGatsbyReference,
+    RenderRichTextData,
+    StyledComponentProps,
+} from "../../../../@types/types"
 
 import Bold from "../../Typography/Bold"
 import Container from "../../Global/Container/Container"
@@ -8,8 +13,7 @@ import { ISkillFields } from "../../../../@types/generated/contentful"
 import Inlinelink from "../../Typography/Inlinelink"
 import React from "react"
 import Skill from "../../Skills/Skill"
-import { StyledComponentProps } from "../../../../@types/types"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import { renderRichText } from "gatsby-source-contentful/rich-text"
 import styled from "@emotion/styled"
 
 const StyledParagraph = styled(Heading)`
@@ -48,11 +52,11 @@ const options = {
 }
 
 interface TextProps {
-    text?: Document
+    text?: RenderRichTextData<ContentfulRichTextGatsbyReference>
 }
 
 export const HomeHeaderContentText = ({ text }: TextProps): any =>
-    documentToReactComponents(text, options)
+    renderRichText(text, options)
 
 interface HomeTechProps {
     skills: ISkillFields[]

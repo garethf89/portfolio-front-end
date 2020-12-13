@@ -40,7 +40,7 @@ export const query = graphql`
                     ... on ContentfulPageContentText {
                         type: __typename
                         body {
-                            json
+                            raw
                         }
                         internal {
                             type

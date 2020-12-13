@@ -1,10 +1,14 @@
 import {
     BLOCKS,
-    Document,
     INLINES,
     MARKS,
     TopLevelBlockEnum,
 } from "@contentful/rich-text-types"
+import {
+    ContentfulRichTextGatsbyReference,
+    RenderRichTextData,
+    StyledComponentProps,
+} from "../../../@types/types"
 import {
     IPageContentTextFields,
     ISkill,
@@ -18,9 +22,8 @@ import ContainerBreak from "../Utils/ContainerBreak"
 import Heading from "../Typography/Heading"
 import InlineLink from "../Typography/Inlinelink"
 import PageSkills from "./PageSkills"
-import { StyledComponentProps } from "../../../@types/types"
 import { css } from "@emotion/core"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import { renderRichText } from "gatsby-source-contentful/rich-text"
 import styled from "@emotion/styled"
 
 const CUSTOMBLOCKS = {
@@ -127,9 +130,7 @@ type Filter<T, U> = T extends U ? T : never
 type CustomTextAttributes = {
     type: string
     isIntro?: boolean
-    body?: {
-        json: Document
-    }
+    body?: RenderRichTextData<ContentfulRichTextGatsbyReference>
 }
 
 type TextTypes = Filter<
@@ -163,7 +164,7 @@ const OutputTextComponent = ({
 }: OutputTextComponentProps): React.ReactElement => {
     return (
         <React.Fragment key={`inlinetext-${name}`}>
-            {documentToReactComponents(text.body.json, options)}
+            {renderRichText(text.body, options)}
         </React.Fragment>
     )
 }
@@ -211,7 +212,9 @@ const PageContent = ({ content, skills }: ContentProps): React.ReactElement => {
             {formatContent.map((c: AllContent, i) => {
                 if (c.type === "ContentfulPageContentText") {
                     if (c.isIntro) {
-                        c.body.json.content[0].nodeType = CUSTOMBLOCKS.INTRO
+                        const tempC = JSON.parse(c.body.raw)
+                        tempC.content[0].nodeType = CUSTOMBLOCKS.INTRO
+                        c.body.raw = JSON.stringify(tempC)
                     }
                     return (
                         <OutputTextComponent

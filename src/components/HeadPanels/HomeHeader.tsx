@@ -1,3 +1,8 @@
+import {
+    ContentfulRichTextGatsbyReference,
+    RenderRichTextData,
+    StyledComponentProps,
+} from "../../../@types/types"
 import React, { useContext, useEffect } from "react"
 
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui/index"
@@ -9,7 +14,6 @@ import HomeHeaderContent from "../Home/HomeHeader/HomeHeaderContent"
 import { IStatFields } from "../../../@types/generated/contentful"
 import Lines from "../Animation/Lines"
 import Stats from "../Home/HomeHeader/Stats"
-import { StyledComponentProps } from "../../../@types/types"
 import { globals } from "../../state/state"
 import styled from "@emotion/styled"
 
@@ -54,7 +58,7 @@ const HomeSectionStats = styled.div`
 `
 
 interface HomeHeaderProps {
-    text: Document
+    text: RenderRichTextData<ContentfulRichTextGatsbyReference>
     stats: IStatFields[]
 }
 

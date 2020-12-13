@@ -33,14 +33,14 @@ const IndexPage = () => {
             page: contentfulHomePage {
                 title
                 introText {
-                    json
+                    raw
                 }
                 stats {
                     amount
                     description
                 }
                 skillsText {
-                    json
+                    raw
                 }
                 skills {
                     name
@@ -56,7 +56,7 @@ const IndexPage = () => {
                 caseStudies {
                     slug
                     intro {
-                        json
+                        raw
                     }
                 }
                 projects {
@@ -111,14 +111,8 @@ const IndexPage = () => {
     return (
         <>
             <Header nav siteTitle={data.page.title} />
-            <HomeHeader
-                stats={data.page.stats}
-                text={data.page.introText.json}
-            />
-            <HomeTech
-                text={data.page.skillsText.json}
-                skills={data.page.skills}
-            />
+            <HomeHeader stats={data.page.stats} text={data.page.introText} />
+            <HomeTech text={data.page.skillsText} skills={data.page.skills} />
             <CaseStudies data={data.page.caseStudies} />
             <Projects data={data.page.projects} />
             <Clients data={data.page.logos} />
