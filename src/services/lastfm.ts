@@ -1,8 +1,11 @@
 import axios from "axios"
 import { config } from "./headers"
 
-const url = `${process.env.GATSBY_REACT_APP_API_URL}/lastFm`
-const data = { name: "DirtyG" }
+// eslint-disable-next-line
+const url = require("../constants/lastfm").url
+
+// eslint-disable-next-line
+const data = require("../constants/lastfm").data
 
 export const lastFmService = async () => {
     try {
@@ -12,7 +15,7 @@ export const lastFmService = async () => {
             url: url,
             data: data,
         })
-        return res.data.data.album
+        return res.data
     } catch (error) {
         throw error
     }

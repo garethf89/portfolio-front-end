@@ -16,6 +16,8 @@
     "contentful": "^7.14.6",
     "contentful-import": "^7.7.12",
     "contentful-management": "^5.27.3",
+    "dotenv": "^8.2.0",
+    "dotenv-flow": "^3.2.0",
     "emotion-normalize": "^10.1.0",
     "eslint-plugin-prefer-arrow": "^1.2.0",
     "formik": "^2.1.5",

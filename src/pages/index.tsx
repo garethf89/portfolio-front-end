@@ -12,6 +12,24 @@ import React from "react"
 const IndexPage = () => {
     const data = useStaticQuery(graphql`
         query Home {
+            lfm: allAlbums {
+                edges {
+                    node {
+                        id
+                        albums {
+                            name
+
+                            image {
+                                size
+                                src
+                            }
+                            artist {
+                                name
+                            }
+                        }
+                    }
+                }
+            }
             page: contentfulHomePage {
                 title
                 introText {
@@ -88,6 +106,8 @@ const IndexPage = () => {
         }
     `)
 
+    const initalLastFmAlbums = data.lfm.edges[0].node.albums
+
     return (
         <>
             <Header nav siteTitle={data.page.title} />
@@ -102,7 +122,7 @@ const IndexPage = () => {
             <CaseStudies data={data.page.caseStudies} />
             <Projects data={data.page.projects} />
             <Clients data={data.page.logos} />
-            <LastFM />
+            <LastFM initialAlbums={initalLastFmAlbums} />
         </>
     )
 }

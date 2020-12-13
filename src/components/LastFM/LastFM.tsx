@@ -30,7 +30,10 @@ const Album = styled.div<AlbumProps>`
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 2rem;
-    @media (min-width: ${BREAKPOINTS.SMALL}) {
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         flex-wrap: nowrap;
         flex: 1;
         margin-right: 2rem;
@@ -51,7 +54,6 @@ const AlbumArtContainer = styled.div`
     height: auto;
     margin-right: 1rem;
     min-width: 80px;
-    margin-bottom: 1rem;
     @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         flex: 1;
         flex-basis: 52%;
@@ -64,8 +66,12 @@ const AlbumArtInner = styled.img`
     height: auto;
 `
 
-const LastFM = (): React.ReactElement => {
-    const [albums, setAlbums] = useState(null)
+type LastFmProps = {
+    initialAlbums?: Record<string, any>[]
+}
+
+const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
+    const [albums, setAlbums] = useState(initialAlbums ?? null)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -73,7 +79,7 @@ const LastFM = (): React.ReactElement => {
                 const lfm = await lastFmService()
                 setAlbums(lfm)
             } catch (e) {
-                setAlbums(null)
+                setAlbums(initialAlbums ?? null)
             }
         }
         fetchData()
@@ -102,7 +108,7 @@ const LastFM = (): React.ReactElement => {
                                 <AlbumArtContainer>
                                     <AlbumArtInner
                                         alt={`${album.name} cover`}
-                                        src={album.image[3]["#text"]}
+                                        src={album.image[3].src}
                                     />
                                 </AlbumArtContainer>
                                 <AlbumInfo>
