@@ -27,10 +27,8 @@ exports.sourceNodes = async ({
     createNodeId,
     createContentDigest
 }) => {
-    let result
+    let result = { albums: album }
     if (process.env.NODE_ENV !== "production") {
-        result = { albums: album }
-    } else {
         try {
             const res = await axios({
                 method: "post",
@@ -42,7 +40,7 @@ exports.sourceNodes = async ({
                 url: url,
                 data: data
             })
-            result = { albums: res }
+            result = { albums: res.data }
         } catch (e) {
             console.log("No connection to back end")
         }
