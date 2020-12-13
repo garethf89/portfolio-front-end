@@ -27,11 +27,6 @@ module.exports = {
         image: "/images/Logo.jpg",
         menuLinks: [
             {
-                name: "Work",
-                slug: "/",
-                anchor: "work",
-            },
-            {
                 name: "Contact",
                 slug: "/contact/",
             },
