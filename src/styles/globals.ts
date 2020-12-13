@@ -9,5 +9,24 @@ export const globalStyles = css`
         font-family: ${theme.fonts.body};
         transition: background 0.5s ease-in-out;
     }
+    /* LINK FADE */
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
 `
 export default globalStyles
