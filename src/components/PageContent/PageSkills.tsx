@@ -1,6 +1,7 @@
+import { ISkillFieldsCustom, StyledComponentProps } from "../../../@types/types"
+
 import Heading from "../Typography/Heading"
 import { ISkill } from "../../../@types/generated/contentful"
-import { ISkillFieldsCustom } from "../../../@types/types"
 import React from "react"
 import Skill from "../Skills/Skill"
 import styled from "@emotion/styled"
@@ -11,7 +12,9 @@ interface PageSkillProps {
 }
 
 const PageSkillContainer = styled.div`
-=`
+    margin-bottom: ${(props: StyledComponentProps) =>
+        props.theme.space.common[2]};
+`
 
 const SkillContainer = styled.div`
     display: flex;
