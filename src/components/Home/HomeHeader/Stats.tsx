@@ -56,7 +56,7 @@ interface StatProps {
     stats: IStatFields[]
 }
 
-const Stats = ({ stats }: StatProps) => {
+const Stats = ({ stats }: StatProps): React.ReactElement => {
     return (
         <StatsContainer>
             {stats.map((stat: any, i) => (

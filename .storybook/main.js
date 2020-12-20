@@ -6,9 +6,6 @@ module.exports = {
     addons: [
         {
             name: "@storybook/addon-essentials",
-            options: {
-                backgrounds: false,
-            },
         },
         "@storybook/addon-a11y",
         "@storybook/addon-graphql",

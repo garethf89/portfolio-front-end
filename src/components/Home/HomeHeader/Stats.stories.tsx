@@ -1,4 +1,6 @@
+import { DarkBackground } from "../../../stories/DarkBackground"
 import { IStatFields } from "../../../../@types/generated/contentful"
+import React from "react"
 import StatsComponent from "./Stats"
 
 const statsData: Array<IStatFields> = [
@@ -15,6 +17,12 @@ const statsData: Array<IStatFields> = [
         amount: 15,
     },
 ]
+
+const StatStory = ({ stats }) => (
+    <DarkBackground>
+        <StatsComponent stats={stats} />
+    </DarkBackground>
+)
 
 export default {
     title: "Components /Stats",
@@ -37,7 +45,7 @@ export default {
     },
 }
 
-export const Stats = StatsComponent.bind({})
+export const Stats = StatStory.bind({})
 Stats.args = {
     stats: statsData,
 }
