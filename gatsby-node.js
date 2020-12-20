@@ -28,7 +28,7 @@ exports.sourceNodes = async ({
     createContentDigest
 }) => {
     let result = { albums: album }
-    if (process.env.NODE_ENV !== "production") {
+    if (process.env.NODE_ENV === "production") {
         try {
             const res = await axios({
                 method: "post",
