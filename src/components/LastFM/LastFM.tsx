@@ -91,7 +91,12 @@ const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
         <OuterWrapper>
             <Lines id="LFMAni" />
             <Container vPadding>
-                <Heading marginTop={0} marginBottom="3rem" level="h5">
+                <Heading
+                    marginTop={0}
+                    marginBottom="3rem"
+                    level="h5"
+                    override="h3"
+                >
                     <LastFMLogo
                         verticalAlign="middle"
                         marginRight="1rem"
