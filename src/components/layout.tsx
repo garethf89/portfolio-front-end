@@ -15,7 +15,7 @@ const Root = styled.main`
     font-family: ${(props: StyledComponentProps) => props.theme.fonts.body};
 `
 
-const TemplateWrap = ({ children, description, image, data, path }) => {
+const TemplateWrap = ({ pageContext, children, image, data }) => {
     const { dispatch } = useContext(globals)
     const [initGlobals, setInitGlobals] = useState(false)
 
@@ -36,12 +36,13 @@ const TemplateWrap = ({ children, description, image, data, path }) => {
             setInitGlobals(true)
         }
     }, [])
+
     return (
         <>
             <Global styles={globalStyles} />
             <SEO
                 pageTitle={title}
-                pageDescription={description}
+                pageDescription={pageContext.description}
                 pageImage={image}
             />
             <Root>{children}</Root>

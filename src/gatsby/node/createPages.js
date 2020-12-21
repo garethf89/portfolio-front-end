@@ -16,6 +16,7 @@ module.exports = async ({ graphql, actions }) => {
                 id: page.node.id,
                 title: page.node.title,
                 slug: slug,
+                description: page.node.headline,
             },
         })
     })
