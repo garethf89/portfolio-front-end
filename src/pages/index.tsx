@@ -55,6 +55,7 @@ const IndexPage = () => {
                 }
                 caseStudies {
                     slug
+                    title
                     intro {
                         raw
                     }

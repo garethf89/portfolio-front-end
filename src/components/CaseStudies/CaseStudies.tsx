@@ -108,7 +108,7 @@ const CaseStudies = ({ data }: CSProps): React.ReactElement<CSProps> => {
                             <CaseStudy key={i}>
                                 <CaseStudyText data={project.intro} />
                                 <ReadMore to={`/${project.slug}`}>
-                                    Read more
+                                    Read more about {project.title}
                                 </ReadMore>
                             </CaseStudy>
                         )
