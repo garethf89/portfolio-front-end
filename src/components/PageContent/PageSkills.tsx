@@ -30,6 +30,7 @@ const PageSkills = ({ skills }: PageSkillProps): React.ReactElement => {
         <PageSkillContainer>
             <Heading
                 level="h3"
+                override="h2"
                 fontWeight={700}
                 marginBottom={theme.space.common[3]}
             >
