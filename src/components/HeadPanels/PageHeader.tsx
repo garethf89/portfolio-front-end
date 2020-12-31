@@ -92,6 +92,8 @@ const PageHeader = ({
         }
     }, [])
 
+    const externalLink = link ? link.replace(/http:/gi, "https:") : null
+
     return (
         <HeaderStyles>
             <Lines dark id="HeaderAni" />
@@ -114,7 +116,7 @@ const PageHeader = ({
                         <ButtonWrapper>
                             <Button
                                 variant="primary"
-                                href={link}
+                                href={externalLink}
                                 as="a"
                                 icon="Arrow"
                             >
