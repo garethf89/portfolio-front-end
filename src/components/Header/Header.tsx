@@ -25,6 +25,7 @@ const Header = ({ nav, siteTitle }: HeaderProps) => (
         <Container
             useflex
             justifyContent="space-between"
+            flexDirection="row"
             maxWidth={`calc(${theme.sizes.maxWidth} + 9rem)`}
         >
             <Logo siteTitle={siteTitle} />

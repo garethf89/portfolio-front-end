@@ -1,39 +1,113 @@
+import React, { useEffect, useState } from "react"
+
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
 import ColorPicker from "./ColorPicker"
+import MobileMenu from "./MobileMenu/MobileMenu"
 import NavigationLink from "./NavigationLink"
-import React from "react"
+import { StyledComponentProps } from "../../../@types/types"
+import debounce from "../../helpers/debounce"
+import { gatsbyWindow } from "../../helpers/gatsbyWindow"
 import styled from "@emotion/styled"
 import { useSiteMetadata } from "../../hooks/use-site-metadata"
 
-const NavigationStyles = styled.nav`
-    display: none;
+const NavigationStyles = styled.nav``
+
+const NavMobile = styled.div`
+    display: block;
     @media (min-width: ${BREAKPOINTS.MEDIUM}) {
-        display: block;
+        display: none;
     }
 `
 
+type NavULProps = { active: boolean; animate: boolean } & StyledComponentProps
+
 const NavList = styled.ul`
     margin: 0;
+    padding: 0;
     text-align: center;
     list-style-type: none;
     height: 100%;
-    display: flex;
-    justify-content: right;
-    padding-right: 3rem;
+    display: ${(props: NavULProps) => (props.active ? "flex" : "none")};
+    background: ${(props: NavULProps) => props.theme.colors.sectionBackground};
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    flex-direction: column;
+    justify-content: center;
+    animation: ${(props: NavULProps) => (props.animate ? "fadeOut" : "fadeIn")}
+        0.5s;
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+        animation: none;
+        position: static;
+        display: block;
+        flex-direction: row;
+        justify-content: right;
+    }
 `
 
 const NavLi = styled.li`
     display: inline-block;
     width: auto;
-    padding-left: 2rem;
+    padding-bottom: 2rem;
+    &:last-of-type {
+        padding-bottom: 0;
+    }
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+        padding-left: 2rem;
+    }
 `
 
 const Navigation = () => {
+    const [mobile, setMobile] = useState(false)
+    const [active, setActive] = useState(false)
+    const [animate, setAnimate] = useState(false)
+
     const { menuLinks } = useSiteMetadata()
+
+    const checkMobile = () => {
+        if (
+            gatsbyWindow &&
+            window.innerWidth >= parseInt(BREAKPOINTS.MEDIUM, 16)
+        ) {
+            setMobile(false)
+        } else {
+            setMobile(true)
+        }
+        setActive(false)
+    }
+
+    const throttled = debounce(() => {
+        checkMobile()
+    }, 200)
+
+    useEffect(() => {
+        if (gatsbyWindow()) {
+            checkMobile()
+            window.addEventListener("resize", throttled)
+        }
+
+        return function cleanup() {
+            if (gatsbyWindow) {
+                window.removeEventListener("resize", throttled)
+            }
+        }
+    }, [])
+
+    const toggle = (direction: boolean) => {
+        if (direction) {
+            setAnimate(false)
+            setActive(direction)
+        } else {
+            setAnimate(true)
+            setTimeout(() => setActive(direction), 500)
+        }
+    }
 
     return (
         <NavigationStyles>
-            <NavList>
+            <NavList animate={animate} active={active}>
                 {menuLinks.map(link => {
                     const internal = /^\/(?!\/)/.test(link.slug)
                     return (
@@ -48,6 +122,16 @@ const Navigation = () => {
                     <ColorPicker />
                 </NavLi>
             </NavList>
+            {mobile && (
+                <NavMobile>
+                    <MobileMenu
+                        scale={0.5}
+                        onClick={() => {
+                            toggle(!active)
+                        }}
+                    />
+                </NavMobile>
+            )}
         </NavigationStyles>
     )
 }
