@@ -4,8 +4,8 @@ import TransitionLink from "gatsby-plugin-transition-link"
 const duration = 0.25
 
 interface IProps {
-    children: ReactNode
-    node?: ReactNode
+    children: React.ReactNode
+    node?: React.ReactNode
     url: string
 }
 
@@ -28,7 +28,7 @@ const exitTransition = {
 const entryTransition = {
     zIndex: 1,
     trigger: ({ node }: IProps) => {
-        entryTransition.entryTrigger(node)
+        entryTransition.entryTrigger()
     },
     entryTrigger: () => container => {
         container.setAttribute(

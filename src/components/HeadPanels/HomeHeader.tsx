@@ -36,7 +36,7 @@ const HomeContainer = styled(Container)`
             calc(
                 0.65rem +
                     ${(props: StyledComponentProps) =>
-                        props.theme.space.padding}
+                        props.theme.space.padding[0]}
             );
     }
 `

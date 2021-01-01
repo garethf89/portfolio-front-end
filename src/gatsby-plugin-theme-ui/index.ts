@@ -1,4 +1,4 @@
-import { Theme } from "theme-ui"
+import { ColorMode, Theme } from "theme-ui"
 
 export const BREAKPOINTS = {
     SMALL: "35em",
@@ -17,7 +17,30 @@ export const COLORS = {
 }
 
 // Using Theme-UI as a basic outline but this will be a custom object
-const theme: Theme = {
+
+type ButtonProps = {
+    color: string
+    bg: string
+    borderColor: string
+    borderRadius: number
+    "&:hover": {
+        bg: string
+    }
+}
+
+export type MyTheme = Theme & {
+    fonts: { body: string } & Theme["fonts"]
+    space: { [k: string]: Theme["fonts"] }
+    colors: {
+        [k: string]: string | { [k: string]: ColorMode }
+        modes?: {
+            [k: string]: ColorMode
+        }
+    }
+    buttons: { [k: string]: ButtonProps }
+}
+
+const theme: MyTheme = {
     useCustomProperties: true,
     useLocalStorage: false,
     initialColorModeName: "light",
@@ -58,7 +81,7 @@ const theme: Theme = {
     },
     breakpoints: [BREAKPOINTS.SMALL, BREAKPOINTS.MEDIUM, BREAKPOINTS.LARGE],
     space: {
-        padding: "1.5rem",
+        padding: ["1.5rem"],
         common: ["1rem", "1.5rem", "2rem", "3rem", "4rem"], // Used for content
         l: [], // Used for large, full width content
     },

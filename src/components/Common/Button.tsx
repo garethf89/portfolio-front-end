@@ -1,5 +1,6 @@
+import { BREAKPOINTS, MyTheme } from "../../gatsby-plugin-theme-ui/index"
+
 import ArrowLight from "../../svgs/light-arrow"
-import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui/index"
 import { Download } from "../../svgs/index"
 import React from "react"
 import { Button as TButton } from "@theme-ui/components"
@@ -127,10 +128,6 @@ interface ButtonProps {
     download?: boolean
 }
 
-type BorderColor = {
-    borderColor: string
-}
-
 const Button = ({
     as = "button",
     icon,
@@ -145,9 +142,9 @@ const Button = ({
     const context = useThemeUI()
     const { theme } = context
 
-    const colors = (theme.buttons as BorderColor)[variant]
+    const colors = (theme as MyTheme).buttons[variant].borderColor
     const lineBorderColor =
-        (theme.colors[colors.borderColor] as string) ?? "#fff"
+        ((theme as MyTheme).colors[colors] as string) ?? "#fff"
 
     return (
         <>
