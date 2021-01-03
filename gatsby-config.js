@@ -21,7 +21,8 @@ try {
 module.exports = {
     siteMetadata: {
         title: "Gareth Ferguson",
-        description: "Gareth Ferguson Portfolio",
+        description:
+            "Portfolio site for Gareth Ferguson, a full-stack engineer based in Newcastle. View my skills and project experience, or contact using the form.",
         siteUrl: "http://garethferguson.co.uk",
         author: "Gareth Ferguson",
         image: "/images/Logo.jpg",
@@ -64,7 +65,7 @@ module.exports = {
             resolve: "gatsby-plugin-transition-link",
             options: {
                 layout: require.resolve(`./src/components/layout.tsx`),
-                injectPageProps: false,
+                injectPageProps: true,
             },
         },
         {
