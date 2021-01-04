@@ -31,6 +31,7 @@
     "gatsby-plugin-react-helmet": "^3.3.0",
     "gatsby-plugin-robots-txt": "^1.5.3",
     "gatsby-plugin-sharp": "^2.6.0",
+    "gatsby-plugin-sitemap": "^2.9.0",
     "gatsby-plugin-theme-ui": "^0.3.0",
     "gatsby-plugin-transition-link": "^1.20.5",
     "gatsby-plugin-typescript": "^2.4.13",
