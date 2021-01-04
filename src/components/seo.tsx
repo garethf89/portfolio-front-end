@@ -13,6 +13,7 @@ interface SeoProps {
     pageDescription: string
     pageTitle: string
     pageImage: string
+    path: string
     children?: any
 }
 
@@ -20,6 +21,7 @@ const SEO = ({
     pageTitle,
     pageDescription,
     pageImage,
+    path,
 }: SeoProps): React.ReactElement<any> => {
     const { siteUrl, image, title, description } = useSiteMetadata()
 
@@ -31,7 +33,7 @@ const SEO = ({
             ? `${title} | ${pageTitle}`
             : `${title}`
 
-    const isHome = pageTitle === title
+    const isHome = path === "/"
 
     return (
         <Helmet

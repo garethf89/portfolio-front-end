@@ -15,7 +15,7 @@ const Root = styled.main`
     font-family: ${(props: StyledComponentProps) => props.theme.fonts.body};
 `
 
-const TemplateWrap = ({ pageContext, children, image, data }) => {
+const TemplateWrap = ({ pageContext, children, image, data, path }) => {
     const { dispatch } = useContext(globals)
     const [initGlobals, setInitGlobals] = useState(false)
 
@@ -44,6 +44,7 @@ const TemplateWrap = ({ pageContext, children, image, data }) => {
                 pageTitle={title}
                 pageDescription={pageContext.description}
                 pageImage={image}
+                path={path}
             />
             <Root>{children}</Root>
             <Footer />
