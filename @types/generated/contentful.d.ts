@@ -7,6 +7,9 @@ export interface IHomePageFields {
     /** Title */
     title?: string | undefined
 
+    /** Description */
+    description?: string | undefined
+
     /** Intro Text */
     introText?: Document | undefined
 

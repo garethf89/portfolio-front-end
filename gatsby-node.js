@@ -12,8 +12,10 @@ const axios = require("axios")
 const url = require("./src/constants/lastfm.ts").url
 const data = require("./src/constants/lastfm.ts").data
 const album = require("./src/__mocks__/lastfm")
+const inlineSvg = require("./src/gatsby/node/inline-svg")
 
-exports.createSchemaCustomization = require("./src/gatsby/node/createSchemaCustomization")
+exports.createSchemaCustomization = inlineSvg.createSchemaCustomization
+exports.createResolvers = inlineSvg.createResolvers
 exports.createPages = require("./src/gatsby/node/createPages")
 
 exports.onCreateWebpackConfig = ({ actions }) => {
