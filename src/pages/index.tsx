@@ -32,6 +32,11 @@ const IndexPage = () => {
             }
             page: contentfulHomePage {
                 title
+                description {
+                    internal {
+                        content
+                    }
+                }
                 introText {
                     raw
                 }

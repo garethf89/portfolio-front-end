@@ -1,4 +1,4 @@
-import { default as ColorPickerComponent } from "./ColorPicker"
+import ColorPickerComponent from "./ColorPicker"
 import { DarkBackground } from "../../stories/DarkBackground"
 import React from "react"
 

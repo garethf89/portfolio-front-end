@@ -1,8 +1,16 @@
-import React, { createContext, useReducer } from "react"
+import React, { Dispatch, createContext, useReducer } from "react"
+
+type InitalStateTypes = {
+    theme: string
+    logo: string
+}
 
 export const initialStateGlobals = { theme: "light", logo: "light" }
 
-export const globals = createContext<any>(initialStateGlobals)
+export const globals = createContext<{
+    state: InitalStateTypes
+    dispatch: Dispatch<Action>
+}>({ state: initialStateGlobals, dispatch: () => ({}) })
 
 type Action = {
     type: string
@@ -10,7 +18,7 @@ type Action = {
     logo?: string
 }
 
-const reducer = (state: any, action: Action) => {
+const reducer = (state: InitalStateTypes, action: Action) => {
     switch (action.type) {
         case "THEME":
             return { ...state, theme: action.theme }
@@ -25,11 +33,10 @@ interface StateProps {
     children?: React.ReactNode
 }
 
-export const GlobalsStateProvider = ({ children }: StateProps) => {
+export const GlobalsStateProvider = ({
+    children,
+}: StateProps): React.ReactElement => {
     const [state, dispatch] = useReducer(reducer, initialStateGlobals)
-    return (
-        <globals.Provider value={{ state, dispatch }}>
-            {children}
-        </globals.Provider>
-    )
+    const value = { state: state as InitalStateTypes, dispatch }
+    return <globals.Provider value={value}>{children}</globals.Provider>
 }
