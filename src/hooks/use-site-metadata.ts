@@ -1,6 +1,10 @@
 import { graphql, useStaticQuery } from "gatsby"
 
-export const useSiteMetadata = () => {
+interface Meta {
+    [k: string]: string | { [p: string]: string }
+}
+
+export const useSiteMetadata = (): Record<string, Meta> => {
     const { site } = useStaticQuery(
         graphql`
             query siteMetaData {

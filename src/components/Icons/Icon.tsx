@@ -1,19 +1,23 @@
+import { SystemsTypeProperties, styledSystem } from "../../system/StyledSystem"
+
 import React from "react"
 import { iconSystem } from "./iconSystem"
-import { styledSystem } from "../../system/StyledSystem"
 
-export interface IconPropsType {
+export interface IconPropsType extends SystemsTypeProperties {
     "data-icon"?: boolean
     iconSize?: "xs" | "small" | "medium" | "large"
     iconSrc?: React.ReactElement
     iconSvg?: string
 }
 
-interface Test extends IconPropsType {
+interface IconPropsTypeComponent extends IconPropsType {
     Component: React.ComponentType
 }
 
-export default ({ Component, ...iconProps }: Test): React.ReactElement => {
+export default ({
+    Component,
+    ...iconProps
+}: IconPropsTypeComponent): React.ReactElement => {
     const defaultProps = {
         ...iconProps,
         role: "img",

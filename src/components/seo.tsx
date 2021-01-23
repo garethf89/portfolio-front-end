@@ -14,7 +14,7 @@ interface SeoProps {
     pageTitle: string
     pageImage: string
     path: string
-    children?: any
+    children?: React.ReactNode
 }
 
 const SEO = ({
@@ -22,7 +22,7 @@ const SEO = ({
     pageDescription,
     pageImage,
     path,
-}: SeoProps): React.ReactElement<any> => {
+}: SeoProps): React.ReactElement => {
     const { siteUrl, image, title, description } = useSiteMetadata()
 
     const metaDescription = pageDescription || description

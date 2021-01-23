@@ -1,9 +1,13 @@
-import Alert from "./Alert"
+import Alert, { AlertProps } from "./Alert"
+
 import React from "react"
 
-const alertTypes = ["success", "error"]
+const alertTypeOptions = ["success", "error"]
 
-const Alerts = ({ variant, label }) => (
+const Alerts = ({
+    variant,
+    label,
+}: AlertProps & { label: string }): React.ReactElement => (
     <>
         <Alert variant={variant}>{label}</Alert>
     </>
@@ -16,7 +20,7 @@ export default {
         variant: {
             control: {
                 type: "select",
-                options: alertTypes,
+                options: alertTypeOptions,
             },
         },
     },

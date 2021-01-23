@@ -33,7 +33,11 @@ const FlexElement = styled.section(
     typography
 )
 
-const Flex = ({ children, ...props }) => (
+type FlexProps = {
+    children: React.ReactNode
+}
+
+const Flex = ({ children, ...props }: FlexProps): React.ReactElement => (
     <FlexElement {...props}>{children}</FlexElement>
 )
 

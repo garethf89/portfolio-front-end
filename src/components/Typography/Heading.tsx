@@ -1,4 +1,6 @@
-import React, { CSSProperties, Ref } from "react"
+import * as CSS from "csstype"
+
+import React, { Ref } from "react"
 import { StyledComponentProps, StyledProps } from "../../../@types/types"
 import { StyledDefaultProps, styledSystem } from "../../system/StyledSystem"
 
@@ -83,8 +85,8 @@ export type HeadingProps = {
     override?: string
     ref?: Ref<HTMLElement>
 } & React.ComponentProps<"h1"> &
-    CSSProperties &
-    StyledDefaultProps
+    StyledDefaultProps &
+    CSS.Properties
 
 const Heading: React.FC<HeadingProps> = ({
     children,

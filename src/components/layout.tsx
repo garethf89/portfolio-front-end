@@ -15,7 +15,21 @@ const Root = styled.main`
     font-family: ${(props: StyledComponentProps) => props.theme.fonts.body};
 `
 
-const TemplateWrap = ({ pageContext, children, image, data, path }) => {
+type PageLayoutProps = {
+    pageContext: Record<string, string>
+    children: React.ReactNode
+    image: string
+    data: { page: string }
+    path: string
+}
+
+const TemplateWrap = ({
+    pageContext,
+    children,
+    image,
+    data,
+    path,
+}: PageLayoutProps): React.ReactElement => {
     const { dispatch } = useContext(globals)
     const [initGlobals, setInitGlobals] = useState(false)
 
@@ -52,7 +66,7 @@ const TemplateWrap = ({ pageContext, children, image, data, path }) => {
     )
 }
 
-const PageLayout = props => {
+const PageLayout = (props: PageLayoutProps): React.ReactElement => {
     return <TemplateWrap {...props} />
 }
 export default PageLayout

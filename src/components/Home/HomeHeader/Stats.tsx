@@ -59,7 +59,7 @@ interface StatProps {
 const Stats = ({ stats }: StatProps): React.ReactElement => {
     return (
         <StatsContainer>
-            {stats.map((stat: any, i) => (
+            {stats.map((stat: IStatFields, i) => (
                 <Stat key={i}>
                     <StatNumber className="" level="h1" override="span">
                         {stat.amount}+

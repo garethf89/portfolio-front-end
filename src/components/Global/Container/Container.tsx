@@ -11,7 +11,7 @@ import Flex from "./Flex"
 import React from "react"
 
 type ContainerProps = {
-    children: any
+    children: React.ReactNode
     useflex?: boolean
     vPadding?: boolean
     as?: string
@@ -21,7 +21,7 @@ type ContainerProps = {
     LayoutProps &
     FlexboxProps
 
-const Container = (props: ContainerProps): React.ReactElement<any> => {
+const Container = (props: ContainerProps): React.ReactElement => {
     if (props.useflex) {
         return <Flex {...props}>{props.children}</Flex>
     }

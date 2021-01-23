@@ -1,23 +1,29 @@
 import Cross from "../../svgs/cross"
 import React from "react"
-import { StyledComponentProps } from "../../../@types/types"
 import Tick from "../../svgs/tick"
 import styled from "@emotion/styled"
+
+type AlertVariantObjectProps = {
+    bg: string
+    color: string
+    icon: typeof Tick
+}
+type AlertVariantProps = Record<string, AlertVariantObjectProps>
 
 const AlertStyled = styled.div`
     padding: 1rem;
     font-weight: 700;
     margin-bottom: 2rem;
-    border: 1px solid ${(props: StyledComponentProps) => props.color};
-    background: ${(props: StyledComponentProps) => props.bg};
-    color: ${(props: StyledComponentProps) => props.color};
+    border: 1px solid ${(props: AlertVariantObjectProps) => props.color};
+    background: ${(props: AlertVariantObjectProps) => props.bg};
+    color: ${(props: AlertVariantObjectProps) => props.color};
 `
 
-type AlertProps = {
+export type AlertProps = {
     variant: "success" | "error"
-} & React.HTMLAttributes<any>
+} & React.HTMLAttributes<HTMLDivElement>
 
-const variants = {
+const variants: AlertVariantProps = {
     success: {
         bg: "rgba(240,255,244)",
         color: "rgba(47,133,90)",
@@ -30,7 +36,11 @@ const variants = {
     },
 }
 
-const Alert = ({ children, variant = "error", ...props }: AlertProps) => {
+const Alert = ({
+    children,
+    variant = "error",
+    ...props
+}: AlertProps): React.ReactElement => {
     const variantUsed = variants[variant]
     const variantProps = { ...variantUsed, icon: null }
     const Icon = variantUsed.icon

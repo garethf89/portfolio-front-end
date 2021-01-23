@@ -2,7 +2,7 @@ import { DarkBackground } from "../../stories/DarkBackground"
 import NavigationLink from "./NavigationLink"
 import React from "react"
 
-export const NavigationLinkText = () => (
+export const NavigationLinkText = (): React.ReactElement => (
     <DarkBackground>
         <NavigationLink to="/">
             <span>Test</span>

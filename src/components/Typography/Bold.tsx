@@ -6,7 +6,11 @@ const BoldElement = styled.span`
     color: ${(props: StyledComponentProps) => props.theme.colors.sectionText};
 `
 
-const Bold = ({ children }) => (
+type BoldProps = {
+    children: React.ReactNode
+}
+
+const Bold = ({ children }: BoldProps): React.ReactElement => (
     <>
         <BoldElement>{children}</BoldElement>
         <br />

@@ -6,7 +6,15 @@ import { Spacer } from "../../stories/Spacer"
 import TextArea from "./Textarea"
 import { withFormik } from "storybook-formik"
 
-const FormStory = ({ nameLabel, messageLabel }) => (
+type FormStoryProps = {
+    nameLabel: string
+    messageLabel: string
+}
+
+const FormStory = ({
+    nameLabel,
+    messageLabel,
+}: FormStoryProps): React.ReactElement => (
     <LightContainer>
         <Label required htmlFor="name">
             {nameLabel}

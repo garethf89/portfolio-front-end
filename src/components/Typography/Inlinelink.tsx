@@ -8,7 +8,7 @@ const LinkElement = styled(FadeLink)`
     display: inline;
     position: relative;
     overflow: visible;
-    &:after {
+    &::after {
         content: " ";
         position: absolute;
         bottom: -2px;
@@ -19,7 +19,12 @@ const LinkElement = styled(FadeLink)`
     }
 `
 
-const Inlinelink = ({ children, to }) => (
+type InlineLinkProps = {
+    children: React.ReactNode
+    to: string
+}
+
+const Inlinelink = ({ children, to }: InlineLinkProps): React.ReactElement => (
     <>
         <LinkElement to={to}>{children}</LinkElement>
     </>

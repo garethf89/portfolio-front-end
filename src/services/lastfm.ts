@@ -1,4 +1,5 @@
-import axios from "axios"
+import axios, { AxiosResponse } from "axios"
+
 import { config } from "./headers"
 
 // eslint-disable-next-line
@@ -7,7 +8,7 @@ const url = require("../constants/lastfm").url
 // eslint-disable-next-line
 const data = require("../constants/lastfm").data
 
-export const lastFmService = async () => {
+export const lastFmService = async (): Promise<AxiosResponse> => {
     try {
         const res = await axios({
             method: "post",

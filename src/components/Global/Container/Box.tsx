@@ -23,7 +23,11 @@ const baseStyle = props => css`
 
 const BoxElement = styled.section(baseStyle, space, color, layout, typography)
 
-const Box = ({ children, ...props }) => (
+type BoxType = {
+    children: React.ReactNode
+}
+
+const Box = ({ children, ...props }: BoxType): React.ReactElement => (
     <BoxElement {...props}>{children}</BoxElement>
 )
 

@@ -11,7 +11,7 @@ const InputStyled = styled(Field)`
     border: none;
     outline: none;
     border-bottom: 2px solid
-        ${(props: StyledComponentProps) =>
+        ${(props: StyledComponentProps & { error?: string }) =>
             props.error ? "#e55353" : props.theme.colors.text};
     padding-bottom: 0.5rem;
     width: 100%;
@@ -19,10 +19,10 @@ const InputStyled = styled(Field)`
     background: ${COLORS.transparent};
 `
 
-type InputProps = React.InputHTMLAttributes<any>
+type InputProps = React.InputHTMLAttributes<HTMLInputElement>
 
-const Input = (props: InputProps) => {
-    const [fied, meta] = useField(props.name)
+const Input = (props: InputProps): React.ReactElement => {
+    const [field, meta] = useField(props.name) // eslint-disable-line
     const error = meta.touched && meta.error
     return (
         <>

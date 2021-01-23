@@ -27,7 +27,7 @@ const exitTransition = {
 
 const entryTransition = {
     zIndex: 1,
-    trigger: ({ node }: IProps) => {
+    trigger: () => {
         entryTransition.entryTrigger()
     },
     entryTrigger: () => container => {
@@ -40,9 +40,9 @@ const entryTransition = {
 
 type LinkProps = {
     to: string
-    children?: any
+    children?: React.ReactNode
     dark?: string
-} & React.LinkHTMLAttributes<any>
+} & React.LinkHTMLAttributes<HTMLLinkElement>
 
 const FadeLink = ({ children, to, ...props }: LinkProps): TransitionLink => {
     return (

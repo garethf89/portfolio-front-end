@@ -59,7 +59,7 @@ const NavLi = styled.li`
     }
 `
 
-const Navigation = () => {
+const Navigation = (): React.ReactElement => {
     const [mobile, setMobile] = useState(false)
     const [active, setActive] = useState(false)
     const [animate, setAnimate] = useState(false)

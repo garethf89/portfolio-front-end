@@ -13,7 +13,7 @@ import React from "react"
  * - `useStaticQuery`: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-const Image = (props: GatsbyImageProps) => {
+const Image = (props: GatsbyImageProps): React.ReactElement => {
     return <Img {...props} />
 }
 

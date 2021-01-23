@@ -31,7 +31,6 @@ module.exports = {
         "guard-for-in": "error",
         "id-blacklist": [
             "error",
-            "any",
             "Number",
             "number",
             "String",
@@ -98,6 +97,7 @@ module.exports = {
                 varsIgnorePattern: "^_",
             },
         ],
+        "@typescript-eslint/no-explicit-any": "error",
         "@typescript-eslint/member-delimiter-style": [
             "off",
             {

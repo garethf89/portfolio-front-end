@@ -1,17 +1,19 @@
 import HTMLReactParser, { domToReact } from "html-react-parser"
 import React, { CSSProperties, SVGAttributes } from "react"
+import { SystemsTypeProperties, styledSystem } from "../../system/StyledSystem"
 
 import { iconSystem } from "./iconSystem"
-import { styledSystem } from "../../system/StyledSystem"
 
-interface IconPropsType {
+interface IconPropsType extends SystemsTypeProperties {
     "data-icon"?: boolean
     iconSize?: "small" | "medium" | "large"
     iconSvg?: string
     title?: string
 }
 
-export type IconProps = IconPropsType & SVGAttributes<any> & CSSProperties
+export type IconProps = IconPropsType &
+    SVGAttributes<Record<string, string>> &
+    CSSProperties
 
 export const IconExternal = ({
     iconSvg,

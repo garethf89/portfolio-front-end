@@ -66,8 +66,16 @@ const AlbumArtInner = styled.img`
     height: auto;
 `
 
+type AlbumType = {
+    name: string
+    artist: {
+        name: string
+    }
+    image: { src: string }[]
+}
+
 type LastFmProps = {
-    initialAlbums?: Record<string, any>[]
+    initialAlbums?: Record<string, AlbumType>[]
 }
 
 const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {

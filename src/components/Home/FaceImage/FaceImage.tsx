@@ -12,7 +12,7 @@ const FaceCircle = styled(Circle)`
     transform: translate(-50%, -50%);
 `
 
-const FaceImage = () => {
+const FaceImage = (): React.ReactElement => {
     const data = useStaticQuery(graphql`
         query {
             image: file(

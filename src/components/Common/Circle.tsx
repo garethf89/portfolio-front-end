@@ -8,10 +8,10 @@ const Wrapper = styled.div`
     }
 `
 interface CircleProps {
-    children: any
+    children: React.ReactNode
 }
 
-const Circle = (props: CircleProps) => {
+const Circle = (props: CircleProps): React.ReactElement => {
     return (
         <Wrapper className="" {...props}>
             {props.children}

@@ -3,7 +3,7 @@ import Container from "../components/Global/Container/Container"
 import PageHeader from "../components/HeadPanels/PageHeader"
 import React from "react"
 
-const ContactPage = () => {
+const ContactPage = (): React.ReactElement => {
     const headerText = "Contact me using the form below"
     return (
         <>

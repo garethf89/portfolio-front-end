@@ -1,6 +1,5 @@
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
 import Container from "../Global/Container/Container"
-import { Document } from "@contentful/rich-text-types"
 import FadeLink from "../Link/Link"
 import Heading from "../Typography/Heading"
 import { IProjectFields } from "../../../@types/generated/contentful"
@@ -80,10 +79,6 @@ const ProjectImage = styled.div<ProjectImageProps>`
 
 interface ProjectProps {
     data: IProjectFields[]
-}
-
-type Icon = Document & {
-    icon: Document & Record<string, string>
 }
 
 type IProject = IProjectFields

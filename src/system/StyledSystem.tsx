@@ -1,3 +1,5 @@
+import * as CSS from "csstype"
+
 import React, { forwardRef } from "react"
 import {
     color,
@@ -39,10 +41,13 @@ export type StyledDefaultProps = {
     as?: string
 }
 
+export type SystemsTypeProperties = React.HTMLAttributes<HTMLDivElement> &
+    CSS.Properties
+
 interface SystemExpectedProps {
     Component: React.ComponentType
     customSystems?: Array<styleFn>
-    StyleProps: any
+    StyleProps: SystemsTypeProperties
 }
 
 export const styledSystem = ({

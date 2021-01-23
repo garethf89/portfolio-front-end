@@ -1,4 +1,4 @@
-import { BLOCKS, Document, MARKS } from "@contentful/rich-text-types"
+import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import {
     ContentfulRichTextGatsbyReference,
     RenderRichTextData,
@@ -24,7 +24,7 @@ interface BlockParams {
     children?: React.ReactNode
 }
 
-const Text = ({ children }: BlockParams): React.ReactElement<any> => {
+const Text = ({ children }: BlockParams): React.ReactElement => {
     return <StyledParagraph level="h1">{children}</StyledParagraph>
 }
 
@@ -36,7 +36,7 @@ const options = {
         [BLOCKS.PARAGRAPH]: (
             node: React.ReactNode,
             children: React.ReactNode
-        ): React.ReactElement<any> => {
+        ): React.ReactElement => {
             return <Text>{children}</Text>
         },
         [BLOCKS.HEADING_1]: (
@@ -52,7 +52,9 @@ interface HomeHeaderContentTextProps {
 
 export const HomeHeaderContentText = ({
     text,
-}: HomeHeaderContentTextProps): any => renderRichText(text, options)
+}: HomeHeaderContentTextProps): React.ReactElement => (
+    <> {renderRichText(text, options)}</>
+)
 
 interface HomeHeaderContentProps {
     className?: string
@@ -61,7 +63,7 @@ interface HomeHeaderContentProps {
 
 const HomeHeaderContent = (
     props: HomeHeaderContentProps
-): React.ReactElement<any> => {
+): React.ReactElement => {
     return <HomeHeaderContentText {...props} />
 }
 

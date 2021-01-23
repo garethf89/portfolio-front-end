@@ -1,6 +1,6 @@
 import { graphql, useStaticQuery } from "gatsby"
 
-export const getAllProjects = (): Record<string, any> => {
+export const getAllProjects = (): Record<string, string> => {
     const data = useStaticQuery(
         graphql`
             query WorkProjects {

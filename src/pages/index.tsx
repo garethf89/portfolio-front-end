@@ -9,7 +9,7 @@ import LastFM from "../components/LastFM/LastFM"
 import Projects from "../components/Projects/Projects"
 import React from "react"
 
-const IndexPage = () => {
+const IndexPage = (): React.ReactElement => {
     const data = useStaticQuery(graphql`
         query Home {
             lfm: allAlbums {

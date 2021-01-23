@@ -45,7 +45,7 @@ const FooterContainer = styled(Container)`
     }
 `
 
-const Footer = (): React.ReactElement<any> => {
+const Footer = (): React.ReactElement<HTMLDivElement> => {
     const year = new Date().getFullYear()
     return (
         <FooterOuter>

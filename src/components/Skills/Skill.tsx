@@ -40,7 +40,7 @@ const Skill = ({
     id,
     icon,
     title,
-}: SkillProps): React.ReactElement<any> => (
+}: SkillProps): React.ReactElement => (
     <SkillContainer>
         <IconExternal
             aria-describedby={id}

@@ -55,8 +55,9 @@ interface TextProps {
     text?: RenderRichTextData<ContentfulRichTextGatsbyReference>
 }
 
-export const HomeHeaderContentText = ({ text }: TextProps): any =>
-    renderRichText(text, options)
+export const HomeHeaderContentText = ({
+    text,
+}: TextProps): React.ReactElement => <>{renderRichText(text, options)}</>
 
 interface HomeTechProps {
     skills: ISkillFields[]

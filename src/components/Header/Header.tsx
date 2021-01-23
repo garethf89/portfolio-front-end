@@ -20,7 +20,7 @@ interface HeaderProps {
     nav?: boolean
 }
 
-const Header = ({ nav, siteTitle }: HeaderProps) => (
+const Header = ({ nav, siteTitle }: HeaderProps): React.ReactElement => (
     <HeaderStyles>
         <Container
             useflex

@@ -55,11 +55,10 @@ const StyledExternal = styled.a`
 `
 
 const StyledButton = StyledInternal.withComponent("button")
-const StyledButtonExternal = StyledExternal.withComponent("button")
 
-interface NavigationLinkProps extends GatsbyLinkProps<any> {
+interface NavigationLinkProps extends GatsbyLinkProps<Record<string, unknown>> {
     button?: boolean
-    internal: boolean
+    internal?: boolean
     click?: () => void
     hover?: () => void
 }
