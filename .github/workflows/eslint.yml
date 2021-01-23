@@ -1,0 +1,31 @@
+
+name: ESLint
+
+on:
+  push:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Use Node 12.20.1
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.20.1"
+      
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+        
+      - name: Install modules
+        run: yarn
+        
+      - name: ESLint
+        run: yarn lint:js
