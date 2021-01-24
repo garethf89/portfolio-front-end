@@ -4,7 +4,6 @@ import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
 import ColorPicker from "./ColorPicker"
 import MobileMenu from "./MobileMenu/MobileMenu"
 import NavigationLink from "./NavigationLink"
-import { StyledComponentProps } from "../../../@types/types"
 import debounce from "../../helpers/debounce"
 import { gatsbyWindow } from "../../helpers/gatsbyWindow"
 import styled from "@emotion/styled"
@@ -19,16 +18,16 @@ const NavMobile = styled.div`
     }
 `
 
-type NavULProps = { active: boolean; animate: boolean } & StyledComponentProps
+type NavULProps = { active: boolean; animate: boolean }
 
-const NavList = styled.ul`
+const NavList = styled.ul<NavULProps>`
     margin: 0;
     padding: 0;
     text-align: center;
     list-style-type: none;
     height: 100%;
-    display: ${(props: NavULProps) => (props.active ? "flex" : "none")};
-    background: ${(props: NavULProps) => props.theme.colors.sectionBackground};
+    display: ${props => (props.active ? "flex" : "none")};
+    background: ${props => props.theme.colors.sectionBackground};
     position: fixed;
     left: 0;
     right: 0;
@@ -36,8 +35,7 @@ const NavList = styled.ul`
     top: 0;
     flex-direction: column;
     justify-content: center;
-    animation: ${(props: NavULProps) => (props.animate ? "fadeOut" : "fadeIn")}
-        0.5s;
+    animation: ${props => (props.animate ? "fadeOut" : "fadeIn")} 0.5s;
     @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         animation: none;
         position: static;

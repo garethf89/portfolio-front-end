@@ -3,16 +3,15 @@ import * as Sentry from "@sentry/browser"
 import React, { useContext, useEffect, useState } from "react"
 
 import Footer from "./Footer/Footer"
-import { Global } from "@emotion/core"
+import { Global } from "@emotion/react"
 import SEO from "./seo"
-import { StyledComponentProps } from "../../@types/types"
 import globalStyles from "../styles/globals"
 import { globals } from "../state/state"
 import styled from "@emotion/styled"
 import { supportsWebP } from "../helpers/support/webp"
 
 const Root = styled.main`
-    font-family: ${(props: StyledComponentProps) => props.theme.fonts.body};
+    font-family: ${props => props.theme.fonts.body};
 `
 
 type PageLayoutProps = {

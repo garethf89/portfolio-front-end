@@ -1,23 +1,13 @@
 import { Asset } from "contentful"
-import * as CSS from "csstype"
-import { ObjectOrArray, Theme } from "styled-system"
 import { ResponsiveImage } from "../src/components/Utils/ProgressiveImage"
 import { IProjectFields } from "./generated/contentful"
 
-export interface CustomTheme extends Theme {
-    space?: {
-        common: ObjectOrArray<CSS.Property.Margin<number | string>>
-        l: ObjectOrArray<CSS.Property.Margin<number | string>>
-    }
-    sizes?: Record<string, string>
-    fonts?: {
-        body: ObjectOrArray<CSS.Property.FontFamily>
-    }
-    colors?: Record<string, ObjectOrArray<CSS.Property.Color<string>>>
-}
+import "@emotion/react"
 
-export type StyledComponentProps = {
-    theme?: CustomTheme
+import { MyTheme } from "../src/gatsby-plugin-theme-ui/index"
+declare module "@emotion/react" {
+    /* eslint-disable-next-line */
+    export interface Theme extends MyTheme {}
 }
 
 export interface StyledProps {

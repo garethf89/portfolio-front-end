@@ -7,16 +7,14 @@ import Button from "../Common/Button"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 import Lines from "../Animation/Lines"
-import { StyledComponentProps } from "../../../@types/types"
 import { globals } from "../../state/state"
 import styled from "@emotion/styled"
 
 const HeaderStyles = styled.section`
     overflow: hidden;
     position: relative;
-    color: ${(props: StyledComponentProps) => props.theme.colors.text};
-    background: ${(props: StyledComponentProps) =>
-        props.theme.colors.sectionSecondaryBackground};
+    color: ${props => props.theme.colors.text};
+    background: ${props => props.theme.colors.sectionSecondaryBackground};
 `
 
 const StyledTitle = styled(Heading)`

@@ -1,11 +1,10 @@
 import FadeLink from "../Link/Link"
 import { GatsbyLinkProps } from "gatsby"
 import React from "react"
-import { StyledComponentProps } from "../../../@types/types"
-import { css } from "@emotion/core"
+import { css } from "@emotion/react"
 import styled from "@emotion/styled"
 
-const StyledLink = (props: StyledComponentProps) => css`
+const StyledLink = props => css`
     font-size: 16px;
     text-transform: uppercase;
     text-decoration: none;

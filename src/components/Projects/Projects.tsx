@@ -5,7 +5,6 @@ import Heading from "../Typography/Heading"
 import { IProjectFields } from "../../../@types/generated/contentful"
 import React from "react"
 import { SROnly } from "../Common/SROnly"
-import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 import { supportsWebP } from "../../helpers/support/webp"
 
@@ -57,8 +56,7 @@ const ProjectImageContainer = styled.div<ProjectImageProps>`
 `
 
 const ProjectImage = styled.div<ProjectImageProps>`
-    background-image: url(${(props: StyledComponentProps) =>
-        props.image["1x"]});
+    background-image: url(${props => props.image["1x"]});
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -72,8 +70,7 @@ const ProjectImage = styled.div<ProjectImageProps>`
         transform: scale(1.1);
     }
     @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-        background-image: url(${(props: StyledComponentProps) =>
-            props.image["2x"]});
+        background-image: url(${props => props.image["2x"]});
     }
 `
 

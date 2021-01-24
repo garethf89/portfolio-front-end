@@ -1,7 +1,6 @@
-import { ISkillFieldsCustom, StyledComponentProps } from "../../../@types/types"
-
 import Heading from "../Typography/Heading"
 import { ISkill } from "../../../@types/generated/contentful"
+import { ISkillFieldsCustom } from "../../../@types/types"
 import { MyTheme } from "../../gatsby-plugin-theme-ui"
 import React from "react"
 import Skill from "../Skills/Skill"
@@ -13,8 +12,7 @@ interface PageSkillProps {
 }
 
 const PageSkillContainer = styled.div`
-    margin-bottom: ${(props: StyledComponentProps) =>
-        props.theme.space.common[2]};
+    margin-bottom: ${props => props.theme.space.common[2]};
 `
 
 const SkillContainer = styled.div`
@@ -33,7 +31,7 @@ const PageSkills = ({ skills }: PageSkillProps): React.ReactElement => {
                 level="h3"
                 override="h2"
                 fontWeight={700}
-                marginBottom={(theme as MyTheme).space.common[3]}
+                marginBottom={((theme as unknown) as MyTheme).space.common[3]}
             >
                 Technology Used
             </Heading>

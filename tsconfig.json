@@ -14,7 +14,8 @@
         "baseUrl": ".",
         "skipLibCheck": true,
         "experimentalDecorators": true,
-        "noUnusedLocals": false
+        "noUnusedLocals": false,
+        "typeRoots": ["/@types"]
     },
     "include": ["src/**/*.ts", "src/templates/project.tsx"]
 }

@@ -1,7 +1,6 @@
 import {
     ContentfulRichTextGatsbyReference,
     RenderRichTextData,
-    StyledComponentProps,
 } from "../../../@types/types"
 import React, { useContext, useEffect } from "react"
 
@@ -19,8 +18,7 @@ import styled from "@emotion/styled"
 const HomeHeaderStyles = styled.section`
     padding: 9rem 0 3rem;
     position: relative;
-    background: ${(props: StyledComponentProps) =>
-        props.theme.colors.sectionBackground};
+    background: ${props => props.theme.colors.sectionBackground};
     @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         padding: 12rem 0 8rem;
     }
@@ -28,16 +26,11 @@ const HomeHeaderStyles = styled.section`
 const HomeContainer = styled(Container)`
     position: relative;
     z-index: 1;
-    color: ${(props: StyledComponentProps) => props.theme.colors.sectionText};
+    color: ${props => props.theme.colors.sectionText};
     @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         display: flex;
         justify-content: space-between;
-        padding: 0
-            calc(
-                0.65rem +
-                    ${(props: StyledComponentProps) =>
-                        props.theme.space.padding[0]}
-            );
+        padding: 0 calc(0.65rem + ${props => props.theme.space.padding[0]});
     }
 `
 

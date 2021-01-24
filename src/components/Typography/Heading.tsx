@@ -1,15 +1,15 @@
 import * as CSS from "csstype"
 
 import React, { Ref } from "react"
-import { StyledComponentProps, StyledProps } from "../../../@types/types"
 import { StyledDefaultProps, styledSystem } from "../../system/StyledSystem"
 
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
-import { css } from "@emotion/core"
+import { StyledProps } from "../../../@types/types"
+import { css } from "@emotion/react"
 import styled from "@emotion/styled"
 
 /* stylelint-disable */
-const common = (props: StyledComponentProps) => css`
+const common = props => css`
     font-family: ${props.theme.fonts.body};
     line-height: 1.2;
     a {
@@ -33,8 +33,7 @@ const H2 = styled.h2`
     line-height: 1;
     font-weight: 200;
     ${common}
-    margin-bottom:  ${(props: StyledComponentProps) =>
-        props.theme.space.common[4]};
+    margin-bottom:  ${props => props.theme.space.common[4]};
     margin-top: 0;
 `
 

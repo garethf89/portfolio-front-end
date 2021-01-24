@@ -5,7 +5,6 @@ import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 import { Link } from "gatsby"
 import { SROnly } from "../Common/SROnly"
-import { StyledComponentProps } from "../../../@types/types"
 import { getAllProjects } from "../../hooks/get-all-projects"
 import { random } from "../../helpers/random"
 import styled from "@emotion/styled"
@@ -14,8 +13,7 @@ import { supportsWebP } from "../../helpers/support/webp"
 const SuggestedProjectLinkContainer = styled.div`
     display: inline-block;
     width: 100%;
-    margin-bottom: ${(props: StyledComponentProps) =>
-        props.theme.space.common[4]};
+    margin-bottom: ${props => props.theme.space.common[4]};
     margin-right: 1rem;
     &:last-of-type {
         margin-bottom: 0;
@@ -57,8 +55,7 @@ const SuggestedProjectLinkBG = styled.span<SuggestedProjectProps>`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: ${(props: StyledComponentProps) =>
-        props.theme.colors.secondaryBackground};
+    background-color: ${props => props.theme.colors.secondaryBackground};
     background-image: url(${props => props.image["2x"]});
     background-position: center;
     background-size: cover;

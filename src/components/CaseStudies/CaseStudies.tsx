@@ -2,7 +2,6 @@ import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import {
     ContentfulRichTextGatsbyReference,
     RenderRichTextData,
-    StyledComponentProps,
 } from "../../../@types/types"
 
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui/index"
@@ -19,7 +18,7 @@ import styled from "@emotion/styled"
 const StyledParagraph = styled(Heading)`
     font-weight: 300;
     margin-top: 0;
-    color: ${(props: StyledComponentProps) => props.theme.colors.sectionText};
+    color: ${props => props.theme.colors.sectionText};
 `
 
 const CaseStudyContainer = styled(Container)``

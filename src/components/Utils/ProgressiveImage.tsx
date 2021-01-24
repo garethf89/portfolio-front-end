@@ -1,9 +1,8 @@
 import React, { useState } from "react"
-import { SerializedStyles, css } from "@emotion/core"
+import { SerializedStyles, css } from "@emotion/react"
 
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
 import { Entry } from "contentful"
-import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 import { supportsWebP } from "../../helpers/support/webp"
 
@@ -34,7 +33,7 @@ interface ProgressiveImageProps {
     alt: string
     absolute?: boolean
     loadingImage?: boolean
-    styles?: (props: StyledComponentProps) => SerializedStyles
+    styles?: (props) => SerializedStyles
 }
 
 const ImageCommon = () => css`
@@ -57,7 +56,7 @@ const ImageBlock = () => css`
 interface ImgProps extends React.ComponentProps<"img"> {
     loaded?: boolean
     absolute?: boolean
-    styles?: (props: StyledComponentProps) => SerializedStyles
+    styles?: (props) => SerializedStyles
 }
 
 const MainImage = styled.img<ImgProps>`

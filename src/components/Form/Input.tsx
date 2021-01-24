@@ -3,16 +3,14 @@ import { Field, useField } from "formik"
 import { COLORS } from "../../gatsby-plugin-theme-ui"
 import { FormError } from "./FormError"
 import React from "react"
-import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 
-const InputStyled = styled(Field)`
+const InputStyled = styled(Field)<{ error?: string }>`
     display: block;
     border: none;
     outline: none;
     border-bottom: 2px solid
-        ${(props: StyledComponentProps & { error?: string }) =>
-            props.error ? "#e55353" : props.theme.colors.text};
+        ${props => (props.error ? "#e55353" : props.theme.colors.text)};
     padding-bottom: 0.5rem;
     width: 100%;
     max-width: 250px;

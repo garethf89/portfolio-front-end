@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 import io, { SocketIOClient } from "socket.io-client"
 
 import Eye from "../../svgs/eye"
-import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 
 type SocketIORes = {
@@ -15,7 +14,7 @@ const CounterStyled = styled.aside`
     display: block;
     width: 100%;
     text-align: right;
-    color: ${(props: StyledComponentProps) => props.theme.colors.sectionText};
+    color: ${props => props.theme.colors.sectionText};
 `
 
 const CounterIcon = styled(Eye)`

@@ -2,7 +2,6 @@ import * as animationData from "../../animations/Lines"
 
 import React, { useEffect } from "react"
 
-import { StyledComponentProps } from "../../../@types/types"
 import lottie from "lottie-web"
 import styled from "@emotion/styled"
 
@@ -18,7 +17,7 @@ const HeaderAnimation = styled.div<LinesProps>`
     bottom: -20%;
     z-index: 0;
     svg path {
-        stroke: ${(props: StyledComponentProps & LinesProps) =>
+        stroke: ${props =>
             props.dark ? `${props.theme.colors.sectionSecondaryLines}` : ``};
     }
 `

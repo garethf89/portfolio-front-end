@@ -1,6 +1,5 @@
 import FadeLink from "../Link/Link"
 import React from "react"
-import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 
 const LinkElement = styled(FadeLink)`
@@ -15,7 +14,7 @@ const LinkElement = styled(FadeLink)`
         left: 0;
         height: 1px;
         width: 100%;
-        background: ${(props: StyledComponentProps) => props.theme.colors.text};
+        background: ${props => props.theme.colors.text};
     }
 `
 

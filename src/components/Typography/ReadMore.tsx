@@ -1,5 +1,4 @@
 import FadeLink from "../Link/Link"
-import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 
 const ReadMore = styled(FadeLink)`
@@ -7,11 +6,10 @@ const ReadMore = styled(FadeLink)`
     display: inline;
     position: relative;
     overflow: visible;
-    color: ${(props: StyledComponentProps) => props.theme.colors.sectionText};
+    color: ${props => props.theme.colors.sectionText};
     &:active,
     &:visited {
-        color: ${(props: StyledComponentProps) =>
-            props.theme.colors.sectionText};
+        color: ${props => props.theme.colors.sectionText};
     }
 `
 

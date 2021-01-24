@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 
 import FadeLink from "../Link/Link"
-import { StyledComponentProps } from "../../../@types/types"
 import { Logo as animationData } from "../../animations/Logo"
 import { globals } from "../../state/state"
 import lottie from "lottie-web"
@@ -19,7 +18,7 @@ const HeaderLink = styled(FadeLink)`
     outline: 0;
     svg path {
         transition: stroke 0.5s ease-in-out;
-        stroke: ${(props: StyledComponentProps) =>
+        stroke: ${props =>
             props.dark === "true" ? props.theme.colors.logoDark : ""};
     }
 `

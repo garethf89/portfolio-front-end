@@ -7,7 +7,6 @@ import {
 import {
     ContentfulRichTextGatsbyReference,
     RenderRichTextData,
-    StyledComponentProps,
 } from "../../../@types/types"
 import {
     IPageContentTextFields,
@@ -22,7 +21,7 @@ import ContainerBreak from "../Utils/ContainerBreak"
 import Heading from "../Typography/Heading"
 import InlineLink from "../Typography/Inlinelink"
 import PageSkills from "./PageSkills"
-import { css } from "@emotion/core"
+import { css } from "@emotion/react"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import styled from "@emotion/styled"
 
@@ -32,7 +31,7 @@ const CUSTOMBLOCKS = {
     INTRO: "intro" as TopLevelBlockEnum,
 }
 
-const ImageStyles = (props: StyledComponentProps) => css`
+const ImageStyles = props => css`
     max-width: 100%;
     margin-bottom: ${props.theme.space.common[2]};
     margin-top: ${props.theme.space.common[3]};
@@ -42,25 +41,19 @@ export const StyledParagraph = styled.p`
     font-size: 1.13rem;
     line-height: 1.6;
     font-weight: 200;
-    margin-bottom: ${(props: StyledComponentProps) =>
-        props.theme.space.common[2]};
+    margin-bottom: ${props => props.theme.space.common[2]};
 `
 export const StyledParagraphIntro = styled.p`
     font-size: 1.58rem;
     line-height: 1.6;
     font-weight: 700;
-    margin-bottom: ${(props: StyledComponentProps) =>
-        props.theme.space.common[2]};
+    margin-bottom: ${props => props.theme.space.common[2]};
 `
 
 export const ContentContainer = styled(Container)`
-    max-width: ${(props: StyledComponentProps) =>
-        props.theme.sizes.contentMaxWidth};
+    max-width: ${props => props.theme.sizes.contentMaxWidth};
     @media (min-width: ${BREAKPOINTS.MEDIUM}) {
-        max-width: calc(
-            ${(props: StyledComponentProps) =>
-                    props.theme.sizes.contentMaxWidth} + 6rem
-        );
+        max-width: calc(${props => props.theme.sizes.contentMaxWidth} + 6rem);
     }
 `
 

@@ -28,9 +28,19 @@ type ButtonProps = {
     }
 }
 
-export type MyTheme = Theme & {
-    fonts: { body: string } & Theme["fonts"]
-    space: { [k: string]: Theme["fonts"] }
+type CustomTypes = Omit<
+    Theme,
+    "space" | "colors" | "buttons" | "fonts" | "sizes"
+>
+
+export interface MyTheme extends CustomTypes {
+    space?: {
+        [k: string]: string[]
+    }
+    sizes?: Record<string, string>
+    fonts?: {
+        [k: string]: string
+    }
     colors: {
         [k: string]: string | { [k: string]: ColorMode }
         modes?: {

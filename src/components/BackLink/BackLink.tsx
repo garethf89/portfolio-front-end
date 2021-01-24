@@ -1,12 +1,11 @@
 import Arrow from "../../svgs/arrow"
 import FadeLink from "../Link/Link"
 import React from "react"
-import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 
 const BackLinkStyled = styled(FadeLink)`
     display: block;
-    color: ${(props: StyledComponentProps) => props.theme.colors.text};
+    color: ${props => props.theme.colors.text};
     text-decoration: none;
     font-weight: 700;
     cursor: pointer;

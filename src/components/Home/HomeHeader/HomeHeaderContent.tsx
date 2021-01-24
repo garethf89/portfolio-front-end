@@ -2,7 +2,6 @@ import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import {
     ContentfulRichTextGatsbyReference,
     RenderRichTextData,
-    StyledComponentProps,
 } from "../../../../@types/types"
 
 import Bold from "../../Typography/Bold"
@@ -14,10 +13,8 @@ import styled from "@emotion/styled"
 const StyledParagraph = styled(Heading)`
     font-weight: 200;
     margin-top: 0;
-    color: ${(props: StyledComponentProps) =>
-        props.theme.colors.sectionTextSecondary};
-    max-width: ${(props: StyledComponentProps) =>
-        props.theme.sizes.contentMaxWidth};
+    color: ${props => props.theme.colors.sectionTextSecondary};
+    max-width: ${props => props.theme.sizes.contentMaxWidth};
 `
 
 interface BlockParams {

@@ -142,9 +142,9 @@ const Button = ({
     const context = useThemeUI()
     const { theme } = context
 
-    const colors = (theme as MyTheme).buttons[variant].borderColor
+    const colors = ((theme as unknown) as MyTheme).buttons[variant].borderColor
     const lineBorderColor =
-        ((theme as MyTheme).colors[colors] as string) ?? "#fff"
+        (((theme as unknown) as MyTheme).colors[colors] as string) ?? "#fff"
 
     return (
         <>

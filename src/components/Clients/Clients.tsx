@@ -1,12 +1,15 @@
-import { BREAKPOINTS, COLORS } from "../../gatsby-plugin-theme-ui/index"
+import {
+    BREAKPOINTS,
+    COLORS,
+    MyTheme,
+} from "../../gatsby-plugin-theme-ui/index"
 import React, { useState } from "react"
 import { useColorMode, useThemeUI } from "theme-ui"
 
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 import IconExternal from "../Icons/IconExternal"
-import { StyledComponentProps } from "../../../@types/types"
-import { css } from "@emotion/core"
+import { css } from "@emotion/react"
 import styled from "@emotion/styled"
 import { supportsWebP } from "../../helpers/support/webp"
 import { useIsDark } from "../../hooks/useIsDark"
@@ -34,7 +37,7 @@ const LogoWrapper = styled.div`
     }
 `
 
-const LogoCommon = (props: StyledComponentProps & ClientsProps) => css`
+const LogoCommon = (props: ClientsProps) => css`
     flex: 1;
     flex-basis: 19%;
     margin-right: 5%;
@@ -100,7 +103,9 @@ const Clients = ({ data }: ClientProps): React.ReactElement<ClientProps> => {
                     level="h3"
                     override="h2"
                     textAlign="center"
-                    marginBottom={`${theme.space.common[3]}`}
+                    marginBottom={`${
+                        ((theme as unknown) as MyTheme).space.common[3]
+                    }`}
                 >
                     Clients I have worked with
                 </Heading>

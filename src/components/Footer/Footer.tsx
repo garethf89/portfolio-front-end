@@ -5,29 +5,26 @@ import Container from "../Global/Container/Container"
 import FadeLink from "../Link/Link"
 import LinkedInIcon from "../../svgs/linkedin"
 import React from "react"
-import { StyledComponentProps } from "../../../@types/types"
 import styled from "@emotion/styled"
 
 const FooterCopyright = styled.p`
     margin: 1rem 0 0;
-    color: ${(props: StyledComponentProps) =>
-        props.theme.colors.sectionTextSecondary};
+    color: ${props => props.theme.colors.sectionTextSecondary};
 `
 
 const FooterOuter = styled.footer`
-    background: ${(props: StyledComponentProps) => props.theme.colors.footerBg};
-    color: ${(props: StyledComponentProps) => props.theme.colors.sectionText};
+    background: ${props => props.theme.colors.footerBg};
+    color: ${props => props.theme.colors.sectionText};
 `
 
 const FooterLink = styled.a`
-    color: ${(props: StyledComponentProps) => props.theme.colors.sectionText};
+    color: ${props => props.theme.colors.sectionText};
 `
 
 const FooterContent = styled.div``
 
 const FooterHeading = styled(Heading)<HeadingProps>`
-    margin-bottom: ${(props: StyledComponentProps) =>
-        props.theme.space.common[3]};
+    margin-bottom: ${props => props.theme.space.common[3]};
     text-align: left;
 
     @media (min-width: ${BREAKPOINTS.SMALL}) {

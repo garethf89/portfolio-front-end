@@ -1,4 +1,4 @@
-import { Global } from "@emotion/core"
+import { Global } from "@emotion/react"
 import { GlobalsStateProvider } from "../src/state/state"
 import React from "react"
 import { ThemeProvider } from "theme-ui"
@@ -27,10 +27,10 @@ window.___navigate = pathname => {
 }
 
 const Root = styled.div`
-    font-family: ${props => props.theme.fonts.body};
+    font-family: ${(props) => props.theme.fonts.body};
 `
 
-const ThemeWrapper = props => {
+const ThemeWrapper = (props) => {
     return (
         <TransitionLinkProvider>
             <GlobalsStateProvider>

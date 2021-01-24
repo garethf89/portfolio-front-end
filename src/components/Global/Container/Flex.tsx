@@ -2,7 +2,7 @@ import { color, flexbox, layout, space, typography } from "styled-system"
 
 import { BREAKPOINTS } from "../../../gatsby-plugin-theme-ui"
 import React from "react"
-import { css } from "@emotion/core"
+import { css } from "@emotion/react"
 import styled from "@emotion/styled"
 
 const baseStyle = props => css`

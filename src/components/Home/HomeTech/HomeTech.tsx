@@ -2,7 +2,6 @@ import { BLOCKS, Document, INLINES, MARKS } from "@contentful/rich-text-types"
 import {
     ContentfulRichTextGatsbyReference,
     RenderRichTextData,
-    StyledComponentProps,
 } from "../../../../@types/types"
 
 import Bold from "../../Typography/Bold"
@@ -26,7 +25,7 @@ const Skills = styled.ul`
     justify-content: space-between;
     padding: 0;
     list-style-type: none;
-    margin: ${(props: StyledComponentProps) => props.theme.space.common[4]} 0 0;
+    margin: ${props => props.theme.space.common[4]} 0 0;
 `
 
 const Text = ({ children }) => {
