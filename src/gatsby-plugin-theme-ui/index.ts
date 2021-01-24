@@ -53,6 +53,7 @@ export interface MyTheme extends CustomTypes {
 const theme: MyTheme = {
     useCustomProperties: true,
     useLocalStorage: false,
+    useColorSchemeMediaQuery: false,
     initialColorModeName: "light",
     colors: {
         background: COLORS.white,
