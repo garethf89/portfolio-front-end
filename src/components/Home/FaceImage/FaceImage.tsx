@@ -1,9 +1,6 @@
-import { StaticImage, getImage } from "gatsby-plugin-image"
-import { graphql, useStaticQuery } from "gatsby"
-
 import Circle from "../../Common/Circle"
-import Image from "../../Common/Image"
 import React from "react"
+import { StaticImage } from "gatsby-plugin-image"
 import styled from "@emotion/styled"
 
 const FaceCircle = styled(Circle)`
