@@ -3,6 +3,7 @@ import Heading, { HeadingProps } from "../Typography/Heading"
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui/index"
 import Container from "../Global/Container/Container"
 import FadeLink from "../Link/Link"
+import GitHubIcon from "../../svgs/github"
 import LinkedInIcon from "../../svgs/linkedin"
 import React from "react"
 import styled from "@emotion/styled"
@@ -19,6 +20,10 @@ const FooterOuter = styled.footer`
 
 const FooterLink = styled.a`
     color: ${props => props.theme.colors.sectionText};
+    margin-right: 1rem;
+    &:last-of-type {
+        margin-right: 0;
+    }
 `
 
 const FooterContent = styled.div``
@@ -57,6 +62,17 @@ const Footer = (): React.ReactElement<HTMLDivElement> => {
                         href="//uk.linkedin.com/in/garethferguson1"
                     >
                         <LinkedInIcon
+                            iconSize="small"
+                            width="30px"
+                            height="30px"
+                        />
+                    </FooterLink>
+                    <FooterLink
+                        rel="noopener"
+                        aria-label="Github"
+                        href="//github.com/garethf89"
+                    >
+                        <GitHubIcon
                             iconSize="small"
                             width="30px"
                             height="30px"
