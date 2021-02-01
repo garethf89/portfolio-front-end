@@ -73,3 +73,10 @@ yarn-error.log
 .contentful-codegen.json
 
 storybook-static
+
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
