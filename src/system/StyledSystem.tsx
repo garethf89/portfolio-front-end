@@ -1,6 +1,7 @@
 import * as CSS from "csstype"
 
-import React, { forwardRef } from "react"
+import { forwardRef } from "react";
+import * as React from "react";
 import {
     color,
     compose,

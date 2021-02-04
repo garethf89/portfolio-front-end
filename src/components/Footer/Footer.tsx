@@ -5,7 +5,7 @@ import Container from "../Global/Container/Container"
 import FadeLink from "../Link/Link"
 import GitHubIcon from "../../svgs/github"
 import LinkedInIcon from "../../svgs/linkedin"
-import React from "react"
+import * as React from "react";
 import styled from "@emotion/styled"
 
 const FooterCopyright = styled.p`

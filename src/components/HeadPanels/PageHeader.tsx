@@ -1,5 +1,6 @@
 import ProgressiveImage, { ResponsiveImage } from "../Utils/ProgressiveImage"
-import React, { useContext, useEffect } from "react"
+import { useContext, useEffect } from "react";
+import * as React from "react";
 
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui/index"
 import BackLink from "../BackLink/BackLink"

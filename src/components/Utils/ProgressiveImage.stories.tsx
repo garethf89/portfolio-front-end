@@ -1,7 +1,7 @@
 import ProgressiveImage, { ResponsiveImage } from "./ProgressiveImage"
 
 import Container from "../Global/Container/Container"
-import React from "react"
+import { Fragment } from "react";
 
 const ProgressiveLoadImageStory = ({
     title = "Test",
@@ -22,7 +22,7 @@ const ProgressiveLoadImageStory = ({
         L: { src: image, srcWebp: image },
         L2X: { src: image, srcWebp: image },
     }
-    const Wrap = container ? Container : React.Fragment
+    const Wrap = container ? Container : Fragment
     return (
         <Wrap>
             <ProgressiveImage

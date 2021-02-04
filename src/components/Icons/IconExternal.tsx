@@ -1,5 +1,6 @@
 import HTMLReactParser, { domToReact } from "html-react-parser"
-import React, { CSSProperties, SVGAttributes } from "react"
+import { CSSProperties, SVGAttributes } from "react";
+import * as React from "react";
 import { SystemsTypeProperties, styledSystem } from "../../system/StyledSystem"
 
 import { iconSystem } from "./iconSystem"

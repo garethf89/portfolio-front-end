@@ -1,6 +1,7 @@
 import * as CSS from "csstype"
 
-import React, { Ref } from "react"
+import { Ref } from "react";
+import * as React from "react";
 import { StyledDefaultProps, styledSystem } from "../../system/StyledSystem"
 
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"

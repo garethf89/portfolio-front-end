@@ -10,7 +10,7 @@ import Heading from "../Typography/Heading"
 import { IProjectFields } from "../../../@types/generated/contentful"
 import Lines from "../Animation/Lines"
 import { OuterWrapper } from "../Common/OuterWrapper"
-import React from "react"
+import * as React from "react";
 import ReadMore from "../Typography/ReadMore"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import styled from "@emotion/styled"

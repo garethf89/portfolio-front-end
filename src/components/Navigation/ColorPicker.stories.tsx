@@ -1,6 +1,5 @@
 import ColorPickerComponent from "./ColorPicker"
 import { DarkBackground } from "../../stories/DarkBackground"
-import React from "react"
 
 const ColorPickerStory = () => (
     <DarkBackground>

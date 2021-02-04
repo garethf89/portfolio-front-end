@@ -2,7 +2,7 @@ import { Field, useField } from "formik"
 
 import { COLORS } from "../../gatsby-plugin-theme-ui"
 import { FormError } from "./FormError"
-import React from "react"
+import * as React from "react";
 import styled from "@emotion/styled"
 
 const TextAreaStyled = styled(Field)`

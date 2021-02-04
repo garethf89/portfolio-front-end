@@ -2,7 +2,7 @@ import { BREAKPOINTS, MyTheme } from "../../gatsby-plugin-theme-ui/index"
 
 import ArrowLight from "../../svgs/light-arrow"
 import { Download } from "../../svgs/index"
-import React from "react"
+import * as React from "react";
 import { Button as TButton } from "@theme-ui/components"
 import styled from "@emotion/styled"
 import { useThemeUI } from "theme-ui"

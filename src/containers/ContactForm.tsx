@@ -8,7 +8,7 @@ import Button from "../components/Common/Button"
 import Flex from "../components/Global/Container/Flex"
 import Input from "../components/Form/Input"
 import Label from "../components/Form/Label"
-import React from "react"
+import * as React from "react";
 import TextArea from "../components/Form/Textarea"
 import styled from "@emotion/styled"
 import { useEmail } from "../services/email"

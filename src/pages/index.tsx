@@ -7,7 +7,7 @@ import HomeHeader from "../components/HeadPanels/HomeHeader"
 import HomeTech from "../components/Home/HomeTech/HomeTech"
 import LastFM from "../components/LastFM/LastFM"
 import Projects from "../components/Projects/Projects"
-import React from "react"
+import * as React from "react";
 
 const IndexPage = (): React.ReactElement => {
     const data = useStaticQuery(graphql`

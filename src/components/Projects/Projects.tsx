@@ -3,7 +3,7 @@ import Container from "../Global/Container/Container"
 import FadeLink from "../Link/Link"
 import Heading from "../Typography/Heading"
 import { IProjectFields } from "../../../@types/generated/contentful"
-import React from "react"
+import * as React from "react";
 import { SROnly } from "../Common/SROnly"
 import styled from "@emotion/styled"
 import { supportsWebP } from "../../helpers/support/webp"

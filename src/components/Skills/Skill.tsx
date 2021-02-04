@@ -1,7 +1,7 @@
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
 import Heading from "../Typography/Heading"
 import IconExternal from "../Icons/IconExternal"
-import React from "react"
+import * as React from "react";
 import styled from "@emotion/styled"
 
 const SkillContainer = styled.li`

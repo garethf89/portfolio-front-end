@@ -1,6 +1,6 @@
 import { SystemsTypeProperties, styledSystem } from "../../system/StyledSystem"
 
-import React from "react"
+import * as React from "react";
 import { iconSystem } from "./iconSystem"
 
 export interface IconPropsType extends SystemsTypeProperties {

@@ -1,6 +1,6 @@
 import Moon from "../../svgs/moon"
 import NavigationLink from "./NavigationLink"
-import React from "react"
+import * as React from "react";
 import Sun from "../../svgs/sun"
 import styled from "@emotion/styled"
 import { useColorMode } from "theme-ui"

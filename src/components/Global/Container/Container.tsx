@@ -8,7 +8,7 @@ import {
 
 import Box from "./Box"
 import Flex from "./Flex"
-import React from "react"
+import * as React from "react";
 
 type ContainerProps = {
     children: React.ReactNode

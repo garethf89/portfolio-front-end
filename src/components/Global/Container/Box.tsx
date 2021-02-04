@@ -1,7 +1,7 @@
 import { color, layout, space, typography } from "styled-system"
 
 import { BREAKPOINTS } from "../../../gatsby-plugin-theme-ui"
-import React from "react"
+import * as React from "react";
 import { css } from "@emotion/react"
 import styled from "@emotion/styled"
 

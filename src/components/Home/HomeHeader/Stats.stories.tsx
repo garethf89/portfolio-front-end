@@ -1,6 +1,5 @@
 import { DarkBackground } from "../../../stories/DarkBackground"
 import { IStatFields } from "../../../../@types/generated/contentful"
-import React from "react"
 import StatsComponent from "./Stats"
 
 const statsData: Array<IStatFields> = [

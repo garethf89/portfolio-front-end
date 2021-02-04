@@ -1,7 +1,6 @@
 import { AllContent, OutputImageComponent } from "./PageContent"
 
 import ContainerBreak from "../Utils/ContainerBreak"
-import React from "react"
 
 const FullWidthImageStory = ({
     type = "Test",

@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import { useState } from "react";
+import * as React from "react";
 import { SerializedStyles, css } from "@emotion/react"
 
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"

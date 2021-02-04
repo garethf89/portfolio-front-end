@@ -6,7 +6,7 @@
  */
 
 import { Helmet } from "react-helmet"
-import React from "react"
+import * as React from "react";
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 
 interface SeoProps {

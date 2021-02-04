@@ -1,5 +1,5 @@
 import Circle from "../../Common/Circle"
-import React from "react"
+import * as React from "react";
 import { StaticImage } from "gatsby-plugin-image"
 import styled from "@emotion/styled"
 

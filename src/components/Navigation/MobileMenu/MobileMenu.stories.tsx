@@ -1,6 +1,5 @@
 import { DarkBackground } from "../../../stories/DarkBackground"
 import MobileMenu from "./MobileMenu"
-import React from "react"
 
 const MobileMenuStory = ({ scale }) => (
     <DarkBackground>

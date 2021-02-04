@@ -1,7 +1,7 @@
 import Container from "../components/Global/Container/Container"
 import Heading from "../components/Typography/Heading"
 import PageHeader from "../components/HeadPanels/PageHeader"
-import React from "react"
+import * as React from "react";
 import SuggestedProjects from "../components/SuggestedProjects/SuggestedProjects"
 
 const NotFoundPage = (): React.ReactElement => {

@@ -3,7 +3,8 @@ import {
     COLORS,
     MyTheme,
 } from "../../gatsby-plugin-theme-ui/index"
-import React, { useState } from "react"
+import { useState } from "react";
+import * as React from "react";
 import { useColorMode, useThemeUI } from "theme-ui"
 
 import Container from "../Global/Container/Container"

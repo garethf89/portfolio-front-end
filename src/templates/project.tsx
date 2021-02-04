@@ -1,7 +1,7 @@
 import { IProjectFields } from "../../@types/generated/contentful"
 import PageContent from "../components/PageContent/PageContent"
 import PageHeader from "../components/HeadPanels/PageHeader"
-import React from "react"
+import * as React from "react";
 import { graphql } from "gatsby"
 
 interface ProjectProps {

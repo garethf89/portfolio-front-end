@@ -1,9 +1,9 @@
 import Container from "../Global/Container/Container"
-import React from "react"
+import { Fragment } from "react";
 import { StyledParagraph } from "./PageContent"
 
 const TextStory = ({ container, text }) => {
-    const Wrap = container ? Container : React.Fragment
+    const Wrap = container ? Container : Fragment
     return (
         <Wrap>
             <StyledParagraph>{text}</StyledParagraph>

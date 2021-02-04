@@ -1,6 +1,7 @@
 import * as Sentry from "@sentry/browser"
 
-import React, { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react";
+import * as React from "react";
 
 import Footer from "./Footer/Footer"
 import { Global } from "@emotion/react"

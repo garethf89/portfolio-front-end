@@ -2,7 +2,7 @@ import Heading from "../Typography/Heading"
 import { ISkill } from "../../../@types/generated/contentful"
 import { ISkillFieldsCustom } from "../../../@types/types"
 import { MyTheme } from "../../gatsby-plugin-theme-ui"
-import React from "react"
+import * as React from "react";
 import Skill from "../Skills/Skill"
 import styled from "@emotion/styled"
 import { useThemeUI } from "theme-ui"

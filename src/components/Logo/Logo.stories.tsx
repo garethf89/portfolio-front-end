@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react"
+import { createElement, useContext, useEffect } from "react";
 
 import { DarkBackground } from "../../stories/DarkBackground"
 import { LightContainer } from "../../stories/LightContainer"
@@ -6,7 +6,7 @@ import Logo from "./Logo"
 import { globals } from "../../state/state"
 
 const LogoStory = ({ variant }) =>
-    React.createElement(() => {
+    createElement(() => {
         const { dispatch } = useContext(globals)
 
         useEffect(() => {

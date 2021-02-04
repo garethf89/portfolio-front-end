@@ -1,7 +1,7 @@
 import { AllContent, OutputImageComponent } from "./PageContent"
 
 import Container from "../Global/Container/Container"
-import React from "react"
+import { Fragment } from "react";
 
 const ContentImageStory = ({
     type = "Test",
@@ -26,7 +26,7 @@ const ContentImageStory = ({
             L2X: { src: image, srcWebp: image },
         },
     }
-    const Wrap = container ? Container : React.Fragment
+    const Wrap = container ? Container : Fragment
     return (
         <Wrap>
             <OutputImageComponent type={type} image={imageProps} name={name} />

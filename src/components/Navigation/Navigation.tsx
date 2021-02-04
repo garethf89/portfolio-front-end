@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import * as React from "react";
 
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
 import ColorPicker from "./ColorPicker"
@@ -131,7 +132,7 @@ const Navigation = (): React.ReactElement => {
                 </NavMobile>
             )}
         </NavigationStyles>
-    )
+    );
 }
 
 export default Navigation

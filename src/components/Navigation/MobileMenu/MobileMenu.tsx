@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import * as React from "react";
 
 import debounce from "../../../helpers/debounce"
 import { gatsbyWindow } from "../../../helpers/gatsbyWindow"

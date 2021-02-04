@@ -2,7 +2,8 @@ import {
     ContentfulRichTextGatsbyReference,
     RenderRichTextData,
 } from "../../../@types/types"
-import React, { useContext, useEffect } from "react"
+import { useContext, useEffect } from "react";
+import * as React from "react";
 
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui/index"
 import Button from "../Common/Button"

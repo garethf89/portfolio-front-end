@@ -13,7 +13,8 @@ import {
     ISkill,
 } from "../../../@types/generated/contentful"
 import ProgressiveImage, { ImageFieldsCustom } from "../Utils/ProgressiveImage"
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import * as React from "react";
 
 import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
 import Container from "../Global/Container/Container"

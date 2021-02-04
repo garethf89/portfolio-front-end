@@ -10,7 +10,7 @@ import FaceImage from "../FaceImage/FaceImage"
 import Heading from "../../Typography/Heading"
 import { ISkillFields } from "../../../../@types/generated/contentful"
 import Inlinelink from "../../Typography/Inlinelink"
-import React from "react"
+import * as React from "react";
 import Skill from "../../Skills/Skill"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import styled from "@emotion/styled"

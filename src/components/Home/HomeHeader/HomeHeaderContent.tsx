@@ -6,7 +6,7 @@ import {
 
 import Bold from "../../Typography/Bold"
 import Heading from "../../Typography/Heading"
-import React from "react"
+import * as React from "react";
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import styled from "@emotion/styled"
 

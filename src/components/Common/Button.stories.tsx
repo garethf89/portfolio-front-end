@@ -2,7 +2,7 @@ import Button, { ButtonTypes } from "./Button"
 
 import { DarkBackground } from "../../stories/DarkBackground"
 import { LightContainer } from "../../stories/LightContainer"
-import React from "react"
+import * as React from "react";
 import { Spacer } from "../../stories/Spacer"
 
 const buttonTypes = ["primary", "secondary"]

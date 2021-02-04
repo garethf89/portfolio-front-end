@@ -1,4 +1,5 @@
-import React, { Dispatch, createContext, useReducer } from "react"
+import { Dispatch, createContext, useReducer } from "react";
+import * as React from "react";
 
 type InitalStateTypes = {
     theme: string
