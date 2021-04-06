@@ -2,3 +2,10 @@
   for = "/*"
   [headers.values]
      Access-Control-Allow-Origin = "*"
+
+[[redirects]]
+  from = "/api"
+  to = "https://api.garethferguson.co.uk:8082"
+  status = 200
+  force = true
+  headers = {X-From = "Netlify"}
