@@ -4,7 +4,7 @@
      Access-Control-Allow-Origin = "*"
 
 [[redirects]]
-  from = "/api"
+  from = "/api/*"
   to = "https://api.garethferguson.co.uk:8082/:splat"
   status = 200
   force = true
