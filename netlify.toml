@@ -5,7 +5,7 @@
 
 [[redirects]]
   from = "/api"
-  to = "https://api.garethferguson.co.uk:8082"
+  to = "https://api.garethferguson.co.uk:8082/:splat"
   status = 200
   force = true
   headers = {X-From = "Netlify"}
