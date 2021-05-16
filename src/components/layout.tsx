@@ -1,7 +1,7 @@
+import * as React from "react"
 import * as Sentry from "@sentry/browser"
 
-import { useContext, useEffect, useState } from "react";
-import * as React from "react";
+import { useContext, useEffect, useState } from "react"
 
 import Footer from "./Footer/Footer"
 import { Global } from "@emotion/react"
@@ -39,8 +39,7 @@ const TemplateWrap = ({
         if (!initGlobals) {
             if (process.env.NODE_ENV === "production") {
                 Sentry.init({
-                    dsn:
-                        "https://23f3f26328754be8baa6040caea128b7@sentry.io/1876648",
+                    dsn: process.env.GATSBY_SENTRY ?? "",
                 })
             }
             if (!supportsWebP()) {
