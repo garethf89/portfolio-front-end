@@ -14,20 +14,21 @@ const data = require("./src/constants/lastfm.ts").data
 const album = require("./src/__mocks__/lastfm")
 const inlineSvg = require("./src/gatsby/node/inline-svg")
 
+const PacktrackerPlugin = require("@packtracker/webpack-plugin")
+
 exports.createSchemaCustomization = inlineSvg.createSchemaCustomization
 exports.createResolvers = inlineSvg.createResolvers
 exports.createPages = require("./src/gatsby/node/createPages")
 
 exports.onCreateWebpackConfig = ({ actions }) => {
     actions.setWebpackConfig({
-        node: { fs: "empty" }
+        node: { fs: "empty" },
     })
 }
-
 exports.sourceNodes = async ({
     actions: { createNode },
     createNodeId,
-    createContentDigest
+    createContentDigest,
 }) => {
     let result = { albums: album }
     if (process.env.NODE_ENV === "production") {
@@ -37,10 +38,10 @@ exports.sourceNodes = async ({
                 headers: {
                     "Access-Control-Allow-Origin": "*",
                     "Access-Control-Allow-Methods": "*",
-                    "Access-Control-Allow-Headers": "*"
+                    "Access-Control-Allow-Headers": "*",
                 },
                 url: url,
-                data: data
+                data: data,
             })
             result = { albums: res.data }
         } catch (e) {
@@ -52,7 +53,24 @@ exports.sourceNodes = async ({
         id: createNodeId(`lastfm-build-time-data`),
         internal: {
             type: `Albums`,
-            contentDigest: createContentDigest(result)
-        }
+            contentDigest: createContentDigest(result),
+        },
+    })
+}
+
+exports.onCreateWebpackConfig = ({
+    stage,
+    rules,
+    loaders,
+    plugins,
+    actions,
+}) => {
+    actions.setWebpackConfig({
+        plugins: [
+            new PacktrackerPlugin({
+                project_token: process.env.GATSBY_PT_TOKEN,
+                upload: true,
+            }),
+        ],
     })
 }
