@@ -69,7 +69,8 @@ exports.onCreateWebpackConfig = ({
         plugins: [
             new PacktrackerPlugin({
                 project_token: process.env.GATSBY_PT_TOKEN,
-                upload: true,
+                upload: process.env.CI === "true",
+                branch: "master",
             }),
         ],
     })
