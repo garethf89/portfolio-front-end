@@ -57,21 +57,3 @@ exports.sourceNodes = async ({
         },
     })
 }
-
-exports.onCreateWebpackConfig = ({
-    stage,
-    rules,
-    loaders,
-    plugins,
-    actions,
-}) => {
-    actions.setWebpackConfig({
-        plugins: [
-            new PacktrackerPlugin({
-                project_token: process.env.GATSBY_PT_TOKEN,
-                upload: process.env.CI === "true",
-                branch: "master",
-            }),
-        ],
-    })
-}
