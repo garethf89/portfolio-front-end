@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import * as React from "react";
+import { useContext, useEffect, useState } from "react"
+import * as React from "react"
 
 import FadeLink from "../Link/Link"
 import { Logo as animationData } from "../../animations/Logo"

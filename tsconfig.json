@@ -17,5 +17,5 @@
         "noUnusedLocals": false,
         "typeRoots": ["/@types"]
     },
-    "include": ["src/**/*.ts", "src/templates/project.tsx"]
+    "include": ["src/**/*.ts", "src/templates/project.tsx", "src/@chakra-ui/theme.ts"]
 }

@@ -1,15 +1,45 @@
+import {
+    BaseThemeWithExtensions,
+    ThemeExtension,
+    ThemeOverride,
+} from "@chakra-ui/react"
+import { ThemeTypings } from "@chakra-ui/styled-system"
+import { ChakraTheme } from "@chakra-ui/theme"
+import "@emotion/react"
 import { Asset } from "contentful"
 import { ResponsiveImage } from "../src/components/Utils/ProgressiveImage"
 import { IProjectFields } from "./generated/contentful"
 
-import "@emotion/react"
-
-import { MyTheme } from "../src/gatsby-plugin-theme-ui/index"
-declare module "@emotion/react" {
-    /* eslint-disable-next-line */
-    export interface Theme extends MyTheme {}
+interface Size {
+    [key: string]: string
+    container: Record<"sm" | "xl" | "md" | "lg" | "content", string>
 }
 
+interface CustomTheme extends ThemeTypings {
+    sizes: Size
+}
+
+declare module "@emotion/react" {
+    /* eslint-disable-next-line */
+    export interface Theme extends CustomTheme {}
+}
+
+declare module "@chakra-ui/react" {
+    /* eslint-disable-next-line */
+    export declare function extendTheme<
+        BaseTheme extends ChakraTheme = ChakraTheme,
+        Extensions extends (
+            | BaseTheme
+            | ThemeOverride<BaseTheme>
+            | ThemeExtension<ThemeOverride<BaseTheme>>
+        )[] = (
+            | ThemeOverride<BaseTheme>
+            | ThemeExtension<ThemeOverride<BaseTheme>>
+        )[]
+    >(
+        ...extensions: [...Extensions]
+    ): BaseThemeWithExtensions<CustomTheme, Extensions>
+}
 export interface StyledProps {
     as?: string
 }

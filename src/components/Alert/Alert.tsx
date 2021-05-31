@@ -1,5 +1,5 @@
 import Cross from "../../svgs/cross"
-import * as React from "react";
+import * as React from "react"
 import Tick from "../../svgs/tick"
 import styled from "@emotion/styled"
 

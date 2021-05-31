@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import * as React from "react";
+import * as React from "react"
 
-import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
+import { useEffect, useState } from "react"
+
+import { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
 import ColorPicker from "./ColorPicker"
 import MobileMenu from "./MobileMenu/MobileMenu"
 import NavigationLink from "./NavigationLink"
@@ -107,17 +108,17 @@ const Navigation = (): React.ReactElement => {
     return (
         <NavigationStyles>
             <NavList animate={animate} active={active}>
-                {menuLinks.map(link => {
+                {menuLinks.map((link, i) => {
                     const internal = /^\/(?!\/)/.test(link.slug)
                     return (
-                        <NavLi key={link.name}>
+                        <NavLi key={link.name + i}>
                             <NavigationLink internal={internal} to={link.slug}>
                                 <span>{link.name}</span>
                             </NavigationLink>
                         </NavLi>
                     )
                 })}
-                <NavLi>
+                <NavLi key={"color-nav"}>
                     <ColorPicker />
                 </NavLi>
             </NavList>
@@ -132,7 +133,7 @@ const Navigation = (): React.ReactElement => {
                 </NavMobile>
             )}
         </NavigationStyles>
-    );
+    )
 }
 
 export default Navigation

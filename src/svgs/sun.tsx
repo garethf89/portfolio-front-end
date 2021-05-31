@@ -1,10 +1,11 @@
 import * as React from "react"
 
+import { Icon as ChakraIcon, IconProps } from "@chakra-ui/react"
 import Icon, { IconPropsType } from "../components/Icons/Icon"
 
-const Sun = (props: React.SVGProps<SVGSVGElement>): React.ReactElement => {
+const Sun = (props: IconProps): React.ReactElement => {
     return (
-        <svg viewBox="0 0 512 512" {...props}>
+        <ChakraIcon viewBox="0 0 512 512" {...props}>
             <path
                 fill="none"
                 stroke="currentColor"
@@ -23,7 +24,7 @@ const Sun = (props: React.SVGProps<SVGSVGElement>): React.ReactElement => {
                 strokeMiterlimit={10}
                 strokeWidth={32}
             />
-        </svg>
+        </ChakraIcon>
     )
 }
 

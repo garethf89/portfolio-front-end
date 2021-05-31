@@ -1,7 +1,7 @@
 import { IProjectFields } from "../../@types/generated/contentful"
 import PageContent from "../components/PageContent/PageContent"
 import PageHeader from "../components/HeadPanels/PageHeader"
-import * as React from "react";
+import * as React from "react"
 import { graphql } from "gatsby"
 
 interface ProjectProps {
@@ -28,7 +28,7 @@ const ProjectTemplate = ({ data }: ProjectProps): React.ReactElement => {
 }
 
 export const query = graphql`
-    query($id: String!) {
+    query ($id: String!) {
         page: contentfulProject(id: { eq: $id }) {
             id
             title

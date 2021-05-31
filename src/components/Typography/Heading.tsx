@@ -1,68 +1,65 @@
-import * as CSS from "csstype"
+import * as React from "react"
 
-import { Ref } from "react";
-import * as React from "react";
-import { StyledDefaultProps, styledSystem } from "../../system/StyledSystem"
+import { HeadingProps as ChakraHeadingProps, chakra } from "@chakra-ui/react"
 
-import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
-import { StyledProps } from "../../../@types/types"
-import { css } from "@emotion/react"
-import styled from "@emotion/styled"
+import { Ref } from "react"
+import { SPACE } from "../../@chakra-ui/gatsby-plugin/theme"
 
-/* stylelint-disable */
-const common = props => css`
-    font-family: ${props.theme.fonts.body};
-    line-height: 1.2;
-    a {
-        text-decoration: none;
-        color: inherit;
-    }
-`
+const H1 = chakra("h1", {
+    baseStyle: {
+        fontSize: ["42px", "42px", "52px"],
+        lineHeight: "1.2",
+        fontWeight: "200",
+    },
+})
 
-const H1 = styled.h1<StyledProps>`
-    font-size: 42px;
-    line-height: 1.2;
-    font-weight: 200;
-    ${common}
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
-        font-size: 52px;
-    }
-`
+const H2 = chakra("h2", {
+    baseStyle: {
+        fontSize: "38px",
+        lineHeight: 1,
+        fontWeight: 200,
+        marginBottom: SPACE.common[4],
+        marginTop: 0,
+    },
+})
 
-const H2 = styled.h2`
-    font-size: 38px;
-    line-height: 1;
-    font-weight: 200;
-    ${common}
-    margin-bottom:  ${props => props.theme.space.common[4]};
-    margin-top: 0;
-`
+const H3 = chakra("h3", {
+    baseStyle: {
+        fontSize: "30px",
+        lineHeight: 1.3,
+        fontWeight: 200,
+    },
+})
 
-const H3 = styled.h3<StyledProps>`
-    font-size: 30px;
-    line-height: 1.3;
-    font-weight: 200;
-    ${common}
-`
-const H4 = styled.h4`
-    font-size: 30px;
-    line-height: 1;
-    font-weight: 200;
-    ${common}
-`
-const H5 = styled.h5`
-    font-size: 24px;
-    line-height: 1.2;
-    font-weight: 200;
-    ${common}
-`
+const H4 = chakra("h4", {
+    baseStyle: {
+        fontSize: "30px",
+        lineHeight: 1,
+        fontWeight: 200,
+    },
+})
 
-const H6 = styled.h6`
-    font-size: 18px;
-    line-height: 1;
-    font-weight: 200;
-    ${common}
-`
+const H5 = chakra("h5", {
+    baseStyle: {
+        fontSize: "24px",
+        lineHeight: 1.3,
+        fontWeight: 200,
+    },
+})
+
+const H6 = chakra("h6", {
+    baseStyle: {
+        fontSize: "18px",
+        lineHeight: 1,
+        fontWeight: 200,
+    },
+})
+
+const Default = chakra("p", {
+    baseStyle: {
+        marginTop: "1rem",
+    },
+})
 
 const Variants = {
     h1: H1,
@@ -73,20 +70,31 @@ const Variants = {
     h6: H6,
 }
 
-const Default = styled.p`
-    ${common}
-`
+const HeadingStyled = (level: string) => {
+    const element = level && Variants[level] ? Variants[level] : Default
+
+    return chakra(element, {
+        baseStyle: {
+            marginBottom: "2rem",
+            lineHeight: "1.2",
+            a: {
+                color: "inherit",
+                textDecoration: "none",
+            },
+        },
+    })
+}
+
+type HeadingsPossible = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p"
 
 export type HeadingProps = {
-    level?: string
+    level: HeadingsPossible
     text?: string
     className?: string
     children?: React.ReactNode
-    override?: string
+    override?: HeadingsPossible
     ref?: Ref<HTMLElement>
-} & React.ComponentProps<"h1"> &
-    StyledDefaultProps &
-    CSS.Properties
+} & ChakraHeadingProps
 
 const Heading: React.FC<HeadingProps> = ({
     children,
@@ -94,26 +102,21 @@ const Heading: React.FC<HeadingProps> = ({
     level,
     text,
     ...props
-}) => {
-    const C = level && Variants[level] ? Variants[level] : Default
-
-    const RenderedHeading = (systemProps: unknown) => (
-        <C as={override} {...systemProps}>
-            {text}
-            {children}
-        </C>
-    )
-
+}): React.ReactElement => {
     const defaultProps = {
         ...props,
     }
 
-    const StyledHeading = styledSystem({
-        Component: RenderedHeading,
-        StyleProps: defaultProps,
-    })
-
-    return StyledHeading
+    const type: HeadingsPossible = override || level
+    const Element = HeadingStyled(level)
+    return (
+        <>
+            <Element as={type} {...defaultProps}>
+                {text}
+                {children}
+            </Element>
+        </>
+    )
 }
 
 Heading.defaultProps = {

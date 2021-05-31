@@ -1,20 +1,19 @@
-import { useEffect, useState } from "react";
-import * as React from "react";
-
-import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
+import styled from "@emotion/styled"
+import { Link } from "gatsby"
+import * as React from "react"
+import { useEffect, useState } from "react"
+import { BREAKPOINTS, SPACE } from "../../@chakra-ui/gatsby-plugin/theme"
+import { random } from "../../helpers/random"
+import { supportsWebP } from "../../helpers/support/webp"
+import { getAllProjects } from "../../hooks/get-all-projects"
+import { SROnly } from "../Common/SROnly"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
-import { Link } from "gatsby"
-import { SROnly } from "../Common/SROnly"
-import { getAllProjects } from "../../hooks/get-all-projects"
-import { random } from "../../helpers/random"
-import styled from "@emotion/styled"
-import { supportsWebP } from "../../helpers/support/webp"
 
 const SuggestedProjectLinkContainer = styled.div`
     display: inline-block;
     width: 100%;
-    margin-bottom: ${props => props.theme.space.common[4]};
+    margin-bottom: ${SPACE.common[4]};
     margin-right: 1rem;
     &:last-of-type {
         margin-bottom: 0;
@@ -35,7 +34,7 @@ const SuggestedProjectLinkContainer = styled.div`
         margin-right: 0;
     }
 `
-const SuggestedProjectLink = styled(Link)<SuggestedProjectProps>`
+const SuggestedProjectLink = styled(Link)`
     padding-top: 56.25%;
     width: 100%;
     display: inline-block;
@@ -93,7 +92,7 @@ const SuggestedProjects = (): React.ReactElement => {
     }, [])
 
     return (
-        <Container useflex paddingX={[0, 0, 0]} justifyContent="space-between">
+        <Container useflex px={[0, 0, 0]} justifyContent="space-between">
             {randomProjects &&
                 randomProjects.map((project, i) => {
                     const imageSrc = webp

@@ -1,7 +1,7 @@
 import Input from "./Input"
 import Label from "./Label"
 import { LightContainer } from "../../stories/LightContainer"
-import * as React from "react";
+import * as React from "react"
 import { Spacer } from "../../stories/Spacer"
 import TextArea from "./Textarea"
 import { withFormik } from "storybook-formik"

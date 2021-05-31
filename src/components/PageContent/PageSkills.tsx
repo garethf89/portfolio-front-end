@@ -1,18 +1,18 @@
+import * as React from "react"
+
 import Heading from "../Typography/Heading"
 import { ISkill } from "../../../@types/generated/contentful"
 import { ISkillFieldsCustom } from "../../../@types/types"
-import { MyTheme } from "../../gatsby-plugin-theme-ui"
-import * as React from "react";
+import { SPACE } from "../../@chakra-ui/gatsby-plugin/theme"
 import Skill from "../Skills/Skill"
 import styled from "@emotion/styled"
-import { useThemeUI } from "theme-ui"
 
 interface PageSkillProps {
     skills: ISkill[]
 }
 
 const PageSkillContainer = styled.div`
-    margin-bottom: ${props => props.theme.space.common[2]};
+    margin-bottom: ${SPACE.common[2]};
 `
 
 const SkillContainer = styled.div`
@@ -22,16 +22,13 @@ const SkillContainer = styled.div`
 `
 
 const PageSkills = ({ skills }: PageSkillProps): React.ReactElement => {
-    const context = useThemeUI()
-    const { theme } = context
-
     return (
         <PageSkillContainer>
             <Heading
                 level="h3"
                 override="h2"
                 fontWeight={700}
-                marginBottom={((theme as unknown) as MyTheme).space.common[3]}
+                marginBottom={SPACE.common[3]}
             >
                 Technology Used
             </Heading>
@@ -43,6 +40,7 @@ const PageSkills = ({ skills }: PageSkillProps): React.ReactElement => {
                             id={`skill${i}`}
                             icon={skill.icon.svg.content}
                             title={skill.name}
+                            boxSize={[14, 14, 16]}
                         >
                             {skill.name}
                         </Skill>

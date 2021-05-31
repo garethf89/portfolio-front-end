@@ -1,7 +1,9 @@
-import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
+import * as React from "react"
+
+import { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
 import Heading from "../Typography/Heading"
 import IconExternal from "../Icons/IconExternal"
-import * as React from "react";
+import { SystemsTypeProperties } from "../Icons/Icon"
 import styled from "@emotion/styled"
 
 const SkillContainer = styled.li`
@@ -26,9 +28,10 @@ const SkillText = styled(Heading)`
     font-weight: 200;
     font-size: 18px;
     flex: 0;
+    margin: 1rem 0;
 `
 
-interface SkillProps {
+interface SkillProps extends SystemsTypeProperties {
     children: React.ReactNode
     icon: string
     id: string
@@ -40,15 +43,16 @@ const Skill = ({
     id,
     icon,
     title,
+    boxSize,
 }: SkillProps): React.ReactElement => (
     <SkillContainer>
         <IconExternal
             aria-describedby={id}
             aria-labelledby={id}
             title={title}
-            iconSize="medium"
             margin="0 auto"
             iconSvg={icon}
+            boxSize={boxSize}
         />
         <SkillText id={id} level="h4" override="p">
             {children}

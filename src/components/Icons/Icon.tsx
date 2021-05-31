@@ -1,11 +1,13 @@
-import { SystemsTypeProperties, styledSystem } from "../../system/StyledSystem"
+import * as React from "react"
 
-import * as React from "react";
-import { iconSystem } from "./iconSystem"
+import { IconProps } from "@chakra-ui/react"
+import styled from "@emotion/styled"
+
+export type SystemsTypeProperties = React.HTMLAttributes<HTMLDivElement> &
+    IconProps
 
 export interface IconPropsType extends SystemsTypeProperties {
     "data-icon"?: boolean
-    iconSize?: "xs" | "small" | "medium" | "large"
     iconSrc?: React.ReactElement
     iconSvg?: string
 }
@@ -26,11 +28,6 @@ export default ({
         "data-icon": true,
     }
 
-    const Icon = styledSystem({
-        Component: Component,
-        customSystems: [iconSystem],
-        StyleProps: defaultProps,
-    })
-
-    return Icon
+    const SystemComponent = styled(Component)``
+    return <SystemComponent {...defaultProps} />
 }

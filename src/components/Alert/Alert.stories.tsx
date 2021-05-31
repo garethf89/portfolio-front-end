@@ -1,6 +1,6 @@
 import Alert, { AlertProps } from "./Alert"
 
-import * as React from "react";
+import * as React from "react"
 
 const alertTypeOptions = ["success", "error"]
 

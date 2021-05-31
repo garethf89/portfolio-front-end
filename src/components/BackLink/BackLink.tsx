@@ -1,15 +1,20 @@
+import * as React from "react"
+
+import { Box, useStyleConfig } from "@chakra-ui/react"
+
 import Arrow from "../../svgs/arrow"
 import FadeLink from "../Link/Link"
-import * as React from "react";
 import styled from "@emotion/styled"
 
 const BackLinkStyled = styled(FadeLink)`
     display: block;
-    color: ${props => props.theme.colors.text};
+    color: inherit;
     text-decoration: none;
     font-weight: 700;
     cursor: pointer;
 `
+
+const BackLinkStyledSpan = styled(Box)``
 
 interface BackLinkProps {
     text?: string
@@ -18,11 +23,15 @@ interface BackLinkProps {
 const BackLink: React.FC<BackLinkProps> = ({
     text = "Back",
 }): React.ReactElement => {
+    const styles = useStyleConfig("ColorText")
+
     return (
-        <BackLinkStyled to="/">
-            <Arrow iconSize="xs" />
-            {text}
-        </BackLinkStyled>
+        <BackLinkStyledSpan sx={styles} to="/">
+            <BackLinkStyled to="/">
+                <Arrow boxSize={8} />
+                {text}
+            </BackLinkStyled>
+        </BackLinkStyledSpan>
     )
 }
 export default BackLink

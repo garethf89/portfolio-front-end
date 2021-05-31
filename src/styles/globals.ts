@@ -1,10 +1,13 @@
 import { css } from "@emotion/react"
 import emotionNormalize from "emotion-normalize"
-import theme from "../gatsby-plugin-theme-ui"
+import theme from "../@chakra-ui/gatsby-plugin/theme"
 
 /* stylelint-disable */
 export const globalStyles = css`
     ${emotionNormalize}
+    * {
+        box-sizing: border-box;
+    }
     body {
         font-family: ${theme.fonts.body};
         transition: background 0.5s ease-in-out;

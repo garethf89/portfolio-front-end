@@ -1,11 +1,12 @@
+import * as React from "react"
+
+import { BREAKPOINTS, SPACE } from "../../@chakra-ui/gatsby-plugin/theme"
 import {
     ContentfulRichTextGatsbyReference,
     RenderRichTextData,
 } from "../../../@types/types"
-import { useContext, useEffect } from "react";
-import * as React from "react";
+import { useContext, useEffect } from "react"
 
-import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui/index"
 import Button from "../Common/Button"
 import Container from "../Global/Container/Container"
 import Counter from "../Counter/Counter"
@@ -31,7 +32,7 @@ const HomeContainer = styled(Container)`
     @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         display: flex;
         justify-content: space-between;
-        padding: 0 calc(0.65rem + ${props => props.theme.space.padding[0]});
+        padding: 0 calc(0.65rem + ${SPACE.common[0]});
     }
 `
 

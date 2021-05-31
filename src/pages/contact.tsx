@@ -1,7 +1,7 @@
 import ContactForm from "../containers/ContactForm"
 import Container from "../components/Global/Container/Container"
 import PageHeader from "../components/HeadPanels/PageHeader"
-import * as React from "react";
+import * as React from "react"
 
 const ContactPage = (): React.ReactElement => {
     const headerText = "Contact me using the form below"

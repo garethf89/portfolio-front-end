@@ -1,44 +1,38 @@
-import { color, flexbox, layout, space, typography } from "styled-system"
+import * as React from "react"
 
-import { BREAKPOINTS } from "../../../gatsby-plugin-theme-ui"
-import * as React from "react";
-import { css } from "@emotion/react"
-import styled from "@emotion/styled"
+import { FlexProps as ChakraFlexProps, chakra } from "@chakra-ui/react"
 
-const baseStyle = props => css`
-    position: relative;
-    margin: 0 auto auto;
-    width: 100%;
-    display: flex;
-    padding: ${props.vPadding ? props.theme.space.common[4] : "0"}
-        ${props.theme.space.common[1]};
-    text-align: left;
-    max-width: ${props.theme.sizes.maxWidth};
-    flex-direction: column;
-    @media (min-width: ${BREAKPOINTS.SMALL}) {
-        flex-direction: row;
-    }
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
-        padding: ${props.vPadding ? props.theme.space.common[4] : "0"}
-            ${props.theme.space.common[3]};
-    }
-`
+import { SPACE } from "../../../@chakra-ui/gatsby-plugin/theme"
+import { useTheme } from "@emotion/react"
 
-const FlexElement = styled.section(
-    baseStyle,
-    flexbox,
-    space,
-    color,
-    layout,
-    typography
-)
+const FlexElement = chakra("section", {
+    baseStyle: {
+        position: "relative",
+        margin: "0 auto auto",
+        width: "100%",
+        textAlign: "left",
+        display: "flex",
+    },
+})
 
 type FlexProps = {
+    vPadding?: boolean
     children: React.ReactNode
+} & ChakraFlexProps
+
+const Flex = ({ children, ...props }: FlexProps): React.ReactElement => {
+    const theme = useTheme()
+    return (
+        <FlexElement
+            flexDirection={["column", "column", "row"]}
+            maxW={theme.sizes.container.xl}
+            paddingY={props.vPadding ? SPACE.common[4] : "0"}
+            paddingX={[SPACE.common[1], SPACE.common[1], SPACE.common[3]]}
+            as="section"
+            {...props}
+        >
+            {children}
+        </FlexElement>
+    )
 }
-
-const Flex = ({ children, ...props }: FlexProps): React.ReactElement => (
-    <FlexElement {...props}>{children}</FlexElement>
-)
-
 export default Flex

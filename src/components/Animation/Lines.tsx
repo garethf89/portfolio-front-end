@@ -1,16 +1,16 @@
+import * as React from "react"
 import * as animationData from "../../animations/Lines"
 
-import { useEffect } from "react";
-import * as React from "react";
-
+import { Box } from "@chakra-ui/react"
 import lottie from "lottie-web"
 import styled from "@emotion/styled"
+import { useEffect } from "react"
 
 interface LinesProps extends React.ComponentProps<"div"> {
     dark?: boolean
 }
 
-const HeaderAnimation = styled.div<LinesProps>`
+const HeaderAnimation = styled(Box)<LinesProps>`
     position: absolute;
     left: -20%;
     right: -20%;
@@ -19,7 +19,7 @@ const HeaderAnimation = styled.div<LinesProps>`
     z-index: 0;
     svg path {
         stroke: ${props =>
-            props.dark ? `${props.theme.colors.sectionSecondaryLines}` : ``};
+            props.dark ? `${props.theme.colors["sectionSecondaryLines"]}` : ``};
     }
 `
 

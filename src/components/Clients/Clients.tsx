@@ -1,11 +1,10 @@
+import * as React from "react"
+
 import {
     BREAKPOINTS,
     COLORS,
-    MyTheme,
-} from "../../gatsby-plugin-theme-ui/index"
-import { useState } from "react";
-import * as React from "react";
-import { useColorMode, useThemeUI } from "theme-ui"
+    SPACE,
+} from "../../@chakra-ui/gatsby-plugin/theme"
 
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
@@ -13,7 +12,9 @@ import IconExternal from "../Icons/IconExternal"
 import { css } from "@emotion/react"
 import styled from "@emotion/styled"
 import { supportsWebP } from "../../helpers/support/webp"
+import { useColorMode } from "@chakra-ui/react"
 import { useIsDark } from "../../hooks/useIsDark"
+import { useState } from "react"
 
 type ClientsProps = {
     mode: string
@@ -62,7 +63,9 @@ const Logo = styled.img`
     ${LogoCommon}
 `
 
-const IconLogo = styled(IconExternal)`
+const IconLogo = styled(IconExternal, {
+    shouldForwardProp: prop => prop !== "dark",
+})`
     ${LogoCommon}
 `
 
@@ -93,10 +96,7 @@ interface ClientProps {
 
 const Clients = ({ data }: ClientProps): React.ReactElement<ClientProps> => {
     const [webP] = useState(() => supportsWebP)
-    const context = useThemeUI()
-    const { theme } = context
-
-    const [colorMode] = useColorMode()
+    const { colorMode } = useColorMode()
     return (
         <>
             <ClientsContainer vPadding>
@@ -104,9 +104,7 @@ const Clients = ({ data }: ClientProps): React.ReactElement<ClientProps> => {
                     level="h3"
                     override="h2"
                     textAlign="center"
-                    marginBottom={`${
-                        ((theme as unknown) as MyTheme).space.common[3]
-                    }`}
+                    marginBottom={`${SPACE.common[3]}`}
                 >
                     Clients I have worked with
                 </Heading>

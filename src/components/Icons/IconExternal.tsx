@@ -1,26 +1,22 @@
-import HTMLReactParser, { domToReact } from "html-react-parser"
-import { CSSProperties, SVGAttributes } from "react";
-import * as React from "react";
-import { SystemsTypeProperties, styledSystem } from "../../system/StyledSystem"
+import * as React from "react"
 
-import { iconSystem } from "./iconSystem"
+import HTMLReactParser, { domToReact } from "html-react-parser"
+
+import { Icon as ChakraIcon } from "@chakra-ui/react"
+import { SystemsTypeProperties } from "./Icon"
+import styled from "@emotion/styled"
 
 interface IconPropsType extends SystemsTypeProperties {
     "data-icon"?: boolean
-    iconSize?: "small" | "medium" | "large"
     iconSvg?: string
     title?: string
 }
-
-export type IconProps = IconPropsType &
-    SVGAttributes<Record<string, string>> &
-    CSSProperties
 
 export const IconExternal = ({
     iconSvg,
     title,
     ...props
-}: IconProps): React.ReactElement => {
+}: IconPropsType): React.ReactElement => {
     let attr = {}
 
     const htmlToReactWithReplace = (icon: string, styledProps: unknown) => {
@@ -31,10 +27,10 @@ export const IconExternal = ({
             }
             if (domNode.name === "svg") {
                 return (
-                    <svg {...attr} {...styledProps}>
+                    <ChakraIcon {...attr} {...styledProps}>
                         {title && <title>{title}</title>}
                         {domToReact(domNode.children)}
-                    </svg>
+                    </ChakraIcon>
                 )
             }
         }
@@ -55,13 +51,8 @@ export const IconExternal = ({
         "data-icon": true,
     }
 
-    const IconSystem = styledSystem({
-        Component: Render,
-        customSystems: [iconSystem],
-        StyleProps: defaultProps,
-    })
-
-    return IconSystem
+    const SystemComponent = styled(Render)``
+    return <SystemComponent {...defaultProps} />
 }
 
 export default IconExternal

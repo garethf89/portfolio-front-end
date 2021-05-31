@@ -1,6 +1,6 @@
 import { DarkBackground } from "../../stories/DarkBackground"
 import NavigationLink from "./NavigationLink"
-import * as React from "react";
+import * as React from "react"
 
 export const NavigationLinkText = (): React.ReactElement => (
     <DarkBackground>

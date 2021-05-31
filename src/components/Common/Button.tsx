@@ -1,11 +1,12 @@
-import { BREAKPOINTS, MyTheme } from "../../gatsby-plugin-theme-ui/index"
+import * as React from "react"
+
+import theme, { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
 
 import ArrowLight from "../../svgs/light-arrow"
 import { Download } from "../../svgs/index"
-import * as React from "react";
-import { Button as TButton } from "@theme-ui/components"
+import { Button as TButton } from "@chakra-ui/react"
+import isPropValid from "@emotion/is-prop-valid"
 import styled from "@emotion/styled"
-import { useThemeUI } from "theme-ui"
 
 type ButtonObjectProps = {
     lineBorderColor: string
@@ -39,7 +40,9 @@ const ButtonContent = styled.span`
     }
 `
 
-const ButtonStyled = styled(TButton)<ButtonElementProps>`
+const ButtonStyled = styled(TButton, {
+    shouldForwardProp: prop => isPropValid(prop) && prop !== "isHeader",
+})<ButtonElementProps>`
     text-align: left;
     text-decoration: none;
     position: relative;
@@ -56,6 +59,9 @@ const ButtonStyled = styled(TButton)<ButtonElementProps>`
     cursor: pointer;
     transition: 0.5s ease-in-out;
     display: inline-block;
+    color: ${props => props.color};
+    background: ${props => props.bg};
+    height: auto;
 
     .bg-line {
         fill: #5ca4ea;
@@ -96,7 +102,7 @@ const ButtonStyled = styled(TButton)<ButtonElementProps>`
     }
 
     @media (min-width: ${BREAKPOINTS.MEDIUM}) {
-        min-width: ${props => (props.header ? "314px" : "0")};
+        min-width: ${props => (props.isHeader ? "314px" : "0")};
         padding-right: 5rem;
     }
 `
@@ -139,13 +145,8 @@ const Button = ({
     variant,
     click,
 }: ButtonProps): React.ReactElement => {
-    const context = useThemeUI()
-    const { theme } = context
-
-    const colors = ((theme as unknown) as MyTheme).buttons[variant].borderColor
-    const lineBorderColor =
-        (((theme as unknown) as MyTheme).colors[colors] as string) ?? "#fff"
-
+    const colors = theme.components.Button.variants[variant].borderColor
+    const lineBorderColor = theme.colors[colors] ?? "#fff"
     return (
         <>
             <ButtonStyled
@@ -153,7 +154,7 @@ const Button = ({
                 href={href}
                 onClick={click ? () => click() : null}
                 type={type}
-                header={header}
+                isHeader={header}
                 disabled={disabled}
                 variant={variant}
                 lineBorderColor={lineBorderColor}

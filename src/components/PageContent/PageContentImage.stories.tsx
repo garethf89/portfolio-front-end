@@ -37,6 +37,5 @@ export default {
 export const FullWidthImage = FullWidthImageStory.bind({})
 FullWidthImage.args = {
     alt: "Test storybook image",
-    image:
-        "https://images.ctfassets.net/z41luxcckja5/44KQdXsxEXbw4L9EAw9NaL/b3d70104e5a0c4bb982c57622b50b4e8/Arup_2.jpg?w=2200&q=90",
+    image: "https://images.ctfassets.net/z41luxcckja5/44KQdXsxEXbw4L9EAw9NaL/b3d70104e5a0c4bb982c57622b50b4e8/Arup_2.jpg?w=2200&q=90",
 }

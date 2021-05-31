@@ -1,9 +1,10 @@
-import Container from "../Global/Container/Container"
+import * as React from "react"
+
+import Flex from "../Global/Container/Flex"
 import Logo from "../Logo/Logo"
 import Navigation from "../Navigation/Navigation"
-import * as React from "react";
 import styled from "@emotion/styled"
-import theme from "../../gatsby-plugin-theme-ui"
+import { useTheme } from "@chakra-ui/react"
 
 const HeaderStyles = styled.header`
     font-size: 2rem;
@@ -20,19 +21,21 @@ interface HeaderProps {
     nav?: boolean
 }
 
-const Header = ({ nav, siteTitle }: HeaderProps): React.ReactElement => (
-    <HeaderStyles>
-        <Container
-            useflex
-            justifyContent="space-between"
-            flexDirection="row"
-            maxWidth={`calc(${theme.sizes.maxWidth} + 9rem)`}
-        >
-            <Logo siteTitle={siteTitle} />
-            {nav && <Navigation />}
-        </Container>
-    </HeaderStyles>
-)
+const Header = ({ nav, siteTitle }: HeaderProps): React.ReactElement => {
+    const theme = useTheme()
+    return (
+        <HeaderStyles>
+            <Flex
+                justifyContent="space-between"
+                flexDirection="row"
+                maxW={`calc(${theme.sizes.container.xl} + 9rem)`}
+            >
+                <Logo siteTitle={siteTitle} />
+                {nav && <Navigation />}
+            </Flex>
+        </HeaderStyles>
+    )
+}
 
 Header.defaultProps = {
     siteTitle: ``,

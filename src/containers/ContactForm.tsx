@@ -1,14 +1,14 @@
+import * as React from "react"
 import * as Yup from "yup"
 
 import { Form, Formik, FormikHelpers } from "formik"
 
 import Alert from "../components/Alert/Alert"
-import { BREAKPOINTS } from "../gatsby-plugin-theme-ui"
+import { BREAKPOINTS } from "../@chakra-ui/gatsby-plugin/theme"
 import Button from "../components/Common/Button"
 import Flex from "../components/Global/Container/Flex"
 import Input from "../components/Form/Input"
 import Label from "../components/Form/Label"
-import * as React from "react";
 import TextArea from "../components/Form/Textarea"
 import styled from "@emotion/styled"
 import { useEmail } from "../services/email"

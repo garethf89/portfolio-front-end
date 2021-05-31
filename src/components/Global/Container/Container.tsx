@@ -1,28 +1,21 @@
-import {
-    ColorProps,
-    FlexboxProps,
-    LayoutProps,
-    SpaceProps,
-    TypographyProps,
-} from "styled-system"
-
+import { BoxProps, FlexProps } from "@chakra-ui/react"
+import * as React from "react"
 import Box from "./Box"
 import Flex from "./Flex"
-import * as React from "react";
 
 type ContainerProps = {
     children: React.ReactNode
     useflex?: boolean
     vPadding?: boolean
     as?: string
-} & SpaceProps &
-    TypographyProps &
-    ColorProps &
-    LayoutProps &
-    FlexboxProps
+} & BoxProps &
+    FlexProps
 
-const Container = (props: ContainerProps): React.ReactElement => {
-    if (props.useflex) {
+const Container = ({
+    useflex,
+    ...props
+}: ContainerProps): React.ReactElement => {
+    if (useflex) {
         return <Flex {...props}>{props.children}</Flex>
     }
 

@@ -1,11 +1,12 @@
+import * as React from "react"
+
+import { BREAKPOINTS, SPACE } from "../../@chakra-ui/gatsby-plugin/theme"
 import Heading, { HeadingProps } from "../Typography/Heading"
 
-import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui/index"
-import Container from "../Global/Container/Container"
 import FadeLink from "../Link/Link"
+import Flex from "../Global/Container/Flex"
 import GitHubIcon from "../../svgs/github"
 import LinkedInIcon from "../../svgs/linkedin"
-import * as React from "react";
 import styled from "@emotion/styled"
 
 const FooterCopyright = styled.p`
@@ -29,7 +30,7 @@ const FooterLink = styled.a`
 const FooterContent = styled.div``
 
 const FooterHeading = styled(Heading)<HeadingProps>`
-    margin-bottom: ${props => props.theme.space.common[3]};
+    margin-bottom: ${SPACE.common[3]};
     text-align: left;
 
     @media (min-width: ${BREAKPOINTS.SMALL}) {
@@ -38,7 +39,7 @@ const FooterHeading = styled(Heading)<HeadingProps>`
     }
 `
 
-const FooterContainer = styled(Container)`
+const FooterContainer = styled(Flex)`
     padding-top: 2rem;
     padding-bottom: 2rem;
     @media (min-width: ${BREAKPOINTS.MEDIUM}) {
@@ -51,7 +52,7 @@ const Footer = (): React.ReactElement<HTMLDivElement> => {
     const year = new Date().getFullYear()
     return (
         <FooterOuter>
-            <FooterContainer useflex justifyContent="space-between">
+            <FooterContainer justifyContent="space-between">
                 <FooterHeading level="h3" marginTop="25px">
                     <FadeLink to="/contact">Contact Me</FadeLink>
                 </FooterHeading>
@@ -61,22 +62,14 @@ const Footer = (): React.ReactElement<HTMLDivElement> => {
                         aria-label="LinkedIn"
                         href="//uk.linkedin.com/in/garethferguson1"
                     >
-                        <LinkedInIcon
-                            iconSize="small"
-                            width="30px"
-                            height="30px"
-                        />
+                        <LinkedInIcon boxSize={8} />
                     </FooterLink>
                     <FooterLink
                         rel="noopener"
                         aria-label="Github"
                         href="//github.com/garethf89"
                     >
-                        <GitHubIcon
-                            iconSize="small"
-                            width="30px"
-                            height="30px"
-                        />
+                        <GitHubIcon boxSize={8} />
                     </FooterLink>
                     <FooterCopyright>Gareth Ferguson {year}</FooterCopyright>
                 </FooterContent>

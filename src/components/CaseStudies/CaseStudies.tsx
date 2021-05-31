@@ -1,16 +1,17 @@
+import * as React from "react"
+
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import {
     ContentfulRichTextGatsbyReference,
     RenderRichTextData,
 } from "../../../@types/types"
 
-import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui/index"
+import { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 import { IProjectFields } from "../../../@types/generated/contentful"
 import Lines from "../Animation/Lines"
 import { OuterWrapper } from "../Common/OuterWrapper"
-import * as React from "react";
 import ReadMore from "../Typography/ReadMore"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import styled from "@emotion/styled"
@@ -18,6 +19,7 @@ import styled from "@emotion/styled"
 const StyledParagraph = styled(Heading)`
     font-weight: 300;
     margin-top: 0;
+    margin-bottom: 1rem;
     color: ${props => props.theme.colors.sectionText};
 `
 
@@ -100,7 +102,9 @@ const CaseStudies = ({ data }: CSProps): React.ReactElement<CSProps> => {
         <OuterWrapper>
             <CaseStudyContainer vPadding>
                 <Lines id="LinesCaseStudies" />
-                <Heading level="h2">Case Studies</Heading>
+                <Heading level="h2" position="relative">
+                    Case Studies
+                </Heading>
                 <CaseStudyWrapper>
                     {data.map((project: Project, i: number) => {
                         return (

@@ -1,4 +1,4 @@
-import { createElement, useContext, useEffect } from "react";
+import { createElement, useContext, useEffect } from "react"
 
 import { DarkBackground } from "../../stories/DarkBackground"
 import { LightContainer } from "../../stories/LightContainer"

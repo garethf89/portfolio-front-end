@@ -19,6 +19,11 @@ try {
     }
 }
 module.exports = {
+    flags: {
+        FAST_REFRESH: true,
+        PRESERVE_WEBPACK_CACHE: true,
+        PRESERVE_FILE_DOWNLOAD_CACHE: true,
+    },
     siteMetadata: {
         title: "Gareth Ferguson",
         description:
@@ -59,7 +64,13 @@ module.exports = {
                 path: `${__dirname}/static/images`,
             },
         },
-        "gatsby-plugin-theme-ui",
+        {
+            resolve: `@chakra-ui/gatsby-plugin`,
+            options: {
+                isUsingColorMode: false,
+                isResettingCSS: false,
+            },
+        },
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
         `gatsby-plugin-image`,

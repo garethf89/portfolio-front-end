@@ -1,34 +1,35 @@
-import { color, layout, space, typography } from "styled-system"
+import * as React from "react"
 
-import { BREAKPOINTS } from "../../../gatsby-plugin-theme-ui"
-import * as React from "react";
-import { css } from "@emotion/react"
-import styled from "@emotion/styled"
+import { chakra, useTheme } from "@chakra-ui/react"
 
-const baseStyle = props => css`
-    position: relative;
-    margin: 0 auto auto;
-    width: 100%;
-    padding: ${props.vPadding ? props.theme.space.common[4] : "0"}
-        ${props.theme.space.common[1]};
-    text-align: left;
-    max-width: ${props.theme.sizes.maxWidth};
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
-        flex-direction: row;
-        padding-left: ${props.theme.space.common[3]};
-        padding-right: ${props.theme.space.common[3]};
-        max-width: calc(${props.theme.sizes.maxWidth});
-    }
-`
+import { SPACE } from "../../../@chakra-ui/gatsby-plugin/theme"
 
-const BoxElement = styled.section(baseStyle, space, color, layout, typography)
+const BoxElement = chakra("section", {
+    baseStyle: {
+        position: "relative",
+        margin: "0 auto auto",
+        width: "100%",
+        textAlign: "left",
+    },
+})
 
 type BoxType = {
     children: React.ReactNode
+    vPadding?: boolean
 }
 
-const Box = ({ children, ...props }: BoxType): React.ReactElement => (
-    <BoxElement {...props}>{children}</BoxElement>
-)
+const Box = ({ children, vPadding, ...props }: BoxType): React.ReactElement => {
+    const theme = useTheme()
+    return (
+        <BoxElement
+            maxW={theme.sizes.container.xl}
+            paddingY={vPadding ? SPACE.common[4] : "0"}
+            paddingX={[SPACE.common[1], SPACE.common[1], SPACE.common[3]]}
+            {...props}
+        >
+            {children}
+        </BoxElement>
+    )
+}
 
 export default Box

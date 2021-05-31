@@ -1,9 +1,12 @@
+import * as React from "react"
+
 import {
     BLOCKS,
     INLINES,
     MARKS,
     TopLevelBlockEnum,
 } from "@contentful/rich-text-types"
+import { BREAKPOINTS, SPACE } from "../../@chakra-ui/gatsby-plugin/theme"
 import {
     ContentfulRichTextGatsbyReference,
     RenderRichTextData,
@@ -13,10 +16,8 @@ import {
     ISkill,
 } from "../../../@types/generated/contentful"
 import ProgressiveImage, { ImageFieldsCustom } from "../Utils/ProgressiveImage"
-import { useEffect, useState } from "react";
-import * as React from "react";
+import { useEffect, useState } from "react"
 
-import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
 import Container from "../Global/Container/Container"
 import ContainerBreak from "../Utils/ContainerBreak"
 import Heading from "../Typography/Heading"
@@ -32,29 +33,29 @@ const CUSTOMBLOCKS = {
     INTRO: "intro" as TopLevelBlockEnum,
 }
 
-const ImageStyles = props => css`
+const ImageStyles = () => css`
     max-width: 100%;
-    margin-bottom: ${props.theme.space.common[2]};
-    margin-top: ${props.theme.space.common[3]};
+    margin-bottom: ${SPACE.common[2]};
+    margin-top: ${SPACE.common[3]};
 `
 
 export const StyledParagraph = styled.p`
     font-size: 1.13rem;
     line-height: 1.6;
     font-weight: 200;
-    margin-bottom: ${props => props.theme.space.common[2]};
+    margin-bottom: ${SPACE.common[2]};
 `
 export const StyledParagraphIntro = styled.p`
     font-size: 1.58rem;
     line-height: 1.6;
     font-weight: 700;
-    margin-bottom: ${props => props.theme.space.common[2]};
+    margin: ${SPACE.common[2]} 0;
 `
 
 export const ContentContainer = styled(Container)`
-    max-width: ${props => props.theme.sizes.contentMaxWidth};
+    max-width: ${props => props.theme.sizes.container.content};
     @media (min-width: ${BREAKPOINTS.MEDIUM}) {
-        max-width: calc(${props => props.theme.sizes.contentMaxWidth} + 6rem);
+        max-width: calc(${props => props.theme.sizes.container.content} + 6rem);
     }
 `
 

@@ -1,3 +1,5 @@
+import * as React from "react"
+
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import {
     ContentfulRichTextGatsbyReference,
@@ -6,7 +8,6 @@ import {
 
 import Bold from "../../Typography/Bold"
 import Heading from "../../Typography/Heading"
-import * as React from "react";
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import styled from "@emotion/styled"
 
@@ -14,7 +15,7 @@ const StyledParagraph = styled(Heading)`
     font-weight: 200;
     margin-top: 0;
     color: ${props => props.theme.colors.sectionTextSecondary};
-    max-width: ${props => props.theme.sizes.contentMaxWidth};
+    max-width: ${props => props.theme.sizes.container.content};
 `
 
 interface BlockParams {

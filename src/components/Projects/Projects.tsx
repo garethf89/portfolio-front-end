@@ -1,9 +1,10 @@
-import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
+import * as React from "react"
+
+import { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
 import Container from "../Global/Container/Container"
 import FadeLink from "../Link/Link"
 import Heading from "../Typography/Heading"
 import { IProjectFields } from "../../../@types/generated/contentful"
-import * as React from "react";
 import { SROnly } from "../Common/SROnly"
 import styled from "@emotion/styled"
 import { supportsWebP } from "../../helpers/support/webp"
@@ -32,7 +33,12 @@ const Project = styled.div`
     }
     @media (min-width: ${BREAKPOINTS.SMALL}) {
         width: 48%;
-        margin-bottom: 0;
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+        :nth-of-type(n + 5) {
+            margin-bottom: 0;
+        }
     }
     @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         width: 32%;
@@ -53,6 +59,7 @@ const ProjectImageContainer = styled.div<ProjectImageProps>`
     padding-top: 56.25%;
     position: relative;
     overflow: hidden;
+    margin-bottom: 2rem;
 `
 
 const ProjectImage = styled.div<ProjectImageProps>`

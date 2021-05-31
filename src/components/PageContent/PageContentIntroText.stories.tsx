@@ -1,5 +1,5 @@
 import Container from "../Global/Container/Container"
-import { Fragment } from "react";
+import { Fragment } from "react"
 import { StyledParagraphIntro } from "./PageContent"
 
 const TextIntroStory = ({ container, text }) => {

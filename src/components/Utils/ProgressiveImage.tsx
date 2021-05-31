@@ -1,11 +1,12 @@
-import { useState } from "react";
-import * as React from "react";
+import * as React from "react"
+
 import { SerializedStyles, css } from "@emotion/react"
 
-import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
+import { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
 import { Entry } from "contentful"
 import styled from "@emotion/styled"
 import { supportsWebP } from "../../helpers/support/webp"
+import { useState } from "react"
 
 interface ImageSource {
     src: string
@@ -40,7 +41,7 @@ interface ProgressiveImageProps {
 const ImageCommon = () => css`
     width: 100%;
     position: absolute;
-    object-fit: fill;
+    object-fit: cover;
     min-width: 100%;
     min-height: 100%;
     top: 50%;

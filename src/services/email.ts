@@ -21,16 +21,12 @@ type HookResult = {
 export const submitEmail = async (
     data: EmailFormData
 ): Promise<AxiosResponse> => {
-    try {
-        const res = await axios({
-            method: "post",
-            url: url,
-            data: data,
-        })
-        return res
-    } catch (error) {
-        throw error
-    }
+    const res = await axios({
+        method: "post",
+        url: url,
+        data: data,
+    })
+    return res
 }
 
 export const useEmail = (): HookResult => {

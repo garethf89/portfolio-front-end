@@ -1,7 +1,7 @@
 import { AllContent, OutputImageComponent } from "./PageContent"
 
 import Container from "../Global/Container/Container"
-import { Fragment } from "react";
+import { Fragment } from "react"
 
 const ContentImageStory = ({
     type = "Test",
@@ -42,6 +42,5 @@ export const ContentImage = ContentImageStory.bind({})
 ContentImage.args = {
     container: true,
     alt: "Test storybook image",
-    image:
-        "https://images.ctfassets.net/z41luxcckja5/1DaEaQgLElwsJG462M9ysR/7b827f37782bd9a56fa370cca3430a3b/Arup_1.jpg?w=2200&q=90&fm=webp",
+    image: "https://images.ctfassets.net/z41luxcckja5/1DaEaQgLElwsJG462M9ysR/7b827f37782bd9a56fa370cca3430a3b/Arup_1.jpg?w=2200&q=90&fm=webp",
 }

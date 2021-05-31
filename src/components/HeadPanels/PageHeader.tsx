@@ -1,8 +1,10 @@
-import ProgressiveImage, { ResponsiveImage } from "../Utils/ProgressiveImage"
-import { useContext, useEffect } from "react";
-import * as React from "react";
+import * as React from "react"
 
-import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui/index"
+import { Box, useStyleConfig } from "@chakra-ui/react"
+import ProgressiveImage, { ResponsiveImage } from "../Utils/ProgressiveImage"
+import { useContext, useEffect } from "react"
+
+import { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
 import BackLink from "../BackLink/BackLink"
 import Button from "../Common/Button"
 import Container from "../Global/Container/Container"
@@ -11,11 +13,9 @@ import Lines from "../Animation/Lines"
 import { globals } from "../../state/state"
 import styled from "@emotion/styled"
 
-const HeaderStyles = styled.section`
+const HeaderStyles = styled(Box)`
     overflow: hidden;
     position: relative;
-    color: ${props => props.theme.colors.text};
-    background: ${props => props.theme.colors.sectionSecondaryBackground};
 `
 
 const StyledTitle = styled(Heading)`
@@ -53,7 +53,7 @@ const PageImage = styled.div`
 const PageImageElement = styled(ProgressiveImage)`
     width: 100%;
     position: absolute;
-    object-fit: fill;
+    object-fit: cover;
     min-width: 100%;
     min-height: 100%;
     top: 50%;
@@ -84,6 +84,8 @@ const PageHeader = ({
 }: PageHeaderProps): React.ReactElement => {
     const { state, dispatch } = useContext(globals)
 
+    const styles = useStyleConfig("CustomHeader")
+
     useEffect(() => {
         if (state.logo !== "dark") {
             dispatch({ type: "LOGO", logo: "dark" })
@@ -93,7 +95,7 @@ const PageHeader = ({
     const externalLink = link ? link.replace(/http:/gi, "https:") : null
 
     return (
-        <HeaderStyles>
+        <HeaderStyles as="section" sx={styles}>
             <Lines dark id="HeaderAni" />
             {image && (
                 <PageImage>

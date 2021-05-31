@@ -1,7 +1,8 @@
-import { BREAKPOINTS } from "../../../gatsby-plugin-theme-ui"
+import * as React from "react"
+
+import { BREAKPOINTS } from "../../../@chakra-ui/gatsby-plugin/theme"
 import Heading from "../../Typography/Heading"
 import { IStatFields } from "../../../../@types/generated/contentful"
-import * as React from "react";
 import styled from "@emotion/styled"
 
 const StatsContainer = styled.ul`

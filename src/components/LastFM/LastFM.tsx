@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
-import * as React from "react";
+import * as React from "react"
 
-import { BREAKPOINTS } from "../../gatsby-plugin-theme-ui"
+import { useEffect, useState } from "react"
+
+import { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 import LastFMLogo from "../../svgs/lastfm"
 import Lines from "../Animation/Lines"
 import { OuterWrapper } from "../Common/OuterWrapper"
 import { StyledProps } from "../../../@types/types"
-import { lastFmService } from "../../services/lastfm"
 import styled from "@emotion/styled"
+import { useLastFm } from "../../services/lastfm"
 
 const Albums = styled.div`
     @media (min-width: ${BREAKPOINTS.MEDIUM}) {
@@ -81,18 +82,15 @@ type LastFmProps = {
 
 const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
     const [albums, setAlbums] = useState(initialAlbums ?? null)
-
+    // Access the client
+    const { data } = useLastFm()
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const lfm = await lastFmService()
-                setAlbums(lfm)
-            } catch (e) {
-                setAlbums(initialAlbums ?? null)
-            }
+        if (!data) {
+            setAlbums(initialAlbums ?? null)
+        } else {
+            setAlbums(data.data)
         }
-        fetchData()
-    }, [])
+    }, [data])
     if (!albums) {
         return <></>
     }

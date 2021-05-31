@@ -1,3 +1,5 @@
+import * as React from "react"
+
 import { BLOCKS, Document, INLINES, MARKS } from "@contentful/rich-text-types"
 import {
     ContentfulRichTextGatsbyReference,
@@ -10,7 +12,7 @@ import FaceImage from "../FaceImage/FaceImage"
 import Heading from "../../Typography/Heading"
 import { ISkillFields } from "../../../../@types/generated/contentful"
 import Inlinelink from "../../Typography/Inlinelink"
-import * as React from "react";
+import { SPACE } from "../../../@chakra-ui/gatsby-plugin/theme"
 import Skill from "../../Skills/Skill"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import styled from "@emotion/styled"
@@ -25,7 +27,7 @@ const Skills = styled.ul`
     justify-content: space-between;
     padding: 0;
     list-style-type: none;
-    margin: ${props => props.theme.space.common[4]} 0 0;
+    margin: ${SPACE.common[4]} 0 0;
 `
 
 const Text = ({ children }) => {
@@ -75,6 +77,7 @@ const HomeTech = ({ skills, text }: HomeTechProps): React.ReactElement => {
                         id={`skill${i}`}
                         icon={skill.icon.svg.content}
                         title={skill.name}
+                        boxSize={[14, 14, 20]}
                     >
                         {skill.name}
                     </Skill>
