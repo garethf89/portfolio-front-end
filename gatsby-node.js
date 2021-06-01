@@ -14,8 +14,6 @@ const data = require("./src/constants/lastfm.ts").data
 const album = require("./src/__mocks__/lastfm")
 const inlineSvg = require("./src/gatsby/node/inline-svg")
 
-const PacktrackerPlugin = require("@packtracker/webpack-plugin")
-
 exports.createSchemaCustomization = inlineSvg.createSchemaCustomization
 exports.createResolvers = inlineSvg.createResolvers
 exports.createPages = require("./src/gatsby/node/createPages")

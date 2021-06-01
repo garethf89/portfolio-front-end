@@ -10,7 +10,6 @@
     "@emotion/is-prop-valid": "^1.1.0",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
-    "@packtracker/webpack-plugin": "^2.3.0",
     "@sentry/browser": "^5.30.0",
     "axios": "^0.21.1",
     "chalk": "^4.1.1",
