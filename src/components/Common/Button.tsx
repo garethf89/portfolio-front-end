@@ -1,11 +1,10 @@
 import * as React from "react"
 
+import { chakra, useStyleConfig } from "@chakra-ui/react"
 import theme, { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
 
 import ArrowLight from "../../svgs/light-arrow"
 import { Download } from "../../svgs/index"
-import { Button as TButton } from "@chakra-ui/react"
-import isPropValid from "@emotion/is-prop-valid"
 import styled from "@emotion/styled"
 
 type ButtonObjectProps = {
@@ -13,10 +12,6 @@ type ButtonObjectProps = {
     header?: boolean
     as?: React.ElementType
 }
-
-type ButtonElementProps = React.ComponentProps<"button"> &
-    React.ComponentProps<"a"> &
-    ButtonObjectProps
 
 const ButtonIcon = styled.span<ButtonObjectProps>`
     display: block;
@@ -40,72 +35,7 @@ const ButtonContent = styled.span`
     }
 `
 
-const ButtonStyled = styled(TButton, {
-    shouldForwardProp: prop => isPropValid(prop) && prop !== "isHeader",
-})<ButtonElementProps>`
-    text-align: left;
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
-    width: auto;
-    border-width: 1px;
-    border-style: solid;
-    text-transform: uppercase;
-    font-size: 16px;
-    letter-spacing: 2px;
-    font-weight: 300;
-    padding: 0;
-    padding-right: 3rem;
-    cursor: pointer;
-    transition: 0.5s ease-in-out;
-    display: inline-block;
-    color: ${props => props.color};
-    background: ${props => props.bg};
-    height: auto;
-
-    .bg-line {
-        fill: #5ca4ea;
-        stroke: #91c9ff;
-        transition: all 0.8s ease-in-out;
-    }
-
-    .border {
-        position: absolute;
-        left: -1px;
-        top: -1px;
-        height: calc(100% + 2px);
-        width: calc(100% + 2px);
-        fill: none;
-        z-index: 1;
-
-        &__line {
-            stroke: ${props => props.lineBorderColor};
-            stroke-width: 2px;
-            stroke-dasharray: 40 480;
-            stroke-dashoffset: 40;
-            transition: all 0.8s ease-in-out;
-            width: 100%;
-        }
-    }
-
-    &:visited,
-    &:active,
-    &:focus {
-        outline: 0;
-    }
-
-    &:focus,
-    &:hover {
-        .border__line {
-            stroke-dashoffset: -480;
-        }
-    }
-
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
-        min-width: ${props => (props.isHeader ? "314px" : "0")};
-        padding-right: 5rem;
-    }
-`
+const ButtonStyled = chakra("button")
 
 const ButtonIcons = {
     Arrow: ArrowLight,
@@ -134,6 +64,26 @@ interface ButtonProps {
     download?: boolean
 }
 
+const Border = styled("svg")`
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    height: calc(100% + 2px);
+    width: calc(100% + 2px);
+    fill: none;
+    z-index: 1;
+    polyline {
+        stroke: ${props => props.lineBorderColor};
+        stroke-width: 2px;
+        stroke-dasharray: 40 480;
+        stroke-dashoffset: 40;
+        transition: all 0.8s ease-in-out;
+        width: 100%;
+    }
+`
+
+const BorderLine = styled("polyline")``
+
 const Button = ({
     as = "button",
     icon,
@@ -147,6 +97,7 @@ const Button = ({
 }: ButtonProps): React.ReactElement => {
     const colors = theme.components.Button.variants[variant].borderColor
     const lineBorderColor = theme.colors[colors] ?? "#fff"
+    const styles = useStyleConfig("Button", { header, variant })
     return (
         <>
             <ButtonStyled
@@ -154,21 +105,16 @@ const Button = ({
                 href={href}
                 onClick={click ? () => click() : null}
                 type={type}
-                isHeader={header}
                 disabled={disabled}
-                variant={variant}
-                lineBorderColor={lineBorderColor}
+                sx={styles}
             >
-                <svg
+                <Border
+                    lineBorderColor={lineBorderColor}
                     viewBox="0 0 180 60"
-                    className="border"
                     preserveAspectRatio="none"
                 >
-                    <polyline
-                        points="179,1 179,59 1,59 1,1 179,1"
-                        className="border__line"
-                    />
-                </svg>
+                    <BorderLine points="179,1 179,59 1,59 1,1 179,1" />
+                </Border>
                 <ButtonContent>{children}</ButtonContent>
                 {icon && (
                     <ButtonIcon lineBorderColor={lineBorderColor}>

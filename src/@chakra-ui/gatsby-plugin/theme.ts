@@ -89,38 +89,69 @@ const theme = {
     },
     components: {
         ...baseTheme.components,
-        Button: {
-            ...baseTheme.components.Button,
-            baseStyle: {
-                fontWeight: "bold",
-                textTransform: "uppercase",
-                borderRadius: "base",
-            },
-            variants: {
-                primary: {
-                    color: "buttonColorPrimary",
-                    bg: "buttonBackgroundPrimary",
-                    borderColor: "buttonBorderPrimary",
-                    borderRadius: 0,
-                    "&:hover": {
-                        bg: "rgba(0, 0, 0, 0.1)",
-                    },
-                },
-                secondary: {
-                    color: "buttonColorSecondary",
-                    bg: "buttonBackgroundSecondary",
-                    borderColor: "buttonBorderSecondary",
-                    borderRadius: 0,
-                    "&:hover": {
-                        bg: "rgba(0, 0, 0, 0.6)",
-                    },
-                },
-            },
-        },
     },
 }
 
 const components = {
+    Button: {
+        baseStyle: ({ header }) => ({
+            textTransform: "uppercase",
+            borderRadius: "base",
+            textAlign: "left",
+            textDecoration: "none",
+            position: "relative",
+            overflow: "hidden",
+            width: "auto",
+            borderWidth: "1px",
+            borderStyle: "solid",
+            fontSize: "16px",
+            letterSpacing: "2px",
+            fontWeight: 300,
+            padding: 0,
+            paddingRight: ["3rem", "5rem"],
+            paddingEnd: 0,
+            paddingStart: 0,
+            cursor: "pointer",
+            transition: " 0.5s ease-in-out",
+            display: "inline-block",
+            height: "auto",
+            minWidth: header ? ["0", "314px"] : ["0"],
+            _focus: {
+                outline: 0,
+            },
+            _active: {
+                outline: 0,
+            },
+            _hover: {
+                outline: 0,
+                svg: {
+                    polyline: {
+                        strokeDashoffset: -480,
+                    },
+                },
+            },
+        }),
+        variants: {
+            primary: {
+                color: "buttonColorPrimary",
+                bg: "buttonBackgroundPrimary",
+                borderColor: "buttonBorderPrimary",
+                borderRadius: 0,
+                "&:hover": {
+                    bg: "rgba(0, 0, 0, 0.1)",
+                },
+            },
+            secondary: {
+                color: "buttonColorSecondary",
+                bg: "buttonBackgroundSecondary",
+                borderColor: "buttonBorderSecondary",
+                borderRadius: 0,
+                "&:hover": {
+                    bg: "rgba(0, 0, 0, 0.6)",
+                },
+            },
+        },
+    },
     ColorText: {
         baseStyle: ({ colorMode }) => ({
             color:
