@@ -89,12 +89,13 @@ const theme = {
     },
     components: {
         ...baseTheme.components,
+        Button: {},
     },
 }
 
 const components = {
-    Button: {
-        baseStyle: ({ header }) => ({
+    MyButton: {
+        baseStyle: ({ header, lineBorderColor }) => ({
             textTransform: "uppercase",
             borderRadius: "base",
             textAlign: "left",
@@ -116,6 +117,11 @@ const components = {
             display: "inline-block",
             height: "auto",
             minWidth: header ? ["0", "314px"] : ["0"],
+            svg: {
+                polyline: {
+                    stroke: lineBorderColor,
+                },
+            },
             _focus: {
                 outline: 0,
             },
@@ -194,10 +200,9 @@ const styles = {
 }
 
 const combinedTheme = {
-    ...theme,
     styles: { ...theme.styles, ...styles },
     components: { ...theme.components, ...components },
 }
 
-const colorTheme = extendTheme({}, combinedTheme)
+const colorTheme = extendTheme(theme, combinedTheme)
 export default colorTheme

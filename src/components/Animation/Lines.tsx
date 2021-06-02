@@ -1,16 +1,17 @@
-import * as React from "react"
-import * as animationData from "../../animations/Lines"
-
 import { Box } from "@chakra-ui/react"
-import lottie from "lottie-web"
 import styled from "@emotion/styled"
+import lottie from "lottie-web"
+import * as React from "react"
 import { useEffect } from "react"
+import * as animationData from "../../animations/Lines"
 
 interface LinesProps extends React.ComponentProps<"div"> {
     dark?: boolean
 }
 
-const HeaderAnimation = styled(Box)<LinesProps>`
+const HeaderAnimation = styled(Box, {
+    shouldForwardProp: prop => prop !== "dark",
+})<LinesProps>`
     position: absolute;
     left: -20%;
     right: -20%;

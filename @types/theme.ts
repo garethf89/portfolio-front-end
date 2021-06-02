@@ -229,7 +229,7 @@ export interface ThemeTypings {
         | "whatsapp"
         | "twitter"
         | "telegram"
-    fonts: "body"
+    fonts: "heading" | "body" | "mono"
     fontSizes:
         | "xs"
         | "sm"
@@ -447,7 +447,7 @@ export interface ThemeTypings {
         }
         Button: {
             sizes: "lg" | "md" | "sm" | "xs"
-            variants: "primary" | "secondary"
+            variants: "ghost" | "outline" | "solid" | "link" | "unstyled"
         }
         Checkbox: {
             sizes: "sm" | "md" | "lg"
@@ -601,6 +601,10 @@ export interface ThemeTypings {
         FormError: {
             sizes: never
             variants: never
+        }
+        MyButton: {
+            sizes: never
+            variants: "primary" | "secondary"
         }
         ColorText: {
             sizes: never

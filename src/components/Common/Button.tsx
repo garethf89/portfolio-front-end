@@ -73,7 +73,6 @@ const Border = styled("svg")`
     fill: none;
     z-index: 1;
     polyline {
-        stroke: ${props => props.lineBorderColor};
         stroke-width: 2px;
         stroke-dasharray: 40 480;
         stroke-dashoffset: 40;
@@ -95,9 +94,13 @@ const Button = ({
     variant,
     click,
 }: ButtonProps): React.ReactElement => {
-    const colors = theme.components.Button.variants[variant].borderColor
+    const colors = theme.components.MyButton.variants[variant].borderColor
     const lineBorderColor = theme.colors[colors] ?? "#fff"
-    const styles = useStyleConfig("Button", { header, variant })
+    const styles = useStyleConfig("MyButton", {
+        header,
+        variant,
+        lineBorderColor,
+    })
     return (
         <>
             <ButtonStyled
@@ -108,11 +111,7 @@ const Button = ({
                 disabled={disabled}
                 sx={styles}
             >
-                <Border
-                    lineBorderColor={lineBorderColor}
-                    viewBox="0 0 180 60"
-                    preserveAspectRatio="none"
-                >
+                <Border viewBox="0 0 180 60" preserveAspectRatio="none">
                     <BorderLine points="179,1 179,59 1,59 1,1 179,1" />
                 </Border>
                 <ButtonContent>{children}</ButtonContent>
