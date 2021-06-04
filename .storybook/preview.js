@@ -1,12 +1,13 @@
+import { ChakraProvider, ColorModeProvider } from "@chakra-ui/react"
+
 import { Global } from "@emotion/react"
 import { GlobalsStateProvider } from "../src/state/state"
 import React from "react"
-import { ThemeProvider } from "theme-ui"
 import TransitionLinkProvider from "gatsby-plugin-transition-link/context/InternalProvider"
 import { action } from "@storybook/addon-actions"
 import globalStyles from "../src/styles/globals"
 import styled from "@emotion/styled"
-import theme from "../src/gatsby-plugin-theme-ui/index"
+import theme from "../src/@chakra-ui/gatsby-plugin/theme"
 
 // Gatsby's Link overrides:
 // Gatsby Link calls the `enqueue` & `hovering` methods on the global variable ___loader.
@@ -27,23 +28,28 @@ window.___navigate = pathname => {
 }
 
 const Root = styled.div`
-    font-family: ${(props) => props.theme.fonts.body};
+    font-family: ${props => props.theme.fonts.body};
 `
 
-const ThemeWrapper = (props) => {
+const withChakra = StoryFn => {
     return (
         <TransitionLinkProvider>
-            <GlobalsStateProvider>
-                <ThemeProvider mode="light" theme={theme}>
-                    <Root>
-                        <Global styles={globalStyles} />
-                        {props.children}
-                    </Root>
-                </ThemeProvider>
-            </GlobalsStateProvider>
+            <ChakraProvider theme={theme}>
+                <ColorModeProvider
+                    options={{
+                        initialColorMode: "light",
+                        useSystemColorMode: false,
+                    }}
+                >
+                    <GlobalsStateProvider>
+                        <Root theme={theme}>
+                            <Global styles={globalStyles} />
+                            <StoryFn />
+                        </Root>
+                    </GlobalsStateProvider>
+                </ColorModeProvider>
+            </ChakraProvider>
         </TransitionLinkProvider>
     )
 }
-export const decorators = [
-    Story => <ThemeWrapper theme={theme}>{Story()}</ThemeWrapper>,
-]
+export const decorators = [withChakra]

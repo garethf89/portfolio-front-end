@@ -1,8 +1,9 @@
+import * as React from "react"
+
 import Button, { ButtonTypes } from "./Button"
 
 import { DarkBackground } from "../../stories/DarkBackground"
 import { LightContainer } from "../../stories/LightContainer"
-import * as React from "react"
 import { Spacer } from "../../stories/Spacer"
 
 const buttonTypes = ["primary", "secondary"]
@@ -20,6 +21,8 @@ const ButtonStory = ({ label, variant, icons }): React.ReactElement => (
                             icon={icons ? (button.icon as ButtonTypes) : null}
                             type="submit"
                             variant="secondary"
+                            as="a"
+                            href="/"
                         >
                             {label}
                         </Button>
@@ -37,6 +40,8 @@ const ButtonStory = ({ label, variant, icons }): React.ReactElement => (
                             icon={icons ? (button.icon as ButtonTypes) : null}
                             type="submit"
                             variant="primary"
+                            as="a"
+                            href="/"
                         >
                             {label}
                         </Button>
