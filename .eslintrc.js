@@ -114,6 +114,16 @@ module.exports = {
         "react/display-name": "off",
         "react/react-in-jsx-scope": "off",
         "value-keyword-case": "off",
+        "sort-imports": [
+            "error",
+            {
+                ignoreCase: false,
+                ignoreDeclarationSort: false,
+                ignoreMemberSort: false,
+                memberSyntaxSortOrder: ["none", "all", "multiple", "single"],
+                allowSeparatedGroups: false,
+            },
+        ],
     },
     parser: "@typescript-eslint/parser",
     parserOptions: {

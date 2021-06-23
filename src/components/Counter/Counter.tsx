@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react"
 import * as React from "react"
-import io, { SocketIOClient } from "socket.io-client"
+
+import { Socket, io } from "socket.io-client"
+import { useEffect, useState } from "react"
 
 import Eye from "../../svgs/eye"
 import styled from "@emotion/styled"
@@ -28,7 +29,7 @@ const CounterIcon = styled(Eye)`
 const Counter = (): React.ReactElement => {
     const [count, setCount] = useState(1)
 
-    const startSocket = (s: SocketIOClient.Socket) => {
+    const startSocket = (s: Socket) => {
         s.on("connect", () => {
             s.on("count", (msg: SocketIORes) => {
                 setCount(msg.count)
