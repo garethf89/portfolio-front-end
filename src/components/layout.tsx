@@ -15,6 +15,13 @@ const Root = styled.main`
     font-family: ${props => props.theme.fonts.body};
 `
 
+const FooterExtender = styled.div`
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+`
+
 type PageLayoutProps = {
     pageContext: Record<string, string>
     children: React.ReactNode
@@ -59,8 +66,10 @@ const TemplateWrap = ({
                 pageImage={image}
                 path={path}
             />
-            <Root>{children}</Root>
-            <Footer />
+            <FooterExtender>
+                <Root>{children}</Root>
+                <Footer />
+            </FooterExtender>
         </>
     )
 }
