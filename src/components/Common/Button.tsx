@@ -107,7 +107,7 @@ const Button = ({
                 as={as}
                 href={href}
                 onClick={click ? () => click() : null}
-                type={type}
+                type={as === "a" ? null : type}
                 disabled={disabled}
                 sx={styles}
             >
