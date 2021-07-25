@@ -38,7 +38,7 @@ const Counter = (): React.ReactElement => {
     }
 
     useEffect(() => {
-        const socket = io(connectionString)
+        const socket = io(connectionString, { transports: ["websocket"] })
         startSocket(socket)
     }, [])
 
