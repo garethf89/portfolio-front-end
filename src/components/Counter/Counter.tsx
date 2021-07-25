@@ -1,6 +1,5 @@
 import * as React from "react"
 
-import { Socket, io } from "socket.io-client"
 import { useEffect, useState } from "react"
 
 import Eye from "../../svgs/eye"
@@ -29,16 +28,17 @@ const CounterIcon = styled(Eye)`
 const Counter = (): React.ReactElement => {
     const [count, setCount] = useState(1)
 
-    const startSocket = (s: Socket) => {
-        s.on("connect", () => {
-            s.on("count", (msg: SocketIORes) => {
-                setCount(msg.count)
-            })
-        })
+    const startSocket = (socket: WebSocket) => {
+        socket.addEventListener('open', function (event) {
+          socket.send('Hello Server!');
+        });
+        socket.addEventListener('message', function (event) {
+          setCount(event.data)
+        });
     }
 
     useEffect(() => {
-        const socket = io(connectionString, { transports: ["websocket"] })
+        const socket = new WebSocket('ws://localhost:8081');
         startSocket(socket)
     }, [])
 

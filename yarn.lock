@@ -13167,23 +13167,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"engine.io-client@npm:~5.1.1":
-  version: 5.1.1
-  resolution: "engine.io-client@npm:5.1.1"
-  dependencies:
-    base64-arraybuffer: 0.1.4
-    component-emitter: ~1.3.0
-    debug: ~4.3.1
-    engine.io-parser: ~4.0.1
-    has-cors: 1.1.0
-    parseqs: 0.0.6
-    parseuri: 0.0.6
-    ws: ~7.4.2
-    yeast: 0.1.2
-  checksum: 4d918ab302d6d8fcbf9101bbbee80bcba0016241bac8e998373e946ba460ff56383958a05c2cc8ddd5a84987e1d34c9a28a40b5d2f2244cfdfe6e9ef50d104b0
-  languageName: node
-  linkType: hard
-
 "engine.io-parser@npm:~4.0.0, engine.io-parser@npm:~4.0.1":
   version: 4.0.2
   resolution: "engine.io-parser@npm:4.0.2"
@@ -15374,7 +15357,6 @@ fsevents@^2.3.2:
     react-dom: ^17.0.2
     react-helmet: ^6.1.0
     react-query: ^3.13.6
-    socket.io-client: 4.1.2
     source-map-explorer: ^2.4.2
     storybook-formik: ^2.1.5
     stylelint: ^13.5.0
@@ -25817,21 +25799,6 @@ resolve@^2.0.0-next.3:
     parseuri: 0.0.6
     socket.io-parser: ~4.0.4
   checksum: a4461301ef4f89e3992f984215733aaac45a7871589261497baab66a5a97000b2128d48239d0cef455267e18dddcaf0ebc67aef200b7d196ca00d00b1f6d803c
-  languageName: node
-  linkType: hard
-
-"socket.io-client@npm:4.1.2":
-  version: 4.1.2
-  resolution: "socket.io-client@npm:4.1.2"
-  dependencies:
-    "@types/component-emitter": ^1.2.10
-    backo2: ~1.0.2
-    component-emitter: ~1.3.0
-    debug: ~4.3.1
-    engine.io-client: ~5.1.1
-    parseuri: 0.0.6
-    socket.io-parser: ~4.0.4
-  checksum: 932a1eb0fe47fa8d0369649e7c51d95e815f959f32b4e534010dc6f8fca8438dde6d77ca890638ce06e1901aaf7e78d26f717e95f4473115b74bd33ab7103234
   languageName: node
   linkType: hard
 
