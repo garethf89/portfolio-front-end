@@ -1,15 +1,12 @@
-import * as React from "react"
-
-import { useEffect, useState } from "react"
-
-import Eye from "../../svgs/eye"
 import styled from "@emotion/styled"
+import * as React from "react"
+import { useEffect, useState } from "react"
+import { httpUrlToWebSockeUrl } from "../../helpers/sockets"
+import Eye from "../../svgs/eye"
 
-type SocketIORes = {
-    count: number
-}
-
-const connectionString = process.env.GATSBY_REACT_APP_API_URL
+const connectionString = httpUrlToWebSockeUrl(
+    process.env.GATSBY_REACT_APP_API_URL
+)
 
 const CounterStyled = styled.aside`
     display: block;
@@ -29,16 +26,16 @@ const Counter = (): React.ReactElement => {
     const [count, setCount] = useState(1)
 
     const startSocket = (socket: WebSocket) => {
-        socket.addEventListener('open', function (event) {
-          socket.send('Hello Server!');
-        });
-        socket.addEventListener('message', function (event) {
-          setCount(event.data)
-        });
+        socket.addEventListener("open", () => {
+            socket.send("Hello Server!")
+        })
+        socket.addEventListener("message", event => {
+            setCount(event.data)
+        })
     }
 
     useEffect(() => {
-        const socket = new WebSocket('ws://localhost:8081');
+        const socket = new WebSocket(connectionString)
         startSocket(socket)
     }, [])
 
