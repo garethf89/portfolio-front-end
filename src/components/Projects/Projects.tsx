@@ -25,7 +25,7 @@ const ProjectWrapper = styled.div`
 
 const Project = styled.div`
     margin-bottom: 3rem;
-    transition: all .5s ease-out;
+    transition: all 0.5s ease-out;
     p {
         margin-bottom: 0;
     }
@@ -33,7 +33,7 @@ const Project = styled.div`
         margin-bottom: 0;
     }
     &:hover {
-      opacity: 0.9;
+        opacity: 0.9;
     }
     @media (min-width: ${BREAKPOINTS.SMALL}) {
         width: 48%;
