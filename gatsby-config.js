@@ -19,8 +19,8 @@ try {
     }
 }
 module.exports = {
+    jsxRuntime: "automatic",
     flags: {
-        FAST_REFRESH: true,
         PRESERVE_WEBPACK_CACHE: true,
         PRESERVE_FILE_DOWNLOAD_CACHE: true,
     },
@@ -107,9 +107,6 @@ module.exports = {
                     // "/*": ["Cache-Control: max-age=604800"],
                 },
             },
-        },
-        {
-            resolve: `gatsby-plugin-typescript`,
         },
     ],
 }

@@ -5,7 +5,7 @@ import { httpUrlToWebSockeUrl } from "../../helpers/sockets"
 import Eye from "../../svgs/eye"
 
 const connectionString = httpUrlToWebSockeUrl(
-    process.env.GATSBY_REACT_APP_API_URL
+    process.env.GATSBY_REACT_APP_API_URL ?? ""
 )
 
 const CounterStyled = styled.aside`
