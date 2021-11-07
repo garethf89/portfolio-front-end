@@ -24,6 +24,7 @@ const CounterIcon = styled(Eye)`
 
 const Counter = (): React.ReactElement => {
     const [count, setCount] = useState(1)
+    const [init, setInit] = useState(false)
 
     const startSocket = (socket: WebSocket) => {
         socket.addEventListener("open", () => {
@@ -35,8 +36,11 @@ const Counter = (): React.ReactElement => {
     }
 
     useEffect(() => {
-        const socket = new WebSocket(connectionString)
-        startSocket(socket)
+        if (!init) {
+            const socket = new WebSocket(connectionString)
+            startSocket(socket)
+            setInit(true)
+        }
     }, [])
 
     return (
