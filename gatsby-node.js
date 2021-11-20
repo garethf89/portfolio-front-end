@@ -21,12 +21,15 @@ exports.createPages = require("./src/gatsby/node/createPages")
 exports.onCreateWebpackConfig = ({ actions }) => {
     actions.setWebpackConfig({
         node: { fs: "empty" },
+        experiments: {
+            backCompat: false
+        }
     })
 }
 exports.sourceNodes = async ({
     actions: { createNode },
     createNodeId,
-    createContentDigest,
+    createContentDigest
 }) => {
     let result = { albums: album }
     if (process.env.NODE_ENV === "production") {
@@ -36,10 +39,10 @@ exports.sourceNodes = async ({
                 headers: {
                     "Access-Control-Allow-Origin": "*",
                     "Access-Control-Allow-Methods": "*",
-                    "Access-Control-Allow-Headers": "*",
+                    "Access-Control-Allow-Headers": "*"
                 },
                 url: url,
-                data: data,
+                data: data
             })
             result = { albums: res.data }
         } catch (e) {
@@ -51,7 +54,7 @@ exports.sourceNodes = async ({
         id: createNodeId(`lastfm-build-time-data`),
         internal: {
             type: `Albums`,
-            contentDigest: createContentDigest(result),
-        },
+            contentDigest: createContentDigest(result)
+        }
     })
 }

@@ -28335,10 +28335,10 @@ typescript@^4.2.4:
   languageName: node
   linkType: hard
 
-"webpack-sources@npm:^3.2.0":
-  version: 3.2.1
-  resolution: "webpack-sources@npm:3.2.1"
-  checksum: 629f5c96323b27d753fb4c20d85043f255ab4759464a19aab1081a8bcfeefac2d0453a11c9a32927d0f4fad5a99187124ddc9a01b0f6601861d3e2ea25e4a647
+"webpack-sources@npm:^3.2.2":
+  version: 3.2.2
+  resolution: "webpack-sources@npm:3.2.2"
+  checksum: 9bfb5679e0624983c61efcdfd02b64526a7f5bd3287f5ee22ae4b09d2153c310a1869502c44e4af4b6e6aab4c6fe4b71f70469fd5e2b9a7302eed6fed0d77a78
   languageName: node
   linkType: hard
 
@@ -28374,9 +28374,9 @@ typescript@^4.2.4:
   languageName: node
   linkType: hard
 
-"webpack@npm:^5.58.1":
-  version: 5.60.0
-  resolution: "webpack@npm:5.60.0"
+"webpack@npm:^5.62.0":
+  version: 5.64.1
+  resolution: "webpack@npm:5.64.1"
   dependencies:
     "@types/eslint-scope": ^3.7.0
     "@types/estree": ^0.0.50
@@ -28401,13 +28401,13 @@ typescript@^4.2.4:
     tapable: ^2.1.1
     terser-webpack-plugin: ^5.1.3
     watchpack: ^2.2.0
-    webpack-sources: ^3.2.0
+    webpack-sources: ^3.2.2
   peerDependenciesMeta:
     webpack-cli:
       optional: true
   bin:
     webpack: bin/webpack.js
-  checksum: 4da1378a2cce65c1805136d771e8ee574c8110ff4c0dfd8b27948887061b2cbd0e0a956d91e63bf71fdf2b6c63af1cc12d8e18ae1d1c3aa7c351430300ccde29
+  checksum: c3824ca1e49aff5f0c2a31a6d97702e6daa0ee2f2440345a35261bf261a370f53c3259e70e7dc8031425e8dd453dc7d099028ce8323a53c496db67ba1ed2b8e1
   languageName: node
   linkType: hard
 

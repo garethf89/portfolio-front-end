@@ -130,6 +130,6 @@
     "axios": "^0.21.1",
     "graphql": "^15.4.0",
     "graphql-compose": "^7.25.0",
-    "webpack": "^5.58.1"
+    "webpack": "^5.62.0"
   }
 }
