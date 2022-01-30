@@ -1,4 +1,10 @@
-import { theme as baseTheme, extendTheme } from "@chakra-ui/react"
+import {
+    ChakraTheme,
+    ComponentMultiStyleConfig as ChakraComponentMultiStyleConfig,
+    ComponentSingleStyleConfig as ChakraComponentSingleStyleConfig,
+    extendTheme,
+    theme as baseTheme,
+} from "@chakra-ui/react"
 import { createBreakpoints, mode } from "@chakra-ui/theme-tools"
 
 export const BREAKPOINTS = {
@@ -68,6 +74,7 @@ const theme = {
         },
     },
     fonts: {
+        ...baseTheme.fonts,
         body: '"Ubuntu", Roboto, Helvetica, Arial, sans-serif',
         heading: '"Ubuntu", Roboto, Helvetica, Arial, sans-serif',
     },
@@ -93,102 +100,116 @@ const theme = {
     },
 }
 
-const components = {
-    MyButton: {
-        baseStyle: ({ header, lineBorderColor }) => ({
-            textTransform: "uppercase",
-            borderRadius: "base",
-            textAlign: "left",
-            textDecoration: "none",
-            position: "relative",
-            overflow: "hidden",
-            width: "auto",
-            borderWidth: "1px",
-            borderStyle: "solid",
-            fontSize: "16px",
-            letterSpacing: "2px",
-            fontWeight: 300,
-            padding: 0,
-            paddingEnd: 0,
-            paddingStart: 0,
-            paddingRight: ["3rem", "5rem"],
-            cursor: "pointer",
-            transition: " 0.5s ease-in-out",
-            display: "inline-block",
-            height: "auto",
-            minWidth: header ? ["0", "314px"] : ["0"],
-            svg: {
-                polyline: {
-                    stroke: lineBorderColor,
-                },
-            },
-            _focus: {
-                outline: 0,
-            },
-            _active: {
-                outline: 0,
-            },
-            _hover: {
-                outline: 0,
+type ComponentSingleStyleConfig = Partial<ChakraComponentSingleStyleConfig>
+type ComponentMultiStyleConfig = Partial<ChakraComponentMultiStyleConfig>
+declare type ComponentStyleConfig =
+    | ComponentSingleStyleConfig
+    | ComponentMultiStyleConfig
+interface ComponentTheme {
+    components: { [componentName: string]: ComponentStyleConfig }
+}
+
+const components: ComponentTheme = {
+    components: {
+        MyButton: {
+            baseStyle: ({ header, lineBorderColor }) => ({
+                textTransform: "uppercase",
+                borderRadius: "base",
+                textAlign: "left",
+                textDecoration: "none",
+                position: "relative",
+                overflow: "hidden",
+                width: "auto",
+                borderWidth: "1px",
+                borderStyle: "solid",
+                fontSize: "16px",
+                letterSpacing: "2px",
+                fontWeight: 300,
+                padding: 0,
+                paddingEnd: 0,
+                paddingStart: 0,
+                paddingRight: ["3rem", "5rem"],
+                cursor: "pointer",
+                transition: " 0.5s ease-in-out",
+                display: "inline-block",
+                height: "auto",
+                minWidth: header ? ["0", "314px"] : ["0"],
                 svg: {
                     polyline: {
-                        strokeDashoffset: -480,
+                        stroke: lineBorderColor,
+                    },
+                },
+                _focus: {
+                    outline: 0,
+                },
+                _active: {
+                    outline: 0,
+                },
+                _hover: {
+                    outline: 0,
+                    svg: {
+                        polyline: {
+                            strokeDashoffset: -480,
+                        },
+                    },
+                },
+            }),
+            variants: {
+                primary: {
+                    color: "buttonColorPrimary",
+                    bg: "buttonBackgroundPrimary",
+                    borderColor: "buttonBorderPrimary",
+                    borderRadius: 0,
+                    "&:hover": {
+                        bg: "rgba(0, 0, 0, 0.1)",
+                    },
+                },
+                secondary: {
+                    color: "buttonColorSecondary",
+                    bg: "buttonBackgroundSecondary",
+                    borderColor: "buttonBorderSecondary",
+                    borderRadius: 0,
+                    "&:hover": {
+                        bg: "rgba(0, 0, 0, 0.6)",
                     },
                 },
             },
-        }),
-        variants: {
-            primary: {
-                color: "buttonColorPrimary",
-                bg: "buttonBackgroundPrimary",
-                borderColor: "buttonBorderPrimary",
-                borderRadius: 0,
-                "&:hover": {
-                    bg: "rgba(0, 0, 0, 0.1)",
-                },
-            },
-            secondary: {
-                color: "buttonColorSecondary",
-                bg: "buttonBackgroundSecondary",
-                borderColor: "buttonBorderSecondary",
-                borderRadius: 0,
-                "&:hover": {
-                    bg: "rgba(0, 0, 0, 0.6)",
-                },
-            },
+        },
+        ColorText: {
+            baseStyle: ({ colorMode }) => ({
+                color:
+                    colorMode === "dark"
+                        ? theme.colors.modes.dark.text
+                        : theme.colors.text,
+            }),
+        },
+        CustomInput: {
+            baseStyle: ({ colorMode }) => ({
+                border:
+                    colorMode === "dark"
+                        ? theme.colors.modes.dark.text
+                        : theme.colors.text,
+            }),
+        },
+        CustomHeader: {
+            baseStyle: ({ colorMode }) => ({
+                background:
+                    colorMode === "dark"
+                        ? theme.colors.modes.dark.sectionSecondaryBackground
+                        : theme.colors.sectionSecondaryBackground,
+                color:
+                    colorMode === "dark"
+                        ? theme.colors.modes.dark.text
+                        : theme.colors.text,
+            }),
         },
     },
-    ColorText: {
-        baseStyle: ({ colorMode }) => ({
-            color:
-                colorMode === "dark"
-                    ? theme.colors.modes.dark.text
-                    : theme.colors.text,
-        }),
-    },
-    CustomInput: {
-        baseStyle: ({ colorMode }) => ({
-            border:
-                colorMode === "dark"
-                    ? theme.colors.modes.dark.text
-                    : theme.colors.text,
-        }),
-    },
-    CustomHeader: {
-        baseStyle: ({ colorMode }) => ({
-            background:
-                colorMode === "dark"
-                    ? theme.colors.modes.dark.sectionSecondaryBackground
-                    : theme.colors.sectionSecondaryBackground,
-            color:
-                colorMode === "dark"
-                    ? theme.colors.modes.dark.text
-                    : theme.colors.text,
-        }),
-    },
 }
+export type Variants = ComponentMultiStyleConfig["variants"]
 
-const styles = {
+type StyleTheme = Pick<ChakraTheme, "styles">
+
+const styles: StyleTheme = {
     styles: {
         global: props => ({
             body: {
@@ -199,10 +220,15 @@ const styles = {
     },
 }
 
-const combinedTheme = {
+type ThemeType = Omit<typeof baseTheme, "styles" | "components"> &
+    StyleTheme &
+    ComponentTheme
+
+const combinedTheme: ThemeType = {
+    ...theme,
     styles: { ...theme.styles, ...styles },
-    components: { ...theme.components, ...components },
+    components: { ...theme.components, ...components.components },
 }
 
-const colorTheme = extendTheme(theme, combinedTheme)
+const colorTheme = extendTheme(baseTheme as ChakraTheme, combinedTheme)
 export default colorTheme

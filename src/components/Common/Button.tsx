@@ -1,11 +1,12 @@
-import * as React from "react"
-
 import { chakra, useStyleConfig } from "@chakra-ui/react"
-import theme, { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
-
-import ArrowLight from "../../svgs/light-arrow"
-import { Download } from "../../svgs/index"
 import styled from "@emotion/styled"
+import * as React from "react"
+import theme, {
+    BREAKPOINTS,
+    Variants,
+} from "../../@chakra-ui/gatsby-plugin/theme"
+import { Download } from "../../svgs/index"
+import ArrowLight from "../../svgs/light-arrow"
 
 type ButtonObjectProps = {
     lineBorderColor: string
@@ -94,8 +95,10 @@ const Button = ({
     variant,
     click,
 }: ButtonProps): React.ReactElement => {
-    const colors = theme.components.MyButton.variants[variant].borderColor
-    const lineBorderColor = theme.colors[colors] ?? "#fff"
+    const colors = (theme.components.MyButton.variants[variant] as Variants)
+        .borderColor as unknown as string
+    const lineBorderColor =
+        (theme.colors[colors] as unknown as string) ?? "#fff"
     const styles = useStyleConfig("MyButton", {
         header,
         variant,
