@@ -1,4 +1,4 @@
-name: Stylelint
+name: ESLint
 
 on:
   push:
@@ -26,5 +26,5 @@ jobs:
       - name: Install modules
         run: yarn
 
-      - name: Stylelint
-        run: yarn lint:css
+      - name: Typescript
+        run: yarn tsc
