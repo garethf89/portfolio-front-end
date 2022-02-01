@@ -9,11 +9,10 @@ jobs:
       - name: Use Node.js 14.18.1
         uses: actions/setup-node@v1
         with:
-          node-version: 14.18.1
+          node-version: "14.18.1"
       - name: npm install, build
         run: |
           npm install
-          npm run generate
       - name: run Lighthouse CI
         run: |
           npm install -g @lhci/cli@0.8.x

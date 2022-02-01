@@ -10,8 +10,6 @@ import { OuterWrapper } from "../Common/OuterWrapper"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 
-
-
 const Albums = styled.div`
     @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         display: flex;

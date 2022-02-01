@@ -4,17 +4,15 @@ import styled from "@emotion/styled"
 import * as React from "react"
 import { useState } from "react"
 import {
-  BREAKPOINTS,
-  COLORS,
-  SPACE
+    BREAKPOINTS,
+    COLORS,
+    SPACE,
 } from "../../@chakra-ui/gatsby-plugin/theme"
 import { supportsWebP } from "../../helpers/support/webp"
 import { useIsDark } from "../../hooks/useIsDark"
 import Container from "../Global/Container/Container"
 import IconExternal from "../Icons/IconExternal"
 import Heading from "../Typography/Heading"
-
-
 
 type ClientsProps = {
     mode: string
