@@ -1,20 +1,20 @@
-import * as React from "react"
-
-import {
-    BREAKPOINTS,
-    COLORS,
-    SPACE,
-} from "../../@chakra-ui/gatsby-plugin/theme"
-
-import Container from "../Global/Container/Container"
-import Heading from "../Typography/Heading"
-import IconExternal from "../Icons/IconExternal"
+import { useColorMode } from "@chakra-ui/react"
 import { css } from "@emotion/react"
 import styled from "@emotion/styled"
-import { supportsWebP } from "../../helpers/support/webp"
-import { useColorMode } from "@chakra-ui/react"
-import { useIsDark } from "../../hooks/useIsDark"
+import * as React from "react"
 import { useState } from "react"
+import {
+  BREAKPOINTS,
+  COLORS,
+  SPACE
+} from "../../@chakra-ui/gatsby-plugin/theme"
+import { supportsWebP } from "../../helpers/support/webp"
+import { useIsDark } from "../../hooks/useIsDark"
+import Container from "../Global/Container/Container"
+import IconExternal from "../Icons/IconExternal"
+import Heading from "../Typography/Heading"
+
+
 
 type ClientsProps = {
     mode: string
@@ -138,6 +138,7 @@ const Clients = ({ data }: ClientProps): React.ReactElement<ClientProps> => {
                                     <Logo
                                         mode={colorMode}
                                         alt={logo.name}
+                                        loading="lazy"
                                         srcSet={`${imageSrc.small} 1x, ${imageSrc.large} 2x`}
                                         src={imageSrc.large}
                                         dark={isDark}

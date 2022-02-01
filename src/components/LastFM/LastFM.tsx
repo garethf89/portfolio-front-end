@@ -1,16 +1,16 @@
+import styled from "@emotion/styled"
 import * as React from "react"
-
 import { useEffect, useState } from "react"
-
+import { StyledProps } from "../../../@types/types"
 import { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
-import Container from "../Global/Container/Container"
-import Heading from "../Typography/Heading"
+import { useLastFm } from "../../services/lastfm"
 import LastFMLogo from "../../svgs/lastfm"
 import Lines from "../Animation/Lines"
 import { OuterWrapper } from "../Common/OuterWrapper"
-import { StyledProps } from "../../../@types/types"
-import styled from "@emotion/styled"
-import { useLastFm } from "../../services/lastfm"
+import Container from "../Global/Container/Container"
+import Heading from "../Typography/Heading"
+
+
 
 const Albums = styled.div`
     @media (min-width: ${BREAKPOINTS.MEDIUM}) {
@@ -119,6 +119,7 @@ const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
                             <Album key={i} last={i === 2}>
                                 <AlbumArtContainer>
                                     <AlbumArtInner
+                                        loading="lazy"
                                         alt={`${album.name} cover`}
                                         src={album.image[3].src}
                                     />
