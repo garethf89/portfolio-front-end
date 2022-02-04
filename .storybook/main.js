@@ -56,10 +56,10 @@ module.exports = {
         })
         config.resolve.extensions.push(".ts", ".tsx")
         config.resolve.alias = {
+            ...config.resolve.alias,
             "@emotion/core": toPath("node_modules/@emotion/react"),
             "emotion-theming": toPath("node_modules/@emotion/react"),
         }
-        config.resolve.fallback = { crypto: false }
 
         return config
     },
