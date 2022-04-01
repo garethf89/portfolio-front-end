@@ -1,7 +1,5 @@
-import * as React from "react"
-
 import { graphql, useStaticQuery } from "gatsby"
-
+import * as React from "react"
 import CaseStudies from "../components/CaseStudies/CaseStudies"
 import Clients from "../components/Clients/Clients"
 import Header from "../components/Header/Header"
@@ -72,15 +70,13 @@ const IndexPage = (): React.ReactElement => {
                     headline
                     title
                     coverImage {
-                        icon1x: fixed(width: 375) {
-                            src
-                            srcWebp
-                        }
-                        icon2x: fixed(width: 750) {
-                            src
-                            srcWebp
-                            tracedSVG
-                        }
+                        gatsbyImageData(
+                            layout: CONSTRAINED
+                            width: 1100
+                            placeholder: BLURRED
+                            quality: 90
+                            formats: [AUTO, AVIF, WEBP]
+                        )
                     }
                 }
                 logos {
@@ -99,14 +95,13 @@ const IndexPage = (): React.ReactElement => {
                         svg {
                             content
                         }
-                        icon1x: fixed(width: 100) {
-                            src
-                            srcWebp
-                        }
-                        icon2x: fixed(width: 200) {
-                            src
-                            srcWebp
-                        }
+                        gatsbyImageData(
+                            layout: CONSTRAINED
+                            width: 200
+                            placeholder: BLURRED
+                            quality: 90
+                            formats: [AUTO, AVIF, WEBP]
+                        )
                     }
                 }
             }

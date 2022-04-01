@@ -1,11 +1,10 @@
+import styled from "@emotion/styled"
 import * as React from "react"
-
-import Heading from "../Typography/Heading"
 import { ISkill } from "../../../@types/generated/contentful"
 import { ISkillFieldsCustom } from "../../../@types/types"
 import { SPACE } from "../../@chakra-ui/gatsby-plugin/theme"
 import Skill from "../Skills/Skill"
-import styled from "@emotion/styled"
+import Heading from "../Typography/Heading"
 
 interface PageSkillProps {
     skills: ISkill[]

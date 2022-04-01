@@ -1,17 +1,16 @@
-import * as React from "react"
-
 import { Box, useStyleConfig } from "@chakra-ui/react"
-import ProgressiveImage, { ResponsiveImage } from "../Utils/ProgressiveImage"
+import styled from "@emotion/styled"
+import { Asset } from "contentful"
+import * as React from "react"
 import { useContext, useEffect } from "react"
-
 import { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
+import { globals } from "../../state/state"
+import Lines from "../Animation/Lines"
 import BackLink from "../BackLink/BackLink"
 import Button from "../Common/Button"
+import Image from "../Common/Image"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
-import Lines from "../Animation/Lines"
-import { globals } from "../../state/state"
-import styled from "@emotion/styled"
 
 const HeaderStyles = styled(Box)`
     overflow: hidden;
@@ -50,7 +49,7 @@ const PageImage = styled.div`
     }
 `
 
-const PageImageElement = styled(ProgressiveImage)`
+const PageImageElement = styled(Image)`
     width: 100%;
     position: absolute;
     object-fit: cover;
@@ -71,7 +70,7 @@ const ButtonWrapper = styled.div`
 
 interface PageHeaderProps {
     text: string
-    image?: unknown
+    image?: Asset
     link?: string
     title: string
 }
@@ -102,9 +101,7 @@ const PageHeader = ({
                     <PageImageElement
                         alt={`Background image for ${title}`}
                         sizes="(min-width: 50em) 50vw, 100vw"
-                        image={image as ResponsiveImage}
-                        absolute
-                        loadingImage
+                        image={image}
                     />
                 </PageImage>
             )}

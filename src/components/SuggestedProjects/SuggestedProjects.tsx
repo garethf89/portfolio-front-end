@@ -1,11 +1,13 @@
 import styled from "@emotion/styled"
+import { Asset } from "contentful"
 import { Link } from "gatsby"
 import * as React from "react"
 import { useEffect, useState } from "react"
+import { IProjectFields } from "../../../@types/generated/contentful"
 import { BREAKPOINTS, SPACE } from "../../@chakra-ui/gatsby-plugin/theme"
 import { random } from "../../helpers/random"
-import { supportsWebP } from "../../helpers/support/webp"
 import { getAllProjects } from "../../hooks/get-all-projects"
+import Image from "../Common/Image"
 import { SROnly } from "../Common/SROnly"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
@@ -15,6 +17,7 @@ const SuggestedProjectLinkContainer = styled.div`
     width: 100%;
     margin-bottom: ${SPACE.common[4]};
     margin-right: 1rem;
+    overflow: hidden;
     &:last-of-type {
         margin-bottom: 0;
         margin-right: 0;
@@ -24,7 +27,7 @@ const SuggestedProjectLinkContainer = styled.div`
         color: inherit;
     }
     &:hover {
-        a span {
+        .gatsby-image-wrapper {
             transform: scale(1.1);
         }
     }
@@ -34,37 +37,14 @@ const SuggestedProjectLinkContainer = styled.div`
         margin-right: 0;
     }
 `
-const SuggestedProjectLink = styled(Link)`
-    padding-top: 56.25%;
-    width: 100%;
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-`
+const SuggestedProjectLink = styled(Link)``
 
-type SuggestedProjectProps = {
-    image: {
-        "1x": string
-        "2x": string
-    }
+type SuggestedProjectLinkBGProps = {
+    image?: Asset
 }
-const SuggestedProjectLinkBG = styled.span<SuggestedProjectProps>`
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: ${props => props.theme.colors.secondaryBackground};
-    background-image: url(${props => props.image["2x"]});
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 100%;
+
+const SuggestedProjectLinkBG = styled(Image)<SuggestedProjectLinkBGProps>`
     transition: all 0.5s ease-in-out;
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
-        max-width: none;
-    }
 `
 
 const SuggestedProjectLinkHeading = styled(Heading)`
@@ -75,11 +55,17 @@ const SuggestedDescription = styled(Heading)`
     margin: 0;
 `
 
+type ProjectNodes = IProjectFields[]
+type AllProjects = {
+    allContentfulProject: {
+        edges: ProjectNodes[]
+    }
+}
+
 const SuggestedProjects = (): React.ReactElement => {
     const [randomProjects, setProjects] = useState(null)
 
-    const data = getAllProjects()
-    const webp = supportsWebP()
+    const data: AllProjects = getAllProjects()
 
     useEffect(() => {
         const projects = [...data.allContentfulProject.edges]
@@ -95,24 +81,17 @@ const SuggestedProjects = (): React.ReactElement => {
         <Container useflex px={[0, 0, 0]} justifyContent="space-between">
             {randomProjects &&
                 randomProjects.map((project, i) => {
-                    const imageSrc = webp
-                        ? {
-                              "1x": project.node.coverImage.icon1x.srcWebp,
-                              "2x": project.node.coverImage.icon2x.srcWebp,
-                          }
-                        : {
-                              "1x": project.node.coverImage.icon1x.src,
-                              "2x": project.node.coverImage.icon2x.src,
-                          }
                     return (
                         <SuggestedProjectLinkContainer key={i}>
                             <SuggestedProjectLink
                                 to={`/${project.node.slug}`}
                                 className=""
                             >
-                                <SuggestedProjectLinkBG image={imageSrc}>
-                                    <SROnly>{project.node.title}</SROnly>
-                                </SuggestedProjectLinkBG>
+                                <SuggestedProjectLinkBG
+                                    alt={project.node.title}
+                                    image={project.node.coverImage}
+                                />
+                                <SROnly>{project.node.title}</SROnly>
                             </SuggestedProjectLink>
                             <SuggestedProjectLinkHeading level="h3">
                                 <Link className="" to={`/${project.node.slug}`}>

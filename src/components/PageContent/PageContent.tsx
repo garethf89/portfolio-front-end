@@ -1,31 +1,27 @@
-import * as React from "react"
-
 import {
-    BLOCKS,
-    INLINES,
-    MARKS,
-    TopLevelBlockEnum,
+  BLOCKS,
+  INLINES,
+  MARKS,
+  TopLevelBlockEnum
 } from "@contentful/rich-text-types"
-import { BREAKPOINTS, SPACE } from "../../@chakra-ui/gatsby-plugin/theme"
-import {
-    ContentfulRichTextGatsbyReference,
-    RenderRichTextData,
-} from "../../../@types/types"
-import {
-    IPageContentTextFields,
-    ISkill,
-} from "../../../@types/generated/contentful"
-import ProgressiveImage, { ImageFieldsCustom } from "../Utils/ProgressiveImage"
+import styled from "@emotion/styled"
+import { Asset } from "contentful"
+import { renderRichText } from "gatsby-source-contentful/rich-text"
+import * as React from "react"
 import { useEffect, useState } from "react"
-
+import {
+  IPageContentImageFields,
+  IPageContentTextFields,
+  ISkill
+} from "../../../@types/generated/contentful"
+import { ContentfulRichTextGatsbyReference } from "../../../@types/types"
+import { BREAKPOINTS, SPACE } from "../../@chakra-ui/gatsby-plugin/theme"
+import Image from "../Common/Image"
 import Container from "../Global/Container/Container"
-import ContainerBreak from "../Utils/ContainerBreak"
 import Heading from "../Typography/Heading"
 import InlineLink from "../Typography/Inlinelink"
+import ContainerBreak from "../Utils/ContainerBreak"
 import PageSkills from "./PageSkills"
-import { css } from "@emotion/react"
-import { renderRichText } from "gatsby-source-contentful/rich-text"
-import styled from "@emotion/styled"
 
 const CUSTOMBLOCKS = {
     ...BLOCKS,
@@ -33,7 +29,7 @@ const CUSTOMBLOCKS = {
     INTRO: "intro" as TopLevelBlockEnum,
 }
 
-const ImageStyles = () => css`
+const ImageStyled = styled(Image)`
     max-width: 100%;
     margin-bottom: ${SPACE.common[2]};
     margin-top: ${SPACE.common[3]};
@@ -118,8 +114,6 @@ const options = {
     },
 }
 
-type Filter<T, U> = T extends U ? T : never
-
 // Text
 
 type CustomTextAttributes = {
@@ -128,20 +122,17 @@ type CustomTextAttributes = {
     body?: RenderRichTextData<ContentfulRichTextGatsbyReference>
 }
 
-type TextTypes = Filter<
-    AllContent,
-    CustomTextAttributes & IPageContentTextFields
->
+type TextTypes = AllContent & CustomTextAttributes & IPageContentTextFields
 
 // Image
 
-type ImageTypes = Filter<AllContent, ImageFieldsCustom>
+type ImageTypes = AllContent
 
 // All
 
-export type AllContent = ImageFieldsCustom &
-    IPageContentTextFields &
-    CustomTextAttributes
+export type AllContent = Partial<IPageContentTextFields> &
+    Partial<CustomTextAttributes> &
+    Partial<IPageContentImageFields>
 
 type ContentProps = {
     content: unknown[]
@@ -165,22 +156,25 @@ const OutputTextComponent = ({
 }
 
 export interface OutputImageComponentProps {
-    image: ImageTypes
+    image: IPageContentImageFields
     name: number | string
     type: string
 }
+
+type ExpandedAsset = Asset & {
+    title: string
+}
+
 export const OutputImageComponent = ({
     image,
     name,
     type,
 }: OutputImageComponentProps): React.ReactElement => {
     return (
-        <ProgressiveImage
+        <ImageStyled
             key={`${type}-${name}`}
-            sizes="100vw"
-            alt={image.image.title}
+            alt={(image.image as ExpandedAsset).title}
             image={image.image}
-            styles={ImageStyles}
         />
     )
 }
@@ -225,7 +219,7 @@ const PageContent = ({ content, skills }: ContentProps): React.ReactElement => {
                             <OutputImageComponent
                                 key={i}
                                 name={i}
-                                image={c as ImageTypes}
+                                image={c as IPageContentImageFields}
                                 type="imagefull"
                             />
                         </ContainerBreak>
@@ -234,7 +228,7 @@ const PageContent = ({ content, skills }: ContentProps): React.ReactElement => {
                 return (
                     <OutputImageComponent
                         key={i}
-                        image={c as ImageTypes}
+                        image={c as IPageContentImageFields}
                         name={i}
                         type="image"
                     />

@@ -11,15 +11,14 @@ export const getAllProjects = (): Record<string, string> => {
                             title
                             headline
                             coverImage {
-                                icon1x: fixed(width: 400) {
-                                    src
-                                    srcWebp
-                                }
-                                icon2x: fixed(width: 850) {
-                                    src
-                                    srcWebp
-                                    tracedSVG
-                                }
+                                gatsbyImageData(
+                                    width: 2200
+                                    layout: FULL_WIDTH
+                                    placeholder: BLURRED
+                                    quality: 90
+                                    formats: [AUTO, AVIF, WEBP]
+                                    aspectRatio: 1.77
+                                )
                             }
                         }
                     }

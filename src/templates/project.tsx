@@ -1,8 +1,8 @@
-import { IProjectFields } from "../../@types/generated/contentful"
-import PageContent from "../components/PageContent/PageContent"
-import PageHeader from "../components/HeadPanels/PageHeader"
-import * as React from "react"
 import { graphql } from "gatsby"
+import * as React from "react"
+import { IProjectFields } from "../../@types/generated/contentful"
+import PageHeader from "../components/HeadPanels/PageHeader"
+import PageContent from "../components/PageContent/PageContent"
 
 interface ProjectProps {
     id: string
@@ -51,29 +51,13 @@ export const query = graphql`
                         image {
                             title
                             description
-                            file {
-                                url
-                            }
-                            progressive: fixed(width: 20, quality: 80) {
-                                src
-                                srcWebp
-                            }
-                            S: fluid(maxWidth: 800, quality: 90) {
-                                src
-                                srcWebp
-                            }
-                            S2X: fluid(maxWidth: 1600, quality: 90) {
-                                src
-                                srcWebp
-                            }
-                            L: fluid(maxWidth: 1100, quality: 90) {
-                                src
-                                srcWebp
-                            }
-                            L2X: fluid(maxWidth: 2200, quality: 90) {
-                                src
-                                srcWebp
-                            }
+                            gatsbyImageData(
+                                width: 2200
+                                layout: FULL_WIDTH
+                                placeholder: BLURRED
+                                quality: 90
+                                formats: [AUTO, AVIF, WEBP]
+                            )
                         }
                         internal {
                             type
@@ -84,29 +68,13 @@ export const query = graphql`
                         image {
                             title
                             description
-                            file {
-                                url
-                            }
-                            progressive: fixed(width: 20, quality: 80) {
-                                src
-                                srcWebp
-                            }
-                            S: fluid(maxWidth: 800, quality: 90) {
-                                src
-                                srcWebp
-                            }
-                            S2X: fluid(maxWidth: 1600, quality: 90) {
-                                src
-                                srcWebp
-                            }
-                            L: fluid(maxWidth: 1100, quality: 90) {
-                                src
-                                srcWebp
-                            }
-                            L2X: fluid(maxWidth: 2200, quality: 90) {
-                                src
-                                srcWebp
-                            }
+                            gatsbyImageData(
+                                width: 2200
+                                layout: FULL_WIDTH
+                                placeholder: BLURRED
+                                quality: 90
+                                formats: [AUTO, AVIF, WEBP]
+                            )
                         }
                         internal {
                             type
@@ -126,26 +94,13 @@ export const query = graphql`
                 }
             }
             coverImage {
-                progressive: fixed(width: 20, quality: 80) {
-                    src
-                    srcWebp
-                }
-                S: fluid(maxWidth: 800, quality: 90) {
-                    src
-                    srcWebp
-                }
-                S2X: fluid(maxWidth: 1600, quality: 90) {
-                    src
-                    srcWebp
-                }
-                L: fluid(maxWidth: 1100, quality: 90) {
-                    src
-                    srcWebp
-                }
-                L2X: fluid(maxWidth: 2200, quality: 90) {
-                    src
-                    srcWebp
-                }
+                gatsbyImageData(
+                    width: 2200
+                    layout: FULL_WIDTH
+                    placeholder: BLURRED
+                    quality: 90
+                    formats: [AUTO, AVIF, WEBP]
+                )
             }
         }
     }

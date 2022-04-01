@@ -1,9 +1,9 @@
 import {
-    ChakraTheme,
-    ComponentMultiStyleConfig as ChakraComponentMultiStyleConfig,
-    ComponentSingleStyleConfig as ChakraComponentSingleStyleConfig,
-    extendTheme,
-    theme as baseTheme,
+  ChakraTheme,
+  ComponentMultiStyleConfig as ChakraComponentMultiStyleConfig,
+  ComponentSingleStyleConfig as ChakraComponentSingleStyleConfig,
+  extendTheme,
+  theme as baseTheme
 } from "@chakra-ui/react"
 import { createBreakpoints, mode } from "@chakra-ui/theme-tools"
 
@@ -230,5 +230,5 @@ const combinedTheme: ThemeType = {
     components: { ...theme.components, ...components.components },
 }
 
-const colorTheme = extendTheme(baseTheme as ChakraTheme, combinedTheme)
+const colorTheme: any = extendTheme(baseTheme, combinedTheme)
 export default colorTheme

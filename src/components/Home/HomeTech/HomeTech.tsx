@@ -1,21 +1,19 @@
-import * as React from "react"
-
 import { BLOCKS, Document, INLINES, MARKS } from "@contentful/rich-text-types"
-import {
-    ContentfulRichTextGatsbyReference,
-    RenderRichTextData,
-} from "../../../../@types/types"
-
-import Bold from "../../Typography/Bold"
-import Container from "../../Global/Container/Container"
-import FaceImage from "../FaceImage/FaceImage"
-import Heading from "../../Typography/Heading"
-import { ISkillFields } from "../../../../@types/generated/contentful"
-import Inlinelink from "../../Typography/Inlinelink"
-import { SPACE } from "../../../@chakra-ui/gatsby-plugin/theme"
-import Skill from "../../Skills/Skill"
-import { renderRichText } from "gatsby-source-contentful/rich-text"
 import styled from "@emotion/styled"
+import { renderRichText } from "gatsby-source-contentful/rich-text"
+import * as React from "react"
+import { ISkillFields } from "../../../../@types/generated/contentful"
+import {
+  ContentfulRichTextGatsbyReference,
+  RenderRichTextData
+} from "../../../../@types/types"
+import { SPACE } from "../../../@chakra-ui/gatsby-plugin/theme"
+import Container from "../../Global/Container/Container"
+import Skill from "../../Skills/Skill"
+import Bold from "../../Typography/Bold"
+import Heading from "../../Typography/Heading"
+import Inlinelink from "../../Typography/Inlinelink"
+import FaceImage from "../FaceImage/FaceImage"
 
 const StyledParagraph = styled(Heading)`
     font-weight: 200;

@@ -1,14 +1,12 @@
 import {
-    BaseThemeWithExtensions,
-    ThemeExtension,
-    ThemeOverride,
+  BaseThemeWithExtensions,
+  ThemeExtension,
+  ThemeOverride
 } from "@chakra-ui/react"
 import { ThemeTypings } from "@chakra-ui/styled-system"
 import { ChakraTheme } from "@chakra-ui/theme"
 import "@emotion/react"
 import { Asset } from "contentful"
-import { ResponsiveImage } from "../src/components/Utils/ProgressiveImage"
-import { IProjectFields } from "./generated/contentful"
 
 interface Size {
     [key: string]: string
@@ -60,10 +58,6 @@ export interface RenderRichTextData<
 > {
     raw: string
     references: T[]
-}
-
-export type IProjectFieldsTypes = IProjectFields & {
-    coverImage: ResponsiveImage
 }
 
 interface CustomAsset extends Asset {

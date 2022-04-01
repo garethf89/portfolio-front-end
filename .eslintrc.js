@@ -1,5 +1,10 @@
 module.exports = {
-    extends: ["plugin:@typescript-eslint/recommended", "gatsby-standard"],
+    extends: [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended",
+        "gatsby-standard",
+        "prettier",
+    ],
     plugins: ["@typescript-eslint", "prefer-arrow", "prettier"],
     env: {
         es6: true,

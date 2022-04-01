@@ -1,35 +1,30 @@
-import { AllContent, OutputImageComponent } from "./PageContent"
-
-import Container from "../Global/Container/Container"
+import { Asset } from "contentful"
 import { Fragment } from "react"
+import { GatsbyImageMock } from "../../../.storybook/helpers/gatsbyImageMock"
+import Container from "../Global/Container/Container"
+import { OutputImageComponent } from "./PageContent"
 
 const ContentImageStory = ({
     type = "Test",
     name,
-    image,
     container,
+    alt,
 }: {
-    image: string
     type: string
     name: string
     container: string
+    alt: string
 }) => {
-    const imageProps: AllContent = {
-        type: "image",
-        title: type,
-        image: {
-            title: type,
-            progressive: { src: image, srcWebp: image },
-            S: { src: image, srcWebp: image },
-            S2X: { src: image, srcWebp: image },
-            L: { src: image, srcWebp: image },
-            L2X: { src: image, srcWebp: image },
-        },
-    }
+    const imageProps = { image: { ...GatsbyImageMock, title: alt } }
+
     const Wrap = container ? Container : Fragment
     return (
         <Wrap>
-            <OutputImageComponent type={type} image={imageProps} name={name} />
+            <OutputImageComponent
+                type={type}
+                image={imageProps as unknown as Asset}
+                name={name}
+            />
         </Wrap>
     )
 }
@@ -40,7 +35,5 @@ export default {
 
 export const ContentImage = ContentImageStory.bind({})
 ContentImage.args = {
-    container: true,
     alt: "Test storybook image",
-    image: "https://images.ctfassets.net/z41luxcckja5/1DaEaQgLElwsJG462M9ysR/7b827f37782bd9a56fa370cca3430a3b/Arup_1.jpg?w=2200&q=90&fm=webp",
 }

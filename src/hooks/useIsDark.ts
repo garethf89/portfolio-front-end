@@ -1,8 +1,7 @@
+import { useColorMode } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 
-import { useColorMode } from "@chakra-ui/react"
-
-export const useIsDark = (dark: boolean): [boolean, () => void] => {
+export const useIsDark = (dark: boolean): boolean => {
     const [isDark, setIsDark] = useState(null)
     const { colorMode } = useColorMode()
 

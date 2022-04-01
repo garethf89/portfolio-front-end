@@ -2,14 +2,14 @@ import { useColorMode } from "@chakra-ui/react"
 import { css } from "@emotion/react"
 import styled from "@emotion/styled"
 import * as React from "react"
-import { useState } from "react"
+import { ILogoFields } from "../../../@types/generated/contentful"
 import {
     BREAKPOINTS,
     COLORS,
     SPACE,
 } from "../../@chakra-ui/gatsby-plugin/theme"
-import { supportsWebP } from "../../helpers/support/webp"
 import { useIsDark } from "../../hooks/useIsDark"
+import Image from "../Common/Image"
 import Container from "../Global/Container/Container"
 import IconExternal from "../Icons/IconExternal"
 import Heading from "../Typography/Heading"
@@ -57,7 +57,7 @@ const LogoCommon = (props: ClientsProps) => css`
     }
 `
 
-const Logo = styled.img`
+const Logo = styled(Image)`
     ${LogoCommon}
 `
 
@@ -67,33 +67,11 @@ const IconLogo = styled(IconExternal, {
     ${LogoCommon}
 `
 
-type ILogoType = {
-    name: string
-    dark: boolean
-    logo: {
-        svg: {
-            content: string
-        }
-        file: {
-            contentType: string
-        }
-        icon1x: {
-            src: string
-            srcWebp: string
-        }
-        icon2x: {
-            src: string
-            srcWebp: string
-        }
-    }
-}
-
 interface ClientProps {
-    data: ILogoType[]
+    data: ILogoFields[]
 }
 
 const Clients = ({ data }: ClientProps): React.ReactElement<ClientProps> => {
-    const [webP] = useState(() => supportsWebP)
     const { colorMode } = useColorMode()
     return (
         <>
@@ -107,28 +85,17 @@ const Clients = ({ data }: ClientProps): React.ReactElement<ClientProps> => {
                     Clients I have worked with
                 </Heading>
                 <LogoWrapper>
-                    {data.map((logo: ILogoType, i: number) => {
+                    {data.map((logo: ILogoFields, i: number) => {
                         const svg =
                             logo.logo.file.contentType === "image/svg+xml"
-
-                        const imageSrc = svg
-                            ? logo.logo.svg.content
-                            : {
-                                  small: webP
-                                      ? logo.logo.icon1x.srcWebp
-                                      : logo.logo.icon1x.src,
-                                  large: webP
-                                      ? logo.logo.icon2x.srcWebp
-                                      : logo.logo.icon2x.src,
-                              }
-                        const isDark = useIsDark(logo.dark)
+                        const isDark = useIsDark(logo?.dark)
                         return (
                             <React.Fragment key={i}>
                                 {svg ? (
                                     <IconLogo
                                         mode={colorMode}
                                         width="100px"
-                                        iconSvg={imageSrc as string}
+                                        iconSvg={logo.logo.svg.content}
                                         dark={isDark}
                                         key={i}
                                     />
@@ -137,8 +104,7 @@ const Clients = ({ data }: ClientProps): React.ReactElement<ClientProps> => {
                                         mode={colorMode}
                                         alt={logo.name}
                                         loading="lazy"
-                                        srcSet={`${imageSrc.small} 1x, ${imageSrc.large} 2x`}
-                                        src={imageSrc.large}
+                                        image={logo.logo}
                                         dark={isDark}
                                         key={i}
                                     />

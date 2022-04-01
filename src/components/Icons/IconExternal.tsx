@@ -1,10 +1,8 @@
-import * as React from "react"
-
-import HTMLReactParser, { domToReact } from "html-react-parser"
-
 import { Icon as ChakraIcon } from "@chakra-ui/react"
-import { SystemsTypeProperties } from "./Icon"
 import styled from "@emotion/styled"
+import HTMLReactParser, { domToReact } from "html-react-parser"
+import * as React from "react"
+import { SystemsTypeProperties } from "./Icon"
 
 interface IconPropsType extends SystemsTypeProperties {
     "data-icon"?: boolean
@@ -27,7 +25,7 @@ export const IconExternal = ({
             }
             if (domNode.name === "svg") {
                 return (
-                    <ChakraIcon {...attr} {...styledProps}>
+                    <ChakraIcon {...attr} style={{}} {...styledProps}>
                         {title && <title>{title}</title>}
                         {domToReact(domNode.children)}
                     </ChakraIcon>
