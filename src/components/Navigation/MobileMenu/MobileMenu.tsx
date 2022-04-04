@@ -31,18 +31,22 @@ const MobileLine = styled.span<LineProps>`
     display: block;
     margin: 8px 0.5rem 8px auto;
     transition: all 0.3s ease-in-out;
+
     &:hover {
         cursor: pointer;
     }
+
     &:nth-of-type(1) {
         transform: ${props =>
             props.active
                 ? "translateY(13px) rotate(45deg)"
                 : "translateY(0) rotate(0)"};
     }
+
     &:nth-of-type(2) {
         opacity: ${props => (props.active ? "0" : "1")};
     }
+
     &:nth-of-type(3) {
         transform: ${props =>
             props.active

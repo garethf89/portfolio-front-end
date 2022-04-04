@@ -4,8 +4,8 @@ import { renderRichText } from "gatsby-source-contentful/rich-text"
 import * as React from "react"
 import { ISkillFields } from "../../../../@types/generated/contentful"
 import {
-  ContentfulRichTextGatsbyReference,
-  RenderRichTextData
+    ContentfulRichTextGatsbyReference,
+    RenderRichTextData,
 } from "../../../../@types/types"
 import { SPACE } from "../../../@chakra-ui/gatsby-plugin/theme"
 import Container from "../../Global/Container/Container"

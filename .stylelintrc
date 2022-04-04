@@ -5,6 +5,7 @@
     "stylelint-config-prettier",
     "stylelint-config-styled-components"
   ],
+  "customSyntax": "@stylelint/postcss-css-in-js",
   "ignoreFiles": ["node_modules/**/*"],
   "rules": {
     "no-descending-specificity": null,
