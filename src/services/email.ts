@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios"
 import { useCallback, useState } from "react"
 
-import { Response } from "express"
+import type { Response } from "express"
 
 const url = `${process.env.GATSBY_REACT_APP_API_URL}/formEmail`
 
