@@ -3,7 +3,6 @@ module.exports = {
         collect: {
             startServerCommand: "npm start",
             staticDistDir: "./public",
-
         },
         upload: {
             target: "temporary-public-storage",
