@@ -102,15 +102,19 @@ const theme = {
 
 type ComponentSingleStyleConfig = Partial<ChakraComponentSingleStyleConfig>
 type ComponentMultiStyleConfig = Partial<ChakraComponentMultiStyleConfig>
+
 declare type ComponentStyleConfig =
     | ComponentSingleStyleConfig
     | ComponentMultiStyleConfig
+
 interface ComponentTheme {
     components: { [componentName: string]: ComponentStyleConfig }
 }
 
 const components: ComponentTheme = {
     components: {
+        ...theme.components,
+        Accordion: {},
         MyButton: {
             baseStyle: ({ header, lineBorderColor }) => ({
                 textTransform: "uppercase",
@@ -227,7 +231,7 @@ type ThemeType = Omit<typeof baseTheme, "styles" | "components"> &
 const combinedTheme: ThemeType = {
     ...theme,
     styles: { ...theme.styles, ...styles },
-    components: { ...theme.components, ...components.components },
+    components: { ...components.components },
 }
 
 const colorTheme = extendTheme(baseTheme, combinedTheme)
