@@ -7,4 +7,7 @@ module.exports = {
             target: "temporary-public-storage",
         },
     },
+    collect: {
+        staticDistDir: "./public",
+    },
 }
