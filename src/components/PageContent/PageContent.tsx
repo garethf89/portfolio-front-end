@@ -14,6 +14,10 @@ import {
     IPageContentTextFields,
     ISkill,
 } from "../../../@types/generated/contentful"
+import {
+    ContentfulRichTextGatsbyReference,
+    RenderRichTextData,
+} from "../../../@types/types"
 import { BREAKPOINTS, SPACE } from "../../@chakra-ui/gatsby-plugin/theme"
 import Image from "../Common/Image"
 import Container from "../Global/Container/Container"
@@ -118,7 +122,7 @@ const options = {
 type CustomTextAttributes = {
     type: string
     isIntro?: boolean
-    body?: React.ReactNode
+    body?: RenderRichTextData<ContentfulRichTextGatsbyReference>
 }
 
 type TextTypes = AllContent & CustomTextAttributes & IPageContentTextFields
