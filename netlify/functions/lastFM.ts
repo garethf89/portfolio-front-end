@@ -1,10 +1,10 @@
 import { Handler } from "@netlify/functions"
 import { MongoClient } from "mongodb"
 
-const connStr = `mongodb+srv://${process.env.MONGO}`
-
 const handler: Handler = async () => {
     try {
+        const connStr = `mongodb+srv://${process.env.MONGO}`
+
         const client = new MongoClient(connStr)
         await client.connect()
         const database = client.db("portfolio")
