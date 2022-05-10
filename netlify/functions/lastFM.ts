@@ -4,10 +4,10 @@ import { MongoClient } from "mongodb"
 const handler: Handler = async () => {
     try {
         const connStr = `mongodb+srv://${process.env.MONGO}`
-
         const client = new MongoClient(connStr)
         await client.connect()
-        const database = client.db("portfolio")
+
+        const database = client.db("garethferguson")
         const lastfms = database.collection("lastfms")
 
         const options = {}

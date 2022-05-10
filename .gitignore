@@ -80,3 +80,5 @@ storybook-static
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+.netlify
