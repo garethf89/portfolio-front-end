@@ -10,6 +10,7 @@
 
 const axios = require("axios")
 const url = require("./src/constants/lastfm.ts").url
+const urlGet = require("./src/constants/lastfm.ts").functionGet
 const data = require("./src/constants/lastfm.ts").data
 const album = require("./src/__mocks__/lastfm")
 const inlineSvg = require("./src/gatsby/node/inline-svg")
@@ -22,14 +23,14 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     actions.setWebpackConfig({
         node: { fs: "empty" },
         experiments: {
-            backCompat: false
-        }
+            backCompat: false,
+        },
     })
 }
 exports.sourceNodes = async ({
     actions: { createNode },
     createNodeId,
-    createContentDigest
+    createContentDigest,
 }) => {
     let result = { albums: album }
     if (process.env.NODE_ENV === "production") {
@@ -39,14 +40,21 @@ exports.sourceNodes = async ({
                 headers: {
                     "Access-Control-Allow-Origin": "*",
                     "Access-Control-Allow-Methods": "*",
-                    "Access-Control-Allow-Headers": "*"
+                    "Access-Control-Allow-Headers": "*",
                 },
                 url: url,
-                data: data
+                data: data,
             })
             result = { albums: res.data }
         } catch (e) {
-            console.log("No connection to back end")
+            try {
+                console.log("this")
+                const res = await axios.get(urlGet)
+                result = { albums: res.data }
+                console.log("whey aye")
+            } catch (e) {
+                console.log("No connection to back end")
+            }
         }
     }
     return createNode({
@@ -54,7 +62,7 @@ exports.sourceNodes = async ({
         id: createNodeId(`lastfm-build-time-data`),
         internal: {
             type: `Albums`,
-            contentDigest: createContentDigest(result)
-        }
+            contentDigest: createContentDigest(result),
+        },
     })
 }
