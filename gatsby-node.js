@@ -48,10 +48,8 @@ exports.sourceNodes = async ({
             result = { albums: res.data }
         } catch (e) {
             try {
-                console.log("this")
                 const res = await axios.get(urlGet)
                 result = { albums: res.data }
-                console.log("whey aye")
             } catch (e) {
                 console.log("No connection to back end")
             }
