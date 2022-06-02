@@ -3,7 +3,7 @@ import * as React from "react"
 import { useEffect, useState } from "react"
 import { StyledProps } from "../../../@types/types"
 import { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
-import { useLastFm } from "../../services/lastfm"
+import { useLastFm, useLastFmFunction } from "../../services/lastfm"
 import LastFMLogo from "../../svgs/lastfm"
 import Lines from "../Animation/Lines"
 import { OuterWrapper } from "../Common/OuterWrapper"
@@ -81,7 +81,24 @@ type LastFmProps = {
 const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
     const [albums, setAlbums] = useState(initialAlbums ?? null)
     // Access the client
-    const { data } = useLastFm()
+    const { data, failureCount } = useLastFm({ retry: 0 })
+    const { data: functionData, refetch } = useLastFmFunction({
+        enabled: false,
+        retry: 0,
+    })
+
+    useEffect(() => {
+        if (failureCount === 1) {
+            refetch()
+        }
+    }, [failureCount])
+
+    useEffect(() => {
+        if (functionData) {
+            setAlbums(functionData.data.data.album)
+        }
+    }, [functionData])
+
     useEffect(() => {
         if (!data) {
             setAlbums(initialAlbums ?? null)
