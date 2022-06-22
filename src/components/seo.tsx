@@ -17,6 +17,10 @@ interface SeoProps {
     children?: React.ReactNode
 }
 
+const ICON_SIZES = ["16x16", "32x32", "180x180", "512x512"]
+
+const TOUCH_ICON_SIZES = ["192x192", "512x512"]
+
 const SEO = ({
     pageTitle,
     pageDescription,
@@ -51,6 +55,28 @@ const SEO = ({
             />
 
             <link rel="canonical" href={siteUrl} />
+
+            {/* FavIcon */}
+
+            {ICON_SIZES.map((icon: string, i) => (
+                <link
+                    key={`favicon-${i}`}
+                    rel="icon"
+                    sizes={icon}
+                    href={`images/favicon-${icon}.jpg`}
+                ></link>
+            ))}
+
+            {TOUCH_ICON_SIZES.map((icon: string, i) => (
+                <link
+                    key={`applefavicon-${i}`}
+                    rel="apple-touch-icon"
+                    sizes={icon}
+                    href={`images/favicon-${icon}.jpg`}
+                ></link>
+            ))}
+
+            <link rel="manifest" href="/site.webmanifest"></link>
 
             {/* General tags */}
             <meta name="image" content={image} />

@@ -18491,7 +18491,6 @@ __metadata:
     fsevents: ^2.3.2
     gatsby: ^4.14.1
     gatsby-plugin-image: ^2.14.1
-    gatsby-plugin-manifest: ^4.14.0
     gatsby-plugin-netlify: ^4.3.1
     gatsby-plugin-react-helmet: ^5.14.0
     gatsby-plugin-robots-txt: ^1.7.1
@@ -18754,21 +18753,6 @@ __metadata:
     react: ^16.9.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.9.0 || ^17.0.0 || ^18.0.0
   checksum: 9907ae9ab08cb980e5a8ab7a72aaad11ea5b0816c6d2277a45e5d1091f71e513478eb037ece02109c31beeedc3e730bf2574796cbb316ce835e1446aabd55827
-  languageName: node
-  linkType: hard
-
-"gatsby-plugin-manifest@npm:^4.14.0":
-  version: 4.14.0
-  resolution: "gatsby-plugin-manifest@npm:4.14.0"
-  dependencies:
-    "@babel/runtime": ^7.15.4
-    gatsby-core-utils: ^3.14.0
-    gatsby-plugin-utils: ^3.8.0
-    semver: ^7.3.7
-    sharp: ^0.30.3
-  peerDependencies:
-    gatsby: ^4.0.0-next
-  checksum: 615108612de20e19cac136871c626cd024d64777557cd630c35c3a75729800a5bfda147eb67497f66766ed275ee090b4ea97bb8bfa152446fdc8e4561adf7552
   languageName: node
   linkType: hard
 

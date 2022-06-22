@@ -81,18 +81,6 @@ module.exports = {
             },
         },
         {
-            resolve: `gatsby-plugin-manifest`,
-            options: {
-                name: `Gareth Ferguson Portfolio`,
-                short_name: `Gareth Ferguson`,
-                start_url: `/`,
-                background_color: `#20222F`,
-                theme_color: `#20222F`,
-                display: `minimal-ui`,
-                icon: `static/images/Logo.jpg`,
-            },
-        },
-        {
             resolve: "gatsby-source-contentful",
             options:
                 process.env.NODE_ENV === "development"
