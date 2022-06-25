@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 import * as React from "react"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
+import { QueryClient, useQueryClient } from "react-query"
 import { StyledProps } from "../../../@types/types"
 import { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
 import { useLastFm, useLastFmFunction } from "../../services/lastfm"
@@ -80,18 +81,28 @@ type LastFmProps = {
 
 const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
     const [albums, setAlbums] = useState(initialAlbums ?? null)
-    // Access the client
-    const { data, failureCount } = useLastFm({ retry: 0 })
-    const { data: functionData, refetch } = useLastFmFunction({
-        enabled: false,
-        retry: 0,
+    const queryClient = useQueryClient()
+
+    const shoudFetch = !albums || albums === initialAlbums
+
+    const { data, status } = useLastFm({
+        retry: false,
+        retryOnMount: false,
+        refetchOnMount: false,
+        enabled: shoudFetch,
+    })
+    const { data: functionData } = useLastFmFunction({
+        enabled: status === "error" && shoudFetch,
+        retry: false,
     })
 
+    // Time limit before using the fallback
     useEffect(() => {
-        if (failureCount === 1) {
-            refetch()
-        }
-    }, [failureCount])
+        const timer = setTimeout(() => {
+            queryClient.cancelQueries("lastfm", { exact: true })
+        }, 2000)
+        return () => clearTimeout(timer)
+    }, [])
 
     useEffect(() => {
         if (functionData) {
@@ -100,12 +111,11 @@ const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
     }, [functionData])
 
     useEffect(() => {
-        if (!data) {
-            setAlbums(initialAlbums ?? null)
-        } else {
+        if (data) {
             setAlbums(data.data)
         }
     }, [data])
+
     if (!albums) {
         return <></>
     }

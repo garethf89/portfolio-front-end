@@ -1,4 +1,4 @@
-import { UseQueryResult, useQuery } from "react-query"
+import { UseQueryResult, useQuery, UseQueryOptions } from "react-query"
 
 import axios from "axios"
 import { config } from "./headers"
@@ -11,7 +11,7 @@ const data = require("../constants/lastfm").data
 
 // eslint-disable-next-line
 const urlGet = require("../constants/lastfm").functionGet
-export const useLastFm = (options): UseQueryResult => {
+export const useLastFm = (options: UseQueryOptions): UseQueryResult => {
     return useQuery(
         "lastfm",
         async ({ signal }) => {
@@ -25,7 +25,7 @@ export const useLastFm = (options): UseQueryResult => {
     )
 }
 
-export const useLastFmFunction = (options): UseQueryResult => {
+export const useLastFmFunction = (options: UseQueryOptions): UseQueryResult => {
     return useQuery(
         "lastfmFunction",
         async () => {
