@@ -11,16 +11,13 @@ const data = require("../constants/lastfm").data
 
 // eslint-disable-next-line
 const urlGet = require("../constants/lastfm").functionGet
-
 export const useLastFm = (options): UseQueryResult => {
     return useQuery(
         "lastfm",
-        async () => {
-            const result = await axios({
-                method: "post",
+        async ({ signal }) => {
+            const result = await axios.post(url, data, {
                 headers: config,
-                url: url,
-                data: data,
+                signal: signal,
             })
             return result
         },
