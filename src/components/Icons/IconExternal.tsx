@@ -1,5 +1,5 @@
 import { Icon as ChakraIcon } from "@chakra-ui/react"
-import styled from "@emotion/styled"
+import styled, { StyledOptions } from "@emotion/styled"
 import HTMLReactParser, { domToReact } from "html-react-parser"
 import * as React from "react"
 import { SystemsTypeProperties } from "./Icon"
@@ -17,7 +17,10 @@ export const IconExternal = ({
 }: IconPropsType): React.ReactElement => {
     let attr = {}
 
-    const htmlToReactWithReplace = (icon: string, styledProps: unknown) => {
+    const htmlToReactWithReplace = (
+        icon: string,
+        styledProps: StyledOptions
+    ) => {
         const replace = domNode => {
             attr = { ...domNode.attribs }
             if (attr["xmlns:xlink"]) {
