@@ -46,7 +46,7 @@ const Project = styled.div`
     @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         width: 32%;
         margin-bottom: 2rem;
-        :nth-of-type(n + 4) {
+        :nth-of-type(n + 6) {
             margin-bottom: 0;
         }
     }
