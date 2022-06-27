@@ -16,6 +16,7 @@ const svgoConfig = {
             params: {
                 overrides: {
                     removeViewBox: false,
+                    cleanupIDs: false,
                 },
             },
         },
