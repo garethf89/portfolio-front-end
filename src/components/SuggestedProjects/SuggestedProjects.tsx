@@ -3,10 +3,9 @@ import { Asset } from "contentful"
 import { Link } from "gatsby"
 import * as React from "react"
 import { useEffect, useState } from "react"
-import { IProjectFields } from "../../../@types/generated/contentful"
 import { BREAKPOINTS, SPACE } from "../../@chakra-ui/gatsby-plugin/theme"
 import { random } from "../../helpers/random"
-import { getAllProjects } from "../../hooks/get-all-projects"
+import { AllProjects, getAllProjects } from "../../hooks/get-all-projects"
 import Image from "../Common/Image"
 import { SROnly } from "../Common/SROnly"
 import Container from "../Global/Container/Container"
@@ -54,13 +53,6 @@ const SuggestedProjectLinkHeading = styled(Heading)`
 const SuggestedDescription = styled(Heading)`
     margin: 0;
 `
-
-type ProjectNodes = IProjectFields[]
-type AllProjects = {
-    allContentfulProject: {
-        edges: ProjectNodes[]
-    }
-}
 
 const SuggestedProjects = (): React.ReactElement => {
     const [randomProjects, setProjects] = useState(null)

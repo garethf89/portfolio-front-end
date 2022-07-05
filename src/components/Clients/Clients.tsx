@@ -1,6 +1,7 @@
 import { useColorMode } from "@chakra-ui/react"
 import { css } from "@emotion/react"
 import styled from "@emotion/styled"
+import { AssetFields } from "contentful"
 import * as React from "react"
 import { ILogoFields } from "../../../@types/generated/contentful"
 import {
@@ -74,6 +75,8 @@ interface ClientProps {
     data: ILogoFields[]
 }
 
+type SVGAssetFields = AssetFields & { svg?: { content: string } }
+
 const Clients = ({ data }: ClientProps): React.ReactElement<ClientProps> => {
     const { colorMode } = useColorMode()
     return (
@@ -89,8 +92,9 @@ const Clients = ({ data }: ClientProps): React.ReactElement<ClientProps> => {
                 </Heading>
                 <LogoWrapper>
                     {data.map((logo: ILogoFields, i: number) => {
+                        const logoFields = logo.logo as SVGAssetFields
                         const svg =
-                            logo.logo.file.contentType === "image/svg+xml"
+                            logoFields.file.contentType === "image/svg+xml"
                         const isDark = useIsDark(logo?.dark)
                         return (
                             <React.Fragment key={i}>
@@ -98,7 +102,7 @@ const Clients = ({ data }: ClientProps): React.ReactElement<ClientProps> => {
                                     <IconLogo
                                         mode={colorMode}
                                         width="100px"
-                                        iconSvg={logo.logo.svg.content}
+                                        iconSvg={logoFields.svg.content}
                                         dark={isDark}
                                         key={i}
                                     />

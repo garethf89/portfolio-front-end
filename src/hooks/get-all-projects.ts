@@ -1,6 +1,15 @@
 import { graphql, useStaticQuery } from "gatsby"
+import { IProjectFields } from "../../@types/generated/contentful"
 
-export const getAllProjects = (): Record<string, string> => {
+type ProjectNodes = IProjectFields[]
+
+export type AllProjects = {
+    allContentfulProject: {
+        edges: ProjectNodes[]
+    }
+}
+
+export const getAllProjects = (): AllProjects => {
     const data = useStaticQuery(
         graphql`
             query WorkProjects {

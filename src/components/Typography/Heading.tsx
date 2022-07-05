@@ -85,7 +85,7 @@ const HeadingStyled = (level: string) => {
     })
 }
 
-type HeadingsPossible = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p"
+type HeadingsPossible = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span"
 
 export type HeadingProps = {
     level: HeadingsPossible

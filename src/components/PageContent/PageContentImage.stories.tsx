@@ -1,5 +1,5 @@
-import { Asset } from "contentful"
 import { GatsbyImageMock } from "../../../.storybook/helpers/gatsbyImageMock"
+import { IPageContentFullSizeImageFields } from "../../../@types/generated/contentful"
 import ContainerBreak from "../Utils/ContainerBreak"
 import { OutputImageComponent } from "./PageContent"
 
@@ -17,7 +17,7 @@ const FullWidthImageStory = ({
         <ContainerBreak>
             <OutputImageComponent
                 type={type}
-                image={imageProps as unknown as Asset}
+                image={imageProps as unknown as IPageContentFullSizeImageFields}
                 name={name}
             />
         </ContainerBreak>

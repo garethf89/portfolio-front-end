@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 import * as React from "react"
-import { useEffect, useState, useRef } from "react"
-import { QueryClient, useQueryClient } from "react-query"
+import { useEffect, useState } from "react"
+import { useQueryClient } from "react-query"
 import { StyledProps } from "../../../@types/types"
 import { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
 import { useLastFm, useLastFmFunction } from "../../services/lastfm"
@@ -10,6 +10,7 @@ import Lines from "../Animation/Lines"
 import { OuterWrapper } from "../Common/OuterWrapper"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
+import { AlbumType } from "./types"
 
 const Albums = styled.div`
     @media (min-width: ${BREAKPOINTS.MEDIUM}) {
@@ -67,16 +68,8 @@ const AlbumArtInner = styled.img`
     height: auto;
 `
 
-type AlbumType = {
-    name: string
-    artist: {
-        name: string
-    }
-    image: { src: string }[]
-}
-
 type LastFmProps = {
-    initialAlbums?: Record<string, AlbumType>[]
+    initialAlbums?: AlbumType[]
 }
 
 const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
@@ -106,13 +99,14 @@ const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
 
     useEffect(() => {
         if (functionData) {
-            setAlbums(functionData.data.data.album)
+            console.log(functionData)
+            setAlbums(functionData.data.album)
         }
     }, [functionData])
 
     useEffect(() => {
         if (data) {
-            setAlbums(data.data)
+            setAlbums(data)
         }
     }, [data])
 
@@ -120,7 +114,7 @@ const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
         return <></>
     }
     return (
-        <OuterWrapper>
+        <OuterWrapper data-testid="lastfm-container">
             <Lines id="LFMAni" />
             <Container vPadding>
                 <Heading
@@ -141,7 +135,11 @@ const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
                 <Albums>
                     {albums &&
                         albums.map((album, i) => (
-                            <Album key={i} last={i === 2}>
+                            <Album
+                                key={i}
+                                data-testid={`album-${album.name}`}
+                                last={i === 2}
+                            >
                                 <AlbumArtContainer>
                                     <AlbumArtInner
                                         loading="lazy"

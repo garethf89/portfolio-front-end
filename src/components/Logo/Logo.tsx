@@ -44,7 +44,6 @@ const Logo = ({ siteTitle }: LogoProps): React.ReactElement => {
                 autoplay: false,
                 animationData: animationData,
                 rendererSettings: {
-                    clearCanvas: false,
                     className: "RenderedSVGMenu",
                 },
             })

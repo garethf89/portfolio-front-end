@@ -5,7 +5,7 @@ const duration = 0.25
 
 interface IProps {
     children: React.ReactNode
-    node?: React.ReactNode
+    node?: React.ReactElement
     url: string
 }
 
@@ -14,7 +14,10 @@ const exitTransition = {
     zIndex: 2,
     trigger: ({ node }: IProps) => {
         exitTransition.exitTrigger(node)
-        if (node) (node as HTMLElement).style.top = -window.pageYOffset + "px"
+        if (node) {
+            ;(node as unknown as HTMLElement).style.top =
+                -window.pageYOffset + "px"
+        }
         window.scrollTo({ top: -window.pageYOffset })
     },
     exitTrigger: container => {

@@ -3,7 +3,7 @@ import MobileMenu from "./MobileMenu"
 
 const MobileMenuStory = ({ scale }) => (
     <DarkBackground>
-        <MobileMenu scale={scale} />
+        <MobileMenu onClick={() => true} scale={scale} />
     </DarkBackground>
 )
 

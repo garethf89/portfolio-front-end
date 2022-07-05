@@ -224,7 +224,7 @@ const styles: StyleTheme = {
     },
 }
 
-type ThemeType = Omit<typeof baseTheme, "styles" | "components"> &
+export type ThemeType = Omit<typeof theme, "styles" | "components"> &
     StyleTheme &
     ComponentTheme
 

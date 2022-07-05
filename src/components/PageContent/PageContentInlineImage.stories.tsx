@@ -1,6 +1,6 @@
-import { Asset } from "contentful"
 import { Fragment } from "react"
 import { GatsbyImageMock } from "../../../.storybook/helpers/gatsbyImageMock"
+import { IPageContentImageFields } from "../../../@types/generated/contentful"
 import Container from "../Global/Container/Container"
 import { OutputImageComponent } from "./PageContent"
 
@@ -22,7 +22,7 @@ const ContentImageStory = ({
         <Wrap>
             <OutputImageComponent
                 type={type}
-                image={imageProps as unknown as Asset}
+                image={imageProps as unknown as IPageContentImageFields}
                 name={name}
             />
         </Wrap>

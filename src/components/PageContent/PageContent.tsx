@@ -6,7 +6,6 @@ import {
 } from "@contentful/rich-text-types"
 import styled from "@emotion/styled"
 import { Asset } from "contentful"
-import { renderRichText } from "gatsby-source-contentful/rich-text"
 import * as React from "react"
 import { useEffect, useState } from "react"
 import {
@@ -18,6 +17,7 @@ import {
     ContentfulRichTextGatsbyReference,
     RenderRichTextData,
 } from "../../../@types/types"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BREAKPOINTS, SPACE } from "../../@chakra-ui/gatsby-plugin/theme"
 import Image from "../Common/Image"
 import Container from "../Global/Container/Container"
@@ -151,9 +151,10 @@ const OutputTextComponent = ({
     text,
     name,
 }: OutputTextComponentProps): React.ReactElement => {
+    const formatBody = JSON.parse(text.body.raw)
     return (
         <React.Fragment key={`inlinetext-${name}`}>
-            {renderRichText(text.body, options)}
+            {documentToReactComponents(formatBody, options)}
         </React.Fragment>
     )
 }

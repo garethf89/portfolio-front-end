@@ -1,10 +1,11 @@
 import { BLOCKS, Document, INLINES, MARKS } from "@contentful/rich-text-types"
 import styled from "@emotion/styled"
-import { renderRichText } from "gatsby-source-contentful/rich-text"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import * as React from "react"
 import { ISkillFields } from "../../../../@types/generated/contentful"
 import {
     ContentfulRichTextGatsbyReference,
+    ISkillFieldsCustom,
     RenderRichTextData,
 } from "../../../../@types/types"
 import { SPACE } from "../../../@chakra-ui/gatsby-plugin/theme"
@@ -50,17 +51,22 @@ const options = {
     },
 }
 
+type RichDocument = Document &
+    RenderRichTextData<ContentfulRichTextGatsbyReference>
 interface TextProps {
-    text?: RenderRichTextData<ContentfulRichTextGatsbyReference>
+    text?: RichDocument
 }
 
 export const HomeHeaderContentText = ({
     text,
-}: TextProps): React.ReactElement => <>{renderRichText(text, options)}</>
+}: TextProps): React.ReactElement => {
+    const formatData = JSON.parse(text.raw)
+    return documentToReactComponents(formatData, options) as React.ReactElement
+}
 
 interface HomeTechProps {
-    skills: ISkillFields[]
-    text: Document
+    skills: ISkillFieldsCustom[]
+    text: RichDocument
 }
 
 const HomeTech = ({ skills, text }: HomeTechProps): React.ReactElement => {
@@ -69,7 +75,7 @@ const HomeTech = ({ skills, text }: HomeTechProps): React.ReactElement => {
             <FaceImage />
             <HomeHeaderContentText text={text} />
             <Skills>
-                {skills.map((skill: ISkillFields, i) => (
+                {skills.map((skill, i) => (
                     <Skill
                         key={i}
                         id={`skill${i}`}

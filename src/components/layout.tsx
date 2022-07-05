@@ -1,15 +1,14 @@
 import * as React from "react"
 import * as Sentry from "@sentry/browser"
 
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 import Footer from "./Footer/Footer"
 import { Global } from "@emotion/react"
 import SEO from "./seo"
 import globalStyles from "../styles/globals"
-import { globals } from "../state/state"
 import styled from "@emotion/styled"
-import { supportsWebP } from "../helpers/support/webp"
+import type { PageProps } from "gatsby"
 
 const Root = styled.main`
     font-family: ${props => props.theme.fonts.body};
@@ -22,24 +21,22 @@ const FooterExtender = styled.div`
     justify-content: space-between;
 `
 
-type PageLayoutProps = {
-    pageContext: Record<string, string>
-    children: React.ReactNode
-    image: string
-    data: { page: string }
-    path: string
+type PageContextProps = {
+    id: string
+    title: string
+    slug: string
+    description: string
 }
+
+type PageLayoutProps = PageProps<Record<string, never>, PageContextProps>
 
 const TemplateWrap = ({
     pageContext,
     children,
-    image,
     data,
     path,
 }: PageLayoutProps): React.ReactElement => {
-    const { dispatch } = useContext(globals)
     const [initGlobals, setInitGlobals] = useState(false)
-
     const { title } = (data && data.page) || ""
 
     useEffect(() => {
@@ -48,9 +45,6 @@ const TemplateWrap = ({
                 Sentry.init({
                     dsn: process.env.GATSBY_SENTRY ?? "",
                 })
-            }
-            if (!supportsWebP()) {
-                dispatch({ type: "WEBP", webp: false })
             }
 
             setInitGlobals(true)
@@ -63,7 +57,6 @@ const TemplateWrap = ({
             <SEO
                 pageTitle={title}
                 pageDescription={pageContext.description}
-                pageImage={image}
                 path={path}
             />
             <FooterExtender>

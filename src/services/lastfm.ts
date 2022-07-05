@@ -1,7 +1,11 @@
 import { UseQueryResult, useQuery, UseQueryOptions } from "react-query"
 
-import axios from "axios"
+import axios, { AxiosResponse } from "axios"
 import { config } from "./headers"
+import type {
+    LastFMServerResponse,
+    LastFMServerResponseFunction,
+} from "../components/LastFM/types"
 
 // eslint-disable-next-line
 const url = require("../constants/lastfm").url
@@ -11,27 +15,52 @@ const data = require("../constants/lastfm").data
 
 // eslint-disable-next-line
 const urlGet = require("../constants/lastfm").functionGet
-export const useLastFm = (options: UseQueryOptions): UseQueryResult => {
-    return useQuery(
+
+type UseQueryOptionsLastFM = UseQueryOptions<
+    AxiosResponse<LastFMServerResponse>,
+    Error,
+    LastFMServerResponse
+>
+export const useLastFm = (
+    options: UseQueryOptionsLastFM
+): UseQueryResult<LastFMServerResponse> => {
+    return useQuery<
+        AxiosResponse<LastFMServerResponse>,
+        Error,
+        LastFMServerResponse
+    >(
         "lastfm",
         async ({ signal }) => {
-            const result = await axios.post(url, data, {
-                headers: config,
-                signal: signal,
-            })
+            const result: AxiosResponse<LastFMServerResponse> =
+                await axios.post(url, data, {
+                    headers: config,
+                    signal: signal,
+                })
             return result
         },
         options
     )
 }
 
-export const useLastFmFunction = (options: UseQueryOptions): UseQueryResult => {
-    return useQuery(
+type UseQueryOptionsLastFMFunction = UseQueryOptions<
+    LastFMServerResponseFunction,
+    Error,
+    LastFMServerResponseFunction
+>
+
+export const useLastFmFunction = (
+    options: UseQueryOptionsLastFMFunction
+): UseQueryResult<LastFMServerResponseFunction> => {
+    return useQuery<
+        LastFMServerResponseFunction,
+        Error,
+        LastFMServerResponseFunction
+    >(
         "lastfmFunction",
         async () => {
-            const result = await axios.get(urlGet)
-
-            return result
+            const result: AxiosResponse<LastFMServerResponseFunction> =
+                await axios.get(urlGet)
+            return result.data
         },
         options
     )

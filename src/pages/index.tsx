@@ -58,9 +58,11 @@ const IndexPage = (): React.ReactElement => {
                     }
                 }
                 caseStudies {
+                    __typename
                     slug
                     title
                     intro {
+                        __typename
                         raw
                     }
                 }
@@ -109,7 +111,6 @@ const IndexPage = (): React.ReactElement => {
     `)
 
     const initalLastFmAlbums = data.lfm.edges[0].node.albums
-
     return (
         <>
             <Header nav siteTitle={data.page.title} />

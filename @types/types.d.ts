@@ -1,4 +1,4 @@
-import { ThemeTypings } from "@chakra-ui/styled-system"
+import { ThemeType } from "../src/@chakra-ui/gatsby-plugin/theme"
 import "@emotion/react"
 import { Asset } from "contentful"
 
@@ -7,13 +7,10 @@ interface Size {
     container: Record<"sm" | "xl" | "md" | "lg" | "content", string>
 }
 
-interface CustomTheme extends ThemeTypings {
-    sizes: Size
-}
-
 declare module "@emotion/react" {
-    /* eslint-disable-next-line */
-    export interface Theme extends CustomTheme {}
+    export interface Theme extends ThemeType {
+        sizes: Size
+    }
 }
 
 export interface StyledProps {
@@ -35,7 +32,7 @@ export interface RenderRichTextData<
     T extends ContentfulRichTextGatsbyReference
 > {
     raw: string
-    references: T[]
+    references?: T[]
 }
 
 interface CustomAsset extends Asset {

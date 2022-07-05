@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "jsx": "react",
+        "jsx": "react-jsx",
         "declaration": false,
         "removeComments": false,
         "module": "commonjs",
@@ -15,7 +15,8 @@
         "skipLibCheck": true,
         "experimentalDecorators": true,
         "noUnusedLocals": false,
-        "typeRoots": ["/@types"]
+        "typeRoots": ["node_modules/@types","/@types"],
+        "types": ["jest", "node", "@testing-library/jest-dom"]
     },
-    "include": ["src/**/*.ts", "src/templates/project.tsx", "src/@chakra-ui/theme.ts"]
+    "include": ["src/**/*.ts","src/**/*.tsx", "src/templates/project.tsx", "src/@chakra-ui/theme.ts"]
 }

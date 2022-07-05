@@ -1,11 +1,11 @@
 import * as React from "react"
 
-import { BLOCKS, MARKS } from "@contentful/rich-text-types"
+import { BLOCKS, Document, MARKS } from "@contentful/rich-text-types"
+import { RenderRichTextData } from "../../../@types/types"
 import {
-    ContentfulRichTextGatsbyReference,
-    RenderRichTextData,
-} from "../../../@types/types"
-
+    documentToReactComponents,
+    CommonNode,
+} from "@contentful/rich-text-react-renderer"
 import { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
@@ -13,7 +13,6 @@ import { IProjectFields } from "../../../@types/generated/contentful"
 import Lines from "../Animation/Lines"
 import { OuterWrapper } from "../Common/OuterWrapper"
 import ReadMore from "../Typography/ReadMore"
-import { renderRichText } from "gatsby-source-contentful/rich-text"
 import styled from "@emotion/styled"
 
 const StyledParagraph = styled(Heading)`
@@ -69,7 +68,7 @@ const options = {
     },
     renderNode: {
         [BLOCKS.PARAGRAPH]: (
-            node: React.ReactNode,
+            node: CommonNode,
             children: React.ReactNode
         ): React.ReactElement<CaseStudyTextProps> => {
             return <Text>{children}</Text>
@@ -77,24 +76,21 @@ const options = {
     },
 }
 
-interface CaseStudyTextProps {
-    data?: Document<ContentfulRichTextGatsbyReference>
-}
-
-type Intro = RenderRichTextData<ContentfulRichTextGatsbyReference>
-
-type Project = Omit<IProjectFields, "intro"> & {
-    intro: Intro
-}
-
 interface CSProps {
-    data: Project[]
+    data: IProjectFields[]
+}
+
+type RichDocument = Document & RenderRichTextData<undefined>
+
+interface CaseStudyTextProps {
+    data: Document & RenderRichTextData<undefined>
 }
 
 export const CaseStudyText = ({
     data,
 }: CaseStudyTextProps): React.ReactElement => {
-    return renderRichText(data, options) as React.ReactElement
+    const formatData = JSON.parse(data.raw)
+    return documentToReactComponents(formatData, options) as React.ReactElement
 }
 
 const CaseStudies = ({ data }: CSProps): React.ReactElement<CSProps> => {
@@ -106,10 +102,12 @@ const CaseStudies = ({ data }: CSProps): React.ReactElement<CSProps> => {
                     Case Studies
                 </Heading>
                 <CaseStudyWrapper>
-                    {data.map((project: Project, i: number) => {
+                    {data.map((project, i: number) => {
                         return (
                             <CaseStudy key={i}>
-                                <CaseStudyText data={project.intro} />
+                                <CaseStudyText
+                                    data={project.intro as RichDocument}
+                                />
                                 <ReadMore to={`/${project.slug}`}>
                                     Read more about {project.title}
                                 </ReadMore>

@@ -5,10 +5,12 @@ import {
     ContentfulRichTextGatsbyReference,
     RenderRichTextData,
 } from "../../../../@types/types"
-
+import {
+    documentToReactComponents,
+    CommonNode,
+} from "@contentful/rich-text-react-renderer"
 import Bold from "../../Typography/Bold"
 import Heading from "../../Typography/Heading"
-import { renderRichText } from "gatsby-source-contentful/rich-text"
 import styled from "@emotion/styled"
 
 const StyledParagraph = styled(Heading)`
@@ -32,15 +34,14 @@ const options = {
     },
     renderNode: {
         [BLOCKS.PARAGRAPH]: (
-            node: React.ReactNode,
+            node: CommonNode,
             children: React.ReactNode
         ): React.ReactElement => {
             return <Text>{children}</Text>
         },
-        [BLOCKS.HEADING_1]: (
-            node: React.ReactNode,
-            children: React.ReactNode
-        ) => <Heading level="h1">{children}</Heading>,
+        [BLOCKS.HEADING_1]: (node: CommonNode, children: React.ReactNode) => (
+            <Heading level="h1">{children}</Heading>
+        ),
     },
 }
 
@@ -50,9 +51,10 @@ interface HomeHeaderContentTextProps {
 
 export const HomeHeaderContentText = ({
     text,
-}: HomeHeaderContentTextProps): React.ReactElement => (
-    <> {renderRichText(text, options)}</>
-)
+}: HomeHeaderContentTextProps): React.ReactElement => {
+    const formatData = JSON.parse(text.raw)
+    return documentToReactComponents(formatData, options) as React.ReactElement
+}
 
 interface HomeHeaderContentProps {
     className?: string

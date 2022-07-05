@@ -12,7 +12,6 @@ import { useSiteMetadata } from "../hooks/use-site-metadata"
 interface SeoProps {
     pageDescription: string
     pageTitle: string
-    pageImage: string
     path: string
     children?: React.ReactNode
 }
@@ -24,13 +23,11 @@ const TOUCH_ICON_SIZES = ["192x192", "512x512"]
 const SEO = ({
     pageTitle,
     pageDescription,
-    pageImage,
     path,
 }: SeoProps): React.ReactElement => {
     const { siteUrl, image, title, description } = useSiteMetadata()
-
     const metaDescription = pageDescription || description
-    const metaImage = pageImage || image
+    const metaImage = image
 
     const titleTemplate =
         pageTitle && pageTitle !== title

@@ -46,6 +46,12 @@ module.exports = {
         basePath: "/",
     },
     plugins: [
+        {
+            resolve: `gatsby-plugin-tsconfig-paths`,
+            options: {
+                configFile: `${__dirname}/tsconfig.build.json`,
+            },
+        },
         "gatsby-plugin-robots-txt",
         "gatsby-plugin-sitemap",
         `gatsby-plugin-react-helmet`,

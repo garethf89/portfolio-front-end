@@ -62,7 +62,7 @@ const Stats = ({ stats }: StatProps): React.ReactElement => {
         <StatsContainer>
             {stats.map((stat: IStatFields, i) => (
                 <Stat key={i}>
-                    <StatNumber className="" level="h1" override="span">
+                    <StatNumber className="" level="h1" override="p">
                         {stat.amount}+
                     </StatNumber>
                     <StatDesc>{stat.description}</StatDesc>
