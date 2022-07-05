@@ -61,7 +61,7 @@ const LogoCommon = (props: ClientsProps) => css`
 const Logo = styled(Image)`
     ${LogoCommon}
     img {
-        object-fit: contain;
+        object-fit: contain !important;
     }
 `
 
