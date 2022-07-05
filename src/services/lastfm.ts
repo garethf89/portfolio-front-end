@@ -17,18 +17,14 @@ const data = require("../constants/lastfm").data
 const urlGet = require("../constants/lastfm").functionGet
 
 type UseQueryOptionsLastFM = UseQueryOptions<
-    AxiosResponse<LastFMServerResponse>,
+    LastFMServerResponse,
     Error,
     LastFMServerResponse
 >
 export const useLastFm = (
     options: UseQueryOptionsLastFM
 ): UseQueryResult<LastFMServerResponse> => {
-    return useQuery<
-        AxiosResponse<LastFMServerResponse>,
-        Error,
-        LastFMServerResponse
-    >(
+    return useQuery<LastFMServerResponse, Error, LastFMServerResponse>(
         "lastfm",
         async ({ signal }) => {
             const result: AxiosResponse<LastFMServerResponse> =
@@ -36,7 +32,7 @@ export const useLastFm = (
                     headers: config,
                     signal: signal,
                 })
-            return result
+            return result.data
         },
         options
     )

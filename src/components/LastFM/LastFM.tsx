@@ -99,7 +99,6 @@ const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
 
     useEffect(() => {
         if (functionData) {
-            console.log(functionData)
             setAlbums(functionData.data.album)
         }
     }, [functionData])
