@@ -60,9 +60,6 @@ const LogoCommon = (props: ClientsProps) => css`
 
 const Logo = styled(Image)`
     ${LogoCommon}
-    img {
-        object-fit: contain !important;
-    }
 `
 
 const IconLogo = styled(IconExternal, {
@@ -114,6 +111,7 @@ const Clients = ({ data }: ClientProps): React.ReactElement<ClientProps> => {
                                         image={logo.logo}
                                         dark={isDark}
                                         key={i}
+                                        objectFit="contain"
                                     />
                                 )}
                             </React.Fragment>
