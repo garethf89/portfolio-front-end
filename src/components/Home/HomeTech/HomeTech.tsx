@@ -2,7 +2,6 @@ import { BLOCKS, Document, INLINES, MARKS } from "@contentful/rich-text-types"
 import styled from "@emotion/styled"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import * as React from "react"
-import { ISkillFields } from "../../../../@types/generated/contentful"
 import {
     ContentfulRichTextGatsbyReference,
     ISkillFieldsCustom,
