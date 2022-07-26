@@ -7,7 +7,7 @@ import {
 import styled from "@emotion/styled"
 import { Asset } from "contentful"
 import * as React from "react"
-import { useEffect, useState } from "react"
+import { useEffect, useId, useState } from "react"
 import {
     IPageContentImageFields,
     IPageContentTextFields,
@@ -185,7 +185,7 @@ export const OutputImageComponent = ({
 
 const PageContent = ({ content, skills }: ContentProps): React.ReactElement => {
     const [formatContent, setFormatContent] = useState<AllContent[]>(null)
-
+    const id = useId()
     useEffect(() => {
         const objectToSet: AllContent[] = content.map((c: AllContent, i) => {
             if (c.type === "ContentfulPageContentText" && i === 0) {
@@ -211,8 +211,8 @@ const PageContent = ({ content, skills }: ContentProps): React.ReactElement => {
                     }
                     return (
                         <OutputTextComponent
-                            key={i}
-                            name={i}
+                            key={`${id}-${i}`}
+                            name={`${id}-${i}`}
                             text={c as TextTypes}
                         />
                     )
@@ -221,8 +221,8 @@ const PageContent = ({ content, skills }: ContentProps): React.ReactElement => {
                     return (
                         <ContainerBreak key={i}>
                             <OutputImageComponent
-                                key={i}
-                                name={i}
+                                key={`${id}-${i}`}
+                                name={`${id}-${i}`}
                                 image={c as IPageContentImageFields}
                                 type="imagefull"
                             />
@@ -231,9 +231,9 @@ const PageContent = ({ content, skills }: ContentProps): React.ReactElement => {
                 }
                 return (
                     <OutputImageComponent
-                        key={i}
+                        key={`${id}-${i}`}
                         image={c as IPageContentImageFields}
-                        name={i}
+                        name={`${id}-${i}`}
                         type="image"
                     />
                 )

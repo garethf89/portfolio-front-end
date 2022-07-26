@@ -35,7 +35,7 @@ const PageSkills = ({ skills }: PageSkillProps): React.ReactElement => {
                 {skills &&
                     (skills as ISkillFieldsCustom[]).map((skill, i) => (
                         <Skill
-                            key={i}
+                            key={`skill${i}`}
                             id={`skill${i}`}
                             icon={skill.icon.svg.content}
                             title={skill.name}
