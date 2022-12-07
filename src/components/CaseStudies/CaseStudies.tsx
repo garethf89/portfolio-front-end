@@ -89,8 +89,7 @@ interface CaseStudyTextProps {
 export const CaseStudyText = ({
     data,
 }: CaseStudyTextProps): React.ReactElement => {
-    const formatData = JSON.parse(data.raw)
-    return documentToReactComponents(formatData, options) as React.ReactElement
+    return documentToReactComponents(data.json, options) as React.ReactElement
 }
 
 const CaseStudies = ({ data }: CSProps): React.ReactElement<CSProps> => {

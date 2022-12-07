@@ -52,8 +52,7 @@ interface HomeHeaderContentTextProps {
 export const HomeHeaderContentText = ({
     text,
 }: HomeHeaderContentTextProps): React.ReactElement => {
-    const formatData = JSON.parse(text.raw)
-    return documentToReactComponents(formatData, options) as React.ReactElement
+    return documentToReactComponents(text.json, options) as React.ReactElement
 }
 
 interface HomeHeaderContentProps {

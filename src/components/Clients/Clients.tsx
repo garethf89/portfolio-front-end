@@ -58,7 +58,7 @@ const LogoCommon = (props: ClientsProps) => css`
     }
 `
 
-const Logo = styled(Image)`
+const Logo = styled.div`
     ${LogoCommon}
 `
 
@@ -66,15 +66,20 @@ const IconLogo = styled(IconExternal, {
     shouldForwardProp: prop => prop !== "dark",
 })`
     ${LogoCommon}
+    position:relative;
 `
-
+//TODO
 interface ClientProps {
     data: ILogoFields[]
+    icons: any
 }
 
 type SVGAssetFields = AssetFields & { svg?: { content: string } }
 
-const Clients = ({ data }: ClientProps): React.ReactElement<ClientProps> => {
+const Clients = ({
+    data,
+    icons,
+}: ClientProps): React.ReactElement<ClientProps> => {
     const { colorMode } = useColorMode()
     return (
         <>
@@ -90,29 +95,39 @@ const Clients = ({ data }: ClientProps): React.ReactElement<ClientProps> => {
                 <LogoWrapper>
                     {data.map((logo: ILogoFields, i: number) => {
                         const logoFields = logo.logo as SVGAssetFields
-                        const svg =
-                            logoFields.file.contentType === "image/svg+xml"
+                        const svg = logoFields.contentType === "image/svg+xml"
                         const isDark = useIsDark(logo?.dark)
                         return (
                             <React.Fragment key={i}>
                                 {svg ? (
                                     <IconLogo
                                         mode={colorMode}
-                                        width="100px"
-                                        iconSvg={logoFields.svg.content}
                                         dark={isDark}
                                         key={i}
+                                        title={logo.name}
+                                        iconSvg={
+                                            icons.find(
+                                                icon =>
+                                                    icon.url === logoFields.url
+                                            ).icon
+                                        }
+                                        width={logoFields.width}
+                                        height={logoFields.height}
                                     />
                                 ) : (
                                     <Logo
                                         mode={colorMode}
-                                        alt={logo.name}
-                                        loading="lazy"
-                                        image={logo.logo}
                                         dark={isDark}
                                         key={i}
-                                        objectFit="contain"
-                                    />
+                                        style={{ maxHeight: "50px" }}
+                                    >
+                                        <Image
+                                            image={logoFields}
+                                            alt={logo.name}
+                                            style={{ objectFit: "contain" }}
+                                            fill
+                                        />
+                                    </Logo>
                                 )}
                             </React.Fragment>
                         )

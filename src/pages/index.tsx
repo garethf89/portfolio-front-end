@@ -1,5 +1,10 @@
+import { useQuery } from "@apollo/client"
 import { graphql, useStaticQuery } from "gatsby"
+import { GetStaticProps } from "next"
+import Head from "next/head"
+import Script from "next/script"
 import * as React from "react"
+import { IHomePageFields } from "../../@types/generated/contentful"
 import CaseStudies from "../components/CaseStudies/CaseStudies"
 import Clients from "../components/Clients/Clients"
 import Header from "../components/Header/Header"
@@ -7,119 +12,117 @@ import HomeHeader from "../components/HeadPanels/HomeHeader"
 import HomeTech from "../components/Home/HomeTech/HomeTech"
 import LastFM from "../components/LastFM/LastFM"
 import Projects from "../components/Projects/Projects"
+import { HOME_QUERY } from "../queries"
+import { client } from "../queries/apolloClient"
+import { getSingleItem } from "../queries/utils"
+import config from "../config/site"
+import lastFmMock from "../__mocks__/lastfm"
+import { data, url, functionGet } from "../constants/lastfm"
+import axios from "axios"
 
-const IndexPage = (): React.ReactElement => {
-    const data = useStaticQuery(graphql`
-        query Home {
-            lfm: allAlbums {
-                edges {
-                    node {
-                        id
-                        albums {
-                            name
+type HomePageParams = {}
 
-                            image {
-                                size
-                                src
-                            }
-                            artist {
-                                name
-                            }
-                        }
-                    }
-                }
-            }
-            page: contentfulHomePage {
-                title
-                description {
-                    internal {
-                        content
-                    }
-                }
-                introText {
-                    raw
-                }
-                stats {
-                    amount
-                    description
-                }
-                skillsText {
-                    raw
-                }
-                skills {
-                    name
-                    icon {
-                        svg {
-                            content
-                        }
-                        file {
-                            url
-                        }
-                    }
-                }
-                caseStudies {
-                    __typename
-                    slug
-                    title
-                    intro {
-                        __typename
-                        raw
-                    }
-                }
-                projects {
-                    id
-                    slug
-                    headline
-                    title
-                    coverImage {
-                        gatsbyImageData(
-                            layout: CONSTRAINED
-                            width: 1100
-                            placeholder: BLURRED
-                            quality: 90
-                            formats: [AUTO, AVIF, WEBP]
-                        )
-                    }
-                }
-                logos {
-                    name
-                    dark
-                    logo {
-                        file {
-                            contentType
-                            details {
-                                image {
-                                    height
-                                    width
-                                }
-                            }
-                        }
-                        svg {
-                            content
-                        }
-                        gatsbyImageData(
-                            layout: CONSTRAINED
-                            width: 200
-                            placeholder: BLURRED
-                            quality: 90
-                            formats: [AUTO, AVIF, WEBP]
-                        )
-                    }
-                }
+type HomeQueryResult = {}
+
+export const getStaticProps: GetStaticProps<
+    IHomePageFields,
+    HomePageParams
+> = async () => {
+    const { error, data } = await client.query({
+        query: HOME_QUERY,
+        fetchPolicy: "no-cache",
+        context: {
+            headers: {
+                "x-contentful-preview": "false",
+            },
+        },
+    })
+
+    const homePage = getSingleItem(data.page)
+
+    // Request SVGS and set to strings
+    const ICON_REQUESTS_SKILL = [...homePage.skills.items].map(item => {
+        return { url: item.icon.url, icon: item.icon.fileName }
+    })
+    const ICON_REQUESTS_LOGOS = [...homePage.logos.items].map(item => {
+        return { url: item.logo.url, icon: item.logo.fileName }
+    })
+
+    const icons = await Promise.all(
+        [...ICON_REQUESTS_SKILL, ...ICON_REQUESTS_LOGOS].map(async item => {
+            const resp = await fetch(item.url)
+            return { url: item.url, icon: await resp.text() }
+        })
+    )
+
+    // LastFM Albums
+    let result = { albums: lastFmMock }
+    if (process.env.NODE_ENV === "production") {
+        try {
+            const res = await axios({
+                method: "post",
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "*",
+                    "Access-Control-Allow-Headers": "*",
+                },
+                url: url,
+                data: data,
+            })
+            result = { albums: res.data }
+        } catch (e) {
+            try {
+                const res = await axios.get(functionGet)
+                result = { albums: res.data }
+            } catch (e) {
+                console.log("No connection to back end")
             }
         }
-    `)
+    }
 
-    const initalLastFmAlbums = data.lfm.edges[0].node.albums
+    if (error) {
+        console.log(error)
+    }
+
+    return {
+        props: {
+            icons: icons,
+            page: homePage,
+            albums: result.albums,
+        },
+    }
+}
+
+// Use CodeGen TODO
+const IndexPage = ({ page, icons, albums }: any): React.ReactElement => {
+    const { title } = config
+
     return (
         <>
-            <Header nav siteTitle={data.page.title} />
-            <HomeHeader stats={data.page.stats} text={data.page.introText} />
-            <HomeTech text={data.page.skillsText} skills={data.page.skills} />
-            <CaseStudies data={data.page.caseStudies} />
-            <Projects data={data.page.projects} />
-            <Clients data={data.page.logos} />
-            <LastFM initialAlbums={initalLastFmAlbums} />
+            <Head>
+                <Script type="application/ld+json">{`
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Gareth Ferguson",
+                "url": "https://www.garethferguson.co.uk",
+                "logo": "https://www.garethferguson.co.uk/icons/icon-48x48.png",
+                "sameAs": "https://www.garethferguson.co.uk"
+              }
+             `}</Script>
+                <title>{title}</title>
+            </Head>
+            <Header nav siteTitle={title} />
+            <HomeHeader stats={page.stats.items} text={page.introText} />
+            <HomeTech
+                text={page.skillsText}
+                icons={icons}
+                skills={page.skills.items}
+            />
+            <CaseStudies data={page.caseStudies.items} />
+            <Projects data={page.projects.items} />
+            <Clients data={page.logos.items} icons={icons} />
+            <LastFM initialAlbums={albums} />
         </>
     )
 }

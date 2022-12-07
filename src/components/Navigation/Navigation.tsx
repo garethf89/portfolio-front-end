@@ -9,7 +9,7 @@ import NavigationLink from "./NavigationLink"
 import debounce from "../../helpers/debounce"
 import { gatsbyWindow } from "../../helpers/gatsbyWindow"
 import styled from "@emotion/styled"
-import { useSiteMetadata } from "../../hooks/use-site-metadata"
+import config from "../../config/site"
 
 const NavigationStyles = styled.nav``
 
@@ -64,7 +64,7 @@ const Navigation = (): React.ReactElement => {
     const [active, setActive] = useState(false)
     const [animate, setAnimate] = useState(false)
 
-    const { menuLinks } = useSiteMetadata()
+    const { menuLinks } = config
 
     const checkMobile = () => {
         if (

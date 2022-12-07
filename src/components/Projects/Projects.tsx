@@ -93,6 +93,10 @@ const Projects = ({ data }: ProjectProps): React.ReactElement<ProjectProps> => {
                                     <ProjectImage
                                         alt={project.title}
                                         image={project.coverImage}
+                                        fill
+                                        sizes="(max-width: 800) 50vw,
+                                        33vw"
+                                        style={{ objectFit: "cover" }}
                                     />
                                 </ProjectImageContainer>
                             </FadeLink>

@@ -1,22 +1,50 @@
 {
-    "compilerOptions": {
-        "jsx": "react-jsx",
-        "declaration": false,
-        "removeComments": false,
-        "module": "commonjs",
-        "target": "es6",
-        "lib": ["es2017", "es2019", "esnext", "dom"],
-        "noImplicitAny": false,
-        "moduleResolution": "node",
-        "sourceMap": true,
-        "outDir": "public",
-        "esModuleInterop": true,
-        "baseUrl": ".",
-        "skipLibCheck": true,
-        "experimentalDecorators": true,
-        "noUnusedLocals": false,
-        "typeRoots": ["node_modules/@types","/@types"],
-        "types": ["jest", "node", "@testing-library/jest-dom"]
-    },
-    "include": ["src/**/*.ts","src/**/*.tsx", "src/templates/project.tsx", "src/@chakra-ui/theme.ts"]
+  "compilerOptions": {
+    "jsx": "preserve",
+    "declaration": false,
+    "removeComments": false,
+    "module": "commonjs",
+    "target": "es6",
+    "lib": [
+      "es2017",
+      "es2019",
+      "esnext",
+      "dom"
+    ],
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "public",
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "noUnusedLocals": false,
+    "typeRoots": [
+      "node_modules/@types",
+      "/@types"
+    ],
+    "types": [
+      "jest",
+      "node",
+      "@testing-library/jest-dom"
+    ],
+    "allowJs": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/templates/project.tsx",
+    "src/@chakra-ui/theme.ts",
+    "next.config.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

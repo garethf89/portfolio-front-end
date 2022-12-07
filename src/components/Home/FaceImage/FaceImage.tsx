@@ -1,7 +1,8 @@
 import Circle from "../../Common/Circle"
 import * as React from "react"
-import { StaticImage } from "gatsby-plugin-image"
 import styled from "@emotion/styled"
+import Image from "next/image"
+import { useImageSupport } from "../../../contexts"
 
 const FaceCircle = styled(Circle)`
     position: absolute;
@@ -11,15 +12,27 @@ const FaceCircle = styled(Circle)`
 `
 
 const FaceImage = (): React.ReactElement => {
+    const { avif, webP } = useImageSupport()
+
+    let src = "/images/Logo.jpg"
+
+    if (webP) {
+        src = "/images/Logo.webp"
+    }
+
+    if (avif) {
+        src = "/images/Logo.avif"
+    }
+
     return (
         <FaceCircle>
-            <StaticImage
+            <Image
                 alt="Gareth Ferguson face"
-                src="../../../../static/images/Logo.jpg"
-                formats={["auto", "avif", "webp"]}
-                placeholder="blurred"
+                src={src}
+                // placeholder="blur"
                 layout="fixed"
                 width={130}
+                height={130}
             />
         </FaceCircle>
     )

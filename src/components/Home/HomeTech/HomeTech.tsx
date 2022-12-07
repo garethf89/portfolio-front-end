@@ -59,16 +59,20 @@ interface TextProps {
 export const HomeHeaderContentText = ({
     text,
 }: TextProps): React.ReactElement => {
-    const formatData = JSON.parse(text.raw)
-    return documentToReactComponents(formatData, options) as React.ReactElement
+    return documentToReactComponents(text.json, options) as React.ReactElement
 }
 
 interface HomeTechProps {
     skills: ISkillFieldsCustom[]
     text: RichDocument
+    icons: any[] //TODO
 }
 
-const HomeTech = ({ skills, text }: HomeTechProps): React.ReactElement => {
+const HomeTech = ({
+    skills,
+    text,
+    icons,
+}: HomeTechProps): React.ReactElement => {
     return (
         <Container vPadding textAlign="center">
             <FaceImage />
@@ -78,7 +82,9 @@ const HomeTech = ({ skills, text }: HomeTechProps): React.ReactElement => {
                     <Skill
                         key={i}
                         id={`skill${i}`}
-                        icon={skill.icon.svg.content}
+                        icon={
+                            icons.find(icon => icon.url === skill.icon.url).icon
+                        }
                         title={skill.name}
                         boxSize={[14, 14, 20]}
                     >
