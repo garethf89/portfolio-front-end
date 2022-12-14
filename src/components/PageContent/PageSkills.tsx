@@ -8,6 +8,7 @@ import Heading from "../Typography/Heading"
 
 interface PageSkillProps {
     skills: ISkill[]
+    icons: any //TODO
 }
 
 const PageSkillContainer = styled.div`
@@ -20,7 +21,7 @@ const SkillContainer = styled.div`
     justify-content: start;
 `
 
-const PageSkills = ({ skills }: PageSkillProps): React.ReactElement => {
+const PageSkills = ({ skills, icons }: PageSkillProps): React.ReactElement => {
     return (
         <PageSkillContainer>
             <Heading
@@ -37,7 +38,10 @@ const PageSkills = ({ skills }: PageSkillProps): React.ReactElement => {
                         <Skill
                             key={`skill${i}`}
                             id={`skill${i}`}
-                            icon={skill.icon.svg.content}
+                            icon={
+                                icons.find(icon => icon.url === skill.icon.url)
+                                    .icon
+                            }
                             title={skill.name}
                             boxSize={[14, 14, 16]}
                         >

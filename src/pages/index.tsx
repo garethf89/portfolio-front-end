@@ -1,5 +1,4 @@
 import { useQuery } from "@apollo/client"
-import { graphql, useStaticQuery } from "gatsby"
 import { GetStaticProps } from "next"
 import Head from "next/head"
 import Script from "next/script"
@@ -17,8 +16,9 @@ import { client } from "../queries/apolloClient"
 import { getSingleItem } from "../queries/utils"
 import config from "../config/site"
 import lastFmMock from "../__mocks__/lastfm"
-import { data, url, functionGet } from "../constants/lastfm"
+import { url, functionGet } from "../constants/lastfm"
 import axios from "axios"
+import { addPlaceholder } from "../utils"
 
 type HomePageParams = {}
 
@@ -39,6 +39,12 @@ export const getStaticProps: GetStaticProps<
     })
 
     const homePage = getSingleItem(data.page)
+
+    // Create Blur images
+    homePage.projects.items = await addPlaceholder(
+        homePage.projects.items,
+        "coverImage"
+    )
 
     // Request SVGS and set to strings
     const ICON_REQUESTS_SKILL = [...homePage.skills.items].map(item => {

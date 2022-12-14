@@ -101,6 +101,7 @@ const PageHeader = ({
                     <PageImageElement
                         alt={`Background image for ${title}`}
                         sizes="(min-width: 50em) 50vw, 100vw"
+                        fill
                         image={image}
                     />
                 </PageImage>

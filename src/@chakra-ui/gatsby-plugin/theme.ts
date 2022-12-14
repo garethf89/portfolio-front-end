@@ -234,5 +234,5 @@ const combinedTheme: ThemeType = {
     components: { ...components.components },
 }
 
-const colorTheme = extendTheme(baseTheme, combinedTheme)
+const colorTheme = extendTheme(combinedTheme)
 export default colorTheme

@@ -1,7 +1,7 @@
 import * as React from "react"
 import * as Sentry from "@sentry/browser"
 
-import { ColorModeProvider, ThemeProvider } from "@chakra-ui/react"
+import { ColorModeProvider, ChakraProvider } from "@chakra-ui/react"
 import { QueryClient, QueryClientProvider } from "react-query"
 
 import { GlobalsStateProvider } from "../state/state"
@@ -68,7 +68,7 @@ const App = ({ Component, pageProps }: NextAppProps) => {
         <>
             <QueryClientProvider client={queryClient}>
                 <ApolloProvider client={client}>
-                    <ThemeProvider theme={theme}>
+                    <ChakraProvider theme={theme}>
                         <ColorModeProvider
                             options={{
                                 initialColorMode: "light",
@@ -88,7 +88,7 @@ const App = ({ Component, pageProps }: NextAppProps) => {
                                 </ImageSupportProvider>
                             </GlobalsStateProvider>
                         </ColorModeProvider>
-                    </ThemeProvider>
+                    </ChakraProvider>
                 </ApolloProvider>
             </QueryClientProvider>
         </>

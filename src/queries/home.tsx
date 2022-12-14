@@ -24,6 +24,7 @@ export const HOME_QUERY = gql`
                         icon {
                             fileName
                             url
+                            title
                         }
                     }
                 }
@@ -44,6 +45,7 @@ export const HOME_QUERY = gql`
                         title
                         coverImage {
                             fileName
+                            title
                             width
                             height
                             url(
@@ -82,6 +84,7 @@ export const HOME_QUERY = gql`
                             contentType
                             width
                             height
+                            title
                             fileName
                             url(
                                 transform: {

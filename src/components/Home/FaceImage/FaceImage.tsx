@@ -29,8 +29,6 @@ const FaceImage = (): React.ReactElement => {
             <Image
                 alt="Gareth Ferguson face"
                 src={src}
-                // placeholder="blur"
-                layout="fixed"
                 width={130}
                 height={130}
             />

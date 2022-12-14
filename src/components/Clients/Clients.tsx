@@ -26,7 +26,7 @@ const ClientsContainer = styled(Container)`
 
 const LogoWrapper = styled.div`
     position: relative;
-    max-width: 800px;
+    max-width: 900px;
     text-align: center;
     margin: 0 auto;
     display: flex;
@@ -124,7 +124,10 @@ const Clients = ({
                                         <Image
                                             image={logoFields}
                                             alt={logo.name}
-                                            style={{ objectFit: "contain" }}
+                                            style={{
+                                                objectFit: "contain",
+                                                height: "100%",
+                                            }}
                                             fill
                                         />
                                     </Logo>

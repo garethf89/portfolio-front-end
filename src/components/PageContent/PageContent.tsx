@@ -141,6 +141,7 @@ type ContentProps = {
     content: unknown[]
     className?: string
     skills: ISkill[]
+    icons: any //TODO
 }
 
 interface OutputTextComponentProps {
@@ -151,10 +152,9 @@ const OutputTextComponent = ({
     text,
     name,
 }: OutputTextComponentProps): React.ReactElement => {
-    const formatBody = JSON.parse(text.body.raw)
     return (
         <React.Fragment key={`inlinetext-${name}`}>
-            {documentToReactComponents(formatBody, options)}
+            {documentToReactComponents(text.body.json, options)}
         </React.Fragment>
     )
 }
@@ -174,21 +174,28 @@ export const OutputImageComponent = ({
     name,
     type,
 }: OutputImageComponentProps): React.ReactElement => {
+    console.log(image)
     return (
         <ImageStyled
             key={`${type}-${name}`}
-            alt={(image.image as ExpandedAsset).title}
+            alt={image.image.title}
             image={image.image}
+            width={image.image.width}
+            height={image.image.height}
         />
     )
 }
 
-const PageContent = ({ content, skills }: ContentProps): React.ReactElement => {
+const PageContent = ({
+    content,
+    skills,
+    icons,
+}: ContentProps): React.ReactElement => {
     const [formatContent, setFormatContent] = useState<AllContent[]>(null)
     const id = useId()
     useEffect(() => {
         const objectToSet: AllContent[] = content.map((c: AllContent, i) => {
-            if (c.type === "ContentfulPageContentText" && i === 0) {
+            if (c.type === "PageContentText" && i === 0) {
                 return { ...c, isIntro: true } as TextTypes
             }
             return c as TextTypes | ImageTypes
@@ -203,11 +210,9 @@ const PageContent = ({ content, skills }: ContentProps): React.ReactElement => {
     return (
         <ContentContainer>
             {formatContent.map((c: AllContent, i) => {
-                if (c.type === "ContentfulPageContentText") {
+                if (c.type === "PageContentText") {
                     if (c.isIntro) {
-                        const tempC = JSON.parse(c.body.raw)
-                        tempC.content[0].nodeType = CUSTOMBLOCKS.INTRO
-                        c.body.raw = JSON.stringify(tempC)
+                        c.body.json.content[0].nodeType = CUSTOMBLOCKS.INTRO
                     }
                     return (
                         <OutputTextComponent
@@ -217,7 +222,7 @@ const PageContent = ({ content, skills }: ContentProps): React.ReactElement => {
                         />
                     )
                 }
-                if (c.type === "ContentfulPageContentFullSizeImage") {
+                if (c.type === "PageContentFullSizeImage") {
                     return (
                         <ContainerBreak key={i}>
                             <OutputImageComponent
@@ -238,7 +243,7 @@ const PageContent = ({ content, skills }: ContentProps): React.ReactElement => {
                     />
                 )
             })}
-            <PageSkills skills={skills} />
+            <PageSkills skills={skills} icons={icons} />
         </ContentContainer>
     )
 }
