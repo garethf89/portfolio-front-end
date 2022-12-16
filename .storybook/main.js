@@ -47,10 +47,12 @@ module.exports = {
             options: {
                 presets: [["react-app", { flow: false, typescript: true }]],
                 plugins: [
-                    require.resolve("@babel/plugin-proposal-class-properties", { "loose": true } ),
-                    // use babel-plugin-remove-graphql-queries to remove static queries from components when rendering in storybook
-                    require.resolve("babel-plugin-remove-graphql-queries"),  
-                    require.resolve("@babel/plugin-proposal-private-property-in-object"),
+                    require.resolve("@babel/plugin-proposal-class-properties", {
+                        loose: true,
+                    }),
+                    require.resolve(
+                        "@babel/plugin-proposal-private-property-in-object"
+                    ),
                     require.resolve("@babel/plugin-proposal-private-methods"),
                     require.resolve("babel-plugin-react-require"),
                 ],

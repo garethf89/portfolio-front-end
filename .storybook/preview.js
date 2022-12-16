@@ -7,7 +7,7 @@ import TransitionLinkProvider from "gatsby-plugin-transition-link/context/Intern
 import { action } from "@storybook/addon-actions"
 import globalStyles from "../src/styles/globals"
 import styled from "@emotion/styled"
-import theme from "../src/@chakra-ui/gatsby-plugin/theme"
+import theme from "../src/@chakra-ui//theme"
 
 // Gatsby's Link overrides:
 // Gatsby Link calls the `enqueue` & `hovering` methods on the global variable ___loader.

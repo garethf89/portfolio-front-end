@@ -2,12 +2,12 @@ import * as React from "react"
 
 import { useEffect, useState } from "react"
 
-import { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
+import { BREAKPOINTS } from "../../@chakra-ui//theme"
 import ColorPicker from "./ColorPicker"
 import MobileMenu from "./MobileMenu/MobileMenu"
 import NavigationLink from "./NavigationLink"
 import debounce from "../../helpers/debounce"
-import { gatsbyWindow } from "../../helpers/gatsbyWindow"
+import { isWindow } from "../../helpers/isWindow"
 import styled from "@emotion/styled"
 import config from "../../config/site"
 
@@ -67,10 +67,7 @@ const Navigation = (): React.ReactElement => {
     const { menuLinks } = config
 
     const checkMobile = () => {
-        if (
-            gatsbyWindow &&
-            window.innerWidth >= parseInt(BREAKPOINTS.MEDIUM, 16)
-        ) {
+        if (isWindow && window.innerWidth >= parseInt(BREAKPOINTS.MEDIUM, 16)) {
             setMobile(false)
         } else {
             setMobile(true)
@@ -83,13 +80,13 @@ const Navigation = (): React.ReactElement => {
     }, 200)
 
     useEffect(() => {
-        if (gatsbyWindow()) {
+        if (isWindow()) {
             checkMobile()
             window.addEventListener("resize", throttled)
         }
 
         return function cleanup() {
-            if (gatsbyWindow) {
+            if (isWindow) {
                 window.removeEventListener("resize", throttled)
             }
         }

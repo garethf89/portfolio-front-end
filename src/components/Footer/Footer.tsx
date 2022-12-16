@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { BREAKPOINTS, SPACE } from "../../@chakra-ui/gatsby-plugin/theme"
+import { BREAKPOINTS, SPACE } from "../../@chakra-ui//theme"
 import Heading, { HeadingProps } from "../Typography/Heading"
 
 import FadeLink from "../Link/Link"

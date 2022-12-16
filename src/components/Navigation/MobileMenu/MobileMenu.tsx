@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import * as React from "react"
 
 import debounce from "../../../helpers/debounce"
-import { gatsbyWindow } from "../../../helpers/gatsbyWindow"
+import { isWindow } from "../../../helpers/isWindow"
 import styled from "@emotion/styled"
 
 type LineProps = {
@@ -69,12 +69,12 @@ const MobileMenu = ({
     }, 200)
 
     useEffect(() => {
-        if (gatsbyWindow()) {
+        if (isWindow()) {
             window.addEventListener("resize", throttled)
         }
 
         return function cleanup() {
-            if (gatsbyWindow) {
+            if (isWindow) {
                 window.removeEventListener("resize", throttled)
             }
         }

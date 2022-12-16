@@ -1,4 +1,4 @@
-import { GatsbyImageMock } from "../../../.storybook/helpers/gatsbyImageMock"
+import { imageMock } from "../../../.storybook/helpers/imageMock"
 import { IPageContentFullSizeImageFields } from "../../../@types/generated/contentful"
 import ContainerBreak from "../Utils/ContainerBreak"
 import { OutputImageComponent } from "./PageContent"
@@ -12,7 +12,7 @@ const FullWidthImageStory = ({
     type: string
     name: string
 }) => {
-    const imageProps = { image: { ...GatsbyImageMock, title: alt } }
+    const imageProps = { image: { ...imageMock, title: alt } }
     return (
         <ContainerBreak>
             <OutputImageComponent

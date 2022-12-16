@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import {
-    ContentfulRichTextGatsbyReference,
+    ContentfulRichTextNextReference,
     RenderRichTextData,
 } from "../../../../@types/types"
 import {
@@ -46,7 +46,7 @@ const options = {
 }
 
 interface HomeHeaderContentTextProps {
-    text?: RenderRichTextData<ContentfulRichTextGatsbyReference>
+    text?: RenderRichTextData<ContentfulRichTextNextReference>
 }
 
 export const HomeHeaderContentText = ({
@@ -57,7 +57,7 @@ export const HomeHeaderContentText = ({
 
 interface HomeHeaderContentProps {
     className?: string
-    text?: RenderRichTextData<ContentfulRichTextGatsbyReference>
+    text?: RenderRichTextData<ContentfulRichTextNextReference>
 }
 
 const HomeHeaderContent = (

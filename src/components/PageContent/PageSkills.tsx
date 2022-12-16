@@ -2,13 +2,13 @@ import styled from "@emotion/styled"
 import * as React from "react"
 import { ISkill } from "../../../@types/generated/contentful"
 import { ISkillFieldsCustom } from "../../../@types/types"
-import { SPACE } from "../../@chakra-ui/gatsby-plugin/theme"
+import { SPACE } from "../../@chakra-ui//theme"
 import Skill from "../Skills/Skill"
 import Heading from "../Typography/Heading"
 
 interface PageSkillProps {
     skills: ISkill[]
-    icons: any //TODO
+    icons: any // TODO
 }
 
 const PageSkillContainer = styled.div`

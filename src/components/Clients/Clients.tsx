@@ -4,11 +4,7 @@ import styled from "@emotion/styled"
 import { AssetFields } from "contentful"
 import * as React from "react"
 import { ILogoFields } from "../../../@types/generated/contentful"
-import {
-    BREAKPOINTS,
-    COLORS,
-    SPACE,
-} from "../../@chakra-ui/gatsby-plugin/theme"
+import { BREAKPOINTS, COLORS, SPACE } from "../../@chakra-ui//theme"
 import { useIsDark } from "../../hooks/useIsDark"
 import Image from "../Common/Image"
 import Container from "../Global/Container/Container"
@@ -68,7 +64,7 @@ const IconLogo = styled(IconExternal, {
     ${LogoCommon}
     position:relative;
 `
-//TODO
+// TODO
 interface ClientProps {
     data: ILogoFields[]
     icons: any

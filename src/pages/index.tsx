@@ -92,6 +92,7 @@ export const getStaticProps: GetStaticProps<
 
     return {
         props: {
+            title: config.title,
             icons: icons,
             page: homePage,
             albums: result.albums,

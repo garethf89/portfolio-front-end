@@ -6,7 +6,7 @@ import {
     documentToReactComponents,
     CommonNode,
 } from "@contentful/rich-text-react-renderer"
-import { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
+import { BREAKPOINTS } from "../../@chakra-ui//theme"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 import { IProjectFields } from "../../../@types/generated/contentful"

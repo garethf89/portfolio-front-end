@@ -3,7 +3,7 @@ import * as React from "react"
 import { HeadingProps as ChakraHeadingProps, chakra } from "@chakra-ui/react"
 
 import { Ref } from "react"
-import { SPACE } from "../../@chakra-ui/gatsby-plugin/theme"
+import { SPACE } from "../../@chakra-ui//theme"
 
 const H1 = chakra("h1", {
     baseStyle: {

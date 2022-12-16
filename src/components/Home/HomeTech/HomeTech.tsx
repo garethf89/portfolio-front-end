@@ -3,11 +3,11 @@ import styled from "@emotion/styled"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import * as React from "react"
 import {
-    ContentfulRichTextGatsbyReference,
+    ContentfulRichTextNextReference,
     ISkillFieldsCustom,
     RenderRichTextData,
 } from "../../../../@types/types"
-import { SPACE } from "../../../@chakra-ui/gatsby-plugin/theme"
+import { SPACE } from "../../../@chakra-ui//theme"
 import Container from "../../Global/Container/Container"
 import Skill from "../../Skills/Skill"
 import Bold from "../../Typography/Bold"
@@ -51,7 +51,7 @@ const options = {
 }
 
 type RichDocument = Document &
-    RenderRichTextData<ContentfulRichTextGatsbyReference>
+    RenderRichTextData<ContentfulRichTextNextReference>
 interface TextProps {
     text?: RichDocument
 }
@@ -65,7 +65,7 @@ export const HomeHeaderContentText = ({
 interface HomeTechProps {
     skills: ISkillFieldsCustom[]
     text: RichDocument
-    icons: any[] //TODO
+    icons: any[] // TODO
 }
 
 const HomeTech = ({

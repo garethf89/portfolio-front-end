@@ -14,11 +14,11 @@ import {
     ISkill,
 } from "../../../@types/generated/contentful"
 import {
-    ContentfulRichTextGatsbyReference,
+    ContentfulRichTextNextReference,
     RenderRichTextData,
 } from "../../../@types/types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-import { BREAKPOINTS, SPACE } from "../../@chakra-ui/gatsby-plugin/theme"
+import { BREAKPOINTS, SPACE } from "../../@chakra-ui//theme"
 import Image from "../Common/Image"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
@@ -122,7 +122,7 @@ const options = {
 type CustomTextAttributes = {
     type: string
     isIntro?: boolean
-    body?: RenderRichTextData<ContentfulRichTextGatsbyReference>
+    body?: RenderRichTextData<ContentfulRichTextNextReference>
 }
 
 type TextTypes = AllContent & CustomTextAttributes & IPageContentTextFields
@@ -141,7 +141,7 @@ type ContentProps = {
     content: unknown[]
     className?: string
     skills: ISkill[]
-    icons: any //TODO
+    icons: any // TODO
 }
 
 interface OutputTextComponentProps {

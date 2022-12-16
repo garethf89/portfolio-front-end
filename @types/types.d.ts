@@ -1,4 +1,4 @@
-import { ThemeType } from "../src/@chakra-ui/gatsby-plugin/theme"
+import { ThemeType } from "../src/@chakra-ui//theme"
 import "@emotion/react"
 import { Asset } from "contentful"
 
@@ -19,7 +19,7 @@ export interface StyledProps {
 
 // Contentful
 
-export interface ContentfulRichTextGatsbyReference {
+export interface ContentfulRichTextNextReference {
     /**
      * Either ContentfulAsset for assets or ContentfulYourContentTypeName for content types
      */
@@ -28,9 +28,7 @@ export interface ContentfulRichTextGatsbyReference {
     __typename: string
 }
 
-export interface RenderRichTextData<
-    T extends ContentfulRichTextGatsbyReference
-> {
+export interface RenderRichTextData<T extends ContentfulRichTextNextReference> {
     raw: string
     references?: T[]
 }

@@ -1,5 +1,5 @@
 import { Fragment } from "react"
-import { GatsbyImageMock } from "../../../.storybook/helpers/gatsbyImageMock"
+import { imageMock } from "../../../.storybook/helpers/imageMock"
 import { IPageContentImageFields } from "../../../@types/generated/contentful"
 import Container from "../Global/Container/Container"
 import { OutputImageComponent } from "./PageContent"
@@ -15,7 +15,7 @@ const ContentImageStory = ({
     container: string
     alt: string
 }) => {
-    const imageProps = { image: { ...GatsbyImageMock, title: alt } }
+    const imageProps = { image: { ...imageMock, title: alt } }
 
     const Wrap = container ? Container : Fragment
     return (

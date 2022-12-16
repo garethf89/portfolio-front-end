@@ -42,7 +42,7 @@ export const getStaticProps: GetStaticProps<
 > = async ({ params }) => {
     const { error, data } = await client.query({
         query: PROJECT_QUERY,
-        variables: { slug: params.id },
+        variables: { slug: params.id, limit: 1 },
         fetchPolicy: "no-cache",
         context: {
             headers: {
@@ -73,6 +73,7 @@ export const getStaticProps: GetStaticProps<
 
     return {
         props: {
+            title: project.title,
             icons: icons,
             page: project,
         },

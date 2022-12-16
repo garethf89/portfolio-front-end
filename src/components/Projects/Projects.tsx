@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 import * as React from "react"
 import { IProjectFields } from "../../../@types/generated/contentful"
-import { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
+import { BREAKPOINTS } from "../../@chakra-ui//theme"
 import Image from "../Common/Image"
 import { SROnly } from "../Common/SROnly"
 import Container from "../Global/Container/Container"

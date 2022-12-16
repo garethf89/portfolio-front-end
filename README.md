@@ -4,7 +4,6 @@
 
 ![ESLint](https://github.com/garethf89/portfolio-front-end/workflows/ESLint/badge.svg)
 
-
 ## Portfolio Front End
 
-### Gatsby / React / Contentful / Storybook - yarn
+### Next / React / Contentful / Storybook - yarn

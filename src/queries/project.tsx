@@ -10,8 +10,8 @@ export const PROJECT_PATHS = gql`
     }
 `
 export const PROJECT_QUERY = gql`
-    query Project($slug: String!) {
-        project: projectCollection(where: { slug: $slug }, limit: 1) {
+    query Project($slug: String!, $limit: Int!) {
+        project: projectCollection(where: { slug: $slug }, limit: $limit) {
             items {
                 slug
                 title
@@ -123,6 +123,56 @@ export const PROJECT_QUERY = gql`
                     }
                 }
 
+                coverImage {
+                    contentType
+                    width
+                    height
+                    fileName
+                    title
+                    blurURL: url(
+                        transform: {
+                            resizeStrategy: FIT
+                            width: 1
+                            format: JPG
+                            quality: 1
+                        }
+                    )
+                    url(
+                        transform: {
+                            resizeStrategy: FIT
+                            width: 2200
+                            quality: 90
+                        }
+                    )
+                    avifUrl: url(
+                        transform: {
+                            resizeStrategy: FIT
+                            width: 2200
+                            format: AVIF
+                            quality: 90
+                        }
+                    )
+                    webPUrl: url(
+                        transform: {
+                            resizeStrategy: FIT
+                            width: 2200
+                            format: WEBP
+                            quality: 90
+                        }
+                    )
+                }
+            }
+        }
+    }
+`
+
+export const MULTIPLE_PROJECTS_QUERY = gql`
+    query Project {
+        project: projectCollection {
+            items {
+                slug
+                title
+                headline
                 coverImage {
                     contentType
                     width

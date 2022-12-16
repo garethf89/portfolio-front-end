@@ -1,11 +1,11 @@
-import * as React from "react"
+import { useEffect, useState } from "react"
 import * as Sentry from "@sentry/browser"
 
 import { ColorModeProvider, ChakraProvider } from "@chakra-ui/react"
 import { QueryClient, QueryClientProvider } from "react-query"
 
 import { GlobalsStateProvider } from "../state/state"
-import theme from "../@chakra-ui/gatsby-plugin/theme"
+import theme from "../@chakra-ui//theme"
 import { ApolloProvider } from "@apollo/client"
 import { client } from "../queries/apolloClient"
 import type { AppProps as NextAppProps } from "next/app"
@@ -14,10 +14,16 @@ import { Global } from "@emotion/react"
 import styled from "@emotion/styled"
 import Footer from "../components/Footer/Footer"
 import Head from "next/head"
-import { useEffect } from "react"
+import {
+    AnimatePresence,
+    domAnimation,
+    LazyMotion,
+    motion,
+} from "framer-motion"
 import { ImageSupportProvider } from "../contexts"
+import { fadeAnimation } from "../config"
 
-//React-Query
+// React-Query
 const queryClient = new QueryClient()
 
 const Root = styled.main`
@@ -47,16 +53,15 @@ const AppHead = () => {
 }
 
 const App = ({ Component, pageProps }: NextAppProps) => {
-    const [initGlobals, setInitGlobals] = React.useState(false)
-
+    const [initGlobals, setInitGlobals] = useState(false)
     // TODO
     // const { title } = (data && data.page) || ""
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (!initGlobals) {
             if (process.env.NODE_ENV === "production") {
                 Sentry.init({
-                    dsn: process.env.GATSBY_SENTRY ?? "",
+                    dsn: process.env.NEXT_PUBLIC_SENTRY ?? "",
                 })
             }
 
@@ -81,7 +86,29 @@ const App = ({ Component, pageProps }: NextAppProps) => {
                                     <AppHead />
                                     <FooterExtender>
                                         <Root>
-                                            <Component {...pageProps} />
+                                            <LazyMotion features={domAnimation}>
+                                                <AnimatePresence
+                                                    exitBeforeEnter={true}
+                                                >
+                                                    <motion.div
+                                                        key={`framer-${pageProps.title}`}
+                                                        className="framer-animation"
+                                                        initial="initial"
+                                                        animate="animate"
+                                                        exit="exit"
+                                                        variants={
+                                                            fadeAnimation.variants
+                                                        }
+                                                        transition={
+                                                            fadeAnimation.transition
+                                                        }
+                                                    >
+                                                        <Component
+                                                            {...pageProps}
+                                                        />
+                                                    </motion.div>
+                                                </AnimatePresence>
+                                            </LazyMotion>
                                         </Root>
                                         <Footer />
                                     </FooterExtender>

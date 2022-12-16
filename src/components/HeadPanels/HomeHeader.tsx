@@ -1,8 +1,8 @@
 import * as React from "react"
 
-import { BREAKPOINTS, SPACE } from "../../@chakra-ui/gatsby-plugin/theme"
+import { BREAKPOINTS, SPACE } from "../../@chakra-ui//theme"
 import {
-    ContentfulRichTextGatsbyReference,
+    ContentfulRichTextNextReference,
     RenderRichTextData,
 } from "../../../@types/types"
 import { useContext, useEffect } from "react"
@@ -52,7 +52,7 @@ const HomeSectionStats = styled.div`
 `
 
 interface HomeHeaderProps {
-    text: RenderRichTextData<ContentfulRichTextGatsbyReference>
+    text: RenderRichTextData<ContentfulRichTextNextReference>
     stats: IStatFields[]
 }
 

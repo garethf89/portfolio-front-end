@@ -1,5 +1,5 @@
 import FadeLink from "../Link/Link"
-import { GatsbyLinkProps } from "gatsby"
+import { LinkProps as NextLinkProps } from "next/link"
 import * as React from "react"
 import { css } from "@emotion/react"
 import styled from "@emotion/styled"
@@ -55,7 +55,7 @@ const StyledExternal = styled.a`
 
 const StyledButton = StyledInternal.withComponent("button")
 
-interface NavigationLinkProps extends GatsbyLinkProps<Record<string, unknown>> {
+interface NavigationLinkProps extends NextLinkProps<Record<string, unknown>> {
     button?: boolean
     internal?: boolean
     click?: () => void

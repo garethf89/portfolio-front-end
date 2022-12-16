@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { BREAKPOINTS } from "../../../@chakra-ui/gatsby-plugin/theme"
+import { BREAKPOINTS } from "../../../@chakra-ui//theme"
 import Heading from "../../Typography/Heading"
 import { IStatFields } from "../../../../@types/generated/contentful"
 import styled from "@emotion/styled"
