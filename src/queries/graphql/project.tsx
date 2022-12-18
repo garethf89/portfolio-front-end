@@ -18,7 +18,7 @@ export const PROJECT_QUERY = gql`
                 headline
                 link
 
-                skills: skillsCollection {
+                skillsCollection {
                     items {
                         name
                         icon {
@@ -29,7 +29,7 @@ export const PROJECT_QUERY = gql`
                     }
                 }
 
-                pageContent: pageContentCollection {
+                pageContentCollection {
                     items {
                         ... on PageContentText {
                             type: __typename
@@ -167,7 +167,7 @@ export const PROJECT_QUERY = gql`
 `
 
 export const MULTIPLE_PROJECTS_QUERY = gql`
-    query Project {
+    query AllProjects {
         project: projectCollection {
             items {
                 slug

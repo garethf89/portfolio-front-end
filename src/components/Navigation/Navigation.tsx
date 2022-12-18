@@ -109,7 +109,10 @@ const Navigation = (): React.ReactElement => {
                     const internal = /^\/(?!\/)/.test(link.slug)
                     return (
                         <NavLi key={link.name + i}>
-                            <NavigationLink internal={internal} to={link.slug}>
+                            <NavigationLink
+                                internal={internal}
+                                href={link.slug}
+                            >
                                 <span>{link.name}</span>
                             </NavigationLink>
                         </NavLi>

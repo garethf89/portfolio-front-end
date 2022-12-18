@@ -1,10 +1,6 @@
 import * as React from "react"
 
 import { BREAKPOINTS, SPACE } from "../../@chakra-ui//theme"
-import {
-    ContentfulRichTextNextReference,
-    RenderRichTextData,
-} from "../../../@types/types"
 import { useContext, useEffect } from "react"
 
 import Button from "../Common/Button"
@@ -16,6 +12,7 @@ import Lines from "../Animation/Lines"
 import Stats from "../Home/HomeHeader/Stats"
 import { globals } from "../../state/state"
 import styled from "@emotion/styled"
+import { HomePageIntroText } from "../../schema/graphql"
 
 const HomeHeaderStyles = styled.section`
     padding: 9rem 0 3rem;
@@ -52,7 +49,7 @@ const HomeSectionStats = styled.div`
 `
 
 interface HomeHeaderProps {
-    text: RenderRichTextData<ContentfulRichTextNextReference>
+    text: HomePageIntroText
     stats: IStatFields[]
 }
 

@@ -1,19 +1,26 @@
 import { GetStaticPaths, GetStaticProps } from "next"
 import * as React from "react"
-import { IProjectFields } from "../../@types/generated/contentful"
 import { PROJECT_PATHS, PROJECT_QUERY } from "../queries"
 import { client } from "../queries/apolloClient"
 import { getSingleItem } from "../queries/utils"
 import PageHeader from "../components/HeadPanels/PageHeader"
 import PageContent from "../components/PageContent/PageContent"
-import { addPlaceholder, addPlaceholderSingle } from "../utils"
-
-type ProjectPageParams = {}
-
-type ProjectQueryResult = {}
+import { addPlaceholderSingle } from "../utils"
+import {
+    Project,
+    ProjectCollection,
+    ProjectPathsQuery,
+    ProjectPathsQueryVariables,
+    ProjectQuery,
+    ProjectQueryVariables,
+} from "../schema/schema"
+import { IconsProcessed } from "../../@types/types"
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const { error, data } = await client.query({
+    const { data } = await client.query<
+        ProjectPathsQuery,
+        ProjectPathsQueryVariables
+    >({
         query: PROJECT_PATHS,
         fetchPolicy: "no-cache",
         context: {
@@ -36,13 +43,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
 }
 
-export const getStaticProps: GetStaticProps<
-    IProjectFields,
-    ProjectPageParams
-> = async ({ params }) => {
-    const { error, data } = await client.query({
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+    const { error, data } = await client.query<
+        ProjectQuery,
+        ProjectQueryVariables
+    >({
         query: PROJECT_QUERY,
-        variables: { slug: params.id, limit: 1 },
+        variables: { slug: String(params.id), limit: 1 },
         fetchPolicy: "no-cache",
         context: {
             headers: {
@@ -51,15 +58,19 @@ export const getStaticProps: GetStaticProps<
         },
     })
 
-    const projectSingle = getSingleItem(data.project)
+    const projectSingle = getSingleItem<ProjectCollection, Project>(
+        data.project as ProjectCollection
+    )
 
     // Create blur images
     const project = await addPlaceholderSingle(projectSingle, "coverImage")
 
     // Request SVGS and set to strings - TODO
-    const ICON_REQUESTS_SKILL = [...project.skills.items].map(item => {
-        return { url: item.icon.url, icon: item.icon.fileName }
-    })
+    const ICON_REQUESTS_SKILL = [...project.skillsCollection.items].map(
+        item => {
+            return { url: item.icon.url, icon: item.icon.fileName }
+        }
+    )
     const icons = await Promise.all(
         [...ICON_REQUESTS_SKILL].map(async item => {
             const resp = await fetch(item.url)
@@ -81,9 +92,24 @@ export const getStaticProps: GetStaticProps<
     }
 }
 
-// Use CodeGen TODO
-const ProjectTemplate = ({ page, icons }: ProjectProps): React.ReactElement => {
-    const { coverImage, headline, link, title, pageContent, skills } = page
+type ProjectPageProps = {
+    title: string
+    page: Project
+    icons: IconsProcessed[]
+}
+
+const ProjectTemplate = ({
+    page,
+    icons,
+}: ProjectPageProps): React.ReactElement => {
+    const {
+        coverImage,
+        headline,
+        link,
+        title,
+        pageContentCollection,
+        skillsCollection,
+    } = page
     return (
         <>
             <PageHeader
@@ -93,8 +119,8 @@ const ProjectTemplate = ({ page, icons }: ProjectProps): React.ReactElement => {
                 title={title}
             />
             <PageContent
-                content={pageContent.items}
-                skills={skills.items}
+                content={pageContentCollection.items}
+                skills={skillsCollection.items}
                 icons={icons}
             />
         </>

@@ -54,7 +54,7 @@ const Footer = (): React.ReactElement<HTMLDivElement> => {
         <FooterOuter>
             <FooterContainer justifyContent="space-between">
                 <FooterHeading level="h3" marginTop="25px">
-                    <FadeLink to="/contact">Contact Me</FadeLink>
+                    <FadeLink href="/contact">Contact Me</FadeLink>
                 </FooterHeading>
                 <FooterContent>
                     <FooterLink

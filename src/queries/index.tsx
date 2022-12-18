@@ -1,2 +1,2 @@
-export * from "./home"
-export * from "./project"
+export * from "./graphql/home"
+export * from "./graphql/project"

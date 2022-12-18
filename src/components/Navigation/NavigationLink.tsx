@@ -55,17 +55,18 @@ const StyledExternal = styled.a`
 
 const StyledButton = StyledInternal.withComponent("button")
 
-interface NavigationLinkProps extends NextLinkProps<Record<string, unknown>> {
+type NavigationLinkProps = {
     button?: boolean
     internal?: boolean
     click?: () => void
     hover?: () => void
-}
+    children?: React.ReactNode
+} & NextLinkProps
 
 const NavigationLink = ({
     children,
     button,
-    to,
+    href,
     click,
     hover,
     internal = false,
@@ -78,9 +79,9 @@ const NavigationLink = ({
         )
     }
     return internal ? (
-        <StyledInternal to={to}>{children}</StyledInternal>
+        <StyledInternal href={href}>{children}</StyledInternal>
     ) : (
-        <StyledExternal href={to}>{children}</StyledExternal>
+        <StyledExternal href={href as string}>{children}</StyledExternal>
     )
 }
 

@@ -1,27 +1,30 @@
-import { Asset } from "contentful"
 import NextImage from "next/image"
 import { useState } from "react"
 import { useImageSupport } from "../../contexts"
+import { Asset } from "../../schema/schema"
 
 type CustomImageAsset = Asset & {
     avifUrl?: string
     webPUrl?: string
-    url: string
     blurURL?: string
 }
 
 declare type SafeNumber = number | `${number}`
 
+declare type PlaceholderValue = "blur" | "empty"
+
 type ImageProps = React.DetailedHTMLProps<
     React.ImgHTMLAttributes<HTMLImageElement>,
     HTMLImageElement
-> & {
-    image: CustomImageAsset
-    alt: string
-    fill?: boolean
-    width?: SafeNumber | undefined
-    height?: SafeNumber | undefined
-}
+> &
+    React.RefAttributes<HTMLImageElement | null> & {
+        image: CustomImageAsset
+        alt: string
+        fill?: boolean
+        width?: SafeNumber | undefined
+        height?: SafeNumber | undefined
+        placeholder?: PlaceholderValue
+    }
 
 const Image = ({
     image,
@@ -49,7 +52,9 @@ const Image = ({
         fill: fill ?? undefined,
         width: fill ? undefined : (rest.width as SafeNumber),
         height: fill ? undefined : (rest.height as SafeNumber),
-        placeholder: image.blurURL ? "blur" : "empty",
+        placeholder: image.blurURL
+            ? ("blur" as PlaceholderValue)
+            : ("empty" as PlaceholderValue),
         blurDataURL: image.blurURL,
         style: {
             transition: "0.5s",

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 import * as React from "react"
-import { IProjectFields } from "../../../@types/generated/contentful"
 import { BREAKPOINTS } from "../../@chakra-ui//theme"
+import { Project } from "../../schema/schema"
 import Image from "../Common/Image"
 import { SROnly } from "../Common/SROnly"
 import Container from "../Global/Container/Container"
@@ -72,10 +72,8 @@ const ProjectImage = styled(Image)`
 `
 
 interface ProjectProps {
-    data: IProjectFields[]
+    data: Project[]
 }
-
-type IProject = IProjectFields
 
 const Projects = ({ data }: ProjectProps): React.ReactElement<ProjectProps> => {
     return (
@@ -84,10 +82,10 @@ const Projects = ({ data }: ProjectProps): React.ReactElement<ProjectProps> => {
                 My Work
             </Heading>
             <ProjectWrapper>
-                {data.map((project: IProject, i: number) => {
+                {data.map((project: Project, i: number) => {
                     return (
                         <Project key={i}>
-                            <FadeLink to={project.slug}>
+                            <FadeLink href={project.slug}>
                                 <SROnly>{project.title}</SROnly>
                                 <ProjectImageContainer>
                                     <ProjectImage
@@ -104,7 +102,7 @@ const Projects = ({ data }: ProjectProps): React.ReactElement<ProjectProps> => {
                                 </ProjectImageContainer>
                             </FadeLink>
                             <Heading level="h5" override="p">
-                                <FadeLink to={project.slug}>
+                                <FadeLink href={project.slug}>
                                     <SROnly>{project.title}</SROnly>
                                     {project.headline}
                                 </FadeLink>

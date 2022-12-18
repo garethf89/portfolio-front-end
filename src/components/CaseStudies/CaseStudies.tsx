@@ -9,11 +9,11 @@ import {
 import { BREAKPOINTS } from "../../@chakra-ui//theme"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
-import { IProjectFields } from "../../../@types/generated/contentful"
 import Lines from "../Animation/Lines"
 import { OuterWrapper } from "../Common/OuterWrapper"
 import ReadMore from "../Typography/ReadMore"
 import styled from "@emotion/styled"
+import { Project } from "../../schema/graphql"
 
 const StyledParagraph = styled(Heading)`
     font-weight: 300;
@@ -77,7 +77,7 @@ const options = {
 }
 
 interface CSProps {
-    data: IProjectFields[]
+    data: Project[]
 }
 
 type RichDocument = Document & RenderRichTextData<undefined>
@@ -104,10 +104,8 @@ const CaseStudies = ({ data }: CSProps): React.ReactElement<CSProps> => {
                     {data.map((project, i: number) => {
                         return (
                             <CaseStudy key={i}>
-                                <CaseStudyText
-                                    data={project.intro as RichDocument}
-                                />
-                                <ReadMore to={`/${project.slug}`}>
+                                <CaseStudyText data={project.intro} />
+                                <ReadMore href={`/${project.slug}`}>
                                     Read more about {project.title}
                                 </ReadMore>
                             </CaseStudy>

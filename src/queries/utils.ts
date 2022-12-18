@@ -1,5 +1,5 @@
-import { ContentTypeCollection } from "contentful"
-
-export const getSingleItem = (items: ContentTypeCollection) => {
+export const getSingleItem = <T extends { items: T["items"] }, U>(
+    items: T
+): U => {
     return items.items[0]
 }

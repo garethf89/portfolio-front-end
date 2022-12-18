@@ -1,11 +1,11 @@
 import { useColorMode } from "@chakra-ui/react"
 import { css } from "@emotion/react"
 import styled from "@emotion/styled"
-import { AssetFields } from "contentful"
 import * as React from "react"
-import { ILogoFields } from "../../../@types/generated/contentful"
+import { IconsProcessed } from "../../../@types/types"
 import { BREAKPOINTS, COLORS, SPACE } from "../../@chakra-ui//theme"
 import { useIsDark } from "../../hooks/useIsDark"
+import { Logo } from "../../schema/schema"
 import Image from "../Common/Image"
 import Container from "../Global/Container/Container"
 import IconExternal from "../Icons/IconExternal"
@@ -64,13 +64,11 @@ const IconLogo = styled(IconExternal, {
     ${LogoCommon}
     position:relative;
 `
-// TODO
-interface ClientProps {
-    data: ILogoFields[]
-    icons: any
-}
 
-type SVGAssetFields = AssetFields & { svg?: { content: string } }
+interface ClientProps {
+    data: Logo[]
+    icons: IconsProcessed[]
+}
 
 const Clients = ({
     data,
@@ -89,8 +87,9 @@ const Clients = ({
                     Clients I have worked with
                 </Heading>
                 <LogoWrapper>
-                    {data.map((logo: ILogoFields, i: number) => {
-                        const logoFields = logo.logo as SVGAssetFields
+                    {data.map((logo: Logo, i: number) => {
+                        const logoFields = logo.logo
+
                         const svg = logoFields.contentType === "image/svg+xml"
                         const isDark = useIsDark(logo?.dark)
                         return (

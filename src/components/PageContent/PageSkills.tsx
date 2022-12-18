@@ -1,14 +1,14 @@
 import styled from "@emotion/styled"
 import * as React from "react"
-import { ISkill } from "../../../@types/generated/contentful"
-import { ISkillFieldsCustom } from "../../../@types/types"
+import { IconsProcessed } from "../../../@types/types"
 import { SPACE } from "../../@chakra-ui//theme"
+import { Skill as SkillType } from "../../schema/schema"
 import Skill from "../Skills/Skill"
 import Heading from "../Typography/Heading"
 
 interface PageSkillProps {
-    skills: ISkill[]
-    icons: any // TODO
+    skills: SkillType[]
+    icons: IconsProcessed[]
 }
 
 const PageSkillContainer = styled.div`
@@ -34,7 +34,7 @@ const PageSkills = ({ skills, icons }: PageSkillProps): React.ReactElement => {
             </Heading>
             <SkillContainer>
                 {skills &&
-                    (skills as ISkillFieldsCustom[]).map((skill, i) => (
+                    skills.map((skill, i) => (
                         <Skill
                             key={`skill${i}`}
                             id={`skill${i}`}

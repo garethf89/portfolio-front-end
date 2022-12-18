@@ -1,6 +1,14 @@
 import { ThemeType } from "../src/@chakra-ui//theme"
 import "@emotion/react"
-import { Asset } from "contentful"
+import {
+    Asset,
+    HomePage,
+    HomePageLogosCollection,
+    Logo,
+    Maybe,
+    Project,
+    Scalars,
+} from "../src/schema/graphql"
 
 interface Size {
     [key: string]: string
@@ -17,6 +25,13 @@ export interface StyledProps {
     as?: string
 }
 
+// Image Types
+
+// Correct Alisased Guild types
+export type AssetWithBlur = Asset & { blurUrl: Maybe<Scalars["String"]> }
+
+export type IconsProcessed = { url: string; icon: string }
+
 // Contentful
 
 export interface ContentfulRichTextNextReference {
@@ -29,7 +44,7 @@ export interface ContentfulRichTextNextReference {
 }
 
 export interface RenderRichTextData<T extends ContentfulRichTextNextReference> {
-    raw: string
+    json: any
     references?: T[]
 }
 

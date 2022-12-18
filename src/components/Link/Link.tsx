@@ -1,19 +1,19 @@
 import * as React from "react"
 import Link, { LinkProps as NextLinkProps } from "next/link"
 
-type LinkProps = {
-    to: string
-    children?: React.ReactNode
-    dark?: string
-} & NextLinkProps
+type LinkProps = NextLinkProps &
+    React.HTMLAttributes<HTMLAnchorElement> & {
+        children?: React.ReactNode
+        dark?: string
+    }
 
 const FadeLink = ({
     children,
-    to,
+    href,
     ...props
 }: LinkProps): React.ReactElement => {
     return (
-        <Link href={to} {...props}>
+        <Link href={href ?? "/"} {...props}>
             {children}
         </Link>
     )

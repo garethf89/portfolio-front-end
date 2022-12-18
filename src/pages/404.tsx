@@ -9,16 +9,15 @@ import { MULTIPLE_PROJECTS_QUERY } from "../queries"
 import { client } from "../queries/apolloClient"
 import ProjectProvider from "../contexts/Projects"
 import { addPlaceholder } from "../utils"
+import type { AllProjectsQuery } from "../schema/schema"
 
-type ProjectPageParams = {}
+type NotFoundPageParams = {}
 
-type ProjectQueryResult = {}
-
-export const getStaticProps: GetStaticProps<
-    IProjectFields,
-    ProjectPageParams
-> = async () => {
-    const { error, data } = await client.query({
+export const getStaticProps: GetStaticProps = async () => {
+    const { error, data } = await client.query<
+        AllProjectsQuery,
+        NotFoundPageParams
+    >({
         query: MULTIPLE_PROJECTS_QUERY,
         variables: {},
         fetchPolicy: "no-cache",

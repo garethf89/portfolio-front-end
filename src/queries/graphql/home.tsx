@@ -9,7 +9,7 @@ export const HOME_QUERY = gql`
                 introText {
                     json
                 }
-                stats: statsCollection {
+                statsCollection {
                     items {
                         amount
                         description
@@ -18,7 +18,7 @@ export const HOME_QUERY = gql`
                 skillsText {
                     json
                 }
-                skills: skillsCollection(limit: 12) {
+                skillsCollection(limit: 12) {
                     items {
                         name
                         icon {
@@ -28,7 +28,7 @@ export const HOME_QUERY = gql`
                         }
                     }
                 }
-                caseStudies: caseStudiesCollection(limit: 3) {
+                caseStudiesCollection(limit: 3) {
                     items {
                         link
                         intro {
@@ -38,7 +38,7 @@ export const HOME_QUERY = gql`
                         title
                     }
                 }
-                projects: projectsCollection(limit: 10) {
+                projectsCollection(limit: 10) {
                     items {
                         slug
                         headline
@@ -76,7 +76,7 @@ export const HOME_QUERY = gql`
                     }
                 }
 
-                logos: logosCollection {
+                logosCollection {
                     items {
                         name
                         dark

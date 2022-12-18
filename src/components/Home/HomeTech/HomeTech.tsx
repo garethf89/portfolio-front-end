@@ -4,7 +4,6 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import * as React from "react"
 import {
     ContentfulRichTextNextReference,
-    ISkillFieldsCustom,
     RenderRichTextData,
 } from "../../../../@types/types"
 import { SPACE } from "../../../@chakra-ui//theme"
@@ -14,6 +13,11 @@ import Bold from "../../Typography/Bold"
 import Heading from "../../Typography/Heading"
 import Inlinelink from "../../Typography/Inlinelink"
 import FaceImage from "../FaceImage/FaceImage"
+import {
+    HomePageSkillsCollection,
+    HomePageSkillsText,
+    Skill as SkillType,
+} from "../../../schema/graphql"
 
 const StyledParagraph = styled(Heading)`
     font-weight: 200;
@@ -45,7 +49,7 @@ const options = {
             return <Text>{children}</Text>
         },
         [INLINES.HYPERLINK]: (node, children) => {
-            return <Inlinelink to={node.data.uri}>{children}</Inlinelink>
+            return <Inlinelink href={node.data.uri}>{children}</Inlinelink>
         },
     },
 }
@@ -53,7 +57,7 @@ const options = {
 type RichDocument = Document &
     RenderRichTextData<ContentfulRichTextNextReference>
 interface TextProps {
-    text?: RichDocument
+    text?: HomePageSkillsText
 }
 
 export const HomeHeaderContentText = ({
@@ -63,9 +67,9 @@ export const HomeHeaderContentText = ({
 }
 
 interface HomeTechProps {
-    skills: ISkillFieldsCustom[]
-    text: RichDocument
-    icons: any[] // TODO
+    skills: HomePageSkillsCollection["items"]
+    text: HomePageSkillsText
+    icons: SkillType["icon"][]
 }
 
 const HomeTech = ({

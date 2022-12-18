@@ -83,7 +83,7 @@ const SuggestedProjects = (): React.ReactElement => {
                     return (
                         <SuggestedProjectLinkContainer key={i}>
                             <SuggestedProjectLink
-                                to={`/${project.slug}`}
+                                href={`/${project.slug}`}
                                 className=""
                             >
                                 <AspectRatio ratio={16 / 9}>
@@ -96,12 +96,12 @@ const SuggestedProjects = (): React.ReactElement => {
                                 <SROnly>{project.title}</SROnly>
                             </SuggestedProjectLink>
                             <SuggestedProjectLinkHeading level="h3">
-                                <Link className="" to={`/${project.slug}`}>
+                                <Link className="" href={`/${project.slug}`}>
                                     {project.title}
                                 </Link>
                             </SuggestedProjectLinkHeading>
                             <SuggestedDescription level="h6" override="p">
-                                <Link className="" to={`/${project.slug}`}>
+                                <Link className="" href={`/${project.slug}`}>
                                     {project.headline}
                                 </Link>
                             </SuggestedDescription>

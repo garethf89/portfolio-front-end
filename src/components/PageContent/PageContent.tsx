@@ -11,10 +11,10 @@ import { useEffect, useId, useState } from "react"
 import {
     IPageContentImageFields,
     IPageContentTextFields,
-    ISkill,
 } from "../../../@types/generated/contentful"
 import {
     ContentfulRichTextNextReference,
+    IconsProcessed,
     RenderRichTextData,
 } from "../../../@types/types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
@@ -25,6 +25,7 @@ import Heading from "../Typography/Heading"
 import InlineLink from "../Typography/Inlinelink"
 import ContainerBreak from "../Utils/ContainerBreak"
 import PageSkills from "./PageSkills"
+import { Skill } from "../../schema/schema"
 
 const CUSTOMBLOCKS = {
     ...BLOCKS,
@@ -112,7 +113,7 @@ const options = {
             <Heading level="h5">{children}</Heading>
         ),
         [CUSTOMBLOCKS.HYPERLINK]: (node, children) => (
-            <InlineLink to={node.data.uri}>{children}</InlineLink>
+            <InlineLink href={node.data.uri}>{children}</InlineLink>
         ),
     },
 }
@@ -140,8 +141,8 @@ export type AllContent = Partial<IPageContentTextFields> &
 type ContentProps = {
     content: unknown[]
     className?: string
-    skills: ISkill[]
-    icons: any // TODO
+    skills: Skill[]
+    icons: IconsProcessed[]
 }
 
 interface OutputTextComponentProps {
@@ -174,7 +175,6 @@ export const OutputImageComponent = ({
     name,
     type,
 }: OutputImageComponentProps): React.ReactElement => {
-    console.log(image)
     return (
         <ImageStyled
             key={`${type}-${name}`}

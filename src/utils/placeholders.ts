@@ -8,9 +8,9 @@ export const generatePlaceholders = async (
 }
 
 export const addPlaceholder = async <T>(
-    data: any[],
+    data: T[],
     path: string
-): Promise<T> => {
+): Promise<T[]> => {
     const modifiedData = await Promise.all(
         data.map(async item => {
             const response = await generatePlaceholders(item[path].url)
@@ -24,7 +24,7 @@ export const addPlaceholder = async <T>(
 }
 
 export const addPlaceholderSingle = async <T>(
-    data: any,
+    data: T,
     path: string
 ): Promise<T> => {
     const response = await generatePlaceholders(data[path].url)

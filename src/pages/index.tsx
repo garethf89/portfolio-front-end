@@ -1,4 +1,3 @@
-import { useQuery } from "@apollo/client"
 import { GetStaticProps } from "next"
 import Head from "next/head"
 import Script from "next/script"
@@ -19,16 +18,14 @@ import lastFmMock from "../__mocks__/lastfm"
 import { url, functionGet } from "../constants/lastfm"
 import axios from "axios"
 import { addPlaceholder } from "../utils"
+import type { HomePage, HomePageCollection, HomeQuery } from "../schema/schema"
+import { AlbumType } from "../components/LastFM/types"
+import { IconsProcessed } from "../../@types/types"
 
 type HomePageParams = {}
 
-type HomeQueryResult = {}
-
-export const getStaticProps: GetStaticProps<
-    IHomePageFields,
-    HomePageParams
-> = async () => {
-    const { error, data } = await client.query({
+export const getStaticProps: GetStaticProps = async () => {
+    const { error, data } = await client.query<HomeQuery, HomePageParams>({
         query: HOME_QUERY,
         fetchPolicy: "no-cache",
         context: {
@@ -38,23 +35,29 @@ export const getStaticProps: GetStaticProps<
         },
     })
 
-    const homePage = getSingleItem(data.page)
+    const homePage = getSingleItem<HomePageCollection, HomePage>(
+        data.page as HomePageCollection
+    )
 
     // Create Blur images
-    homePage.projects.items = await addPlaceholder(
-        homePage.projects.items,
+    homePage.projectsCollection.items = await addPlaceholder(
+        homePage.projectsCollection.items,
         "coverImage"
     )
 
     // Request SVGS and set to strings
-    const ICON_REQUESTS_SKILL = [...homePage.skills.items].map(item => {
-        return { url: item.icon.url, icon: item.icon.fileName }
-    })
-    const ICON_REQUESTS_LOGOS = [...homePage.logos.items].map(item => {
-        return { url: item.logo.url, icon: item.logo.fileName }
-    })
+    const ICON_REQUESTS_SKILL = [...homePage.skillsCollection.items].map(
+        item => {
+            return { url: item.icon.url, icon: item.icon.fileName }
+        }
+    )
+    const ICON_REQUESTS_LOGOS = [...homePage.logosCollection.items].map(
+        item => {
+            return { url: item.logo.url, icon: item.logo.fileName }
+        }
+    )
 
-    const icons = await Promise.all(
+    const icons: IconsProcessed[] = await Promise.all(
         [...ICON_REQUESTS_SKILL, ...ICON_REQUESTS_LOGOS].map(async item => {
             const resp = await fetch(item.url)
             return { url: item.url, icon: await resp.text() }
@@ -80,14 +83,14 @@ export const getStaticProps: GetStaticProps<
             try {
                 const res = await axios.get(functionGet)
                 result = { albums: res.data }
-            } catch (e) {
-                console.log("No connection to back end")
+            } catch (_err) {
+                console.error("No connection to back end")
             }
         }
     }
 
     if (error) {
-        console.log(error)
+        console.error(error)
     }
 
     return {
@@ -100,10 +103,19 @@ export const getStaticProps: GetStaticProps<
     }
 }
 
-// Use CodeGen TODO
-const IndexPage = ({ page, icons, albums }: any): React.ReactElement => {
-    const { title } = config
+type HomePageProps = {
+    title: string
+    albums: AlbumType[]
+    page: HomePage
+    icons: IconsProcessed[]
+}
 
+const IndexPage = ({
+    page,
+    title,
+    icons,
+    albums,
+}: HomePageProps): React.ReactElement => {
     return (
         <>
             <Head>
@@ -120,15 +132,18 @@ const IndexPage = ({ page, icons, albums }: any): React.ReactElement => {
                 <title>{title}</title>
             </Head>
             <Header nav siteTitle={title} />
-            <HomeHeader stats={page.stats.items} text={page.introText} />
+            <HomeHeader
+                stats={page.statsCollection.items}
+                text={page.introText}
+            />
             <HomeTech
                 text={page.skillsText}
                 icons={icons}
-                skills={page.skills.items}
+                skills={page.skillsCollection.items}
             />
-            <CaseStudies data={page.caseStudies.items} />
-            <Projects data={page.projects.items} />
-            <Clients data={page.logos.items} icons={icons} />
+            <CaseStudies data={page.caseStudiesCollection.items} />
+            <Projects data={page.projectsCollection.items} />
+            <Clients data={page.logosCollection.items} icons={icons} />
             <LastFM initialAlbums={albums} />
         </>
     )

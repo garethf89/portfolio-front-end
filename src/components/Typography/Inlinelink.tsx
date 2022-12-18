@@ -26,7 +26,7 @@ type InlineLinkProps = {
 
 const Inlinelink = ({ children, to }: InlineLinkProps): React.ReactElement => (
     <>
-        <LinkElement to={to}>{children}</LinkElement>
+        <LinkElement href={to}>{children}</LinkElement>
     </>
 )
 
