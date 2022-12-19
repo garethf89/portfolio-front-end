@@ -35,12 +35,19 @@
     "noEmit": true,
     "incremental": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "paths": {
+      "@schema": [
+        "./schema"
+      ],
+      "@storybook-home-dir/*": [
+        "./.storybook/*"
+      ]
+    },
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/templates/project.tsx",
     "src/@chakra-ui/theme.ts",
     "next.config.ts"
   ],

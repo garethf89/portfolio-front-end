@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/next-script-for-ga */
 import { Head, Html, Main, NextScript } from "next/document"
 import config from "../config/site"
 

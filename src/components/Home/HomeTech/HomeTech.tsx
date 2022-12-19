@@ -1,11 +1,8 @@
-import { BLOCKS, Document, INLINES, MARKS } from "@contentful/rich-text-types"
+import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types"
 import styled from "@emotion/styled"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import * as React from "react"
-import {
-    ContentfulRichTextNextReference,
-    RenderRichTextData,
-} from "../../../../@types/types"
+import { IconsProcessed } from "../../../../@types/types"
 import { SPACE } from "../../../@chakra-ui//theme"
 import Container from "../../Global/Container/Container"
 import Skill from "../../Skills/Skill"
@@ -13,11 +10,7 @@ import Bold from "../../Typography/Bold"
 import Heading from "../../Typography/Heading"
 import Inlinelink from "../../Typography/Inlinelink"
 import FaceImage from "../FaceImage/FaceImage"
-import {
-    HomePageSkillsCollection,
-    HomePageSkillsText,
-    Skill as SkillType,
-} from "../../../schema/graphql"
+import { HomePageSkillsCollection, HomePageSkillsText } from "@schema"
 
 const StyledParagraph = styled(Heading)`
     font-weight: 200;
@@ -32,7 +25,7 @@ const Skills = styled.ul`
     margin: ${SPACE.common[4]} 0 0;
 `
 
-const Text = ({ children }) => {
+const Text = ({ children }: React.PropsWithChildren) => {
     return (
         <StyledParagraph override="p" level="h3">
             {children}
@@ -49,13 +42,13 @@ const options = {
             return <Text>{children}</Text>
         },
         [INLINES.HYPERLINK]: (node, children) => {
-            return <Inlinelink href={node.data.uri}>{children}</Inlinelink>
+            return (
+                <Inlinelink href={String(node.data.uri)}>{children}</Inlinelink>
+            )
         },
     },
 }
 
-type RichDocument = Document &
-    RenderRichTextData<ContentfulRichTextNextReference>
 interface TextProps {
     text?: HomePageSkillsText
 }
@@ -69,7 +62,7 @@ export const HomeHeaderContentText = ({
 interface HomeTechProps {
     skills: HomePageSkillsCollection["items"]
     text: HomePageSkillsText
-    icons: SkillType["icon"][]
+    icons: IconsProcessed[]
 }
 
 const HomeTech = ({

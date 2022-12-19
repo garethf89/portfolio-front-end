@@ -1,7 +1,7 @@
 import { DarkBackground } from "../../../stories/DarkBackground"
 import MobileMenu from "./MobileMenu"
 
-const MobileMenuStory = ({ scale }) => (
+const MobileMenuStory = ({ scale }: { scale: number }) => (
     <DarkBackground>
         <MobileMenu onClick={() => true} scale={scale} />
     </DarkBackground>

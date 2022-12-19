@@ -12,7 +12,7 @@ import Lines from "../Animation/Lines"
 import Stats from "../Home/HomeHeader/Stats"
 import { globals } from "../../state/state"
 import styled from "@emotion/styled"
-import { HomePageIntroText } from "../../schema/graphql"
+import { HomePageIntroText } from "@schema"
 
 const HomeHeaderStyles = styled.section`
     padding: 9rem 0 3rem;

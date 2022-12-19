@@ -5,7 +5,7 @@ import { LightContainer } from "../../stories/LightContainer"
 import Logo from "./Logo"
 import { globals } from "../../state/state"
 
-const LogoStory = ({ variant }) =>
+const LogoStory = ({ variant }: { variant: string }) =>
     createElement(() => {
         const { dispatch } = useContext(globals)
 

@@ -5,18 +5,10 @@ import {
     TopLevelBlockEnum,
 } from "@contentful/rich-text-types"
 import styled from "@emotion/styled"
-import { Asset } from "contentful"
 import * as React from "react"
 import { useEffect, useId, useState } from "react"
-import {
-    IPageContentImageFields,
-    IPageContentTextFields,
-} from "../../../@types/generated/contentful"
-import {
-    ContentfulRichTextNextReference,
-    IconsProcessed,
-    RenderRichTextData,
-} from "../../../@types/types"
+
+import { IconsProcessed } from "../../../@types/types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BREAKPOINTS, SPACE } from "../../@chakra-ui//theme"
 import Image from "../Common/Image"
@@ -25,7 +17,13 @@ import Heading from "../Typography/Heading"
 import InlineLink from "../Typography/Inlinelink"
 import ContainerBreak from "../Utils/ContainerBreak"
 import PageSkills from "./PageSkills"
-import { Skill } from "../../schema/schema"
+import type {
+    ProjectPageContentItem,
+    Skill,
+    PageContentFullSizeImage,
+    PageContentImage,
+    PageContentText,
+} from "@schema"
 
 const CUSTOMBLOCKS = {
     ...BLOCKS,
@@ -69,20 +67,20 @@ const ItalicMark = styled.span`
     font-style: italic;
 `
 
-const Bold = ({ children }) => {
+const Bold = ({ children }: React.PropsWithChildren) => {
     return <BoldMark>{children}</BoldMark>
 }
-const Italic = ({ children }) => {
+const Italic = ({ children }: React.PropsWithChildren) => {
     return <ItalicMark>{children}</ItalicMark>
 }
 
-const Underline = ({ children }) => {
+const Underline = ({ children }: React.PropsWithChildren) => {
     return <UnderlineMark>{children}</UnderlineMark>
 }
-const Text = ({ children }) => {
+const Text = ({ children }: React.PropsWithChildren) => {
     return <StyledParagraph> {children}</StyledParagraph>
 }
-const IntroText = ({ children }) => {
+const IntroText = ({ children }: React.PropsWithChildren) => {
     return <StyledParagraphIntro>{children}</StyledParagraphIntro>
 }
 
@@ -123,30 +121,22 @@ const options = {
 type CustomTextAttributes = {
     type: string
     isIntro?: boolean
-    body?: RenderRichTextData<ContentfulRichTextNextReference>
 }
 
-type TextTypes = AllContent & CustomTextAttributes & IPageContentTextFields
-
-// Image
-
-type ImageTypes = AllContent
+type TextTypes = AllContent & CustomTextAttributes
 
 // All
-
-export type AllContent = Partial<IPageContentTextFields> &
-    Partial<CustomTextAttributes> &
-    Partial<IPageContentImageFields>
+export type AllContent = ProjectPageContentItem
 
 type ContentProps = {
-    content: unknown[]
+    content: ProjectPageContentItem[]
     className?: string
     skills: Skill[]
     icons: IconsProcessed[]
 }
 
 interface OutputTextComponentProps {
-    text: TextTypes
+    text: PageContentText
     name: number | string
 }
 const OutputTextComponent = ({
@@ -161,13 +151,9 @@ const OutputTextComponent = ({
 }
 
 export interface OutputImageComponentProps {
-    image: IPageContentImageFields
+    image: PageContentFullSizeImage | PageContentImage
     name: number | string
     type: string
-}
-
-type ExpandedAsset = Asset & {
-    title: string
 }
 
 export const OutputImageComponent = ({
@@ -195,10 +181,11 @@ const PageContent = ({
     const id = useId()
     useEffect(() => {
         const objectToSet: AllContent[] = content.map((c: AllContent, i) => {
-            if (c.type === "PageContentText" && i === 0) {
+            const cType = c["__typename"]
+            if (cType === "PageContentText" && i === 0) {
                 return { ...c, isIntro: true } as TextTypes
             }
-            return c as TextTypes | ImageTypes
+            return c as TextTypes | PageContentImage
         })
         setFormatContent(objectToSet)
     }, [content])
@@ -209,8 +196,9 @@ const PageContent = ({
 
     return (
         <ContentContainer>
-            {formatContent.map((c: AllContent, i) => {
-                if (c.type === "PageContentText") {
+            {formatContent.map((c: TextTypes, i) => {
+                const cType = c["__typename"]
+                if (cType === "PageContentText") {
                     if (c.isIntro) {
                         c.body.json.content[0].nodeType = CUSTOMBLOCKS.INTRO
                     }
@@ -218,17 +206,17 @@ const PageContent = ({
                         <OutputTextComponent
                             key={`${id}-${i}`}
                             name={`${id}-${i}`}
-                            text={c as TextTypes}
+                            text={c as PageContentText}
                         />
                     )
                 }
-                if (c.type === "PageContentFullSizeImage") {
+                if (cType === "PageContentFullSizeImage") {
                     return (
                         <ContainerBreak key={i}>
                             <OutputImageComponent
                                 key={`${id}-${i}`}
                                 name={`${id}-${i}`}
-                                image={c as IPageContentImageFields}
+                                image={c}
                                 type="imagefull"
                             />
                         </ContainerBreak>
@@ -237,7 +225,7 @@ const PageContent = ({
                 return (
                     <OutputImageComponent
                         key={`${id}-${i}`}
-                        image={c as IPageContentImageFields}
+                        image={c}
                         name={`${id}-${i}`}
                         type="image"
                     />

@@ -13,7 +13,7 @@ import {
     ProjectPathsQueryVariables,
     ProjectQuery,
     ProjectQueryVariables,
-} from "../schema/schema"
+} from "@schema"
 import { IconsProcessed } from "../../@types/types"
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -59,7 +59,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     })
 
     const projectSingle = getSingleItem<ProjectCollection, Project>(
-        data.project as ProjectCollection
+        data.project as unknown as ProjectCollection
     )
 
     // Create blur images

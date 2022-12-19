@@ -2,7 +2,13 @@ import Container from "../Global/Container/Container"
 import { Fragment } from "react"
 import { StyledParagraphIntro } from "./PageContent"
 
-const TextIntroStory = ({ container, text }) => {
+const TextIntroStory = ({
+    container,
+    text,
+}: {
+    container: boolean
+    text: string
+}) => {
     const Wrap = container ? Container : Fragment
     return (
         <Wrap>

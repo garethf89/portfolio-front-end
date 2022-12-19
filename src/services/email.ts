@@ -14,6 +14,8 @@ type EmailFormData = {
 type HookResult = {
     status: string
     error: AxiosError
+    // eslint-disable-next-line
+    // Requires investigation TODO
     submit: (data: EmailFormData) => Promise<void>
     result: Response
 }

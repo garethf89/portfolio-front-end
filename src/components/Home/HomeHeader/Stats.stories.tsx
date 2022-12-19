@@ -1,8 +1,8 @@
+import { Stat } from "../../../../schema"
 import { DarkBackground } from "../../../stories/DarkBackground"
-import { IStatFields } from "../../../../@types/generated/contentful"
 import StatsComponent from "./Stats"
 
-const statsData: Array<IStatFields> = [
+const statsData = [
     {
         description: "Years of experience",
         amount: 10,
@@ -17,7 +17,7 @@ const statsData: Array<IStatFields> = [
     },
 ]
 
-const StatStory = ({ stats }) => (
+const StatStory = ({ stats }: { stats: Stat[] }) => (
     <DarkBackground>
         <StatsComponent stats={stats} />
     </DarkBackground>

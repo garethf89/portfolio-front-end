@@ -2,7 +2,6 @@ import { GetStaticProps } from "next"
 import Head from "next/head"
 import Script from "next/script"
 import * as React from "react"
-import { IHomePageFields } from "../../@types/generated/contentful"
 import CaseStudies from "../components/CaseStudies/CaseStudies"
 import Clients from "../components/Clients/Clients"
 import Header from "../components/Header/Header"
@@ -18,14 +17,12 @@ import lastFmMock from "../__mocks__/lastfm"
 import { url, functionGet } from "../constants/lastfm"
 import axios from "axios"
 import { addPlaceholder } from "../utils"
-import type { HomePage, HomePageCollection, HomeQuery } from "../schema/schema"
+import type { HomePage, HomePageCollection, HomeQuery } from "@schema"
 import { AlbumType } from "../components/LastFM/types"
 import { IconsProcessed } from "../../@types/types"
 
-type HomePageParams = {}
-
 export const getStaticProps: GetStaticProps = async () => {
-    const { error, data } = await client.query<HomeQuery, HomePageParams>({
+    const { error, data } = await client.query<HomeQuery>({
         query: HOME_QUERY,
         fetchPolicy: "no-cache",
         context: {

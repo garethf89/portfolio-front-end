@@ -1,11 +1,5 @@
-import {
-    chakra,
-    Icon as ChakraIcon,
-    IconProps,
-    Skeleton,
-} from "@chakra-ui/react"
-import styled, { StyledOptions } from "@emotion/styled"
-import HTMLReactParser, { domToReact } from "html-react-parser"
+import { chakra } from "@chakra-ui/react"
+import styled from "@emotion/styled"
 import * as React from "react"
 import { SystemsTypeProperties } from "./Icon"
 import SVG from "react-inlinesvg"

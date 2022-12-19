@@ -1,7 +1,7 @@
 import NextImage from "next/image"
 import { useState } from "react"
 import { useImageSupport } from "../../contexts"
-import { Asset } from "../../schema/schema"
+import { Asset } from "@schema"
 
 type CustomImageAsset = Asset & {
     avifUrl?: string

@@ -8,13 +8,13 @@ const config: CodegenConfig = {
     documents: ["src/queries/graphql"],
     schema: `https://graphql.contentful.com/content/v1/spaces/z41luxcckja5/environments/master?access_token=${process.env.ACCESS_TOKEN}`,
     generates: {
-        "./src/schema/schema.ts": {
+        "./schema/index.ts": {
             plugins: ["typescript", "typescript-operations"],
             config: {
                 flattenGeneratedTypes: true,
                 ignoreEnumValuesFromSchema: true,
                 flattenGeneratedTypesIncludeFragments: true,
-                skipTypename: true,
+                skipTypename: false,
                 dedupeFragments: true,
             },
             presetConfig: {

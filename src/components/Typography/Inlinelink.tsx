@@ -21,12 +21,15 @@ const LinkElement = styled(FadeLink)`
 
 type InlineLinkProps = {
     children: React.ReactNode
-    to: string
+    href: string
 }
 
-const Inlinelink = ({ children, to }: InlineLinkProps): React.ReactElement => (
+const Inlinelink = ({
+    children,
+    href,
+}: InlineLinkProps): React.ReactElement => (
     <>
-        <LinkElement href={to}>{children}</LinkElement>
+        <LinkElement href={href}>{children}</LinkElement>
     </>
 )
 

@@ -28,7 +28,12 @@ const IconsImports = [
     Tick,
 ]
 
-const IconsStory = ({ color, size }): React.ReactElement => {
+type IconsStoryType = {
+    color: string
+    size: number
+}
+
+const IconsStory = ({ color, size }: IconsStoryType): React.ReactElement => {
     const style = {
         color,
         width: `${size}px`,

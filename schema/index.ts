@@ -19,6 +19,7 @@ export type Scalars = {
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type Asset = {
+  __typename?: 'Asset';
   contentType?: Maybe<Scalars['String']>;
   contentfulMetadata: ContentfulMetadata;
   description?: Maybe<Scalars['String']>;
@@ -88,6 +89,7 @@ export type AssetWidthArgs = {
 };
 
 export type AssetCollection = {
+  __typename?: 'AssetCollection';
   items: Array<Maybe<Asset>>;
   limit: Scalars['Int'];
   skip: Scalars['Int'];
@@ -164,6 +166,7 @@ export type AssetFilter = {
 };
 
 export type AssetLinkingCollections = {
+  __typename?: 'AssetLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   logoCollection?: Maybe<LogoCollection>;
   pageContentFullSizeImageCollection?: Maybe<PageContentFullSizeImageCollection>;
@@ -244,6 +247,7 @@ export enum AssetOrder {
 }
 
 export type ContentfulMetadata = {
+  __typename?: 'ContentfulMetadata';
   tags: Array<Maybe<ContentfulTag>>;
 };
 
@@ -263,6 +267,7 @@ export type ContentfulMetadataTagsFilter = {
  *     Find out more here: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/content-tags
  */
 export type ContentfulTag = {
+  __typename?: 'ContentfulTag';
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
 };
@@ -273,6 +278,7 @@ export type Entry = {
 };
 
 export type EntryCollection = {
+  __typename?: 'EntryCollection';
   items: Array<Maybe<Entry>>;
   limit: Scalars['Int'];
   skip: Scalars['Int'];
@@ -299,6 +305,7 @@ export enum EntryOrder {
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/homePage) */
 export type HomePage = Entry & {
+  __typename?: 'HomePage';
   caseStudiesCollection?: Maybe<HomePageCaseStudiesCollection>;
   contentfulMetadata: ContentfulMetadata;
   description?: Maybe<Scalars['String']>;
@@ -389,6 +396,7 @@ export type HomePageTitleArgs = {
 };
 
 export type HomePageCaseStudiesCollection = {
+  __typename?: 'HomePageCaseStudiesCollection';
   items: Array<Maybe<Project>>;
   limit: Scalars['Int'];
   skip: Scalars['Int'];
@@ -396,6 +404,7 @@ export type HomePageCaseStudiesCollection = {
 };
 
 export type HomePageCollection = {
+  __typename?: 'HomePageCollection';
   items: Array<Maybe<HomePage>>;
   limit: Scalars['Int'];
   skip: Scalars['Int'];
@@ -435,27 +444,32 @@ export type HomePageFilter = {
 };
 
 export type HomePageIntroText = {
+  __typename?: 'HomePageIntroText';
   json: Scalars['JSON'];
   links: HomePageIntroTextLinks;
 };
 
 export type HomePageIntroTextAssets = {
+  __typename?: 'HomePageIntroTextAssets';
   block: Array<Maybe<Asset>>;
   hyperlink: Array<Maybe<Asset>>;
 };
 
 export type HomePageIntroTextEntries = {
+  __typename?: 'HomePageIntroTextEntries';
   block: Array<Maybe<Entry>>;
   hyperlink: Array<Maybe<Entry>>;
   inline: Array<Maybe<Entry>>;
 };
 
 export type HomePageIntroTextLinks = {
+  __typename?: 'HomePageIntroTextLinks';
   assets: HomePageIntroTextAssets;
   entries: HomePageIntroTextEntries;
 };
 
 export type HomePageLinkingCollections = {
+  __typename?: 'HomePageLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
 };
 
@@ -468,6 +482,7 @@ export type HomePageLinkingCollectionsEntryCollectionArgs = {
 };
 
 export type HomePageLogosCollection = {
+  __typename?: 'HomePageLogosCollection';
   items: Array<Maybe<Logo>>;
   limit: Scalars['Int'];
   skip: Scalars['Int'];
@@ -488,6 +503,7 @@ export enum HomePageOrder {
 }
 
 export type HomePageProjectsCollection = {
+  __typename?: 'HomePageProjectsCollection';
   items: Array<Maybe<Project>>;
   limit: Scalars['Int'];
   skip: Scalars['Int'];
@@ -495,6 +511,7 @@ export type HomePageProjectsCollection = {
 };
 
 export type HomePageSkillsCollection = {
+  __typename?: 'HomePageSkillsCollection';
   items: Array<Maybe<Skill>>;
   limit: Scalars['Int'];
   skip: Scalars['Int'];
@@ -502,27 +519,32 @@ export type HomePageSkillsCollection = {
 };
 
 export type HomePageSkillsText = {
+  __typename?: 'HomePageSkillsText';
   json: Scalars['JSON'];
   links: HomePageSkillsTextLinks;
 };
 
 export type HomePageSkillsTextAssets = {
+  __typename?: 'HomePageSkillsTextAssets';
   block: Array<Maybe<Asset>>;
   hyperlink: Array<Maybe<Asset>>;
 };
 
 export type HomePageSkillsTextEntries = {
+  __typename?: 'HomePageSkillsTextEntries';
   block: Array<Maybe<Entry>>;
   hyperlink: Array<Maybe<Entry>>;
   inline: Array<Maybe<Entry>>;
 };
 
 export type HomePageSkillsTextLinks = {
+  __typename?: 'HomePageSkillsTextLinks';
   assets: HomePageSkillsTextAssets;
   entries: HomePageSkillsTextEntries;
 };
 
 export type HomePageStatsCollection = {
+  __typename?: 'HomePageStatsCollection';
   items: Array<Maybe<Stat>>;
   limit: Scalars['Int'];
   skip: Scalars['Int'];
@@ -626,6 +648,7 @@ export type ImageTransformOptions = {
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/logo) */
 export type Logo = Entry & {
+  __typename?: 'Logo';
   contentfulMetadata: ContentfulMetadata;
   dark?: Maybe<Scalars['Boolean']>;
   linkedFrom?: Maybe<LogoLinkingCollections>;
@@ -660,6 +683,7 @@ export type LogoNameArgs = {
 };
 
 export type LogoCollection = {
+  __typename?: 'LogoCollection';
   items: Array<Maybe<Logo>>;
   limit: Scalars['Int'];
   skip: Scalars['Int'];
@@ -685,6 +709,7 @@ export type LogoFilter = {
 };
 
 export type LogoLinkingCollections = {
+  __typename?: 'LogoLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   homePageCollection?: Maybe<HomePageCollection>;
 };
@@ -722,6 +747,7 @@ export enum LogoOrder {
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/pageContentFullSizeImage) */
 export type PageContentFullSizeImage = Entry & {
+  __typename?: 'PageContentFullSizeImage';
   contentfulMetadata: ContentfulMetadata;
   image?: Maybe<Asset>;
   linkedFrom?: Maybe<PageContentFullSizeImageLinkingCollections>;
@@ -749,6 +775,7 @@ export type PageContentFullSizeImageTitleArgs = {
 };
 
 export type PageContentFullSizeImageCollection = {
+  __typename?: 'PageContentFullSizeImageCollection';
   items: Array<Maybe<PageContentFullSizeImage>>;
   limit: Scalars['Int'];
   skip: Scalars['Int'];
@@ -771,6 +798,7 @@ export type PageContentFullSizeImageFilter = {
 };
 
 export type PageContentFullSizeImageLinkingCollections = {
+  __typename?: 'PageContentFullSizeImageLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   projectCollection?: Maybe<ProjectCollection>;
 };
@@ -806,6 +834,7 @@ export enum PageContentFullSizeImageOrder {
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/pageContentImage) */
 export type PageContentImage = Entry & {
+  __typename?: 'PageContentImage';
   contentfulMetadata: ContentfulMetadata;
   image?: Maybe<Asset>;
   linkedFrom?: Maybe<PageContentImageLinkingCollections>;
@@ -833,6 +862,7 @@ export type PageContentImageTitleArgs = {
 };
 
 export type PageContentImageCollection = {
+  __typename?: 'PageContentImageCollection';
   items: Array<Maybe<PageContentImage>>;
   limit: Scalars['Int'];
   skip: Scalars['Int'];
@@ -855,6 +885,7 @@ export type PageContentImageFilter = {
 };
 
 export type PageContentImageLinkingCollections = {
+  __typename?: 'PageContentImageLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   projectCollection?: Maybe<ProjectCollection>;
 };
@@ -890,6 +921,7 @@ export enum PageContentImageOrder {
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/pageContentText) */
 export type PageContentText = Entry & {
+  __typename?: 'PageContentText';
   body?: Maybe<PageContentTextBody>;
   contentfulMetadata: ContentfulMetadata;
   linkedFrom?: Maybe<PageContentTextLinkingCollections>;
@@ -916,27 +948,32 @@ export type PageContentTextTitleArgs = {
 };
 
 export type PageContentTextBody = {
+  __typename?: 'PageContentTextBody';
   json: Scalars['JSON'];
   links: PageContentTextBodyLinks;
 };
 
 export type PageContentTextBodyAssets = {
+  __typename?: 'PageContentTextBodyAssets';
   block: Array<Maybe<Asset>>;
   hyperlink: Array<Maybe<Asset>>;
 };
 
 export type PageContentTextBodyEntries = {
+  __typename?: 'PageContentTextBodyEntries';
   block: Array<Maybe<Entry>>;
   hyperlink: Array<Maybe<Entry>>;
   inline: Array<Maybe<Entry>>;
 };
 
 export type PageContentTextBodyLinks = {
+  __typename?: 'PageContentTextBodyLinks';
   assets: PageContentTextBodyAssets;
   entries: PageContentTextBodyEntries;
 };
 
 export type PageContentTextCollection = {
+  __typename?: 'PageContentTextCollection';
   items: Array<Maybe<PageContentText>>;
   limit: Scalars['Int'];
   skip: Scalars['Int'];
@@ -961,6 +998,7 @@ export type PageContentTextFilter = {
 };
 
 export type PageContentTextLinkingCollections = {
+  __typename?: 'PageContentTextLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   projectCollection?: Maybe<ProjectCollection>;
 };
@@ -996,6 +1034,7 @@ export enum PageContentTextOrder {
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/project) */
 export type Project = Entry & {
+  __typename?: 'Project';
   contentfulMetadata: ContentfulMetadata;
   coverImage?: Maybe<Asset>;
   headline?: Maybe<Scalars['String']>;
@@ -1071,6 +1110,7 @@ export type ProjectTitleArgs = {
 };
 
 export type ProjectCollection = {
+  __typename?: 'ProjectCollection';
   items: Array<Maybe<Project>>;
   limit: Scalars['Int'];
   skip: Scalars['Int'];
@@ -1119,27 +1159,32 @@ export type ProjectFilter = {
 };
 
 export type ProjectIntro = {
+  __typename?: 'ProjectIntro';
   json: Scalars['JSON'];
   links: ProjectIntroLinks;
 };
 
 export type ProjectIntroAssets = {
+  __typename?: 'ProjectIntroAssets';
   block: Array<Maybe<Asset>>;
   hyperlink: Array<Maybe<Asset>>;
 };
 
 export type ProjectIntroEntries = {
+  __typename?: 'ProjectIntroEntries';
   block: Array<Maybe<Entry>>;
   hyperlink: Array<Maybe<Entry>>;
   inline: Array<Maybe<Entry>>;
 };
 
 export type ProjectIntroLinks = {
+  __typename?: 'ProjectIntroLinks';
   assets: ProjectIntroAssets;
   entries: ProjectIntroEntries;
 };
 
 export type ProjectLinkingCollections = {
+  __typename?: 'ProjectLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   homePageCollection?: Maybe<HomePageCollection>;
 };
@@ -1180,6 +1225,7 @@ export enum ProjectOrder {
 }
 
 export type ProjectPageContentCollection = {
+  __typename?: 'ProjectPageContentCollection';
   items: Array<Maybe<ProjectPageContentItem>>;
   limit: Scalars['Int'];
   skip: Scalars['Int'];
@@ -1189,6 +1235,7 @@ export type ProjectPageContentCollection = {
 export type ProjectPageContentItem = PageContentFullSizeImage | PageContentImage | PageContentText;
 
 export type ProjectSkillsCollection = {
+  __typename?: 'ProjectSkillsCollection';
   items: Array<Maybe<Skill>>;
   limit: Scalars['Int'];
   skip: Scalars['Int'];
@@ -1196,6 +1243,7 @@ export type ProjectSkillsCollection = {
 };
 
 export type Query = {
+  __typename?: 'Query';
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
   entryCollection?: Maybe<EntryCollection>;
@@ -1382,6 +1430,7 @@ export type QueryStatCollectionArgs = {
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/skill) */
 export type Skill = Entry & {
+  __typename?: 'Skill';
   contentfulMetadata: ContentfulMetadata;
   icon?: Maybe<Asset>;
   linkedFrom?: Maybe<SkillLinkingCollections>;
@@ -1409,6 +1458,7 @@ export type SkillNameArgs = {
 };
 
 export type SkillCollection = {
+  __typename?: 'SkillCollection';
   items: Array<Maybe<Skill>>;
   limit: Scalars['Int'];
   skip: Scalars['Int'];
@@ -1431,6 +1481,7 @@ export type SkillFilter = {
 };
 
 export type SkillLinkingCollections = {
+  __typename?: 'SkillLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   homePageCollection?: Maybe<HomePageCollection>;
   projectCollection?: Maybe<ProjectCollection>;
@@ -1475,6 +1526,7 @@ export enum SkillOrder {
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/stat) */
 export type Stat = Entry & {
+  __typename?: 'Stat';
   amount?: Maybe<Scalars['Int']>;
   contentfulMetadata: ContentfulMetadata;
   description?: Maybe<Scalars['String']>;
@@ -1501,6 +1553,7 @@ export type StatLinkedFromArgs = {
 };
 
 export type StatCollection = {
+  __typename?: 'StatCollection';
   items: Array<Maybe<Stat>>;
   limit: Scalars['Int'];
   skip: Scalars['Int'];
@@ -1531,6 +1584,7 @@ export type StatFilter = {
 };
 
 export type StatLinkingCollections = {
+  __typename?: 'StatLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   homePageCollection?: Maybe<HomePageCollection>;
 };
@@ -1567,6 +1621,7 @@ export enum StatOrder {
 }
 
 export type Sys = {
+  __typename?: 'Sys';
   environmentId: Scalars['String'];
   firstPublishedAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['String'];
@@ -1615,12 +1670,12 @@ export type SysFilter = {
 export type HomeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomeQuery = { page?: { items: Array<{ title?: string | null, description?: string | null, introText?: { json: any } | null, statsCollection?: { items: Array<{ amount?: number | null, description?: string | null } | null> } | null, skillsText?: { json: any } | null, skillsCollection?: { items: Array<{ name?: string | null, icon?: { fileName?: string | null, url?: string | null, title?: string | null } | null } | null> } | null, caseStudiesCollection?: { items: Array<{ link?: string | null, slug?: string | null, title?: string | null, intro?: { json: any } | null } | null> } | null, projectsCollection?: { items: Array<{ slug?: string | null, headline?: string | null, title?: string | null, coverImage?: { fileName?: string | null, title?: string | null, width?: number | null, height?: number | null, url?: string | null, avifUrl?: string | null, webPUrl?: string | null } | null } | null> } | null, logosCollection?: { items: Array<{ name?: string | null, dark?: boolean | null, logo?: { contentType?: string | null, width?: number | null, height?: number | null, title?: string | null, fileName?: string | null, url?: string | null, avifUrl?: string | null, webPUrl?: string | null } | null } | null> } | null } | null> } | null };
+export type HomeQuery = { __typename?: 'Query', page?: { __typename?: 'HomePageCollection', items: Array<{ __typename?: 'HomePage', title?: string | null, description?: string | null, introText?: { __typename?: 'HomePageIntroText', json: any } | null, statsCollection?: { __typename?: 'HomePageStatsCollection', items: Array<{ __typename?: 'Stat', amount?: number | null, description?: string | null } | null> } | null, skillsText?: { __typename?: 'HomePageSkillsText', json: any } | null, skillsCollection?: { __typename?: 'HomePageSkillsCollection', items: Array<{ __typename?: 'Skill', name?: string | null, icon?: { __typename?: 'Asset', fileName?: string | null, url?: string | null, title?: string | null } | null } | null> } | null, caseStudiesCollection?: { __typename?: 'HomePageCaseStudiesCollection', items: Array<{ __typename?: 'Project', link?: string | null, slug?: string | null, title?: string | null, intro?: { __typename?: 'ProjectIntro', json: any } | null } | null> } | null, projectsCollection?: { __typename?: 'HomePageProjectsCollection', items: Array<{ __typename?: 'Project', slug?: string | null, headline?: string | null, title?: string | null, coverImage?: { __typename?: 'Asset', fileName?: string | null, title?: string | null, width?: number | null, height?: number | null, url?: string | null, avifUrl?: string | null, webPUrl?: string | null } | null } | null> } | null, logosCollection?: { __typename?: 'HomePageLogosCollection', items: Array<{ __typename?: 'Logo', name?: string | null, dark?: boolean | null, logo?: { __typename?: 'Asset', contentType?: string | null, width?: number | null, height?: number | null, title?: string | null, fileName?: string | null, url?: string | null, avifUrl?: string | null, webPUrl?: string | null } | null } | null> } | null } | null> } | null };
 
 export type ProjectPathsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ProjectPathsQuery = { project?: { items: Array<{ slug?: string | null } | null> } | null };
+export type ProjectPathsQuery = { __typename?: 'Query', project?: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', slug?: string | null } | null> } | null };
 
 export type ProjectQueryVariables = Exact<{
   slug: Scalars['String'];
@@ -1628,9 +1683,9 @@ export type ProjectQueryVariables = Exact<{
 }>;
 
 
-export type ProjectQuery = { project?: { items: Array<{ slug?: string | null, title?: string | null, headline?: string | null, link?: string | null, skillsCollection?: { items: Array<{ name?: string | null, icon?: { fileName?: string | null, url?: string | null, title?: string | null } | null } | null> } | null, pageContentCollection?: { items: Array<{ type: 'PageContentFullSizeImage', image?: { contentType?: string | null, width?: number | null, height?: number | null, fileName?: string | null, title?: string | null, url?: string | null, blurURL?: string | null, avifUrl?: string | null, webPUrl?: string | null } | null } | { type: 'PageContentImage', image?: { contentType?: string | null, width?: number | null, height?: number | null, fileName?: string | null, title?: string | null, url?: string | null, blurURL?: string | null, avifUrl?: string | null, webPUrl?: string | null } | null } | { type: 'PageContentText', body?: { json: any } | null } | null> } | null, coverImage?: { contentType?: string | null, width?: number | null, height?: number | null, fileName?: string | null, title?: string | null, url?: string | null, blurURL?: string | null, avifUrl?: string | null, webPUrl?: string | null } | null } | null> } | null };
+export type ProjectQuery = { __typename?: 'Query', project?: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', slug?: string | null, title?: string | null, headline?: string | null, link?: string | null, skillsCollection?: { __typename?: 'ProjectSkillsCollection', items: Array<{ __typename?: 'Skill', name?: string | null, icon?: { __typename?: 'Asset', fileName?: string | null, url?: string | null, title?: string | null } | null } | null> } | null, pageContentCollection?: { __typename?: 'ProjectPageContentCollection', items: Array<{ __typename?: 'PageContentFullSizeImage', type: 'PageContentFullSizeImage', image?: { __typename?: 'Asset', contentType?: string | null, width?: number | null, height?: number | null, fileName?: string | null, title?: string | null, url?: string | null, blurURL?: string | null, avifUrl?: string | null, webPUrl?: string | null } | null } | { __typename?: 'PageContentImage', type: 'PageContentImage', image?: { __typename?: 'Asset', contentType?: string | null, width?: number | null, height?: number | null, fileName?: string | null, title?: string | null, url?: string | null, blurURL?: string | null, avifUrl?: string | null, webPUrl?: string | null } | null } | { __typename?: 'PageContentText', type: 'PageContentText', body?: { __typename?: 'PageContentTextBody', json: any } | null } | null> } | null, coverImage?: { __typename?: 'Asset', contentType?: string | null, width?: number | null, height?: number | null, fileName?: string | null, title?: string | null, url?: string | null, blurURL?: string | null, avifUrl?: string | null, webPUrl?: string | null } | null } | null> } | null };
 
 export type AllProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AllProjectsQuery = { project?: { items: Array<{ slug?: string | null, title?: string | null, headline?: string | null, coverImage?: { contentType?: string | null, width?: number | null, height?: number | null, fileName?: string | null, title?: string | null, url?: string | null, blurURL?: string | null, avifUrl?: string | null, webPUrl?: string | null } | null } | null> } | null };
+export type AllProjectsQuery = { __typename?: 'Query', project?: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', slug?: string | null, title?: string | null, headline?: string | null, coverImage?: { __typename?: 'Asset', contentType?: string | null, width?: number | null, height?: number | null, fileName?: string | null, title?: string | null, url?: string | null, blurURL?: string | null, avifUrl?: string | null, webPUrl?: string | null } | null } | null> } | null };

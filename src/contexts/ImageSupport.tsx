@@ -31,7 +31,7 @@ export const ImageSupportProvider = ({
         const AVIF_TEST_IMG = new Image()
         AVIF_TEST_IMG.src = AVIF_SRC
         AVIF_TEST_IMG.onload = () => setAvif(true)
-        AVIF_TEST_IMG.onerror = e => setAvif(false)
+        AVIF_TEST_IMG.onerror = () => setAvif(false)
 
         const WEBP_TEST_IMG = new Image()
         WEBP_TEST_IMG.src = WEBP_SRC

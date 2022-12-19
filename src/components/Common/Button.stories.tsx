@@ -10,7 +10,13 @@ const buttonTypes = ["primary", "secondary"]
 
 const Buttons = [{ icon: "Download" }, { icon: "Arrow" }]
 
-const ButtonStory = ({ label, variant, icons }): React.ReactElement => (
+type ButtonStoryProps = { label: string; variant: string; icons: boolean }
+
+const ButtonStory = ({
+    label,
+    variant,
+    icons,
+}: ButtonStoryProps): React.ReactElement => (
     <>
         {variant === "primary" && (
             <DarkBackground>

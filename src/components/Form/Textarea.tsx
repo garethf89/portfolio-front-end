@@ -19,7 +19,11 @@ const TextAreaStyled = styled(Field)`
     background: ${COLORS.transparent};
 `
 
-type InputProps = React.InputHTMLAttributes<HTMLDivElement> & { as?: string }
+type InputProps = React.HTMLProps<HTMLTextAreaElement> & {
+    as?: string
+    name: string
+    id?: string
+}
 
 const TextArea = ({ children, ...props }: InputProps): React.ReactElement => {
     const [_field, meta] = useField(props.name)

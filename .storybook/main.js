@@ -13,6 +13,7 @@ module.exports = {
         "@storybook/addon-a11y",
         "@storybook/addon-graphql",
         "storybook-formik/register",
+        "storybook-addon-next",
     ],
     core: {
         builder: "webpack5",
@@ -63,6 +64,8 @@ module.exports = {
             ...config.resolve.alias,
             "@emotion/core": toPath("node_modules/@emotion/react"),
             "emotion-theming": toPath("node_modules/@emotion/react"),
+            "@schema": path.resolve(__dirname, "../schema"),
+            "@storybook-home-dir": path.resolve(__dirname, "./"),
         }
 
         return config

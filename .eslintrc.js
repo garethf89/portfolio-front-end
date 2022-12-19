@@ -22,8 +22,10 @@ module.exports = {
                 extensions: [".js", ".jsx", ".ts", ".tsx"],
             },
         },
+        react: {
+            version: "detect",
+        },
     },
-
     rules: {
         "prettier/prettier": "error",
         "no-unsafe-finally": "off",
@@ -91,9 +93,9 @@ module.exports = {
         "use-isnan": "error",
         "no-use-before-define": [0],
         "@typescript-eslint/no-use-before-define": [1],
-        "no-unused-vars": "off",
+        // "no-unused-vars": "error",
         "@typescript-eslint/no-unused-vars": [
-            "warn",
+            "error",
             {
                 vars: "all",
                 args: "after-used",

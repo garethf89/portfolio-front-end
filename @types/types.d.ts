@@ -1,14 +1,6 @@
 import { ThemeType } from "../src/@chakra-ui//theme"
 import "@emotion/react"
-import {
-    Asset,
-    HomePage,
-    HomePageLogosCollection,
-    Logo,
-    Maybe,
-    Project,
-    Scalars,
-} from "../src/schema/graphql"
+import { Asset, Maybe, Scalars } from "@schema/graphql"
 
 interface Size {
     [key: string]: string

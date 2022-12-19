@@ -1,11 +1,3 @@
-type AlbumImageServer = { size: string; "#text": string }
-type AlbumServer = {
-    name: string
-    url: string
-    image: AlbumImageServer[]
-    artist: { url: string; name: string }
-}
-
 type AlbumImageFormatted = { size: string; src: string }
 export type AlbumServerFormatted = {
     name: string

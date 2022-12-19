@@ -1,7 +1,6 @@
 import * as React from "react"
 
-import { BLOCKS, Document, MARKS } from "@contentful/rich-text-types"
-import { RenderRichTextData } from "../../../@types/types"
+import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import {
     documentToReactComponents,
     CommonNode,
@@ -13,7 +12,7 @@ import Lines from "../Animation/Lines"
 import { OuterWrapper } from "../Common/OuterWrapper"
 import ReadMore from "../Typography/ReadMore"
 import styled from "@emotion/styled"
-import { Project } from "../../schema/graphql"
+import { Project, ProjectIntro } from "@schema"
 
 const StyledParagraph = styled(Heading)`
     font-weight: 300;
@@ -80,10 +79,8 @@ interface CSProps {
     data: Project[]
 }
 
-type RichDocument = Document & RenderRichTextData<undefined>
-
 interface CaseStudyTextProps {
-    data: Document & RenderRichTextData<undefined>
+    data: ProjectIntro
 }
 
 export const CaseStudyText = ({

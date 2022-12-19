@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 import * as React from "react"
 import { BREAKPOINTS } from "../../@chakra-ui//theme"
-import { Project } from "../../schema/schema"
+import { Project as ProjectType } from "@schema"
 import Image from "../Common/Image"
 import { SROnly } from "../Common/SROnly"
 import Container from "../Global/Container/Container"
@@ -72,7 +72,7 @@ const ProjectImage = styled(Image)`
 `
 
 interface ProjectProps {
-    data: Project[]
+    data: ProjectType[]
 }
 
 const Projects = ({ data }: ProjectProps): React.ReactElement<ProjectProps> => {
@@ -82,7 +82,7 @@ const Projects = ({ data }: ProjectProps): React.ReactElement<ProjectProps> => {
                 My Work
             </Heading>
             <ProjectWrapper>
-                {data.map((project: Project, i: number) => {
+                {data.map((project: ProjectType, i: number) => {
                     return (
                         <Project key={i}>
                             <FadeLink href={project.slug}>
