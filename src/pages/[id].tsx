@@ -79,7 +79,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     )
 
     if (error) {
-        console.log(error)
+        console.error(error)
     }
 
     return {

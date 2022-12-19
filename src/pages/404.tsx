@@ -29,7 +29,7 @@ export const getStaticProps: GetStaticProps = async () => {
     const projectsFormatted = await addPlaceholder(projects, "coverImage")
 
     if (error) {
-        console.log(error)
+        console.error(error)
     }
 
     return {

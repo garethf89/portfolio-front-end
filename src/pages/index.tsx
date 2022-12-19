@@ -116,7 +116,9 @@ const IndexPage = ({
     return (
         <>
             <Head>
-                <Script type="application/ld+json">{`
+                <title>{title}</title>
+            </Head>
+            <Script id="SchemaCode" type="application/ld+json">{`
               {
                 "@context": "https://schema.org",
                 "@type": "Organization",
@@ -126,8 +128,6 @@ const IndexPage = ({
                 "sameAs": "https://www.garethferguson.co.uk"
               }
              `}</Script>
-                <title>{title}</title>
-            </Head>
             <Header nav siteTitle={title} />
             <HomeHeader
                 stats={page.statsCollection.items}

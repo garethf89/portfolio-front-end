@@ -16,9 +16,9 @@ const errorLink = onError(
         }
 
         if (networkError) {
-            console.log(new Error(`[Network error]: ${networkError}`))
+            console.error(new Error(`[Network error]: ${networkError}`))
         }
-        console.log(new Error(`[Network error]: ${networkError}`))
+        console.error(new Error(`[Network error]: ${networkError}`))
     }
 )
 
