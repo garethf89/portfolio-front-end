@@ -83,3 +83,5 @@ coverage
 .netlify
 
 .next
+
+build
