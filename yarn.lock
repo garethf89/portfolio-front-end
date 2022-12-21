@@ -4833,55 +4833,84 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/browser@npm:^7.7.0":
-  version: 7.7.0
-  resolution: "@sentry/browser@npm:7.7.0"
+"@sentry/browser@npm:7.28.0":
+  version: 7.28.0
+  resolution: "@sentry/browser@npm:7.28.0"
   dependencies:
-    "@sentry/core": 7.7.0
-    "@sentry/types": 7.7.0
-    "@sentry/utils": 7.7.0
+    "@sentry/core": 7.28.0
+    "@sentry/replay": 7.28.0
+    "@sentry/types": 7.28.0
+    "@sentry/utils": 7.28.0
     tslib: ^1.9.3
-  checksum: 09135668933c728fbb2ffe3149dbd3d4e7e7e0d25bf98e1075815b2bc74f2d341b92cdee95ef73d28935a613fb1c8488952b592a0bdd0ca65ea76f5ae67570da
+  checksum: 2d974ec4f052a89232928d929cb78b0505fb3f4aefa14a55ffbbe9801bf6e14e42267db35056e46e6fed8038bfb4417c350e70ec882f7feec623675ea33e4795
   languageName: node
   linkType: hard
 
-"@sentry/core@npm:7.7.0":
-  version: 7.7.0
-  resolution: "@sentry/core@npm:7.7.0"
+"@sentry/core@npm:7.28.0":
+  version: 7.28.0
+  resolution: "@sentry/core@npm:7.28.0"
   dependencies:
-    "@sentry/hub": 7.7.0
-    "@sentry/types": 7.7.0
-    "@sentry/utils": 7.7.0
+    "@sentry/types": 7.28.0
+    "@sentry/utils": 7.28.0
     tslib: ^1.9.3
-  checksum: d3b9b5a92a9182bae7f39eef01502dd542d5be7365632ea9e26aa5247c90fd72e620856b20a393f4d3eeadb27f3b744bf25be93b1fdc4f7457a894e290c41fb0
+  checksum: 46316388b60b212caf9ceffd5d5c09c67082c2d0b48edfc6c70d7045cabd0f2c9669a7e3e609c042ff029d41edeea07121934202bdff6b1ec370285b293c48e3
   languageName: node
   linkType: hard
 
-"@sentry/hub@npm:7.7.0":
-  version: 7.7.0
-  resolution: "@sentry/hub@npm:7.7.0"
+"@sentry/react@npm:^7.28.0":
+  version: 7.28.0
+  resolution: "@sentry/react@npm:7.28.0"
   dependencies:
-    "@sentry/types": 7.7.0
-    "@sentry/utils": 7.7.0
+    "@sentry/browser": 7.28.0
+    "@sentry/types": 7.28.0
+    "@sentry/utils": 7.28.0
+    hoist-non-react-statics: ^3.3.2
     tslib: ^1.9.3
-  checksum: 0683ae6da7d961e6bbb90ad1fded3b33cd9fc76dc54a080902a83bd7769991294ce8017277f5e0d145fcf9f2ad53ae89d3b0c7619fa0586c8513f4b585f14f6d
+  peerDependencies:
+    react: 15.x || 16.x || 17.x || 18.x
+  checksum: 6dafa921e8312621b57eb4955d8ecb0eb8e1494b112db76ec97956693ea6a1ab88509e55db9bc8948a85796681e0451e6d239c1e16da826a4e4afdaeb9c2f065
   languageName: node
   linkType: hard
 
-"@sentry/types@npm:7.7.0":
-  version: 7.7.0
-  resolution: "@sentry/types@npm:7.7.0"
-  checksum: 1f26c23617e9370cf32269ea5d5aa0f75fe86c34aede4fc07ae3bdae08803a788d628d0bba6f2e22c03d0430dcf63cc19453468ae086406448da07e13f36da70
+"@sentry/replay@npm:7.28.0":
+  version: 7.28.0
+  resolution: "@sentry/replay@npm:7.28.0"
+  dependencies:
+    "@sentry/core": 7.28.0
+    "@sentry/types": 7.28.0
+    "@sentry/utils": 7.28.0
+  peerDependencies:
+    "@sentry/browser": ">=7.24.0"
+  checksum: 4a0a58850f382b095d9f34d438900729723f703a30e0d0401cddf123376f32266df54b0a77305f0bf4468417c26f570ecbc826ef7d08e270b6a9b7d83e19724b
   languageName: node
   linkType: hard
 
-"@sentry/utils@npm:7.7.0":
-  version: 7.7.0
-  resolution: "@sentry/utils@npm:7.7.0"
+"@sentry/tracing@npm:^7.28.0":
+  version: 7.28.0
+  resolution: "@sentry/tracing@npm:7.28.0"
   dependencies:
-    "@sentry/types": 7.7.0
+    "@sentry/core": 7.28.0
+    "@sentry/types": 7.28.0
+    "@sentry/utils": 7.28.0
     tslib: ^1.9.3
-  checksum: 990224e0542015952a4f1fa83dd69c82a3a85894576457f10bc3c0c60620c675969424bdbfde9872a19a5db2b682dd1d51c67ec99f0c57acfc993e6f7c970aaf
+  checksum: 4851b719ccc3cc85c347857961f7933acec0abe085952b392efddcdba0a6f2ff314deab48b18a3722779cfac3ea0a023aa88c99f700e7c0ac7d523c11d88509c
+  languageName: node
+  linkType: hard
+
+"@sentry/types@npm:7.28.0":
+  version: 7.28.0
+  resolution: "@sentry/types@npm:7.28.0"
+  checksum: 722d31939c4e7d29108b5bccdb7b277c57e5f839cd14bdf0d0efe5a70d31bf629ad28f43fcef16d44d648e9d5b4ac0a6b3c386f698153a40cb2667f8e80a1ce9
+  languageName: node
+  linkType: hard
+
+"@sentry/utils@npm:7.28.0":
+  version: 7.28.0
+  resolution: "@sentry/utils@npm:7.28.0"
+  dependencies:
+    "@sentry/types": 7.28.0
+    tslib: ^1.9.3
+  checksum: fdb0eac647b91a6c204a3e592aeb100996b13eaf30be4f36cb70c26dfe222957ccf56f695b41bd2abe270679aa5db3080df8d68f8d0e59628b5519fbbf824802
   languageName: node
   linkType: hard
 
@@ -12814,7 +12843,8 @@ __metadata:
     "@mdx-js/react": ^2.1.1
     "@netlify/functions": ^1.0.0
     "@next/eslint-plugin-next": ^13.0.7
-    "@sentry/browser": ^7.7.0
+    "@sentry/react": ^7.28.0
+    "@sentry/tracing": ^7.28.0
     "@storybook/addon-a11y": ^6.4.22
     "@storybook/addon-actions": ^6.4.22
     "@storybook/addon-docs": ^6.4.22

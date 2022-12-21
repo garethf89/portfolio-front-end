@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import * as Sentry from "@sentry/browser"
+import * as Sentry from "@sentry/react"
+import { BrowserTracing } from "@sentry/tracing"
 
 import { ColorModeProvider, ChakraProvider } from "@chakra-ui/react"
 import { QueryClient, QueryClientProvider } from "react-query"
@@ -62,6 +63,8 @@ const App = ({ Component, pageProps }: NextAppProps) => {
             if (process.env.NODE_ENV === "production") {
                 Sentry.init({
                     dsn: process.env.NEXT_PUBLIC_SENTRY ?? "",
+                    integrations: [new BrowserTracing()],
+                    tracesSampleRate: 1.0,
                 })
             }
 
@@ -71,53 +74,57 @@ const App = ({ Component, pageProps }: NextAppProps) => {
 
     return (
         <>
-            <QueryClientProvider client={queryClient}>
-                <ApolloProvider client={client}>
-                    <ChakraProvider theme={theme}>
-                        <ColorModeProvider
-                            options={{
-                                initialColorMode: "light",
-                                useSystemColorMode: false,
-                            }}
-                        >
-                            <GlobalsStateProvider>
-                                <ImageSupportProvider>
-                                    <Global styles={globalStyles} />
-                                    <AppHead />
-                                    <FooterExtender>
-                                        <Root>
-                                            <LazyMotion features={domAnimation}>
-                                                <AnimatePresence
-                                                    exitBeforeEnter={true}
+            <Sentry.ErrorBoundary fallback={<p>An error has occurred</p>}>
+                <QueryClientProvider client={queryClient}>
+                    <ApolloProvider client={client}>
+                        <ChakraProvider theme={theme}>
+                            <ColorModeProvider
+                                options={{
+                                    initialColorMode: "light",
+                                    useSystemColorMode: false,
+                                }}
+                            >
+                                <GlobalsStateProvider>
+                                    <ImageSupportProvider>
+                                        <Global styles={globalStyles} />
+                                        <AppHead />
+                                        <FooterExtender>
+                                            <Root>
+                                                <LazyMotion
+                                                    features={domAnimation}
                                                 >
-                                                    <motion.div
-                                                        key={`framer-${pageProps.title}`}
-                                                        className="framer-animation"
-                                                        initial="initial"
-                                                        animate="animate"
-                                                        exit="exit"
-                                                        variants={
-                                                            fadeAnimation.variants
-                                                        }
-                                                        transition={
-                                                            fadeAnimation.transition
-                                                        }
+                                                    <AnimatePresence
+                                                        exitBeforeEnter={true}
                                                     >
-                                                        <Component
-                                                            {...pageProps}
-                                                        />
-                                                    </motion.div>
-                                                </AnimatePresence>
-                                            </LazyMotion>
-                                        </Root>
-                                        <Footer />
-                                    </FooterExtender>
-                                </ImageSupportProvider>
-                            </GlobalsStateProvider>
-                        </ColorModeProvider>
-                    </ChakraProvider>
-                </ApolloProvider>
-            </QueryClientProvider>
+                                                        <motion.div
+                                                            key={`framer-${pageProps.title}`}
+                                                            className="framer-animation"
+                                                            initial="initial"
+                                                            animate="animate"
+                                                            exit="exit"
+                                                            variants={
+                                                                fadeAnimation.variants
+                                                            }
+                                                            transition={
+                                                                fadeAnimation.transition
+                                                            }
+                                                        >
+                                                            <Component
+                                                                {...pageProps}
+                                                            />
+                                                        </motion.div>
+                                                    </AnimatePresence>
+                                                </LazyMotion>
+                                            </Root>
+                                            <Footer />
+                                        </FooterExtender>
+                                    </ImageSupportProvider>
+                                </GlobalsStateProvider>
+                            </ColorModeProvider>
+                        </ChakraProvider>
+                    </ApolloProvider>
+                </QueryClientProvider>
+            </Sentry.ErrorBoundary>
         </>
     )
 }
