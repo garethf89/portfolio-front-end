@@ -84,6 +84,9 @@ const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
         refetchOnMount: false,
         enabled: shoudFetch,
     })
+
+    console.error(`Status: ${status}`)
+
     const { data: functionData } = useLastFmFunction({
         enabled: status === "error" && shoudFetch,
         retry: false,

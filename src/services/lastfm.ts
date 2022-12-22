@@ -7,14 +7,7 @@ import type {
     LastFMServerResponseFunction,
 } from "../components/LastFM/types"
 
-// eslint-disable-next-line
-const url = require("../constants/lastfm").url
-
-// eslint-disable-next-line
-const data = require("../constants/lastfm").data
-
-// eslint-disable-next-line
-const urlGet = require("../constants/lastfm").functionGet
+import { url, data, functionGet } from "../constants/lastfm"
 
 type UseQueryOptionsLastFM = UseQueryOptions<
     LastFMServerResponse,
@@ -55,7 +48,7 @@ export const useLastFmFunction = (
         "lastfmFunction",
         async () => {
             const result: AxiosResponse<LastFMServerResponseFunction> =
-                await axios.get(urlGet)
+                await axios.get(functionGet)
             return result.data
         },
         options
