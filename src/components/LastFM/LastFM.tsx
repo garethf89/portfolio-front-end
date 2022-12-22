@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { useQueryClient } from "react-query"
 import { StyledProps } from "../../../@types/types"
 import { BREAKPOINTS } from "../../@chakra-ui//theme"
-import { useLastFm, useLastFmFunction } from "../../services/lastfm"
+import { useLastFmFunction } from "../../services/lastfm"
 import LastFMLogo from "../../svgs/lastfm"
 import Lines from "../Animation/Lines"
 import { OuterWrapper } from "../Common/OuterWrapper"
@@ -78,17 +78,8 @@ const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
 
     const shoudFetch = !albums || albums === initialAlbums
 
-    const { data, status } = useLastFm({
-        retry: false,
-        retryOnMount: false,
-        refetchOnMount: false,
+    const { data } = useLastFmFunction({
         enabled: shoudFetch,
-    })
-
-    console.error(`Status: ${status}`)
-
-    const { data: functionData } = useLastFmFunction({
-        enabled: status === "error" && shoudFetch,
         retry: false,
     })
 
@@ -101,14 +92,8 @@ const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
     }, [])
 
     useEffect(() => {
-        if (functionData) {
-            setAlbums(functionData.data.album)
-        }
-    }, [functionData])
-
-    useEffect(() => {
         if (data) {
-            setAlbums(data)
+            setAlbums(data as unknown as AlbumType[])
         }
     }, [data])
 
