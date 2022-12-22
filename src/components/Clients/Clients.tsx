@@ -1,15 +1,11 @@
 import { useColorMode } from "@chakra-ui/react"
 import { css } from "@emotion/react"
 import styled from "@emotion/styled"
-import { AssetFields } from "contentful"
 import * as React from "react"
-import { ILogoFields } from "../../../@types/generated/contentful"
-import {
-    BREAKPOINTS,
-    COLORS,
-    SPACE,
-} from "../../@chakra-ui/gatsby-plugin/theme"
+import { IconsProcessed } from "../../../@types/types"
+import { BREAKPOINTS, COLORS, SPACE } from "../../@chakra-ui//theme"
 import { useIsDark } from "../../hooks/useIsDark"
+import { Logo as LogoType } from "@schema"
 import Image from "../Common/Image"
 import Container from "../Global/Container/Container"
 import IconExternal from "../Icons/IconExternal"
@@ -26,7 +22,7 @@ const ClientsContainer = styled(Container)`
 
 const LogoWrapper = styled.div`
     position: relative;
-    max-width: 800px;
+    max-width: 900px;
     text-align: center;
     margin: 0 auto;
     display: flex;
@@ -58,7 +54,7 @@ const LogoCommon = (props: ClientsProps) => css`
     }
 `
 
-const Logo = styled(Image)`
+const Logo = styled.div`
     ${LogoCommon}
 `
 
@@ -66,15 +62,18 @@ const IconLogo = styled(IconExternal, {
     shouldForwardProp: prop => prop !== "dark",
 })`
     ${LogoCommon}
+    position:relative;
 `
 
 interface ClientProps {
-    data: ILogoFields[]
+    data: LogoType[]
+    icons: IconsProcessed[]
 }
 
-type SVGAssetFields = AssetFields & { svg?: { content: string } }
-
-const Clients = ({ data }: ClientProps): React.ReactElement<ClientProps> => {
+const Clients = ({
+    data,
+    icons,
+}: ClientProps): React.ReactElement<ClientProps> => {
     const { colorMode } = useColorMode()
     return (
         <>
@@ -88,31 +87,45 @@ const Clients = ({ data }: ClientProps): React.ReactElement<ClientProps> => {
                     Clients I have worked with
                 </Heading>
                 <LogoWrapper>
-                    {data.map((logo: ILogoFields, i: number) => {
-                        const logoFields = logo.logo as SVGAssetFields
-                        const svg =
-                            logoFields.file.contentType === "image/svg+xml"
+                    {data.map((logo: LogoType, i: number) => {
+                        const logoFields = logo.logo
+
+                        const svg = logoFields.contentType === "image/svg+xml"
                         const isDark = useIsDark(logo?.dark)
                         return (
                             <React.Fragment key={i}>
                                 {svg ? (
                                     <IconLogo
                                         mode={colorMode}
-                                        width="100px"
-                                        iconSvg={logoFields.svg.content}
                                         dark={isDark}
                                         key={i}
+                                        title={logo.name}
+                                        iconSvg={
+                                            icons.find(
+                                                icon =>
+                                                    icon.url === logoFields.url
+                                            ).icon
+                                        }
+                                        width={logoFields.width}
+                                        height={logoFields.height}
                                     />
                                 ) : (
                                     <Logo
                                         mode={colorMode}
-                                        alt={logo.name}
-                                        loading="lazy"
-                                        image={logo.logo}
                                         dark={isDark}
                                         key={i}
-                                        objectFit="contain"
-                                    />
+                                        style={{ maxHeight: "50px" }}
+                                    >
+                                        <Image
+                                            image={logoFields}
+                                            alt={logo.name}
+                                            style={{
+                                                objectFit: "contain",
+                                                height: "100%",
+                                            }}
+                                            fill
+                                        />
+                                    </Logo>
                                 )}
                             </React.Fragment>
                         )

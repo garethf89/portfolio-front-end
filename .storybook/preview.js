@@ -3,20 +3,10 @@ import { ChakraProvider, ColorModeProvider } from "@chakra-ui/react"
 import { Global } from "@emotion/react"
 import { GlobalsStateProvider } from "../src/state/state"
 import React from "react"
-import TransitionLinkProvider from "gatsby-plugin-transition-link/context/InternalProvider"
 import { action } from "@storybook/addon-actions"
 import globalStyles from "../src/styles/globals"
 import styled from "@emotion/styled"
-import theme from "../src/@chakra-ui/gatsby-plugin/theme"
-
-// Gatsby's Link overrides:
-// Gatsby Link calls the `enqueue` & `hovering` methods on the global variable ___loader.
-// This global object isn't set in storybook context, requiring you to override it to empty functions (no-op),
-// so Gatsby Link doesn't throw any errors.
-global.___loader = {
-    enqueue: () => {},
-    hovering: () => {},
-}
+import theme from "../src/@chakra-ui//theme"
 
 global.__PATH_PREFIX__ = ``
 global.__BASE_PATH__ = ``
@@ -33,23 +23,21 @@ const Root = styled.div`
 
 const withChakra = StoryFn => {
     return (
-        <TransitionLinkProvider>
-            <ChakraProvider theme={theme}>
-                <ColorModeProvider
-                    options={{
-                        initialColorMode: "light",
-                        useSystemColorMode: false,
-                    }}
-                >
-                    <GlobalsStateProvider>
-                        <Root theme={theme}>
-                            <Global styles={globalStyles} />
-                            <StoryFn />
-                        </Root>
-                    </GlobalsStateProvider>
-                </ColorModeProvider>
-            </ChakraProvider>
-        </TransitionLinkProvider>
+        <ChakraProvider theme={theme}>
+            <ColorModeProvider
+                options={{
+                    initialColorMode: "light",
+                    useSystemColorMode: false,
+                }}
+            >
+                <GlobalsStateProvider>
+                    <Root theme={theme}>
+                        <Global styles={globalStyles} />
+                        <StoryFn />
+                    </Root>
+                </GlobalsStateProvider>
+            </ColorModeProvider>
+        </ChakraProvider>
     )
 }
 export const decorators = [withChakra]

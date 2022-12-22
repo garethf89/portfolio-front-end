@@ -1,19 +1,18 @@
 import * as React from "react"
 
-import { BLOCKS, Document, MARKS } from "@contentful/rich-text-types"
-import { RenderRichTextData } from "../../../@types/types"
+import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import {
     documentToReactComponents,
     CommonNode,
 } from "@contentful/rich-text-react-renderer"
-import { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
+import { BREAKPOINTS } from "../../@chakra-ui//theme"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
-import { IProjectFields } from "../../../@types/generated/contentful"
 import Lines from "../Animation/Lines"
 import { OuterWrapper } from "../Common/OuterWrapper"
 import ReadMore from "../Typography/ReadMore"
 import styled from "@emotion/styled"
+import { Project, ProjectIntro } from "@schema"
 
 const StyledParagraph = styled(Heading)`
     font-weight: 300;
@@ -77,20 +76,17 @@ const options = {
 }
 
 interface CSProps {
-    data: IProjectFields[]
+    data: Project[]
 }
 
-type RichDocument = Document & RenderRichTextData<undefined>
-
 interface CaseStudyTextProps {
-    data: Document & RenderRichTextData<undefined>
+    data: ProjectIntro
 }
 
 export const CaseStudyText = ({
     data,
 }: CaseStudyTextProps): React.ReactElement => {
-    const formatData = JSON.parse(data.raw)
-    return documentToReactComponents(formatData, options) as React.ReactElement
+    return documentToReactComponents(data.json, options) as React.ReactElement
 }
 
 const CaseStudies = ({ data }: CSProps): React.ReactElement<CSProps> => {
@@ -105,10 +101,8 @@ const CaseStudies = ({ data }: CSProps): React.ReactElement<CSProps> => {
                     {data.map((project, i: number) => {
                         return (
                             <CaseStudy key={i}>
-                                <CaseStudyText
-                                    data={project.intro as RichDocument}
-                                />
-                                <ReadMore to={`/${project.slug}`}>
+                                <CaseStudyText data={project.intro} />
+                                <ReadMore href={`/${project.slug}`}>
                                     Read more about {project.title}
                                 </ReadMore>
                             </CaseStudy>

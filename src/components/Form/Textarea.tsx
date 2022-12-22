@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { Field, useField } from "formik"
 
-import { COLORS } from "../../@chakra-ui/gatsby-plugin/theme"
+import { COLORS } from "../../@chakra-ui//theme"
 import { FormError } from "./FormError"
 import styled from "@emotion/styled"
 import { useStyleConfig } from "@chakra-ui/react"
@@ -19,7 +19,11 @@ const TextAreaStyled = styled(Field)`
     background: ${COLORS.transparent};
 `
 
-type InputProps = React.InputHTMLAttributes<HTMLDivElement> & { as?: string }
+type InputProps = React.HTMLProps<HTMLTextAreaElement> & {
+    as?: string
+    name: string
+    id?: string
+}
 
 const TextArea = ({ children, ...props }: InputProps): React.ReactElement => {
     const [_field, meta] = useField(props.name)

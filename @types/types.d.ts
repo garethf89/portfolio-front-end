@@ -1,6 +1,6 @@
-import { ThemeType } from "../src/@chakra-ui/gatsby-plugin/theme"
+import { ThemeType } from "../src/@chakra-ui//theme"
 import "@emotion/react"
-import { Asset } from "contentful"
+import { Asset, Maybe, Scalars } from "@schema/graphql"
 
 interface Size {
     [key: string]: string
@@ -17,9 +17,16 @@ export interface StyledProps {
     as?: string
 }
 
+// Image Types
+
+// Correct Alisased Guild types
+export type AssetWithBlur = Asset & { blurUrl: Maybe<Scalars["String"]> }
+
+export type IconsProcessed = { url: string; icon: string }
+
 // Contentful
 
-export interface ContentfulRichTextGatsbyReference {
+export interface ContentfulRichTextNextReference {
     /**
      * Either ContentfulAsset for assets or ContentfulYourContentTypeName for content types
      */
@@ -28,10 +35,8 @@ export interface ContentfulRichTextGatsbyReference {
     __typename: string
 }
 
-export interface RenderRichTextData<
-    T extends ContentfulRichTextGatsbyReference
-> {
-    raw: string
+export interface RenderRichTextData<T extends ContentfulRichTextNextReference> {
+    json: any
     references?: T[]
 }
 

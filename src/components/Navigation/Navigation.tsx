@@ -2,14 +2,14 @@ import * as React from "react"
 
 import { useEffect, useState } from "react"
 
-import { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
+import { BREAKPOINTS } from "../../@chakra-ui//theme"
 import ColorPicker from "./ColorPicker"
 import MobileMenu from "./MobileMenu/MobileMenu"
 import NavigationLink from "./NavigationLink"
 import debounce from "../../helpers/debounce"
-import { gatsbyWindow } from "../../helpers/gatsbyWindow"
+import { isWindow } from "../../helpers/isWindow"
 import styled from "@emotion/styled"
-import { useSiteMetadata } from "../../hooks/use-site-metadata"
+import config from "../../config/site"
 
 const NavigationStyles = styled.nav``
 
@@ -64,13 +64,10 @@ const Navigation = (): React.ReactElement => {
     const [active, setActive] = useState(false)
     const [animate, setAnimate] = useState(false)
 
-    const { menuLinks } = useSiteMetadata()
+    const { menuLinks } = config
 
     const checkMobile = () => {
-        if (
-            gatsbyWindow &&
-            window.innerWidth >= parseInt(BREAKPOINTS.MEDIUM, 16)
-        ) {
+        if (isWindow && window.innerWidth >= parseInt(BREAKPOINTS.MEDIUM, 16)) {
             setMobile(false)
         } else {
             setMobile(true)
@@ -83,13 +80,13 @@ const Navigation = (): React.ReactElement => {
     }, 200)
 
     useEffect(() => {
-        if (gatsbyWindow()) {
+        if (isWindow()) {
             checkMobile()
             window.addEventListener("resize", throttled)
         }
 
         return function cleanup() {
-            if (gatsbyWindow) {
+            if (isWindow) {
                 window.removeEventListener("resize", throttled)
             }
         }
@@ -112,7 +109,10 @@ const Navigation = (): React.ReactElement => {
                     const internal = /^\/(?!\/)/.test(link.slug)
                     return (
                         <NavLi key={link.name + i}>
-                            <NavigationLink internal={internal} to={link.slug}>
+                            <NavigationLink
+                                internal={internal}
+                                href={link.slug}
+                            >
                                 <span>{link.name}</span>
                             </NavigationLink>
                         </NavLi>

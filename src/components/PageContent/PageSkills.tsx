@@ -1,13 +1,14 @@
 import styled from "@emotion/styled"
 import * as React from "react"
-import { ISkill } from "../../../@types/generated/contentful"
-import { ISkillFieldsCustom } from "../../../@types/types"
-import { SPACE } from "../../@chakra-ui/gatsby-plugin/theme"
+import { IconsProcessed } from "../../../@types/types"
+import { SPACE } from "../../@chakra-ui//theme"
+import { Skill as SkillType } from "@schema"
 import Skill from "../Skills/Skill"
 import Heading from "../Typography/Heading"
 
 interface PageSkillProps {
-    skills: ISkill[]
+    skills: SkillType[]
+    icons: IconsProcessed[]
 }
 
 const PageSkillContainer = styled.div`
@@ -20,7 +21,7 @@ const SkillContainer = styled.div`
     justify-content: start;
 `
 
-const PageSkills = ({ skills }: PageSkillProps): React.ReactElement => {
+const PageSkills = ({ skills, icons }: PageSkillProps): React.ReactElement => {
     return (
         <PageSkillContainer>
             <Heading
@@ -33,11 +34,14 @@ const PageSkills = ({ skills }: PageSkillProps): React.ReactElement => {
             </Heading>
             <SkillContainer>
                 {skills &&
-                    (skills as ISkillFieldsCustom[]).map((skill, i) => (
+                    skills.map((skill, i) => (
                         <Skill
                             key={`skill${i}`}
                             id={`skill${i}`}
-                            icon={skill.icon.svg.content}
+                            icon={
+                                icons.find(icon => icon.url === skill.icon.url)
+                                    .icon
+                            }
                             title={skill.name}
                             boxSize={[14, 14, 16]}
                         >

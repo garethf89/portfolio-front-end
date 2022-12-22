@@ -1,15 +1,16 @@
 import styled from "@emotion/styled"
 import { Asset } from "contentful"
-import { Link } from "gatsby"
 import * as React from "react"
 import { useEffect, useState } from "react"
-import { BREAKPOINTS, SPACE } from "../../@chakra-ui/gatsby-plugin/theme"
+import { BREAKPOINTS, SPACE } from "../../@chakra-ui//theme"
 import { random } from "../../helpers/random"
-import { AllProjects, getAllProjects } from "../../hooks/get-all-projects"
 import Image from "../Common/Image"
 import { SROnly } from "../Common/SROnly"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
+import Link from "../Link/Link"
+import { useProjects } from "../../contexts"
+import { AspectRatio } from "@chakra-ui/react"
 
 const SuggestedProjectLinkContainer = styled.div`
     display: inline-block;
@@ -26,7 +27,7 @@ const SuggestedProjectLinkContainer = styled.div`
         color: inherit;
     }
     &:hover {
-        .gatsby-image-wrapper {
+        img {
             transform: scale(1.1);
         }
     }
@@ -54,20 +55,26 @@ const SuggestedDescription = styled(Heading)`
     margin: 0;
 `
 
+// TODO Types
 const SuggestedProjects = (): React.ReactElement => {
     const [randomProjects, setProjects] = useState(null)
 
-    const data: AllProjects = getAllProjects()
+    const { projects } = useProjects()
 
     useEffect(() => {
-        const projects = [...data.allContentfulProject.edges]
-
+        if (!projects.length) {
+            return
+        }
         const randomNumbers = random(projects.length - 1, 2)
         setProjects([
             projects[randomNumbers[0] - 1],
             projects[randomNumbers[1] - 1],
         ])
-    }, [])
+    }, [projects])
+
+    if (!randomProjects || !randomProjects.length) {
+        return <></>
+    }
 
     return (
         <Container useflex px={[0, 0, 0]} justifyContent="space-between">
@@ -76,23 +83,26 @@ const SuggestedProjects = (): React.ReactElement => {
                     return (
                         <SuggestedProjectLinkContainer key={i}>
                             <SuggestedProjectLink
-                                to={`/${project.node.slug}`}
+                                href={`/${project.slug}`}
                                 className=""
                             >
-                                <SuggestedProjectLinkBG
-                                    alt={project.node.title}
-                                    image={project.node.coverImage}
-                                />
-                                <SROnly>{project.node.title}</SROnly>
+                                <AspectRatio ratio={16 / 9}>
+                                    <SuggestedProjectLinkBG
+                                        alt={project.title}
+                                        image={project.coverImage}
+                                        fill
+                                    />
+                                </AspectRatio>
+                                <SROnly>{project.title}</SROnly>
                             </SuggestedProjectLink>
                             <SuggestedProjectLinkHeading level="h3">
-                                <Link className="" to={`/${project.node.slug}`}>
-                                    {project.node.title}
+                                <Link className="" href={`/${project.slug}`}>
+                                    {project.title}
                                 </Link>
                             </SuggestedProjectLinkHeading>
                             <SuggestedDescription level="h6" override="p">
-                                <Link className="" to={`/${project.node.slug}`}>
-                                    {project.node.headline}
+                                <Link className="" href={`/${project.slug}`}>
+                                    {project.headline}
                                 </Link>
                             </SuggestedDescription>
                         </SuggestedProjectLinkContainer>

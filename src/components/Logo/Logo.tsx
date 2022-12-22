@@ -58,8 +58,7 @@ const Logo = ({ siteTitle }: LogoProps): React.ReactElement => {
         <HeaderLink
             tab-index={1}
             aria-label={siteTitle}
-            to="/"
-            onKeyUp={hover}
+            href="/"
             onMouseEnter={hover}
             id="HeaderLogo"
             dark={isDark}

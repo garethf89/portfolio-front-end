@@ -26,8 +26,8 @@ const BackLink: React.FC<BackLinkProps> = ({
     const styles = useStyleConfig("ColorText")
 
     return (
-        <BackLinkStyledSpan sx={styles} to="/">
-            <BackLinkStyled to="/">
+        <BackLinkStyledSpan sx={styles} href="/">
+            <BackLinkStyled href="/">
                 <Arrow boxSize={8} />
                 {text}
             </BackLinkStyled>

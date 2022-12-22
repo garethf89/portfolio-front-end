@@ -1,6 +1,6 @@
 import Heading from "./Heading"
 
-const HeadingsStory = ({ heading }) => (
+const HeadingsStory = ({ heading }: { heading: string }) => (
     <div>
         <Heading level="h1">H1 - {heading}</Heading>
         <Heading level="h1" override="h2">

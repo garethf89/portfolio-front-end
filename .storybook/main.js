@@ -13,6 +13,7 @@ module.exports = {
         "@storybook/addon-a11y",
         "@storybook/addon-graphql",
         "storybook-formik/register",
+        "storybook-addon-next",
     ],
     core: {
         builder: "webpack5",
@@ -47,10 +48,12 @@ module.exports = {
             options: {
                 presets: [["react-app", { flow: false, typescript: true }]],
                 plugins: [
-                    require.resolve("@babel/plugin-proposal-class-properties", { "loose": true } ),
-                    // use babel-plugin-remove-graphql-queries to remove static queries from components when rendering in storybook
-                    require.resolve("babel-plugin-remove-graphql-queries"),  
-                    require.resolve("@babel/plugin-proposal-private-property-in-object"),
+                    require.resolve("@babel/plugin-proposal-class-properties", {
+                        loose: true,
+                    }),
+                    require.resolve(
+                        "@babel/plugin-proposal-private-property-in-object"
+                    ),
                     require.resolve("@babel/plugin-proposal-private-methods"),
                     require.resolve("babel-plugin-react-require"),
                 ],
@@ -61,6 +64,8 @@ module.exports = {
             ...config.resolve.alias,
             "@emotion/core": toPath("node_modules/@emotion/react"),
             "emotion-theming": toPath("node_modules/@emotion/react"),
+            "@schema": path.resolve(__dirname, "../schema"),
+            "@storybook-home-dir": path.resolve(__dirname, "./"),
         }
 
         return config

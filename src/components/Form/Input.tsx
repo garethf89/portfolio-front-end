@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { Field, useField } from "formik"
 
-import { COLORS } from "../../@chakra-ui/gatsby-plugin/theme"
+import { COLORS } from "../../@chakra-ui//theme"
 import { FormError } from "./FormError"
 import styled from "@emotion/styled"
 import { useStyleConfig } from "@chakra-ui/react"
@@ -19,9 +19,9 @@ const InputStyled = styled(Field)<{ error?: string; border: string }>`
     background: ${COLORS.transparent};
 `
 
-type InputProps = React.InputHTMLAttributes<HTMLInputElement>
+type InputProps = React.InputHTMLAttributes<HTMLInputElement> & { id?: string }
 
-const Input = (props: InputProps): React.ReactElement => {
+const Input = ({ id, ...props }: InputProps): React.ReactElement => {
     const [field, meta] = useField(props.name) // eslint-disable-line
     const error = meta.touched && meta.error
     const styles = useStyleConfig("ColorText")
@@ -31,13 +31,13 @@ const Input = (props: InputProps): React.ReactElement => {
             <InputStyled
                 border={styles.border}
                 error={error ? "true" : undefined}
-                aria-describedby={error ? `${props.id}-error` : null}
+                aria-describedby={error ? `${id}-error` : null}
                 {...props}
             >
                 {props.children}
             </InputStyled>
             {meta.touched && meta.error && (
-                <FormError id={`${props.id}-error`} role="alert">
+                <FormError id={`${id}-error`} role="alert">
                     {meta.error}
                 </FormError>
             )}

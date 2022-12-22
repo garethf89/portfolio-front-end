@@ -258,6 +258,16 @@ export type CONTENT_TYPE =
     | "skill"
     | "stat"
 
+export type IEntry =
+    | IHomePage
+    | ILogo
+    | IPageContentFullSizeImage
+    | IPageContentImage
+    | IPageContentText
+    | IProject
+    | ISkill
+    | IStat
+
 export type LOCALE_CODE = "en-US"
 
 export type CONTENTFUL_DEFAULT_LOCALE_CODE = "en-US"

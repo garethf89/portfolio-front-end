@@ -1,9 +1,9 @@
 import { Box, useStyleConfig } from "@chakra-ui/react"
 import styled from "@emotion/styled"
-import { Asset } from "contentful"
 import * as React from "react"
 import { useContext, useEffect } from "react"
-import { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
+import { BREAKPOINTS } from "../../@chakra-ui//theme"
+import { Asset } from "@schema"
 import { globals } from "../../state/state"
 import Lines from "../Animation/Lines"
 import BackLink from "../BackLink/BackLink"
@@ -101,6 +101,7 @@ const PageHeader = ({
                     <PageImageElement
                         alt={`Background image for ${title}`}
                         sizes="(min-width: 50em) 50vw, 100vw"
+                        fill
                         image={image}
                     />
                 </PageImage>

@@ -33,7 +33,7 @@ const ColorPicker = (): React.ReactElement => {
                         key={`color-${i}`}
                         button
                         click={() => setTheme()}
-                        to="/"
+                        href="/"
                     >
                         <NavigationLinkLabel>Theme</NavigationLinkLabel>
                         <LinkIcon boxSize={8} />

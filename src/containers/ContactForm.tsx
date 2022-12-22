@@ -4,7 +4,7 @@ import * as Yup from "yup"
 import { Form, Formik, FormikHelpers } from "formik"
 
 import Alert from "../components/Alert/Alert"
-import { BREAKPOINTS } from "../@chakra-ui/gatsby-plugin/theme"
+import { BREAKPOINTS } from "../@chakra-ui//theme"
 import Button from "../components/Common/Button"
 import Flex from "../components/Global/Container/Flex"
 import Input from "../components/Form/Input"

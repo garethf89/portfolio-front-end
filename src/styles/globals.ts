@@ -1,6 +1,6 @@
 import { css } from "@emotion/react"
 import emotionNormalize from "emotion-normalize"
-import theme from "../@chakra-ui/gatsby-plugin/theme"
+import theme from "../@chakra-ui//theme"
 
 /* stylelint-disable */
 export const globalStyles = css`

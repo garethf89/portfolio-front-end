@@ -2,7 +2,7 @@ module.exports = {
     extends: [
         "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended",
-        "gatsby-standard",
+        "plugin:@next/next/recommended",
         "prettier",
     ],
     plugins: ["@typescript-eslint", "prefer-arrow", "prettier"],
@@ -23,8 +23,10 @@ module.exports = {
                 extensions: [".js", ".jsx", ".ts", ".tsx"],
             },
         },
+        react: {
+            version: "detect",
+        },
     },
-
     rules: {
         "prettier/prettier": "error",
         "no-unsafe-finally": "off",
@@ -50,7 +52,7 @@ module.exports = {
         "no-bitwise": "error",
         "no-caller": "error",
         "no-cond-assign": "error",
-        "no-console": "warn",
+        "no-console": ["warn", { allow: ["warn", "error"] }],
         "no-debugger": "error",
         "no-empty": "error",
         "no-eval": "error",
@@ -92,9 +94,9 @@ module.exports = {
         "use-isnan": "error",
         "no-use-before-define": [0],
         "@typescript-eslint/no-use-before-define": [1],
-        "no-unused-vars": "off",
+        // "no-unused-vars": "error",
         "@typescript-eslint/no-unused-vars": [
-            "warn",
+            "error",
             {
                 vars: "all",
                 args: "after-used",

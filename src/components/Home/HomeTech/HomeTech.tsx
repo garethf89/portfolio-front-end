@@ -1,19 +1,16 @@
-import { BLOCKS, Document, INLINES, MARKS } from "@contentful/rich-text-types"
+import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types"
 import styled from "@emotion/styled"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import * as React from "react"
-import {
-    ContentfulRichTextGatsbyReference,
-    ISkillFieldsCustom,
-    RenderRichTextData,
-} from "../../../../@types/types"
-import { SPACE } from "../../../@chakra-ui/gatsby-plugin/theme"
+import { IconsProcessed } from "../../../../@types/types"
+import { SPACE } from "../../../@chakra-ui//theme"
 import Container from "../../Global/Container/Container"
 import Skill from "../../Skills/Skill"
 import Bold from "../../Typography/Bold"
 import Heading from "../../Typography/Heading"
 import Inlinelink from "../../Typography/Inlinelink"
 import FaceImage from "../FaceImage/FaceImage"
+import { HomePageSkillsCollection, HomePageSkillsText } from "@schema"
 
 const StyledParagraph = styled(Heading)`
     font-weight: 200;
@@ -28,7 +25,7 @@ const Skills = styled.ul`
     margin: ${SPACE.common[4]} 0 0;
 `
 
-const Text = ({ children }) => {
+const Text = ({ children }: React.PropsWithChildren) => {
     return (
         <StyledParagraph override="p" level="h3">
             {children}
@@ -45,30 +42,34 @@ const options = {
             return <Text>{children}</Text>
         },
         [INLINES.HYPERLINK]: (node, children) => {
-            return <Inlinelink to={node.data.uri}>{children}</Inlinelink>
+            return (
+                <Inlinelink href={String(node.data.uri)}>{children}</Inlinelink>
+            )
         },
     },
 }
 
-type RichDocument = Document &
-    RenderRichTextData<ContentfulRichTextGatsbyReference>
 interface TextProps {
-    text?: RichDocument
+    text?: HomePageSkillsText
 }
 
 export const HomeHeaderContentText = ({
     text,
 }: TextProps): React.ReactElement => {
-    const formatData = JSON.parse(text.raw)
-    return documentToReactComponents(formatData, options) as React.ReactElement
+    return documentToReactComponents(text.json, options) as React.ReactElement
 }
 
 interface HomeTechProps {
-    skills: ISkillFieldsCustom[]
-    text: RichDocument
+    skills: HomePageSkillsCollection["items"]
+    text: HomePageSkillsText
+    icons: IconsProcessed[]
 }
 
-const HomeTech = ({ skills, text }: HomeTechProps): React.ReactElement => {
+const HomeTech = ({
+    skills,
+    text,
+    icons,
+}: HomeTechProps): React.ReactElement => {
     return (
         <Container vPadding textAlign="center">
             <FaceImage />
@@ -78,7 +79,9 @@ const HomeTech = ({ skills, text }: HomeTechProps): React.ReactElement => {
                     <Skill
                         key={i}
                         id={`skill${i}`}
-                        icon={skill.icon.svg.content}
+                        icon={
+                            icons.find(icon => icon.url === skill.icon.url).icon
+                        }
                         title={skill.name}
                         boxSize={[14, 14, 20]}
                     >

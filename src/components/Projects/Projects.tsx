@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 import * as React from "react"
-import { IProjectFields } from "../../../@types/generated/contentful"
-import { BREAKPOINTS } from "../../@chakra-ui/gatsby-plugin/theme"
+import { BREAKPOINTS } from "../../@chakra-ui//theme"
+import { Project as ProjectType } from "@schema"
 import Image from "../Common/Image"
 import { SROnly } from "../Common/SROnly"
 import Container from "../Global/Container/Container"
@@ -72,10 +72,8 @@ const ProjectImage = styled(Image)`
 `
 
 interface ProjectProps {
-    data: IProjectFields[]
+    data: ProjectType[]
 }
-
-type IProject = IProjectFields
 
 const Projects = ({ data }: ProjectProps): React.ReactElement<ProjectProps> => {
     return (
@@ -84,20 +82,27 @@ const Projects = ({ data }: ProjectProps): React.ReactElement<ProjectProps> => {
                 My Work
             </Heading>
             <ProjectWrapper>
-                {data.map((project: IProject, i: number) => {
+                {data.map((project: ProjectType, i: number) => {
                     return (
                         <Project key={i}>
-                            <FadeLink to={project.slug}>
+                            <FadeLink href={project.slug}>
                                 <SROnly>{project.title}</SROnly>
                                 <ProjectImageContainer>
                                     <ProjectImage
                                         alt={project.title}
                                         image={project.coverImage}
+                                        fill
+                                        sizes="(max-width: 800) 50vw,
+                                        33vw"
+                                        style={{
+                                            objectFit: "cover",
+                                            height: "100%",
+                                        }}
                                     />
                                 </ProjectImageContainer>
                             </FadeLink>
                             <Heading level="h5" override="p">
-                                <FadeLink to={project.slug}>
+                                <FadeLink href={project.slug}>
                                     <SROnly>{project.title}</SROnly>
                                     {project.headline}
                                 </FadeLink>

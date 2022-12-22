@@ -1,28 +1,24 @@
 import { Fragment } from "react"
-import { GatsbyImageMock } from "../../../.storybook/helpers/gatsbyImageMock"
-import { IPageContentImageFields } from "../../../@types/generated/contentful"
+import { ImageMock } from "@storybook-home-dir/helpers/imageMock"
 import Container from "../Global/Container/Container"
 import { OutputImageComponent } from "./PageContent"
+import { PageContentFullSizeImage } from "@schema"
 
 const ContentImageStory = ({
     type = "Test",
     name,
     container,
-    alt,
 }: {
     type: string
     name: string
     container: string
-    alt: string
 }) => {
-    const imageProps = { image: { ...GatsbyImageMock, title: alt } }
-
     const Wrap = container ? Container : Fragment
     return (
         <Wrap>
             <OutputImageComponent
                 type={type}
-                image={imageProps as unknown as IPageContentImageFields}
+                image={ImageMock as unknown as PageContentFullSizeImage}
                 name={name}
             />
         </Wrap>

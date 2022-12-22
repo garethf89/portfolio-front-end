@@ -1,62 +1,21 @@
 import * as React from "react"
-import TransitionLink from "gatsby-plugin-transition-link"
+import Link, { LinkProps as NextLinkProps } from "next/link"
 
-const duration = 0.25
+type LinkProps = NextLinkProps &
+    React.HTMLAttributes<HTMLAnchorElement> & {
+        children?: React.ReactNode
+        dark?: string
+    }
 
-interface IProps {
-    children: React.ReactNode
-    node?: React.ReactElement
-    url: string
-}
-
-const exitTransition = {
-    length: duration,
-    zIndex: 2,
-    trigger: ({ node }: IProps) => {
-        exitTransition.exitTrigger(node)
-        if (node) {
-            ;(node as unknown as HTMLElement).style.top =
-                -window.pageYOffset + "px"
-        }
-        window.scrollTo({ top: -window.pageYOffset })
-    },
-    exitTrigger: container => {
-        container.setAttribute(
-            "style",
-            `animation: fadeOut ${duration}s ease forwards;`
-        )
-    },
-}
-
-const entryTransition = {
-    zIndex: 1,
-    trigger: () => {
-        entryTransition.entryTrigger()
-    },
-    entryTrigger: () => container => {
-        container.setAttribute(
-            "style",
-            `animation: fadeIn ${duration}s ease forwards;`
-        )
-    },
-}
-
-type LinkProps = {
-    to: string
-    children?: React.ReactNode
-    dark?: string
-} & React.LinkHTMLAttributes<HTMLLinkElement>
-
-const FadeLink = ({ children, to, ...props }: LinkProps): TransitionLink => {
+const FadeLink = ({
+    children,
+    href,
+    ...props
+}: LinkProps): React.ReactElement => {
     return (
-        <TransitionLink
-            exit={exitTransition}
-            entry={entryTransition}
-            to={to}
-            {...props}
-        >
+        <Link href={href ?? "/"} {...props}>
             {children}
-        </TransitionLink>
+        </Link>
     )
 }
 

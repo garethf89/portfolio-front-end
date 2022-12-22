@@ -1,23 +1,21 @@
-import { GatsbyImageMock } from "../../../.storybook/helpers/gatsbyImageMock"
-import { IPageContentFullSizeImageFields } from "../../../@types/generated/contentful"
+import { ImageMock } from "@storybook-home-dir/helpers/imageMock"
 import ContainerBreak from "../Utils/ContainerBreak"
 import { OutputImageComponent } from "./PageContent"
+import type { PageContentFullSizeImage } from "@schema"
 
 const FullWidthImageStory = ({
     type = "Test",
     name,
-    alt,
 }: {
     alt: string
     type: string
     name: string
 }) => {
-    const imageProps = { image: { ...GatsbyImageMock, title: alt } }
     return (
         <ContainerBreak>
             <OutputImageComponent
                 type={type}
-                image={imageProps as unknown as IPageContentFullSizeImageFields}
+                image={ImageMock as unknown as PageContentFullSizeImage}
                 name={name}
             />
         </ContainerBreak>

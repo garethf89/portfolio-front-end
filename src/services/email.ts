@@ -3,7 +3,7 @@ import { useCallback, useState } from "react"
 
 import type { Response } from "express"
 
-const url = `${process.env.GATSBY_REACT_APP_API_URL}/formEmail`
+const url = `${process.env.NEXT_PUBLIC_APP_API_URL}/formEmail`
 
 type EmailFormData = {
     personEnq: string
@@ -14,6 +14,8 @@ type EmailFormData = {
 type HookResult = {
     status: string
     error: AxiosError
+    // eslint-disable-next-line
+    // Requires investigation TODO
     submit: (data: EmailFormData) => Promise<void>
     result: Response
 }

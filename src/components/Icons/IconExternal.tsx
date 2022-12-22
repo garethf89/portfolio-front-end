@@ -1,8 +1,9 @@
-import { Icon as ChakraIcon } from "@chakra-ui/react"
-import styled, { StyledOptions } from "@emotion/styled"
-import HTMLReactParser, { domToReact } from "html-react-parser"
+import { chakra } from "@chakra-ui/react"
+import styled from "@emotion/styled"
 import * as React from "react"
 import { SystemsTypeProperties } from "./Icon"
+import SVG from "react-inlinesvg"
+import { nanoid } from "nanoid"
 
 interface IconPropsType extends SystemsTypeProperties {
     "data-icon"?: boolean
@@ -15,41 +16,31 @@ export const IconExternal = ({
     title,
     ...props
 }: IconPropsType): React.ReactElement => {
-    let attr = {}
-
-    const htmlToReactWithReplace = (
-        icon: string,
-        styledProps: StyledOptions
-    ) => {
-        const replace = domNode => {
-            attr = { ...domNode.attribs }
-            if (attr["xmlns:xlink"]) {
-                delete attr["xmlns:xlink"]
-            }
-            if (domNode.name === "svg") {
-                return (
-                    <ChakraIcon {...attr} style={{}} {...styledProps}>
-                        {title && <title>{title}</title>}
-                        {domToReact(domNode.children)}
-                    </ChakraIcon>
-                )
-            }
-        }
-        return HTMLReactParser(icon, { replace })
-    }
-
-    // Render from SVG Text or an Icon component
-    const Render = ({ ...styledProps }) => (
-        <>{htmlToReactWithReplace(iconSvg, styledProps)}</>
-    )
-
     const defaultProps = {
         ...props,
-        ...attr,
+
         role: "img",
         display: "inline-block",
         verticalAlign: "middle",
         "data-icon": true,
+    }
+
+    // Render from SVG Text or an Icon component
+    const Render = ({ ...styledProps }) => {
+        const SVGChakra = chakra(SVG)
+        return (
+            <SVGChakra
+                uniquifyIDs={true}
+                src={iconSvg}
+                title={title}
+                preProcessor={code => {
+                    return code.replace(/cls-/g, `cls-${nanoid()}-${title}`)
+                }}
+                {...styledProps}
+            >
+                {title && <title>{title}</title>}
+            </SVGChakra>
+        )
     }
 
     const SystemComponent = styled(Render)``
