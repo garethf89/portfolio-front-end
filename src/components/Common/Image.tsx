@@ -43,7 +43,8 @@ const Image = ({
     }
 
     if (avif && image.avifUrl) {
-        src = image.avifUrl
+        // Enable when plugin adds support on Netlify
+        // src = image.avifUrl
     }
 
     const willBlur = image.blurURL

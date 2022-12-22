@@ -1,7 +1,7 @@
 module.exports = {
     images: {
         disableStaticImages: true,
-        formats: ["image/avif", "image/webp"],
+        formats: ["image/webp"],
         remotePatterns: [
             {
                 protocol: "https",

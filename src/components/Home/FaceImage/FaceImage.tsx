@@ -21,7 +21,8 @@ const FaceImage = (): React.ReactElement => {
     }
 
     if (avif) {
-        src = "/images/Logo.avif"
+        // Enable when plugin adds support on Netlify
+        // src = "/images/Logo.avif"
     }
 
     return (
