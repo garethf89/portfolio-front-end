@@ -146,7 +146,10 @@ const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
                                     <AlbumArtInner
                                         loading="lazy"
                                         alt={`${album.name} cover`}
-                                        src={album.image[3].src}
+                                        src={
+                                            album.image[3].src ??
+                                            album.image[3]["#text"]
+                                        }
                                     />
                                 </AlbumArtContainer>
                                 <AlbumInfo>
