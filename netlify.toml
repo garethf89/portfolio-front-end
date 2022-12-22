@@ -5,5 +5,9 @@
   force = true
   headers = {X-From = "Netlify"}
 
+
+[functions]
+  included_files = ["node_modules/sharp/**/*"]
+
 [functions."lastFmFetch"]
 schedule = "@weekly"
