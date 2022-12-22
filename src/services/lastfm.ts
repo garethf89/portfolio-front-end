@@ -3,6 +3,7 @@ import { UseQueryResult, useQuery, UseQueryOptions } from "react-query"
 import axios, { AxiosResponse } from "axios"
 import { config } from "./headers"
 import type {
+    AlbumType,
     LastFMServerResponse,
     LastFMServerResponseFunction,
 } from "../components/LastFM/types"
@@ -32,7 +33,7 @@ export const useLastFm = (
 }
 
 type UseQueryOptionsLastFMFunction = UseQueryOptions<
-    LastFMServerResponseFunction,
+    AlbumType[],
     Error,
     LastFMServerResponseFunction
 >
@@ -40,16 +41,12 @@ type UseQueryOptionsLastFMFunction = UseQueryOptions<
 export const useLastFmFunction = (
     options: UseQueryOptionsLastFMFunction
 ): UseQueryResult<LastFMServerResponseFunction> => {
-    return useQuery<
-        LastFMServerResponseFunction,
-        Error,
-        LastFMServerResponseFunction
-    >(
+    return useQuery<AlbumType[], Error, LastFMServerResponseFunction>(
         "lastfmFunction",
         async () => {
             const result: AxiosResponse<LastFMServerResponseFunction> =
                 await axios.get(functionGet)
-            return result.data
+            return result.data.data.album
         },
         options
     )

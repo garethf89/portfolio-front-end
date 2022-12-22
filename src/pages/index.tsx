@@ -63,13 +63,12 @@ export const getStaticProps: GetStaticProps = async () => {
 
     // LastFM Albums
     let result = { albums: lastFmMock }
-    if (process.env.NODE_ENV === "production") {
-        try {
-            const res = await axios.get(functionGet)
-            result = { albums: res.data }
-        } catch (_err) {
-            console.error("No connection to back end")
-        }
+
+    try {
+        const res = await axios.get(functionGet)
+        result = { albums: res.data.data.album }
+    } catch (_err) {
+        console.error("No connection to back end")
     }
 
     if (error) {
