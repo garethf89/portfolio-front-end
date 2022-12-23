@@ -12,6 +12,7 @@ import Label from "../components/Form/Label"
 import TextArea from "../components/Form/Textarea"
 import styled from "@emotion/styled"
 import { useEmail } from "../services/email"
+import { Box, CircularProgress, Spacer } from "@chakra-ui/react"
 
 const FormContainer = styled.div`
     margin-bottom: 2.5rem;
@@ -136,17 +137,30 @@ const ContactForm = (): React.ReactElement => {
                                                 type="textarea"
                                             />
                                         </FormContainer>
-
-                                        <Button
-                                            variant="primary"
-                                            disabled={
-                                                isValidating || isSubmitting
-                                            }
-                                            icon="Arrow"
-                                            type="submit"
+                                        <Box
+                                            p={0}
+                                            alignItems="center"
+                                            paddingInline={0}
+                                            display="flex"
                                         >
-                                            Submit
-                                        </Button>
+                                            <Button
+                                                variant="primary"
+                                                disabled={
+                                                    isValidating || isSubmitting
+                                                }
+                                                icon="Arrow"
+                                                type="submit"
+                                            >
+                                                Submit
+                                            </Button>
+                                            <Spacer />
+                                            {status === "pending" && (
+                                                <CircularProgress
+                                                    isIndeterminate
+                                                    color="green.300"
+                                                />
+                                            )}
+                                        </Box>
                                     </FormSection>
                                 </Flex>
                             )}

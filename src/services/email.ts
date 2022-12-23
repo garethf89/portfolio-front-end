@@ -12,7 +12,7 @@ type EmailFormData = {
 }
 
 type HookResult = {
-    status: string
+    status: EmailStatus
     error: AxiosError
     // eslint-disable-next-line
     // Requires investigation TODO
@@ -31,8 +31,10 @@ export const submitEmail = async (
     return res
 }
 
+type EmailStatus = "pending" | "error" | "success"
+
 export const useEmail = (): HookResult => {
-    const [status, setStatus] = useState(null)
+    const [status, setStatus] = useState<EmailStatus>()
     const [result, setResult] = useState(null)
     const [error, setError] = useState(null)
 
