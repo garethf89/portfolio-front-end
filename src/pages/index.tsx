@@ -2,13 +2,15 @@ import { GetStaticProps } from "next"
 import Head from "next/head"
 import Script from "next/script"
 import * as React from "react"
-import CaseStudies from "../components/CaseStudies/CaseStudies"
-import Clients from "../components/Clients/Clients"
-import Header from "../components/Header/Header"
-import HomeHeader from "../components/HeadPanels/HomeHeader"
-import HomeTech from "../components/Home/HomeTech/HomeTech"
-import LastFM from "../components/LastFM/LastFM"
-import Projects from "../components/Projects/Projects"
+import {
+    CaseStudies,
+    Clients,
+    Header,
+    HomeHeader,
+    HomeTech,
+    LastFM,
+    Projects,
+} from "@components"
 import { HOME_QUERY } from "../queries"
 import { client } from "../queries/apolloClient"
 import { getSingleItem } from "../queries/utils"
@@ -18,7 +20,7 @@ import { functionGet } from "../constants/lastfm"
 import axios from "axios"
 import { addPlaceholder } from "../utils"
 import type { HomePage, HomePageCollection, HomeQuery } from "@schema"
-import { AlbumType } from "../components/LastFM/types"
+import { AlbumType } from "@components"
 import { IconsProcessed } from "../../@types/types"
 
 export const getStaticProps: GetStaticProps = async () => {

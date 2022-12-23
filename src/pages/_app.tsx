@@ -13,7 +13,7 @@ import type { AppProps as NextAppProps } from "next/app"
 import globalStyles from "../styles/globals"
 import { Global } from "@emotion/react"
 import styled from "@emotion/styled"
-import Footer from "../components/Footer/Footer"
+import { Footer } from "@components"
 import Head from "next/head"
 import {
     AnimatePresence,

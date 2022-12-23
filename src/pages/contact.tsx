@@ -1,6 +1,5 @@
 import ContactForm from "../containers/ContactForm"
-import Container from "../components/Global/Container/Container"
-import PageHeader from "../components/HeadPanels/PageHeader"
+import { Container, PageHeader } from "@components"
 import * as React from "react"
 
 const ContactPage = (): React.ReactElement => {

@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { Icon as ChakraIcon, IconProps } from "@chakra-ui/react"
-import Icon, { IconPropsType } from "../components/Icons/Icon"
+import { Icon, IconPropsType } from "@components"
 
 const GHIcon = (props: IconProps) => {
     return (

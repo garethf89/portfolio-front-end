@@ -37,6 +37,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "paths": {
+      "@components": [
+        "./src/components"
+      ],
       "@schema": [
         "./schema"
       ],

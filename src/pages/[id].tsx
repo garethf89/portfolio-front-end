@@ -3,8 +3,7 @@ import * as React from "react"
 import { PROJECT_PATHS, PROJECT_QUERY } from "../queries"
 import { client } from "../queries/apolloClient"
 import { getSingleItem } from "../queries/utils"
-import PageHeader from "../components/HeadPanels/PageHeader"
-import PageContent from "../components/PageContent/PageContent"
+import { PageHeader, PageContent } from "@components"
 import { addPlaceholderSingle } from "../utils"
 import {
     Project,

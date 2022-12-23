@@ -6,7 +6,7 @@ import type {
     AlbumType,
     LastFMServerResponse,
     LastFMServerResponseFunction,
-} from "../components/LastFM/types"
+} from "@components"
 
 import { url, data, functionGet } from "../constants/lastfm"
 
