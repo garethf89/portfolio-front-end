@@ -10,8 +10,12 @@ export const PROJECT_PATHS = gql`
     }
 `
 export const PROJECT_QUERY = gql`
-    query Project($slug: String!, $limit: Int!) {
-        project: projectCollection(where: { slug: $slug }, limit: $limit) {
+    query Project($slug: String!, $limit: Int!, $preview: Boolean) {
+        project: projectCollection(
+            where: { slug: $slug }
+            limit: $limit
+            preview: $preview
+        ) {
             items {
                 slug
                 title

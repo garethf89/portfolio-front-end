@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client"
 
 export const HOME_QUERY = gql`
-    query Home {
-        page: homePageCollection(limit: 1) {
+    query Home($preview: Boolean) {
+        page: homePageCollection(limit: 1, preview: $preview) {
             items {
                 title
                 description

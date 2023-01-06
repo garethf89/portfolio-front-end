@@ -1667,7 +1667,9 @@ export type SysFilter = {
   publishedVersion_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
 };
 
-export type HomeQueryVariables = Exact<{ [key: string]: never; }>;
+export type HomeQueryVariables = Exact<{
+  preview?: InputMaybe<Scalars['Boolean']>;
+}>;
 
 
 export type HomeQuery = { __typename?: 'Query', page?: { __typename?: 'HomePageCollection', items: Array<{ __typename?: 'HomePage', title?: string | null, description?: string | null, introText?: { __typename?: 'HomePageIntroText', json: any } | null, statsCollection?: { __typename?: 'HomePageStatsCollection', items: Array<{ __typename?: 'Stat', amount?: number | null, description?: string | null } | null> } | null, skillsText?: { __typename?: 'HomePageSkillsText', json: any } | null, skillsCollection?: { __typename?: 'HomePageSkillsCollection', items: Array<{ __typename?: 'Skill', name?: string | null, icon?: { __typename?: 'Asset', fileName?: string | null, url?: string | null, title?: string | null } | null } | null> } | null, caseStudiesCollection?: { __typename?: 'HomePageCaseStudiesCollection', items: Array<{ __typename?: 'Project', link?: string | null, slug?: string | null, title?: string | null, intro?: { __typename?: 'ProjectIntro', json: any } | null } | null> } | null, projectsCollection?: { __typename?: 'HomePageProjectsCollection', items: Array<{ __typename?: 'Project', slug?: string | null, headline?: string | null, title?: string | null, coverImage?: { __typename?: 'Asset', fileName?: string | null, title?: string | null, width?: number | null, height?: number | null, url?: string | null, avifUrl?: string | null, webPUrl?: string | null } | null } | null> } | null, logosCollection?: { __typename?: 'HomePageLogosCollection', items: Array<{ __typename?: 'Logo', name?: string | null, dark?: boolean | null, logo?: { __typename?: 'Asset', contentType?: string | null, width?: number | null, height?: number | null, title?: string | null, fileName?: string | null, url?: string | null, avifUrl?: string | null, webPUrl?: string | null } | null } | null> } | null } | null> } | null };
@@ -1680,6 +1682,7 @@ export type ProjectPathsQuery = { __typename?: 'Query', project?: { __typename?:
 export type ProjectQueryVariables = Exact<{
   slug: Scalars['String'];
   limit: Scalars['Int'];
+  preview?: InputMaybe<Scalars['Boolean']>;
 }>;
 
 

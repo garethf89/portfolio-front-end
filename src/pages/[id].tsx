@@ -48,7 +48,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         ProjectQueryVariables
     >({
         query: PROJECT_QUERY,
-        variables: { slug: String(params.id), limit: 1 },
+        variables: {
+            slug: String(params.id),
+            limit: 1,
+            preview: process.env.NODE_ENV === "development",
+        },
         fetchPolicy: "no-cache",
         context: {
             headers: {

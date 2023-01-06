@@ -26,6 +26,9 @@ import { IconsProcessed } from "../../@types/types"
 export const getStaticProps: GetStaticProps = async () => {
     const { error, data } = await client.query<HomeQuery>({
         query: HOME_QUERY,
+        variables: {
+            preview: process.env.NODE_ENV === "development",
+        },
         fetchPolicy: "no-cache",
         context: {
             headers: {
