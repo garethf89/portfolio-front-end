@@ -15,10 +15,39 @@ const ProjectsContainer = styled(Container)`
 const ProjectWrapper = styled.div`
     position: relative;
 
-    @media (min-width: ${BREAKPOINTS.SMALL}) {
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        > * {
+            width: 48%;
+        }
+    }
+
+    @media (min-width: ${BREAKPOINTS.LARGE}) {
+        > * {
+            width: 32%;
+        }
+    }
+`
+
+const ProjectWrapperLower = styled.div`
+    position: relative;
+
+    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        > * {
+            width: 48%;
+        }
+    }
+
+    @media (min-width: ${BREAKPOINTS.LARGE}) {
+        > * {
+            width: 24%;
+            margin-bottom: 0;
+        }
     }
 `
 
@@ -28,27 +57,8 @@ const Project = styled.div`
     p {
         margin-bottom: 0;
     }
-    &:last-of-type {
-        margin-bottom: 0;
-    }
     &:hover {
         opacity: 0.9;
-    }
-    @media (min-width: ${BREAKPOINTS.SMALL}) {
-        width: 48%;
-        &:last-of-type {
-            margin-bottom: 0;
-        }
-        :nth-of-type(n + 5) {
-            margin-bottom: 0;
-        }
-    }
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
-        width: 32%;
-        margin-bottom: 2rem;
-        :nth-of-type(n + 6) {
-            margin-bottom: 0;
-        }
     }
 `
 
@@ -75,6 +85,47 @@ interface ProjectProps {
     data: ProjectType[]
 }
 
+const ProjectTemplate = ({
+    project,
+    index,
+    lower = false,
+}: {
+    project: ProjectType
+    index: number
+    lower?: boolean
+}): React.ReactElement => {
+    return (
+        <Project key={index}>
+            <FadeLink href={project.slug}>
+                <SROnly>{project.title}</SROnly>
+                <ProjectImageContainer>
+                    <ProjectImage
+                        alt={project.title}
+                        image={project.coverImage}
+                        fill
+                        sizes="(max-width: 800) 50vw,
+              33vw"
+                        style={{
+                            objectFit: "cover",
+                            height: "100%",
+                        }}
+                    />
+                </ProjectImageContainer>
+            </FadeLink>
+            <Heading
+                level={"h6"}
+                override="p"
+                fontSize={[24, 24, 24, lower ? 18 : 24]}
+            >
+                <FadeLink href={project.slug}>
+                    <SROnly>{project.title}</SROnly>
+                    {project.headline}
+                </FadeLink>
+            </Heading>
+        </Project>
+    )
+}
+
 const Projects = ({ data }: ProjectProps): React.ReactElement<ProjectProps> => {
     return (
         <ProjectsContainer vPadding>
@@ -83,34 +134,29 @@ const Projects = ({ data }: ProjectProps): React.ReactElement<ProjectProps> => {
             </Heading>
             <ProjectWrapper>
                 {data.map((project: ProjectType, i: number) => {
+                    if (i >= data.length - 4) {
+                        return null
+                    }
                     return (
-                        <Project key={i}>
-                            <FadeLink href={project.slug}>
-                                <SROnly>{project.title}</SROnly>
-                                <ProjectImageContainer>
-                                    <ProjectImage
-                                        alt={project.title}
-                                        image={project.coverImage}
-                                        fill
-                                        sizes="(max-width: 800) 50vw,
-                                        33vw"
-                                        style={{
-                                            objectFit: "cover",
-                                            height: "100%",
-                                        }}
-                                    />
-                                </ProjectImageContainer>
-                            </FadeLink>
-                            <Heading level="h5" override="p">
-                                <FadeLink href={project.slug}>
-                                    <SROnly>{project.title}</SROnly>
-                                    {project.headline}
-                                </FadeLink>
-                            </Heading>
-                        </Project>
+                        <ProjectTemplate key={i} index={i} project={project} />
                     )
                 })}
             </ProjectWrapper>
+            <ProjectWrapperLower>
+                {data.map((project: ProjectType, i: number) => {
+                    if (i < data.length - 4) {
+                        return null
+                    }
+                    return (
+                        <ProjectTemplate
+                            key={i}
+                            index={i}
+                            project={project}
+                            lower={true}
+                        />
+                    )
+                })}
+            </ProjectWrapperLower>
         </ProjectsContainer>
     )
 }

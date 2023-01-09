@@ -38,7 +38,7 @@ export const HOME_QUERY = gql`
                         title
                     }
                 }
-                projectsCollection(limit: 10) {
+                projectsCollection(limit: 11) {
                     items {
                         slug
                         headline
