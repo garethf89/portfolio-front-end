@@ -1,6 +1,6 @@
 import * as React from "react"
-import * as Yup from "yup"
-
+import { z } from "zod"
+import { toFormikValidationSchema } from "zod-formik-adapter"
 import { Form, Formik, FormikHelpers } from "formik"
 
 import { Alert, Button, Flex, Input, Label, TextArea } from "@components"
@@ -27,14 +27,14 @@ interface Values {
     personEmail: string
 }
 
-const ContactSchema = Yup.object().shape({
-    personName: Yup.string().required("Name is required"),
-    personEmail: Yup.string()
-        .email("Invalid email format")
-        .required("Email is required"),
-    personEnq: Yup.string().required(
-        "You need to enter a message, come on man!"
-    ),
+const ContactSchema = z.object({
+    personName: z.string({ required_error: "Name is required" }),
+    personEmail: z
+        .string({ required_error: "Email is required" })
+        .email("Invalid email format"),
+    personEnq: z.string({
+        required_error: "You need to enter a message, come on man!",
+    }),
 })
 
 const ContactForm = (): React.ReactElement => {
@@ -55,7 +55,7 @@ const ContactForm = (): React.ReactElement => {
                     personEnq: "",
                     personName: "",
                 }}
-                validationSchema={ContactSchema}
+                validationSchema={toFormikValidationSchema(ContactSchema)}
                 onSubmit={submitForm}
             >
                 {({ errors, touched, isSubmitting, isValidating }) => {
