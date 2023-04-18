@@ -18,12 +18,12 @@ const Document = () => {
                 <link
                     rel="preconnect"
                     href="https://fonts.gstatic.com/"
-                    crossOrigin="true"
+                    crossOrigin="anonymous"
                 />
                 <link
                     rel="preconnect"
                     href="https://images.ctfassets.net/"
-                    crossOrigin="true"
+                    crossOrigin="anonymous"
                 />
                 <link
                     href={`https://fonts.googleapis.com/css2?family=Ubuntu:wght@200;300;400;700&display=swap`}
