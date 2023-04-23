@@ -3,63 +3,49 @@ import * as React from "react"
 import { HeadingProps as ChakraHeadingProps, chakra } from "@chakra-ui/react"
 
 import { Ref } from "react"
-import { SPACE } from "../../@chakra-ui//theme"
+import { SPACE } from "../../@chakra-ui/theme"
 
-const H1 = chakra("h1", {
-    baseStyle: {
-        fontSize: ["42px", "42px", "52px"],
-        lineHeight: "1.2",
-        fontWeight: "200",
-    },
-})
+const H1 = {
+    fontSize: ["42px", "42px", "52px"],
+    lineHeight: "1.2",
+    fontWeight: "200",
+}
 
-const H2 = chakra("h2", {
-    baseStyle: {
-        fontSize: "38px",
-        lineHeight: 1,
-        fontWeight: 200,
-        marginBottom: SPACE.common[4],
-        marginTop: 0,
-    },
-})
+const H2 = {
+    fontSize: "38px",
+    lineHeight: 1.2,
+    fontWeight: 200,
+    marginBottom: SPACE.common[4],
+    marginTop: 0,
+}
 
-const H3 = chakra("h3", {
-    baseStyle: {
-        fontSize: "30px",
-        lineHeight: 1.3,
-        fontWeight: 200,
-    },
-})
+const H3 = {
+    fontSize: "30px",
+    lineHeight: 1.3,
+    fontWeight: 200,
+}
 
-const H4 = chakra("h4", {
-    baseStyle: {
-        fontSize: "30px",
-        lineHeight: 1,
-        fontWeight: 200,
-    },
-})
+const H4 = {
+    fontSize: "30px",
+    lineHeight: 1.2,
+    fontWeight: 200,
+}
 
-const H5 = chakra("h5", {
-    baseStyle: {
-        fontSize: "24px",
-        lineHeight: 1.3,
-        fontWeight: 200,
-    },
-})
+const H5 = {
+    fontSize: "24px",
+    lineHeight: 1.3,
+    fontWeight: 200,
+}
 
-const H6 = chakra("h6", {
-    baseStyle: {
-        fontSize: "18px",
-        lineHeight: 1,
-        fontWeight: 200,
-    },
-})
+const H6 = {
+    fontSize: "18px",
+    lineHeight: 1.2,
+    fontWeight: 200,
+}
 
-const Default = chakra("p", {
-    baseStyle: {
-        marginTop: "1rem",
-    },
-})
+const Default = {
+    marginTop: "1rem",
+}
 
 const Variants = {
     h1: H1,
@@ -70,13 +56,14 @@ const Variants = {
     h6: H6,
 }
 
-const HeadingStyled = (level: string) => {
+const HeadingStyled = (level: HeadingsPossible) => {
     const element = level && Variants[level] ? Variants[level] : Default
 
-    return chakra(element, {
+    return chakra(level ?? "p", {
         baseStyle: {
             marginBottom: "2rem",
             lineHeight: "1.2",
+            ...element,
             a: {
                 color: "inherit",
                 textDecoration: "none",
@@ -103,24 +90,27 @@ const Heading: React.FC<HeadingProps> = ({
     text,
     ...props
 }): React.ReactElement => {
-    const defaultProps = {
+    let defaultProps = {
+        display: "block",
         ...props,
     }
 
     const type: HeadingsPossible = override || level
+
+    if (type && type !== level) {
+        defaultProps = { ...defaultProps, as: type }
+    }
+
     const Element = HeadingStyled(level)
+
     return (
         <>
-            <Element as={type} {...defaultProps}>
+            <Element {...defaultProps}>
                 {text}
                 {children}
             </Element>
         </>
     )
-}
-
-Heading.defaultProps = {
-    display: "block",
 }
 
 export default Heading
