@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { useEffect, useState } from "react"
 
-import { BREAKPOINTS } from "../../@chakra-ui//theme"
+import { BREAKPOINTS } from "../../@chakra-ui/theme"
 import { ColorPicker, MobileMenu } from "@components"
 import NavigationLink from "./NavigationLink"
 import debounce from "../../helpers/debounce"

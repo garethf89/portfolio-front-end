@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { SerializedStyles, css } from "@emotion/react"
 
-import { BREAKPOINTS } from "../../@chakra-ui//theme"
+import { BREAKPOINTS } from "../../@chakra-ui/theme"
 import { Entry } from "contentful"
 import styled from "@emotion/styled"
 import { supportsWebP } from "../../helpers/support/webp"

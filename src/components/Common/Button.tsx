@@ -1,7 +1,7 @@
 import { chakra, useStyleConfig } from "@chakra-ui/react"
 import styled from "@emotion/styled"
 import * as React from "react"
-import theme, { BREAKPOINTS, Variants } from "../../@chakra-ui//theme"
+import theme, { BREAKPOINTS, Variants } from "../../@chakra-ui/theme"
 import { Download } from "../../svgs/index"
 import ArrowLight from "../../svgs/light-arrow"
 

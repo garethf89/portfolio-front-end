@@ -4,7 +4,7 @@ import { toFormikValidationSchema } from "zod-formik-adapter"
 import { Form, Formik, FormikHelpers } from "formik"
 
 import { Alert, Button, Flex, Input, Label, TextArea } from "@components"
-import { BREAKPOINTS } from "../@chakra-ui//theme"
+import { BREAKPOINTS } from "../@chakra-ui/theme"
 import styled from "@emotion/styled"
 import { useEmail } from "../services/email"
 import { Box, CircularProgress, Spacer } from "@chakra-ui/react"

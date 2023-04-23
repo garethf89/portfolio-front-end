@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 import * as React from "react"
 import { IconsProcessed } from "../../../@types/types"
-import { SPACE } from "../../@chakra-ui//theme"
+import { SPACE } from "../../@chakra-ui/theme"
 import { Skill as SkillType } from "@schema"
 import Skill from "../Skills/Skill"
 import Heading from "../Typography/Heading"

@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { BREAKPOINTS, SPACE } from "../../@chakra-ui//theme"
+import { BREAKPOINTS, SPACE } from "../../@chakra-ui/theme"
 import { useContext, useEffect } from "react"
 
 import Button from "../Common/Button"

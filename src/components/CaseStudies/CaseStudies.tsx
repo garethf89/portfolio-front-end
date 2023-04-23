@@ -5,7 +5,7 @@ import {
     documentToReactComponents,
     CommonNode,
 } from "@contentful/rich-text-react-renderer"
-import { BREAKPOINTS } from "../../@chakra-ui//theme"
+import { BREAKPOINTS } from "../../@chakra-ui/theme"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 import Lines from "../Animation/Lines"

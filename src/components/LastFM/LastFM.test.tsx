@@ -3,7 +3,7 @@ import { render, screen, waitFor } from "@testing-library/react"
 import { QueryClient, QueryClientProvider, UseQueryResult } from "react-query"
 import mockAlbums from "../../__mocks__/lastfm"
 import { ThemeProvider } from "@chakra-ui/react"
-import theme from "../../@chakra-ui//theme"
+import theme from "../../@chakra-ui/theme"
 import * as hooks from "../../services/lastfm"
 import type {
     LastFMServerResponse,

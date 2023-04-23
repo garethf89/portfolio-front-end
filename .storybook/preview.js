@@ -6,7 +6,7 @@ import React from "react"
 import { action } from "@storybook/addon-actions"
 import globalStyles from "../src/styles/globals"
 import styled from "@emotion/styled"
-import theme from "../src/@chakra-ui//theme"
+import theme from "../src/@chakra-ui/theme"
 
 global.__PATH_PREFIX__ = ``
 global.__BASE_PATH__ = ``

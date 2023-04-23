@@ -6,7 +6,7 @@ import { ColorModeProvider, ChakraProvider } from "@chakra-ui/react"
 import { QueryClient, QueryClientProvider } from "react-query"
 
 import { GlobalsStateProvider } from "../state/state"
-import theme from "../@chakra-ui//theme"
+import theme from "../@chakra-ui/theme"
 import { ApolloProvider } from "@apollo/client"
 import { client } from "../queries/apolloClient"
 import type { AppProps as NextAppProps } from "next/app"

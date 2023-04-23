@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import * as React from "react"
-import { BREAKPOINTS } from "../../@chakra-ui//theme"
+import { BREAKPOINTS } from "../../@chakra-ui/theme"
 import { Project as ProjectType } from "@schema"
 import Image from "../Common/Image"
 import { SROnly } from "../Common/SROnly"

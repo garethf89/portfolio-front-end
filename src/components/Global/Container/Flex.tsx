@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { FlexProps as ChakraFlexProps, chakra } from "@chakra-ui/react"
 
-import { SPACE } from "../../../@chakra-ui//theme"
+import { SPACE } from "../../../@chakra-ui/theme"
 import { useTheme } from "@emotion/react"
 
 const FlexElement = chakra("section", {

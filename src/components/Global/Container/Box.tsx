@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { chakra, useTheme } from "@chakra-ui/react"
 
-import { SPACE } from "../../../@chakra-ui//theme"
+import { SPACE } from "../../../@chakra-ui/theme"
 
 const BoxElement = chakra("section", {
     baseStyle: {

@@ -10,7 +10,7 @@ import { useEffect, useId, useState } from "react"
 
 import { IconsProcessed } from "../../../@types/types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-import { BREAKPOINTS, SPACE } from "../../@chakra-ui//theme"
+import { BREAKPOINTS, SPACE } from "../../@chakra-ui/theme"
 import Image from "../Common/Image"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"

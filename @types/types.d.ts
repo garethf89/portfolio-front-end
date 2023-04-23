@@ -1,4 +1,4 @@
-import { ThemeType } from "../src/@chakra-ui//theme"
+import { ThemeType } from "../src/@chakra-ui/theme"
 import "@emotion/react"
 import { Asset, Maybe, Scalars } from "@schema/graphql"
 

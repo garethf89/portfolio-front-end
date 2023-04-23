@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { Field, useField } from "formik"
 
-import { COLORS } from "../../@chakra-ui//theme"
+import { COLORS } from "../../@chakra-ui/theme"
 import { FormError } from "./FormError"
 import styled from "@emotion/styled"
 import { useStyleConfig } from "@chakra-ui/react"
