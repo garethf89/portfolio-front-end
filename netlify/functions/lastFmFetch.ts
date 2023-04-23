@@ -26,6 +26,8 @@ type LastFMServerResponse = {
 const period = "1month"
 const name = "Gazmatron1"
 
+const refreshUrl = `${process.env.NEXT_PUBLIC_REACT_APP_FE_URL}/api/revalidate?secret=${process.env.API_SECRET}`
+
 const buildUrl = (): string =>
     "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&api_key=" +
     process.env.LASTFMKEY +
@@ -53,6 +55,10 @@ const handler: Handler = async () => {
                 },
             }
         )
+
+        // trigger rebuild
+        await axios.get(refreshUrl)
+
         return { body: JSON.stringify(valuesFromDatabase), statusCode: 200 }
     } catch (e) {
         throw new Error("Lastfm fetch error")

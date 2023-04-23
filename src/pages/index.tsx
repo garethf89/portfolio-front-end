@@ -70,7 +70,9 @@ export const getStaticProps: GetStaticProps = async () => {
     let result = { albums: lastFmMock }
 
     try {
-        const res = await axios.get(functionGet)
+        const res = await axios.get(
+            `${process.env.NEXT_PUBLIC_REACT_APP_FE_URL}${functionGet}`
+        )
         result = { albums: res.data.data.album }
     } catch (_err) {
         console.error("No connection to back end")

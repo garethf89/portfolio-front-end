@@ -4,7 +4,6 @@ import { useEffect, useState } from "react"
 import { useQueryClient } from "react-query"
 import { StyledProps } from "../../../@types/types"
 import { BREAKPOINTS } from "../../@chakra-ui/theme"
-import { useLastFmFunction } from "../../services/lastfm"
 import LastFMLogo from "../../svgs/lastfm"
 import Lines from "../Animation/Lines"
 import { OuterWrapper } from "../Common/OuterWrapper"
@@ -73,15 +72,8 @@ type LastFmProps = {
 }
 
 const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
-    const [albums, setAlbums] = useState(initialAlbums ?? null)
+    const [albums, _setAlbums] = useState(initialAlbums ?? null)
     const queryClient = useQueryClient()
-
-    const shoudFetch = !albums || albums === initialAlbums
-
-    const { data } = useLastFmFunction({
-        enabled: shoudFetch,
-        retry: false,
-    })
 
     // Time limit before using the fallback
     useEffect(() => {
@@ -90,12 +82,6 @@ const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
         }, 2000)
         return () => clearTimeout(timer)
     }, [])
-
-    useEffect(() => {
-        if (data) {
-            setAlbums(data as unknown as AlbumType[])
-        }
-    }, [data])
 
     if (!albums) {
         return <></>
