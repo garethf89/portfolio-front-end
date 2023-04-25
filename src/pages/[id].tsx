@@ -61,6 +61,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         },
     })
 
+    console.log("REQUEST DATA: ")
+    console.error(data)
+
+    if (error) {
+        console.log("REQUEST ERRORS: ")
+        console.error(error)
+    }
+
     const projectSingle = getSingleItem<ProjectCollection, Project>(
         data.project as unknown as ProjectCollection
     )
@@ -80,10 +88,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
             return { url: item.url, icon: await resp.text() }
         })
     )
-
-    if (error) {
-        console.error(error)
-    }
 
     return {
         props: {
