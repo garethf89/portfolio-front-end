@@ -62,7 +62,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     })
 
     console.log("REQUEST DATA: ")
-    console.error(data)
+    console.error(JSON.stringify(params, null, 2))
 
     if (error) {
         console.log("REQUEST ERRORS: ")
