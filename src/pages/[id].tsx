@@ -61,14 +61,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         },
     })
 
-    console.log("REQUEST DATA: ")
-    console.error(JSON.stringify(params, null, 2))
-
-    if (error) {
-        console.log("REQUEST ERRORS: ")
-        console.error(error)
-    }
-
     const projectSingle = getSingleItem<ProjectCollection, Project>(
         data.project as unknown as ProjectCollection
     )
