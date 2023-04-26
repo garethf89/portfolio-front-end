@@ -61,6 +61,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         },
     })
 
+    if (error) {
+        console.error(error)
+    }
+
     const projectSingle = getSingleItem<ProjectCollection, Project>(
         data.project as unknown as ProjectCollection
     )
