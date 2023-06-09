@@ -70,7 +70,8 @@ const HomeHeader = ({ text, stats }: HomeHeaderProps): React.ReactElement => {
                     <HomeHeaderContent text={text} />
                     <Button
                         as="a"
-                        href="/cv.pdf"
+                        target="_blank"
+                        href={process.env.NEXT_PUBLIC_CV_URL}
                         header
                         icon="Download"
                         variant="secondary"

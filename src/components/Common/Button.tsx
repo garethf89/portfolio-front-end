@@ -48,19 +48,21 @@ const renderButton = (icon: ButtonTypes) => {
 
 export type ButtonTypes = "Download" | "Arrow"
 
-interface ButtonProps {
-    icon?: ButtonTypes
-    type?: "button" | "submit" | "reset"
-    children: React.ReactElement | string
-    color?: string
-    header?: boolean
-    disabled?: boolean
-    click?: () => void
-    href?: string
-    as?: React.ElementType
-    variant: string
-    download?: boolean
-}
+type ButtonProps =
+    | ({
+          icon?: ButtonTypes
+          type?: "button" | "submit" | "reset"
+          children: React.ReactElement | string
+          color?: string
+          header?: boolean
+          disabled?: boolean
+          click?: () => void
+          href?: string
+          as?: React.ElementType
+          variant: string
+          download?: boolean
+      } & React.ButtonHTMLAttributes<HTMLButtonElement>)
+    | React.AnchorHTMLAttributes<HTMLAnchorElement>
 
 const Border = styled("svg")`
     position: absolute;
@@ -91,6 +93,7 @@ const Button = ({
     href,
     variant,
     click,
+    ...props
 }: ButtonProps): React.ReactElement => {
     const colors = (theme.components.MyButton.variants[variant] as Variants)
         .borderColor as unknown as string
@@ -110,6 +113,7 @@ const Button = ({
                 type={as === "a" ? null : type}
                 disabled={disabled}
                 sx={styles}
+                {...props}
             >
                 <Border viewBox="0 0 180 60" preserveAspectRatio="none">
                     <BorderLine points="179,1 179,59 1,59 1,1 179,1" />
