@@ -49,19 +49,21 @@ const renderButton = (icon: ButtonTypes) => {
 export type ButtonTypes = "Download" | "Arrow"
 
 type ButtonProps = {
-        icon?: ButtonTypes
-          type?: "button" | "submit" | "reset"
-          children: React.ReactElement | string
-          color?: string
-          header?: boolean
-          disabled?: boolean
-          click?: () => void
-          href?: string
-          as?: React.ElementType
-          variant: string
-          download?: boolean
-      } & (React.ButtonHTMLAttributes<HTMLButtonElement>
-    | React.AnchorHTMLAttributes<HTMLAnchorElement>)
+    icon?: ButtonTypes
+    type?: "button" | "submit" | "reset"
+    children: React.ReactElement | string
+    color?: string
+    header?: boolean
+    disabled?: boolean
+    click?: () => void
+    href?: string
+    as?: React.ElementType
+    variant: string
+    download?: boolean
+} & (
+    | React.ButtonHTMLAttributes<HTMLButtonElement>
+    | React.AnchorHTMLAttributes<HTMLAnchorElement>
+)
 
 const Border = styled("svg")`
     position: absolute;
