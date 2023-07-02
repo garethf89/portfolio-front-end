@@ -22,32 +22,40 @@ const ClientsContainer = styled(Container)`
 
 const LogoWrapper = styled.div`
     position: relative;
-    max-width: 900px;
+    max-width: 700px;
     text-align: center;
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     border-radius: 5px;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem;
+
     @media (min-width: ${BREAKPOINTS.SMALL}) {
         flex-wrap: nowrap;
+        grid-template-columns: repeat(5, 1fr);
     }
 `
 
 const LogoCommon = (props: ClientsProps) => css`
-    flex: 1;
-    flex-basis: 19%;
-    margin-right: 5%;
+    margin-bottom: 2rem;
     filter: ${props.mode === "dark" ? "none" : "grayscale(1)"};
     opacity: ${props.mode === "dark" ? "1" : "0.4"};
     max-width: 75px;
     height: auto;
     transition: opacity 0.15s ease-in;
+    min-height: 50px;
+    margin: 0 auto;
+    position: relative;
+
     &:hover {
         opacity: 1;
     }
     @media (min-width: ${BREAKPOINTS.SMALL}) {
-        max-width: 120px;
+        margin-bottom: 0;
     }
     path {
         fill: ${props.dark ? COLORS.white : ""};
@@ -56,6 +64,7 @@ const LogoCommon = (props: ClientsProps) => css`
 
 const Logo = styled.div`
     ${LogoCommon}
+    width: 100%;
 `
 
 const IconLogo = styled(IconExternal, {
@@ -93,12 +102,12 @@ const Clients = ({
                         const svg = logoFields.contentType === "image/svg+xml"
                         const isDark = useIsDark(logo?.dark)
                         return (
-                            <React.Fragment key={i}>
+                            <>
                                 {svg ? (
                                     <IconLogo
                                         mode={colorMode}
                                         dark={isDark}
-                                        key={i}
+                                        key={`client-${i}`}
                                         title={logo.name}
                                         iconSvg={
                                             icons.find(
@@ -113,7 +122,7 @@ const Clients = ({
                                     <Logo
                                         mode={colorMode}
                                         dark={isDark}
-                                        key={i}
+                                        key={`client-${i}`}
                                         style={{ maxHeight: "50px" }}
                                     >
                                         <Image
@@ -127,7 +136,7 @@ const Clients = ({
                                         />
                                     </Logo>
                                 )}
-                            </React.Fragment>
+                            </>
                         )
                     })}
                 </LogoWrapper>
