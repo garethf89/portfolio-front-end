@@ -75,8 +75,8 @@ const theme = {
     },
     fonts: {
         ...baseTheme.fonts,
-        body: '"Ubuntu", Roboto, Helvetica, Arial, sans-serif',
-        heading: '"Ubuntu", Roboto, Helvetica, Arial, sans-serif',
+        body: "var(--font-ubuntu), Roboto, Helvetica, Arial, sans-serif",
+        heading: "var(--font-ubuntu), Roboto, Helvetica, Arial, sans-serif",
     },
     fontSizes: {
         ...baseTheme.fontSizes,

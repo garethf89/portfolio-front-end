@@ -5,7 +5,7 @@ import * as React from "react"
 import { IconsProcessed } from "../../../@types/types"
 import { BREAKPOINTS, COLORS, SPACE } from "../../@chakra-ui/theme"
 import { useIsDark } from "../../hooks/useIsDark"
-import { Logo as LogoType } from "@schema"
+import { HomePageProjectsCollection, Logo as LogoType } from "@schema"
 import Image from "../Common/Image"
 import Container from "../Global/Container/Container"
 import IconExternal from "../Icons/IconExternal"
@@ -75,7 +75,7 @@ const IconLogo = styled(IconExternal, {
 `
 
 interface ClientProps {
-    data: LogoType[]
+    data: HomePageProjectsCollection["items"]
     icons: IconsProcessed[]
 }
 

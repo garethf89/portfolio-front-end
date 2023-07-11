@@ -33,12 +33,6 @@ const Document = () => {
                 <meta name="image" content={image} />
                 <meta name="description" content={metaDescription} />
 
-                <link
-                    rel="sitemap"
-                    type="application/xml"
-                    href="/sitemap/sitemap-index.xml"
-                />
-
                 {ICON_SIZES.map((icon: string, i) => (
                     <link
                         key={`favicon-${i}`}

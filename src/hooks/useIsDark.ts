@@ -1,3 +1,5 @@
+"use client"
+
 import { useColorMode } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 

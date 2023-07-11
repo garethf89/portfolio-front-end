@@ -1,5 +1,3 @@
-import { GetStaticProps } from "next"
-import Head from "next/head"
 import Script from "next/script"
 import * as React from "react"
 import {
@@ -22,8 +20,16 @@ import { addPlaceholder } from "../utils"
 import type { HomePage, HomePageCollection, HomeQuery } from "@schema"
 import { AlbumType } from "@components"
 import { IconsProcessed } from "../../@types/types"
+import { notFound } from "next/navigation"
 
-export const getStaticProps: GetStaticProps = async () => {
+type HomePageProps = {
+    title: string
+    albums: AlbumType[]
+    page: HomePage
+    icons: IconsProcessed[]
+}
+
+const getHome = async (): Promise<HomePageProps> => {
     const { error, data } = await client.query<HomeQuery>({
         query: HOME_QUERY,
         variables: {
@@ -41,23 +47,35 @@ export const getStaticProps: GetStaticProps = async () => {
         data.page as HomePageCollection
     )
 
+    if (!homePage) {
+        return notFound()
+    }
+
     // Create Blur images
-    homePage.projectsCollection.items = await addPlaceholder(
-        homePage.projectsCollection.items,
-        "coverImage"
-    )
+    if (homePage.projectsCollection) {
+        homePage.projectsCollection.items = await addPlaceholder(
+            homePage.projectsCollection.items,
+            "coverImage"
+        )
+    }
 
     // Request SVGS and set to strings
-    const ICON_REQUESTS_SKILL = [...homePage.skillsCollection.items].map(
-        item => {
-            return { url: item.icon.url, icon: item.icon.fileName }
-        }
-    )
-    const ICON_REQUESTS_LOGOS = [...homePage.logosCollection.items].map(
-        item => {
-            return { url: item.logo.url, icon: item.logo.fileName }
-        }
-    )
+    const ICON_REQUESTS_SKILL = homePage.skillsCollection
+        ? [...homePage.skillsCollection.items].map(item => {
+              return {
+                  url: item?.icon?.url ?? "",
+                  icon: item?.icon?.fileName ?? "",
+              }
+          })
+        : []
+    const ICON_REQUESTS_LOGOS = homePage.logosCollection
+        ? [...homePage.logosCollection.items].map(item => {
+              return {
+                  url: item?.logo?.url ?? "",
+                  icon: item?.logo?.fileName ?? "",
+              }
+          })
+        : []
 
     const icons: IconsProcessed[] = await Promise.all(
         [...ICON_REQUESTS_SKILL, ...ICON_REQUESTS_LOGOS].map(async item => {
@@ -83,33 +101,32 @@ export const getStaticProps: GetStaticProps = async () => {
     }
 
     return {
-        props: {
-            title: config.title,
-            icons: icons,
-            page: homePage,
-            albums: result.albums,
-        },
+        title: config.title,
+        icons: icons,
+        page: homePage,
+        albums: result.albums,
     }
 }
 
-type HomePageProps = {
-    title: string
-    albums: AlbumType[]
-    page: HomePage
-    icons: IconsProcessed[]
-}
+const IndexPage = async (): Promise<React.ReactElement> => {
+    const props = await getHome()
+    const { title, albums, page, icons } = props
 
-const IndexPage = ({
-    page,
-    title,
-    icons,
-    albums,
-}: HomePageProps): React.ReactElement => {
+    if (
+        !page.skillsCollection ||
+        !page.statsCollection ||
+        !page.introText ||
+        !page.skillsText ||
+        !page.caseStudiesCollection ||
+        !page.projectsCollection ||
+        !page.logosCollection
+    ) {
+        console.error("Problems with the home page data request, do not render")
+        return notFound()
+    }
+
     return (
         <>
-            <Head>
-                <title>{title}</title>
-            </Head>
             <Script id="SchemaCode" type="application/ld+json">{`
               {
                 "@context": "https://schema.org",

@@ -18,7 +18,6 @@ export const IconExternal = ({
 }: IconPropsType): React.ReactElement => {
     const defaultProps = {
         ...props,
-
         role: "img",
         display: "inline-block",
         verticalAlign: "middle",

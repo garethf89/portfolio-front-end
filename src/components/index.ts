@@ -1,3 +1,5 @@
+"use client"
+
 export { default as Alert } from "./Alert/Alert"
 export * from "./Animation/Lines"
 export { default as BackLink } from "./BackLink/BackLink"

@@ -40,6 +40,9 @@
       "@components": [
         "./src/components"
       ],
+      "@queries": [
+        "./src/queries"
+      ],
       "@schema": [
         "./schema"
       ],
@@ -47,12 +50,19 @@
         "./.storybook/*"
       ]
     },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/@chakra-ui/theme.ts",
-    "next.config.ts"
+    "next.config.ts",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
