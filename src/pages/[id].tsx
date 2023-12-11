@@ -51,7 +51,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         variables: {
             slug: String(params.id),
             limit: 1,
-            preview: process.env.NODE_ENV === "development",
+            preview: process.env.PREVIEW === "true",
         },
         fetchPolicy: "no-cache",
         context: {

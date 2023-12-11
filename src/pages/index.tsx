@@ -27,7 +27,7 @@ export const getStaticProps: GetStaticProps = async () => {
     const { error, data } = await client.query<HomeQuery>({
         query: HOME_QUERY,
         variables: {
-            preview: process.env.NODE_ENV === "development",
+            preview: process.env.PREVIEW === "true",
         },
         fetchPolicy: "no-cache",
         context: {
