@@ -128,7 +128,8 @@
     "build-storybook": "build-storybook",
     "analyze-size": "source-map-explorer public/app*.tsx",
     "contentful-codegen": "contentful-typescript-codegen --output @types/generated/contentful.d.ts",
-    "codegen": "DOTENV_CONFIG_PATH=.env.local graphql-codegen --config codegen.ts -r dotenv/config"
+    "codegen": "DOTENV_CONFIG_PATH=.env.local graphql-codegen --config codegen.ts -r dotenv/config",
+    "previewSetup": "cp -f preview.toml netlify.toml"
   },
   "optionalDependencies": {
     "fsevents": "^2.3.2"
