@@ -1,8 +1,6 @@
 "use client"
 
-import { CacheProvider } from "@chakra-ui/next-js"
-
-import config from "../config/site"
+import { ViewTransitions } from "next-view-transitions"
 import { useEffect, useState } from "react"
 
 import * as Sentry from "@sentry/react"
@@ -19,14 +17,7 @@ import globalStyles from "../styles/globals"
 import { Global } from "@emotion/react"
 import styled from "@emotion/styled"
 import { Footer } from "@components"
-import {
-    AnimatePresence,
-    domAnimation,
-    LazyMotion,
-    motion,
-} from "framer-motion"
 import { ImageSupportProvider } from "../contexts"
-import { fadeAnimation } from "../config"
 
 // React-Query
 const queryClient = new QueryClient()
@@ -62,54 +53,30 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
     }, [])
     return (
         <Sentry.ErrorBoundary fallback={<p>An error has occurred</p>}>
-            <CacheProvider>
-                <QueryClientProvider client={queryClient}>
-                    <ApolloProvider client={client}>
-                        <ChakraProvider theme={theme}>
-                            <ColorModeProvider
-                                options={{
-                                    initialColorMode: "light",
-                                    useSystemColorMode: false,
-                                }}
-                            >
-                                <GlobalsStateProvider>
-                                    <ImageSupportProvider>
-                                        <Global styles={globalStyles} />
+            <QueryClientProvider client={queryClient}>
+                <ApolloProvider client={client}>
+                    <ChakraProvider theme={theme}>
+                        <ColorModeProvider
+                            options={{
+                                initialColorMode: "light",
+                                useSystemColorMode: false,
+                            }}
+                        >
+                            <GlobalsStateProvider>
+                                <ImageSupportProvider>
+                                    <Global styles={globalStyles} />
+                                    <ViewTransitions>
                                         <FooterExtender>
-                                            <Root>
-                                                <LazyMotion
-                                                    features={domAnimation}
-                                                >
-                                                    <AnimatePresence
-                                                        exitBeforeEnter={true}
-                                                    >
-                                                        <motion.div
-                                                            key={`framer-${config.title}`}
-                                                            className="framer-animation"
-                                                            initial="initial"
-                                                            animate="animate"
-                                                            exit="exit"
-                                                            variants={
-                                                                fadeAnimation.variants
-                                                            }
-                                                            transition={
-                                                                fadeAnimation.transition
-                                                            }
-                                                        >
-                                                            {children}
-                                                        </motion.div>
-                                                    </AnimatePresence>
-                                                </LazyMotion>
-                                            </Root>
+                                            <Root>{children}</Root>
                                             <Footer />
                                         </FooterExtender>
-                                    </ImageSupportProvider>
-                                </GlobalsStateProvider>
-                            </ColorModeProvider>
-                        </ChakraProvider>
-                    </ApolloProvider>
-                </QueryClientProvider>
-            </CacheProvider>
+                                    </ViewTransitions>
+                                </ImageSupportProvider>
+                            </GlobalsStateProvider>
+                        </ColorModeProvider>
+                    </ChakraProvider>
+                </ApolloProvider>
+            </QueryClientProvider>
         </Sentry.ErrorBoundary>
     )
 }
