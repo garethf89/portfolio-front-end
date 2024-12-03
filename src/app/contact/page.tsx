@@ -1,4 +1,4 @@
-import ContactForm from "../containers/ContactForm"
+import { ContactForm } from "@containers"
 import { Container, PageHeader } from "@components"
 import * as React from "react"
 

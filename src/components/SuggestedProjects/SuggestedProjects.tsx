@@ -1,5 +1,4 @@
 import styled from "@emotion/styled"
-import { Asset } from "contentful"
 import * as React from "react"
 import { useEffect, useState } from "react"
 import { BREAKPOINTS, SPACE } from "../../@chakra-ui/theme"
@@ -11,6 +10,8 @@ import Heading from "../Typography/Heading"
 import Link from "../Link/Link"
 import { useProjects } from "../../contexts"
 import { AspectRatio } from "@chakra-ui/react"
+import { Project } from "@schema"
+import { CustomImageAsset } from "@types"
 
 const SuggestedProjectLinkContainer = styled.div`
     display: inline-block;
@@ -40,7 +41,7 @@ const SuggestedProjectLinkContainer = styled.div`
 const SuggestedProjectLink = styled(Link)``
 
 type SuggestedProjectLinkBGProps = {
-    image?: Asset
+    image?: CustomImageAsset
 }
 
 const SuggestedProjectLinkBG = styled(Image)<SuggestedProjectLinkBGProps>`
@@ -57,7 +58,7 @@ const SuggestedDescription = styled(Heading)`
 
 // TODO Types
 const SuggestedProjects = (): React.ReactElement => {
-    const [randomProjects, setProjects] = useState(null)
+    const [randomProjects, setProjects] = useState<Project[] | null>(null)
 
     const { projects } = useProjects()
 
@@ -78,7 +79,7 @@ const SuggestedProjects = (): React.ReactElement => {
 
     return (
         <Container useflex px={[0, 0, 0]} justifyContent="space-between">
-            {randomProjects &&
+            {!!randomProjects &&
                 randomProjects.map((project, i) => {
                     return (
                         <SuggestedProjectLinkContainer key={i}>
@@ -88,8 +89,8 @@ const SuggestedProjects = (): React.ReactElement => {
                             >
                                 <AspectRatio ratio={16 / 9}>
                                     <SuggestedProjectLinkBG
-                                        alt={project.title}
-                                        image={project.coverImage}
+                                        alt={project.title!}
+                                        image={project.coverImage!}
                                         fill
                                     />
                                 </AspectRatio>

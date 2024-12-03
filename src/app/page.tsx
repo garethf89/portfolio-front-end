@@ -19,8 +19,8 @@ import axios from "axios"
 import { addPlaceholder } from "../utils"
 import type { HomePage, HomePageCollection, HomeQuery } from "@schema"
 import { AlbumType } from "@components"
-import { IconsProcessed } from "../../@types/types"
 import { notFound } from "next/navigation"
+import type { IconsProcessed } from "@types"
 
 type HomePageProps = {
     title: string
@@ -43,20 +43,22 @@ const getHome = async (): Promise<HomePageProps> => {
         },
     })
 
+    if (!data.page) {
+        return notFound()
+    }
+
     const homePage = getSingleItem<HomePageCollection, HomePage>(
         data.page as HomePageCollection
-    )
+    ) as unknown as HomePage
 
     if (!homePage) {
         return notFound()
     }
 
     // Create Blur images
-    if (homePage.projectsCollection) {
-        homePage.projectsCollection.items = await addPlaceholder(
-            homePage.projectsCollection.items,
-            "coverImage"
-        )
+    const projects = homePage.projectsCollection
+    if (projects && projects.items) {
+        projects.items = await addPlaceholder(projects.items, "coverImage")
     }
 
     // Request SVGS and set to strings
@@ -118,7 +120,7 @@ const IndexPage = async (): Promise<React.ReactElement> => {
         !page.introText ||
         !page.skillsText ||
         !page.caseStudiesCollection ||
-        !page.projectsCollection ||
+        !page.projectsCollection?.items ||
         !page.logosCollection
     ) {
         console.error("Problems with the home page data request, do not render")
@@ -128,15 +130,15 @@ const IndexPage = async (): Promise<React.ReactElement> => {
     return (
         <>
             <Script id="SchemaCode" type="application/ld+json">{`
-              {
-                "@context": "https://schema.org",
-                "@type": "Organization",
-                "name": "Gareth Ferguson",
-                "url": "https://www.garethferguson.co.uk",
-                "logo": "https://www.garethferguson.co.uk/icons/icon-48x48.png",
-                "sameAs": "https://www.garethferguson.co.uk"
-              }
-             `}</Script>
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Gareth Ferguson",
+              "url": "https://www.garethferguson.co.uk",
+              "logo": "https://www.garethferguson.co.uk/icons/icon-48x48.png",
+              "sameAs": "https://www.garethferguson.co.uk"
+            }
+           `}</Script>
             <Header nav siteTitle={title} />
             <HomeHeader
                 stats={page.statsCollection.items}

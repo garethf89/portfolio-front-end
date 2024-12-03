@@ -94,14 +94,20 @@ const ProjectTemplate = ({
     index: number
     lower?: boolean
 }): React.ReactElement => {
+    const { coverImage } = project
+
+    if (!coverImage) {
+        return <></>
+    }
+
     return (
         <Project key={index}>
-            <FadeLink href={project.slug}>
+            <FadeLink href={project.slug ?? ""}>
                 <SROnly>{project.title}</SROnly>
                 <ProjectImageContainer>
                     <ProjectImage
-                        alt={project.title}
-                        image={project.coverImage}
+                        alt={project.title ?? ""}
+                        image={coverImage}
                         fill
                         sizes="(max-width: 800) 50vw,
               33vw"
@@ -117,7 +123,7 @@ const ProjectTemplate = ({
                 override="p"
                 fontSize={[24, 24, 24, lower ? 18 : 24]}
             >
-                <FadeLink href={project.slug}>
+                <FadeLink href={project.slug ?? "/"}>
                     <SROnly>{project.title}</SROnly>
                     {project.headline}
                 </FadeLink>

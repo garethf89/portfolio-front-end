@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import { z } from "zod"
 import { toFormikValidationSchema } from "zod-formik-adapter"
@@ -37,7 +39,7 @@ const ContactSchema = z.object({
     }),
 })
 
-const ContactForm = (): React.ReactElement => {
+export const ContactForm = (): React.ReactElement => {
     const { submit, status, error } = useEmail()
     const submitForm = async (
         values: Values,
@@ -81,7 +83,7 @@ const ContactForm = (): React.ReactElement => {
                                                 error={
                                                     touched.personName
                                                         ? errors.personName
-                                                        : null
+                                                        : undefined
                                                 }
                                                 required
                                                 htmlFor="personName"
@@ -98,7 +100,7 @@ const ContactForm = (): React.ReactElement => {
                                                 error={
                                                     touched.personEmail
                                                         ? errors.personEmail
-                                                        : null
+                                                        : undefined
                                                 }
                                                 required
                                                 htmlFor="personEmail"
@@ -120,7 +122,7 @@ const ContactForm = (): React.ReactElement => {
                                                 error={
                                                     touched.personEnq
                                                         ? errors.personEnq
-                                                        : null
+                                                        : undefined
                                                 }
                                             >
                                                 Message
@@ -166,5 +168,3 @@ const ContactForm = (): React.ReactElement => {
         </>
     )
 }
-
-export default ContactForm

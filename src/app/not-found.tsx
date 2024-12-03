@@ -1,14 +1,14 @@
 import { Container, Heading, PageHeader, SuggestedProjects } from "@components"
 import * as React from "react"
-import { GetStaticProps } from "next"
-import { IProjectFields } from "../../@types/generated/contentful"
 import { MULTIPLE_PROJECTS_QUERY } from "../queries"
 import { client } from "../queries/apolloClient"
 import ProjectProvider from "../contexts/Projects"
 import { addPlaceholder } from "../utils"
-import type { AllProjectsQuery } from "@schema"
+import type { AllProjectsQuery, Project } from "@schema"
 
-export const getStaticProps: GetStaticProps = async () => {
+type NotFoundPageProps = Promise<{ projects?: Project[] }>
+
+export const getProjects = async (): NotFoundPageProps => {
     const { error, data } = await client.query<AllProjectsQuery>({
         query: MULTIPLE_PROJECTS_QUERY,
         variables: {},
@@ -20,7 +20,7 @@ export const getStaticProps: GetStaticProps = async () => {
         },
     })
 
-    const projects = data.project.items
+    const projects = data.project!.items as Project[]
 
     // Create blur images
     const projectsFormatted = await addPlaceholder(projects, "coverImage")
@@ -30,27 +30,29 @@ export const getStaticProps: GetStaticProps = async () => {
     }
 
     return {
-        props: {
-            projects: projectsFormatted,
-        },
-        revalidate: 60 * 60 * 24,
+        projects: projectsFormatted,
     }
 }
 
-type NotFoundPageProps = { projects: IProjectFields[] }
+const NotFoundPage = async (): Promise<React.ReactElement> => {
+    const { projects } = await getProjects()
 
-const NotFoundPage = ({ projects }: NotFoundPageProps): React.ReactElement => {
     const headerText = "Page not found!"
+
+    if (!projects) {
+        return <PageHeader title="404" text={headerText} />
+    }
+
     return (
-        <>
-            <ProjectProvider value={projects}>
-                <PageHeader title="404" text={headerText} />
+        <ProjectProvider value={projects}>
+            <PageHeader title="404" text={headerText} />
+            {!!projects && (
                 <Container vPadding>
                     <Heading level="h2">Try these pages instead</Heading>
                     <SuggestedProjects />
                 </Container>
-            </ProjectProvider>
-        </>
+            )}
+        </ProjectProvider>
     )
 }
 

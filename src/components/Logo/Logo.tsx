@@ -4,7 +4,7 @@ import * as React from "react"
 import FadeLink from "../Link/Link"
 import { Logo as animationData } from "../../animations/Logo"
 import { globals } from "../../state/state"
-import lottie from "lottie-web"
+import lottie, { AnimationItem } from "lottie-web"
 import styled from "@emotion/styled"
 
 const HeaderLink = styled(FadeLink)`
@@ -29,7 +29,7 @@ interface LogoProps {
 }
 
 const Logo = ({ siteTitle }: LogoProps): React.ReactElement => {
-    const [headIconDark, updateHeadDark] = useState(null)
+    const [headIconDark, updateHeadDark] = useState<AnimationItem | null>(null)
 
     const { state } = useContext(globals)
 
@@ -38,7 +38,7 @@ const Logo = ({ siteTitle }: LogoProps): React.ReactElement => {
     useEffect(() => {
         updateHeadDark(
             lottie.loadAnimation({
-                container: document.getElementById("HeaderLogo"),
+                container: document.getElementById("HeaderLogo")!,
                 renderer: "svg",
                 loop: false,
                 autoplay: false,
@@ -51,7 +51,9 @@ const Logo = ({ siteTitle }: LogoProps): React.ReactElement => {
     }, [])
 
     const hover = () => {
-        headIconDark.goToAndPlay(0)
+        if (headIconDark) {
+            headIconDark.goToAndPlay(0)
+        }
     }
 
     return (

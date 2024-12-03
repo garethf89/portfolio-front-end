@@ -7,8 +7,8 @@ import { nanoid } from "nanoid"
 
 interface IconPropsType extends SystemsTypeProperties {
     "data-icon"?: boolean
-    iconSvg?: string
-    title?: string
+    iconSvg: string
+    title: string
 }
 
 export const IconExternal = ({

@@ -66,7 +66,10 @@ const Navigation = (): React.ReactElement => {
     const { menuLinks } = config
 
     const checkMobile = () => {
-        if (isWindow && window.innerWidth >= parseInt(BREAKPOINTS.MEDIUM, 16)) {
+        if (
+            isWindow() &&
+            window.innerWidth >= parseInt(BREAKPOINTS.MEDIUM, 16)
+        ) {
             setMobile(false)
         } else {
             setMobile(true)
@@ -85,7 +88,7 @@ const Navigation = (): React.ReactElement => {
         }
 
         return function cleanup() {
-            if (isWindow) {
+            if (isWindow()) {
                 window.removeEventListener("resize", throttled)
             }
         }

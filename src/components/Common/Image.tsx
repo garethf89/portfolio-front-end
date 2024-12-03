@@ -1,13 +1,7 @@
 import NextImage from "next/image"
 import { useState } from "react"
 import { useImageSupport } from "../../contexts"
-import { Asset } from "@schema"
-
-type CustomImageAsset = Asset & {
-    avifUrl?: string
-    webPUrl?: string
-    blurURL?: string
-}
+import { CustomImageAsset } from "@types"
 
 declare type SafeNumber = number | `${number}`
 
@@ -36,16 +30,7 @@ const Image = ({
 
     const [isLoading, setLoading] = useState(true)
 
-    let src = image.url
-
-    if (webP && image.webPUrl) {
-        src = image.webPUrl
-    }
-
-    if (avif && image.avifUrl) {
-        // Enable when plugin adds support on Netlify
-        // src = image.avifUrl
-    }
+    const src = avif ? image.avifUrl : webP ? image.webPUrl : image.url
 
     const willBlur = image.blurURL
 
@@ -66,11 +51,10 @@ const Image = ({
 
     return (
         <>
-            {fill && willBlur && (
+            {!!fill && !!willBlur && (
                 <NextImage
                     alt={alt}
-                    src={image.blurURL as string}
-                    fill={fill}
+                    src={image.blurURL!}
                     aria-hidden="true"
                     {...imageProps}
                     {...rest}
@@ -83,8 +67,7 @@ const Image = ({
             )}
             <NextImage
                 alt={alt}
-                src={src as string}
-                fill={fill}
+                src={src!}
                 onLoadingComplete={() => setLoading(false)}
                 {...imageProps}
                 {...rest}

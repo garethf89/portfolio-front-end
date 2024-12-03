@@ -27,7 +27,7 @@ const HeaderAnimation = styled(Box, {
 const Lines = ({ id, dark }: LinesProps): React.ReactElement => {
     useEffect(() => {
         lottie.loadAnimation({
-            container: document.getElementById(id),
+            container: document.getElementById(id!)!,
             renderer: "svg",
             loop: true,
             autoplay: true,

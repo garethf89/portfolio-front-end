@@ -8,15 +8,18 @@ type AlertVariantObjectProps = {
     color: string
     icon: typeof Tick
 }
+
+type AlertVariantObjectStyleProps = Omit<AlertVariantObjectProps, "icon">
+
 type AlertVariantProps = Record<string, AlertVariantObjectProps>
 
 const AlertStyled = styled.div`
     padding: 1rem;
     font-weight: 700;
     margin-bottom: 2rem;
-    border: 1px solid ${(props: AlertVariantObjectProps) => props.color};
-    background: ${(props: AlertVariantObjectProps) => props.bg};
-    color: ${(props: AlertVariantObjectProps) => props.color};
+    border: 1px solid ${(props: AlertVariantObjectStyleProps) => props.color};
+    background: ${(props: AlertVariantObjectStyleProps) => props.bg};
+    color: ${(props: AlertVariantObjectStyleProps) => props.color};
 `
 
 export type AlertProps = {
@@ -42,8 +45,9 @@ const Alert = ({
     ...props
 }: AlertProps): React.ReactElement => {
     const variantUsed = variants[variant]
-    const variantProps = { ...variantUsed, icon: null }
-    const Icon = variantUsed.icon
+
+    const { icon: Icon, ...variantProps } = variantUsed
+
     return (
         <AlertStyled role="alert" {...variantProps} {...props}>
             <Icon

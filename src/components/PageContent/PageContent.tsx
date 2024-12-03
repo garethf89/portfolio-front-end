@@ -143,9 +143,15 @@ const OutputTextComponent = ({
     text,
     name,
 }: OutputTextComponentProps): React.ReactElement => {
+    const { body } = text
+
+    if (!body) {
+        return <></>
+    }
+
     return (
         <React.Fragment key={`inlinetext-${name}`}>
-            {documentToReactComponents(text.body.json, options)}
+            {documentToReactComponents(body.json, options)}
         </React.Fragment>
     )
 }
@@ -161,13 +167,19 @@ export const OutputImageComponent = ({
     name,
     type,
 }: OutputImageComponentProps): React.ReactElement => {
+    const { image: imageContent } = image
+
+    if (!imageContent) {
+        return <></>
+    }
+
     return (
         <ImageStyled
             key={`${type}-${name}`}
-            alt={image.image.title}
-            image={image.image}
-            width={image.image.width}
-            height={image.image.height}
+            alt={imageContent.title ?? ""}
+            image={imageContent}
+            width={imageContent.width}
+            height={imageContent.height}
         />
     )
 }
@@ -177,7 +189,7 @@ const PageContent = ({
     skills,
     icons,
 }: ContentProps): React.ReactElement => {
-    const [formatContent, setFormatContent] = useState<AllContent[]>(null)
+    const [formatContent, setFormatContent] = useState<AllContent[]>([])
     const id = useId()
     useEffect(() => {
         const objectToSet: AllContent[] = content.map((c: AllContent, i) => {
@@ -200,7 +212,7 @@ const PageContent = ({
                 const cType = c["__typename"]
                 if (cType === "PageContentText") {
                     if (c.isIntro) {
-                        c.body.json.content[0].nodeType = CUSTOMBLOCKS.INTRO
+                        c.body!.json.content[0].nodeType = CUSTOMBLOCKS.INTRO
                     }
                     return (
                         <OutputTextComponent
@@ -222,14 +234,19 @@ const PageContent = ({
                         </ContainerBreak>
                     )
                 }
-                return (
-                    <OutputImageComponent
-                        key={`${id}-${i}`}
-                        image={c}
-                        name={`${id}-${i}`}
-                        type="image"
-                    />
-                )
+
+                if (cType === "PageContentImage") {
+                    return (
+                        <OutputImageComponent
+                            key={`${id}-${i}`}
+                            image={c}
+                            name={`${id}-${i}`}
+                            type="image"
+                        />
+                    )
+                }
+
+                return <></>
             })}
             <PageSkills skills={skills} icons={icons} />
         </ContentContainer>

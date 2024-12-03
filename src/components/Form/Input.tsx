@@ -22,7 +22,9 @@ const InputStyled = styled(Field)<{ error?: string; border: string }>`
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & { id?: string }
 
 const Input = ({ id, ...props }: InputProps): React.ReactElement => {
-    const [field, meta] = useField(props.name) // eslint-disable-line
+    const name = props.name ?? ""
+
+    const [_field, meta] = useField<string>(name ?? "")
     const error = meta.touched && meta.error
     const styles = useStyleConfig("ColorText")
 

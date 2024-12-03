@@ -24,7 +24,9 @@ const ButtonStory = ({
                     <>
                         <Button
                             click={() => alert("CLICKED")}
-                            icon={icons ? (button.icon as ButtonTypes) : null}
+                            icon={
+                                icons ? (button.icon as ButtonTypes) : undefined
+                            }
                             type="submit"
                             variant="secondary"
                             as="a"
@@ -43,7 +45,9 @@ const ButtonStory = ({
                     <>
                         <Button
                             click={() => alert("CLICKED")}
-                            icon={icons ? (button.icon as ButtonTypes) : null}
+                            icon={
+                                icons ? (button.icon as ButtonTypes) : undefined
+                            }
                             type="submit"
                             variant="primary"
                             as="a"
