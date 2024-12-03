@@ -37,6 +37,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "paths": {
+      "@containers": [
+        "./src/containers"
+      ],
       "@components": [
         "./src/components"
       ],
@@ -46,9 +49,15 @@
       "@schema": [
         "./schema"
       ],
+      "@types": [
+        "./@types"
+      ],
       "@storybook-home-dir/*": [
         "./.storybook/*"
-      ]
+      ],
+      "@hooks": [
+        "./src/hooks"
+      ],
     },
     "plugins": [
       {
@@ -62,7 +71,8 @@
     "src/**/*.tsx",
     "src/@chakra-ui/theme.ts",
     "next.config.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "@types/index.ts"
   ],
   "exclude": [
     "node_modules"

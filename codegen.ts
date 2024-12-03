@@ -16,6 +16,10 @@ const config: CodegenConfig = {
                 flattenGeneratedTypesIncludeFragments: true,
                 skipTypename: false,
                 dedupeFragments: true,
+                maybeValue: "T",
+            },
+            hooks: {
+                afterOneFileWrite: ["prettier --write"],
             },
             presetConfig: {
                 fragmentMasking: false,
