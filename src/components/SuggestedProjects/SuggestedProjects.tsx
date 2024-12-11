@@ -56,7 +56,6 @@ const SuggestedDescription = styled(Heading)`
     margin: 0;
 `
 
-// TODO Types
 const SuggestedProjects = (): React.ReactElement => {
     const [randomProjects, setProjects] = useState<Project[] | null>(null)
 
