@@ -1,4 +1,4 @@
-name: ESLint
+name: Stylelint
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
       - name: Use Node 20.x
         uses: actions/setup-node@v1
         with:
-          node-version: "14.18.1"
+          node-version: "20.x"
 
       - uses: actions/cache@v2
         with:
@@ -28,3 +28,6 @@ jobs:
 
       - name: ESLint
         run: yarn lint:js
+
+      - name: Stylelint
+        run: yarn lint:css
