@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Use Node 16.x
+      - name: Use Node 20.x
         uses: actions/setup-node@v1
         with:
           node-version: "14.18.1"
