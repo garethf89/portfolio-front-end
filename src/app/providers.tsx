@@ -1,7 +1,9 @@
 "use client"
 
-import { ViewTransitions } from "next-view-transitions"
 import { useEffect, useState } from "react"
+
+import { gsap } from "gsap"
+import { TransitionRouter } from "next-transition-router"
 
 import * as Sentry from "@sentry/react"
 import { BrowserTracing } from "@sentry/tracing"
@@ -65,12 +67,37 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
                             <GlobalsStateProvider>
                                 <ImageSupportProvider>
                                     <Global styles={globalStyles} />
-                                    <ViewTransitions>
+                                    <TransitionRouter
+                                        leave={next => {
+                                            const tween = gsap.fromTo(
+                                                "main",
+                                                { autoAlpha: 1 },
+                                                {
+                                                    autoAlpha: 0,
+                                                    onComplete: next,
+                                                    duration: 0.2,
+                                                }
+                                            )
+                                            return () => tween.kill()
+                                        }}
+                                        enter={next => {
+                                            const tween = gsap.fromTo(
+                                                "main",
+                                                { autoAlpha: 0 },
+                                                {
+                                                    autoAlpha: 1,
+                                                    onComplete: next,
+                                                    duration: 0.2,
+                                                }
+                                            )
+                                            return () => tween.kill()
+                                        }}
+                                    >
                                         <FooterExtender>
                                             <Root>{children}</Root>
                                             <Footer />
                                         </FooterExtender>
-                                    </ViewTransitions>
+                                    </TransitionRouter>{" "}
                                 </ImageSupportProvider>
                             </GlobalsStateProvider>
                         </ColorModeProvider>

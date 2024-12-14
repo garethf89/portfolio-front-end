@@ -12246,6 +12246,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"delegate-it@npm:^6.1.0":
+  version: 6.2.1
+  resolution: "delegate-it@npm:6.2.1"
+  dependencies:
+    typed-query-selector: "npm:^2.11.2"
+  checksum: 10/5fdb6dba16a49e47922c16abd56337fe771dee4b379d6d9b6b8f2b078555a059dba6e66fb5343e303f450d0620d6a5fcd0495dec965429aae3b60f807a96e5b9
+  languageName: node
+  linkType: hard
+
 "delegates@npm:^1.0.0":
   version: 1.0.0
   resolution: "delegates@npm:1.0.0"
@@ -14613,6 +14622,7 @@ __metadata:
     framer-motion: "npm:^11.13.1"
     fsevents: "npm:^2.3.2"
     graphql: "npm:^16.6.0"
+    gsap: "npm:^3.12.5"
     html-react-parser: "npm:^0.13.0"
     inquirer: "npm:^8.2.4"
     jest: "npm:^28.1.3"
@@ -14623,7 +14633,7 @@ __metadata:
     mongodb: "npm:^4.6.0"
     nanoid: "npm:^4.0.0"
     next: "npm:^13.5.7"
-    next-view-transitions: "npm:^0.3.4"
+    next-transition-router: "npm:^0.2.6"
     path: "npm:^0.12.7"
     plaiceholder: "npm:^2.5.0"
     postcss-syntax: "npm:^0.36.2"
@@ -15269,6 +15279,13 @@ __metadata:
   version: 15.8.0
   resolution: "graphql@npm:15.8.0"
   checksum: 10/f8d830287a9028d6779b59c437e0ade63a713b47521b02b60316df1761b805b1a7ce03be88053d224b7f78f5d1d1a786d287ab229cd158b42ebeea9e86daaba5
+  languageName: node
+  linkType: hard
+
+"gsap@npm:^3.12.5":
+  version: 3.12.5
+  resolution: "gsap@npm:3.12.5"
+  checksum: 10/192e9f6b11e54d8a0d26cff76573278d42748c6a54906fa42c81425390238ea8f6abbba5c0bca75c4bba32e4f2db957f22c2158fab1be7d4a8d71fc2fb24e8c3
   languageName: node
   linkType: hard
 
@@ -19500,14 +19517,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-view-transitions@npm:^0.3.4":
-  version: 0.3.4
-  resolution: "next-view-transitions@npm:0.3.4"
+"next-transition-router@npm:^0.2.6":
+  version: 0.2.6
+  resolution: "next-transition-router@npm:0.2.6"
+  dependencies:
+    delegate-it: "npm:^6.1.0"
   peerDependencies:
     next: ">=14.0.0"
-    react: ^18.2.0
-    react-dom: ^18.2.0
-  checksum: 10/3d63c06f082d52f39cbe2f220bd2b94a4a1e0f637f5953cfd964474c417f7a43048d4f859faf914f9ef3b5c6a3ccc3a660485fb5b6c91cee586d65b71bd6f569
+    react: ">=18.2.0"
+    react-dom: ">=18.2.0"
+  checksum: 10/fc4142a61cf55224a1f9389834c098a80202835346ffb764abf6c82883614b6ea33fa9aae20c3ca1ec8b7bfdfdb571aee96ef3581b29dd5cc3c04304ffbe6c1e
   languageName: node
   linkType: hard
 
@@ -24886,6 +24905,13 @@ __metadata:
     possible-typed-array-names: "npm:^1.0.0"
     reflect.getprototypeof: "npm:^1.0.6"
   checksum: 10/d6b2f0e81161682d2726eb92b1dc2b0890890f9930f33f9bcf6fc7272895ce66bc368066d273e6677776de167608adc53fcf81f1be39a146d64b630edbf2081c
+  languageName: node
+  linkType: hard
+
+"typed-query-selector@npm:^2.11.2":
+  version: 2.12.0
+  resolution: "typed-query-selector@npm:2.12.0"
+  checksum: 10/e65b646830315e63282883acb44ea48ef8da3e9a044aa69e03f3bd876d7a69baae85f71c0918456b43f7c1bc2b448f2d64a424280f9699d34be2bae582121bc9
   languageName: node
   linkType: hard
 
