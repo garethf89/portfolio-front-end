@@ -1,3 +1,5 @@
+"use client"
+
 import {
     createContext,
     FC,
@@ -6,15 +8,15 @@ import {
     useEffect,
     useState,
 } from "react"
-import { IProjectFields } from "../../@types/generated/contentful"
+import { Project } from "@schema"
 
-export const ProjectContext = createContext<IProjectFields[]>([])
+export const ProjectContext = createContext<Project[]>([])
 
 const ProjectProvider: FC<{
-    value: IProjectFields[]
+    value: Project[]
     children?: ReactNode
 }> = ({ value, children }) => {
-    const [projects, setProjects] = useState([])
+    const [projects, setProjects] = useState<Project[]>([])
 
     useEffect(() => {
         setProjects(value)

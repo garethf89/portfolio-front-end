@@ -21,7 +21,7 @@ interface HeaderProps {
     nav?: boolean
 }
 
-const Header = ({ nav, siteTitle }: HeaderProps): React.ReactElement => {
+const Header = ({ nav, siteTitle = `` }: HeaderProps): React.ReactElement => {
     const theme = useTheme()
     return (
         <HeaderStyles>
@@ -35,10 +35,6 @@ const Header = ({ nav, siteTitle }: HeaderProps): React.ReactElement => {
             </Flex>
         </HeaderStyles>
     )
-}
-
-Header.defaultProps = {
-    siteTitle: ``,
 }
 
 export default Header

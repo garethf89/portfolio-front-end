@@ -74,7 +74,7 @@ const MobileMenu = ({
         }
 
         return function cleanup() {
-            if (isWindow) {
+            if (isWindow()) {
                 window.removeEventListener("resize", throttled)
             }
         }

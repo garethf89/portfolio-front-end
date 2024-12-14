@@ -13,7 +13,7 @@ import {
     Tick,
 } from "../../svgs/index"
 
-import { SimpleGrid } from "@chakra-ui/layout"
+import { SimpleGrid } from "@chakra-ui/react"
 
 const IconsImports = [
     Cross,

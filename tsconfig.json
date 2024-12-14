@@ -37,22 +37,42 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "paths": {
+      "@containers": [
+        "./src/containers"
+      ],
       "@components": [
         "./src/components"
+      ],
+      "@queries": [
+        "./src/queries"
       ],
       "@schema": [
         "./schema"
       ],
+      "@types": [
+        "./@types"
+      ],
       "@storybook-home-dir/*": [
         "./.storybook/*"
-      ]
+      ],
+      "@hooks": [
+        "./src/hooks"
+      ],
     },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/@chakra-ui/theme.ts",
-    "next.config.ts"
+    "next.config.ts",
+    ".next/types/**/*.ts",
+    "@types/index.ts"
   ],
   "exclude": [
     "node_modules"

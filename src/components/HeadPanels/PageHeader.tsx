@@ -110,7 +110,7 @@ const PageHeader = ({
                 <InnerContainer>
                     <BackLink />
                     <StyledTitle level="h1" text={text} />
-                    {link && (
+                    {!!externalLink && (
                         <ButtonWrapper>
                             <Button
                                 variant="primary"

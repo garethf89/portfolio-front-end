@@ -30,14 +30,11 @@ module.exports = {
     rules: {
         "prettier/prettier": "error",
         "no-unsafe-finally": "off",
-        "@typescript-eslint/camelcase": "off",
-        "comma-dangle": "off",
         curly: "error",
         "dot-notation": "off",
-        "eol-last": "error",
         eqeqeq: ["error", "smart"],
         "guard-for-in": "error",
-        "id-blacklist": [
+        "id-denylist": [
             "error",
             "Number",
             "number",
@@ -57,7 +54,6 @@ module.exports = {
         "no-empty": "error",
         "no-eval": "error",
         "no-fallthrough": "error",
-        "no-multiple-empty-lines": "off",
         "no-new-wrappers": "error",
         "no-redeclare": "error",
         "no-shadow": [
@@ -66,7 +62,6 @@ module.exports = {
                 hoist: "all",
             },
         ],
-        "no-trailing-spaces": "error",
         "no-underscore-dangle": "error",
         "no-unused-expressions": "error",
         "no-unused-labels": "error",
@@ -80,17 +75,7 @@ module.exports = {
                 classPropertiesAllowed: true,
             },
         ],
-        "quote-props": ["error", "as-needed"],
         radix: "error",
-        "spaced-comment": "error",
-        "space-before-function-paren": [
-            "error",
-            {
-                anonymous: "never",
-                asyncArrow: "always",
-                named: "never",
-            },
-        ],
         "use-isnan": "error",
         "no-use-before-define": [0],
         "@typescript-eslint/no-use-before-define": [1],
@@ -121,18 +106,8 @@ module.exports = {
         ],
         "react/display-name": "off",
         "react/react-in-jsx-scope": "off",
-        "value-keyword-case": "off",
-        // TODO - think about this one
-        // "sort-imports": [
-        //     "error",
-        //     {
-        //         ignoreCase: false,
-        //         ignoreDeclarationSort: false,
-        //         ignoreMemberSort: false,
-        //         // memberSyntaxSortOrder: ["none", "all", "multiple", "single"],
-        //         allowSeparatedGroups: false,
-        //     },
-        // ],
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "react/prop-types": 0,
     },
     parser: "@typescript-eslint/parser",
     parserOptions: {

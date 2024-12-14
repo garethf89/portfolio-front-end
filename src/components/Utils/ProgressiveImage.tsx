@@ -3,10 +3,10 @@ import * as React from "react"
 import { SerializedStyles, css } from "@emotion/react"
 
 import { BREAKPOINTS } from "../../@chakra-ui/theme"
-import { Entry } from "contentful"
 import styled from "@emotion/styled"
 import { supportsWebP } from "../../helpers/support/webp"
 import { useState } from "react"
+import { CustomImageAsset } from "@types"
 
 interface ImageSource {
     src: string
@@ -27,7 +27,7 @@ export interface ImageFieldsCustom {
     image: ResponsiveImage
 }
 
-export type ContentfulImageFields = Entry<ImageFieldsCustom>
+export type ContentfulImageFields = CustomImageAsset
 
 interface ProgressiveImageProps {
     image: ResponsiveImage
@@ -86,7 +86,7 @@ const ProgressiveImage = ({
     sizes = "100vw",
     styles,
 }: ProgressiveImageProps): React.ReactElement => {
-    const [loaded, setLoaded] = useState(null)
+    const [loaded, setLoaded] = useState(false)
 
     const webp = supportsWebP()
 
@@ -102,7 +102,7 @@ const ProgressiveImage = ({
     return (
         <div>
             {loadingImage && (
-                <BlurryImage alt={alt} src={blurrySrc} aria-hidden={loaded} />
+                <BlurryImage alt={alt} src={blurrySrc} aria-hidden={!!loaded} />
             )}
             <MainImage
                 alt={alt}

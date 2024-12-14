@@ -1,10 +1,20 @@
 import { css } from "@emotion/react"
 import emotionNormalize from "emotion-normalize"
 import theme from "../@chakra-ui/theme"
+import { Ubuntu } from "next/font/google"
+
+const ubuntu = Ubuntu({
+    weight: ["300", "400", "700"],
+    subsets: ["latin"],
+    display: "swap",
+})
 
 /* stylelint-disable */
 export const globalStyles = css`
     ${emotionNormalize}
+    :root {
+        --font-ubuntu: ${ubuntu.style.fontFamily};
+    }
     * {
         box-sizing: border-box;
     }

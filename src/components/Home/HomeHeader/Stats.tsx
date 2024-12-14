@@ -2,8 +2,8 @@ import * as React from "react"
 
 import { BREAKPOINTS } from "../../../@chakra-ui/theme"
 import Heading from "../../Typography/Heading"
-import { IStatFields } from "../../../../@types/generated/contentful"
 import styled from "@emotion/styled"
+import { Stat } from "@schema"
 
 const StatsContainer = styled.ul`
     list-style-type: 0;
@@ -16,7 +16,7 @@ const StatsContainer = styled.ul`
     }
 `
 
-const Stat = styled.li`
+const StatList = styled.li`
     list-style-type: none;
     padding: 0;
     display: inline-block;
@@ -54,19 +54,19 @@ const StatDesc = styled.span`
 `
 
 interface StatProps {
-    stats: IStatFields[]
+    stats: Stat[]
 }
 
 const Stats = ({ stats }: StatProps): React.ReactElement => {
     return (
         <StatsContainer>
-            {stats.map((stat: IStatFields, i) => (
-                <Stat key={i}>
+            {stats.map((stat: Stat, i) => (
+                <StatList key={i}>
                     <StatNumber className="" level="h1" override="p">
                         {stat.amount}+
                     </StatNumber>
                     <StatDesc>{stat.description}</StatDesc>
-                </Stat>
+                </StatList>
             ))}
         </StatsContainer>
     )

@@ -35,7 +35,7 @@ interface SkillProps extends SystemsTypeProperties {
     children: React.ReactNode
     icon: string
     id: string
-    title?: string
+    title: string
 }
 
 const Skill = ({

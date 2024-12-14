@@ -1,4 +1,5 @@
 module.exports = {
+    reactStrictMode: false,
     images: {
         disableStaticImages: true,
         formats: ["image/webp"],

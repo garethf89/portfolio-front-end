@@ -54,7 +54,6 @@ typings/
 # dotenv environment variable files
 .env*
 
-
 # Mac files
 .DS_Store
 
@@ -66,8 +65,10 @@ yarn-error.log
 .yarn-integrity
 
 .contentful.json
-
-.contentful-codegen.json
+contentful-config.json
+contentful-codegen.json
+contentful-export.json
+tsconfig.tsbuildinfo
 
 storybook-static
 
@@ -85,3 +86,4 @@ coverage
 .next
 
 build
+tsconfig.json

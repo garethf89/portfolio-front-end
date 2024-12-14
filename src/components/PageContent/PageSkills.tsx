@@ -34,20 +34,29 @@ const PageSkills = ({ skills, icons }: PageSkillProps): React.ReactElement => {
             </Heading>
             <SkillContainer>
                 {skills &&
-                    skills.map((skill, i) => (
-                        <Skill
-                            key={`skill${i}`}
-                            id={`skill${i}`}
-                            icon={
-                                icons.find(icon => icon.url === skill.icon.url)
-                                    .icon
-                            }
-                            title={skill.name}
-                            boxSize={[14, 14, 16]}
-                        >
-                            {skill.name}
-                        </Skill>
-                    ))}
+                    skills.map((skill, i) => {
+                        const skillIcon = icons.find(icon =>
+                            skill.icon ? icon.url === skill.icon.url : null
+                        )?.icon
+
+                        if (!skillIcon) {
+                            console.error(
+                                `No skill icon found for ${skill.name}`
+                            )
+                            return <></>
+                        }
+                        return (
+                            <Skill
+                                key={`skill${i}`}
+                                id={`skill${i}`}
+                                icon={skillIcon}
+                                title={skill.name!}
+                                boxSize={[14, 14, 16]}
+                            >
+                                {skill.name}
+                            </Skill>
+                        )
+                    })}
             </SkillContainer>
         </PageSkillContainer>
     )

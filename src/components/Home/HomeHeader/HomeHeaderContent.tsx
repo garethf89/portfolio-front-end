@@ -46,7 +46,7 @@ const options = {
 }
 
 interface HomeHeaderContentTextProps {
-    text?: RenderRichTextData<ContentfulRichTextNextReference>
+    text: RenderRichTextData<ContentfulRichTextNextReference>
 }
 
 export const HomeHeaderContentText = ({
@@ -57,7 +57,7 @@ export const HomeHeaderContentText = ({
 
 interface HomeHeaderContentProps {
     className?: string
-    text?: RenderRichTextData<ContentfulRichTextNextReference>
+    text: RenderRichTextData<ContentfulRichTextNextReference>
 }
 
 const HomeHeaderContent = (

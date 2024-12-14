@@ -1,8 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios"
 import { useCallback, useState } from "react"
 
-import type { Response } from "express"
-
 const url = `/.netlify/functions/email`
 
 type EmailFormData = {
@@ -12,12 +10,10 @@ type EmailFormData = {
 }
 
 type HookResult = {
-    status: EmailStatus
-    error: AxiosError
-    // eslint-disable-next-line
-    // Requires investigation TODO
+    status?: EmailStatus
+    error: AxiosError | null
     submit: (data: EmailFormData) => Promise<void>
-    result: Response
+    result: AxiosResponse | null
 }
 
 export const submitEmail = async (
@@ -35,8 +31,8 @@ type EmailStatus = "pending" | "error" | "success"
 
 export const useEmail = (): HookResult => {
     const [status, setStatus] = useState<EmailStatus>()
-    const [result, setResult] = useState(null)
-    const [error, setError] = useState(null)
+    const [result, setResult] = useState<AxiosResponse | null>(null)
+    const [error, setError] = useState<AxiosError | null>(null)
 
     const submit = useCallback(
         (data: EmailFormData) => {

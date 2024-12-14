@@ -1,15 +1,18 @@
+"use client"
+
 import { useColorMode } from "@chakra-ui/react"
 import { css } from "@emotion/react"
 import styled from "@emotion/styled"
 import * as React from "react"
-import { IconsProcessed } from "../../../@types/types"
 import { BREAKPOINTS, COLORS, SPACE } from "../../@chakra-ui/theme"
 import { useIsDark } from "../../hooks/useIsDark"
-import { Logo as LogoType } from "@schema"
 import Image from "../Common/Image"
 import Container from "../Global/Container/Container"
 import IconExternal from "../Icons/IconExternal"
 import Heading from "../Typography/Heading"
+import { nanoid } from "nanoid"
+import { HomePageLogosCollection } from "@schema"
+import { CustomImageAsset, IconsProcessed } from "@types"
 
 type ClientsProps = {
     mode: string
@@ -75,7 +78,7 @@ const IconLogo = styled(IconExternal, {
 `
 
 interface ClientProps {
-    data: LogoType[]
+    data: HomePageLogosCollection["items"]
     icons: IconsProcessed[]
 }
 
@@ -96,47 +99,58 @@ const Clients = ({
                     Clients I have worked with
                 </Heading>
                 <LogoWrapper>
-                    {data.map((logo: LogoType, i: number) => {
-                        const logoFields = logo.logo
+                    {data.map((logo, i: number) => {
+                        const logoFields = logo?.logo as CustomImageAsset
+
+                        if (!logoFields || !logo) {
+                            return <></>
+                        }
 
                         const svg = logoFields.contentType === "image/svg+xml"
-                        const isDark = useIsDark(logo?.dark)
-                        return (
-                            <>
-                                {svg ? (
+                        const isDark = useIsDark(!!logo.dark)
+
+                        if (svg) {
+                            const iconSvg = icons.find(
+                                icon => icon.url === logoFields.url
+                            )
+
+                            if (!iconSvg) {
+                                return <></>
+                            }
+
+                            return (
+                                <div key={`client-${nanoid()}`}>
                                     <IconLogo
                                         mode={colorMode}
                                         dark={isDark}
-                                        key={`client-${i}`}
-                                        title={logo.name}
-                                        iconSvg={
-                                            icons.find(
-                                                icon =>
-                                                    icon.url === logoFields.url
-                                            ).icon
-                                        }
-                                        width={logoFields.width}
-                                        height={logoFields.height}
+                                        title={logo.name ?? ""}
+                                        iconSvg={iconSvg.url}
+                                        width={logoFields.width ?? ""}
+                                        height={logoFields.height ?? ""}
                                     />
-                                ) : (
-                                    <Logo
-                                        mode={colorMode}
-                                        dark={isDark}
-                                        key={`client-${i}`}
-                                        style={{ maxHeight: "50px" }}
-                                    >
-                                        <Image
-                                            image={logoFields}
-                                            alt={logo.name}
-                                            style={{
-                                                objectFit: "contain",
-                                                height: "100%",
-                                            }}
-                                            fill
-                                        />
-                                    </Logo>
-                                )}
-                            </>
+                                </div>
+                            )
+                        }
+
+                        return (
+                            <div key={`client-${nanoid()}`}>
+                                <Logo
+                                    mode={colorMode}
+                                    dark={isDark}
+                                    key={`client-${i}`}
+                                    style={{ maxHeight: "50px" }}
+                                >
+                                    <Image
+                                        image={logoFields}
+                                        alt={logo.name ?? ""}
+                                        style={{
+                                            objectFit: "contain",
+                                            height: "100%",
+                                        }}
+                                        fill
+                                    />
+                                </Logo>
+                            </div>
                         )
                     })}
                 </LogoWrapper>

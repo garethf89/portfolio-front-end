@@ -12,7 +12,7 @@ import Lines from "../Animation/Lines"
 import { OuterWrapper } from "../Common/OuterWrapper"
 import ReadMore from "../Typography/ReadMore"
 import styled from "@emotion/styled"
-import { Project, ProjectIntro } from "@schema"
+import { HomePageCaseStudiesCollection, Project, ProjectIntro } from "@schema"
 
 const StyledParagraph = styled(Heading)`
     font-weight: 300;
@@ -76,7 +76,7 @@ const options = {
 }
 
 interface CSProps {
-    data: Project[]
+    data: HomePageCaseStudiesCollection["items"]
 }
 
 interface CaseStudyTextProps {
@@ -98,10 +98,15 @@ const CaseStudies = ({ data }: CSProps): React.ReactElement<CSProps> => {
                     Case Studies
                 </Heading>
                 <CaseStudyWrapper>
-                    {data.map((project, i: number) => {
+                    {data.map((project: Project, i: number) => {
+                        if (!project) {
+                            return <></>
+                        }
                         return (
                             <CaseStudy key={i}>
-                                <CaseStudyText data={project.intro} />
+                                <CaseStudyText
+                                    data={project.intro as ProjectIntro}
+                                />
                                 <ReadMore href={`/${project.slug}`}>
                                     Read more about {project.title}
                                 </ReadMore>

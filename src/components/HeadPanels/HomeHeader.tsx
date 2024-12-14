@@ -7,12 +7,11 @@ import Button from "../Common/Button"
 import Container from "../Global/Container/Container"
 import Counter from "../Counter/Counter"
 import HomeHeaderContent from "../Home/HomeHeader/HomeHeaderContent"
-import { IStatFields } from "../../../@types/generated/contentful"
 import Lines from "../Animation/Lines"
 import Stats from "../Home/HomeHeader/Stats"
 import { globals } from "../../state/state"
 import styled from "@emotion/styled"
-import { HomePageIntroText } from "@schema"
+import { HomePageIntroText, HomePageStatsCollection } from "@schema"
 
 const HomeHeaderStyles = styled.section`
     padding: 9rem 0 3rem;
@@ -50,7 +49,7 @@ const HomeSectionStats = styled.div`
 
 interface HomeHeaderProps {
     text: HomePageIntroText
-    stats: IStatFields[]
+    stats: HomePageStatsCollection["items"]
 }
 
 const HomeHeader = ({ text, stats }: HomeHeaderProps): React.ReactElement => {

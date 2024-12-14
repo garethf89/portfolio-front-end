@@ -50,7 +50,7 @@ const options = {
 }
 
 interface TextProps {
-    text?: HomePageSkillsText
+    text: HomePageSkillsText
 }
 
 export const HomeHeaderContentText = ({
@@ -75,19 +75,31 @@ const HomeTech = ({
             <FaceImage />
             <HomeHeaderContentText text={text} />
             <Skills>
-                {skills.map((skill, i) => (
-                    <Skill
-                        key={i}
-                        id={`skill${i}`}
-                        icon={
-                            icons.find(icon => icon.url === skill.icon.url).icon
+                {!!icons &&
+                    skills.map((skill, i) => {
+                        const skillIcon = icons.find(icon =>
+                            skill.icon ? icon.url === skill.icon.url : null
+                        )?.icon
+
+                        if (!skillIcon) {
+                            console.error(
+                                `No skill icon found for ${skill.name}`
+                            )
+                            return <></>
                         }
-                        title={skill.name}
-                        boxSize={[14, 14, 20]}
-                    >
-                        {skill.name}
-                    </Skill>
-                ))}
+
+                        return (
+                            <Skill
+                                key={i}
+                                id={`skill${i}`}
+                                icon={skillIcon}
+                                title={skill.name!}
+                                boxSize={[14, 14, 20]}
+                            >
+                                {skill.name}
+                            </Skill>
+                        )
+                    })}
             </Skills>
         </Container>
     )

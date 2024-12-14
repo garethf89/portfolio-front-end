@@ -1,14 +1,13 @@
 const contentfulManagement = require("contentful-management")
-const contentfulConfig = require("./.contentful-codegen")
+
+const { SPACE_ID, ACCESS_TOKEN, env } = process.env
 
 module.exports = () => {
-    const { spaceId, accessToken, env } = contentfulConfig
-
     const contentfulClient = contentfulManagement.createClient({
-        accessToken: accessToken,
+        accessToken: ACCESS_TOKEN,
     })
 
     return contentfulClient
-        .getSpace(spaceId)
+        .getSpace(SPACE_ID)
         .then(space => space.getEnvironment(env || "master"))
 }
