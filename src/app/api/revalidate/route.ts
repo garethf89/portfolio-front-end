@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server"
-import { revalidateTag } from "next/cache"
+import { revalidatePath } from "next/cache"
 
 export async function GET(request: NextRequest): Promise<Response> {
     const secret = request.nextUrl.searchParams.get("secret")
@@ -9,8 +9,8 @@ export async function GET(request: NextRequest): Promise<Response> {
     }
 
     try {
-        revalidateTag("/")
-        return Response.json({ revalidated: true })
+        revalidatePath("/")
+        return Response.json({ revalidated: true, now: Date.now() })
     } catch (err) {
         return new Response("Error revalidating", { status: 500 })
     }

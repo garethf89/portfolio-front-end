@@ -7,4 +7,4 @@
   included_files = ["node_modules/sharp/**/*"]
 
 [functions."lastFmFetch"]
-schedule = "@weekly"
+  schedule = "@weekly"
