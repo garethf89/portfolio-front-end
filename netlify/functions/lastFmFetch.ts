@@ -61,7 +61,10 @@ const handler: Handler = async () => {
 
         return { body: JSON.stringify(valuesFromDatabase), statusCode: 200 }
     } catch (e) {
-        throw new Error("Lastfm fetch error")
+        return {
+            statusCode: 500,
+            body: `Error: Lastfm fetch error`,
+        }
     }
 }
 
