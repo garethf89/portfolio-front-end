@@ -36,7 +36,7 @@ const ColorPicker = (): React.ReactElement => {
                         href="/"
                     >
                         <NavigationLinkLabel>Theme</NavigationLinkLabel>
-                        <LinkIcon boxSize={8} />
+                        <LinkIcon />
                     </NavigationLink>
                 )
             })}

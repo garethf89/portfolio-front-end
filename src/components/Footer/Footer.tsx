@@ -29,6 +29,11 @@ const FooterLink = styled.a`
 
 const FooterContent = styled.div``
 
+const FooterContentIcons = styled.div`
+    display: flex;
+    gap: 0.25rem;
+`
+
 const FooterHeading = styled(Heading)<HeadingProps>`
     margin-bottom: ${SPACE.common[3]};
     text-align: left;
@@ -57,20 +62,22 @@ const Footer = (): React.ReactElement<HTMLDivElement> => {
                     <FadeLink href="/contact">Contact Me</FadeLink>
                 </FooterHeading>
                 <FooterContent>
-                    <FooterLink
-                        rel="noopener"
-                        aria-label="LinkedIn"
-                        href="//uk.linkedin.com/in/garethferguson1"
-                    >
-                        <LinkedInIcon boxSize={8} />
-                    </FooterLink>
-                    <FooterLink
-                        rel="noopener"
-                        aria-label="Github"
-                        href="//github.com/garethf89"
-                    >
-                        <GitHubIcon boxSize={8} />
-                    </FooterLink>
+                    <FooterContentIcons>
+                        <FooterLink
+                            rel="noopener"
+                            aria-label="LinkedIn"
+                            href="//uk.linkedin.com/in/garethferguson1"
+                        >
+                            <LinkedInIcon css={{ height: 8, width: 8 }} />
+                        </FooterLink>
+                        <FooterLink
+                            rel="noopener"
+                            aria-label="Github"
+                            href="//github.com/garethf89"
+                        >
+                            <GitHubIcon css={{ height: 8, width: 8 }} />
+                        </FooterLink>
+                    </FooterContentIcons>
                     <FooterCopyright>Gareth Ferguson {year}</FooterCopyright>
                 </FooterContent>
             </FooterContainer>

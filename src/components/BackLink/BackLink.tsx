@@ -7,7 +7,9 @@ import FadeLink from "../Link/Link"
 import styled from "@emotion/styled"
 
 const BackLinkStyled = styled(FadeLink)`
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     color: inherit;
     text-decoration: none;
     font-weight: 700;
@@ -28,7 +30,7 @@ const BackLink: React.FC<BackLinkProps> = ({
     return (
         <BackLinkStyledSpan sx={styles} href="/">
             <BackLinkStyled href="/">
-                <Arrow boxSize={8} />
+                <Arrow css={{ height: 7 }} />
                 {text}
             </BackLinkStyled>
         </BackLinkStyledSpan>

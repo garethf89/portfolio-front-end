@@ -1,6 +1,7 @@
 import * as React from "react"
 
-import Button, { ButtonTypes } from "./Button"
+import Button from "./Button"
+import { ButtonTypes } from "./Button.types"
 
 import { DarkBackground } from "../../stories/DarkBackground"
 import { LightContainer } from "../../stories/LightContainer"

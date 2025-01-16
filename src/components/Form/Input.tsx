@@ -2,22 +2,39 @@ import * as React from "react"
 
 import { Field, useField } from "formik"
 
-import { COLORS } from "../../@chakra-ui/theme"
 import { FormError } from "./FormError"
-import styled from "@emotion/styled"
-import { useStyleConfig } from "@chakra-ui/react"
+import { css } from "../../styled-system/css"
 
-const InputStyled = styled(Field)<{ error?: string; border: string }>`
-    display: block;
-    border: none;
-    outline: none;
-    border-bottom: 2px solid
-        ${props => (props.error ? "#e55353" : props.border)};
-    padding-bottom: 0.5rem;
-    width: 100%;
-    max-width: 250px;
-    background: ${COLORS.transparent};
-`
+type InputStyledProps = React.PropsWithChildren<{
+    error?: string
+}>
+
+// REMOVE IMPORTANT AFTER CHAKRA
+export const InputStyled = ({
+    children,
+    error,
+    ...props
+}: InputStyledProps): React.ReactElement => {
+    return (
+        <Field
+            {...props}
+            data-error={error}
+            className={css({
+                display: "block",
+                background: "transparent",
+                border: "none",
+                borderBottom: "2px solid",
+                borderBottomColor: error ? "error" + "!important" : "text",
+                outline: "none",
+                paddingBottom: "3",
+                width: "100%",
+                maxWidth: "250px",
+            })}
+        >
+            {children}
+        </Field>
+    )
+}
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & { id?: string }
 
@@ -26,12 +43,10 @@ const Input = ({ id, ...props }: InputProps): React.ReactElement => {
 
     const [_field, meta] = useField<string>(name ?? "")
     const error = meta.touched && meta.error
-    const styles = useStyleConfig("ColorText")
 
     return (
         <>
             <InputStyled
-                border={styles.border}
                 error={error ? "true" : undefined}
                 aria-describedby={error ? `${id}-error` : null}
                 {...props}

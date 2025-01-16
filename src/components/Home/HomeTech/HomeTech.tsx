@@ -94,7 +94,8 @@ const HomeTech = ({
                                 id={`skill${i}`}
                                 icon={skillIcon}
                                 title={skill.name!}
-                                boxSize={[14, 14, 20]}
+                                width={[14, 14, 20]}
+                                height={[14, 14, 20]}
                             >
                                 {skill.name}
                             </Skill>

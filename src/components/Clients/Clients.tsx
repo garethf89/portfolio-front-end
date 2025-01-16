@@ -124,7 +124,7 @@ const Clients = ({
                                         mode={colorMode}
                                         dark={isDark}
                                         title={logo.name ?? ""}
-                                        iconSvg={iconSvg.url}
+                                        src={iconSvg.url}
                                         width={logoFields.width ?? ""}
                                         height={logoFields.height ?? ""}
                                     />

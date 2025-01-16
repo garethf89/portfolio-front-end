@@ -220,6 +220,9 @@ const styles: StyleTheme = {
                 color: mode("text", "textDark")(props),
                 bg: mode("background", "backgroundDark")(props),
             },
+            "*": {
+                borderColor: "text",
+            },
         }),
     },
 }
@@ -230,7 +233,7 @@ export type ThemeType = Omit<typeof theme, "styles" | "components"> &
 
 const combinedTheme: ThemeType = {
     ...theme,
-    styles: { ...theme.styles, ...styles },
+    styles: { ...theme.styles, ...styles.styles },
     components: { ...components.components },
 }
 

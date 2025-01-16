@@ -51,7 +51,8 @@ const PageSkills = ({ skills, icons }: PageSkillProps): React.ReactElement => {
                                 id={`skill${i}`}
                                 icon={skillIcon}
                                 title={skill.name!}
-                                boxSize={[14, 14, 16]}
+                                height={[14, 14, 16]}
+                                width={[14, 14, 16]}
                             >
                                 {skill.name}
                             </Skill>

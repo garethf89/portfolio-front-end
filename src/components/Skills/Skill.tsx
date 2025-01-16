@@ -3,7 +3,7 @@ import * as React from "react"
 import { BREAKPOINTS } from "../../@chakra-ui/theme"
 import Heading from "../Typography/Heading"
 import IconExternal from "../Icons/IconExternal"
-import { SystemsTypeProperties } from "../Icons/Icon"
+import { IconProps } from "../Icons/Icon"
 import styled from "@emotion/styled"
 
 const SkillContainer = styled.li`
@@ -31,11 +31,13 @@ const SkillText = styled(Heading)`
     margin: 1rem 0;
 `
 
-interface SkillProps extends SystemsTypeProperties {
+type SkillProps = Omit<IconProps, "height" | "width" | "src"> & {
     children: React.ReactNode
     icon: string
     id: string
     title: string
+    height: number[]
+    width: number[]
 }
 
 const Skill = ({
@@ -43,16 +45,16 @@ const Skill = ({
     id,
     icon,
     title,
-    boxSize,
+    width,
+    height,
 }: SkillProps): React.ReactElement => (
     <SkillContainer>
         <IconExternal
             aria-describedby={id}
             aria-labelledby={id}
             title={title}
-            margin="0 auto"
-            iconSvg={icon}
-            boxSize={boxSize}
+            src={icon}
+            styles={{ margin: "0 auto", width, height }}
         />
         <SkillText id={id} level="h4" override="p">
             {children}

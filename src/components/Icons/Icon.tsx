@@ -1,33 +1,42 @@
 import * as React from "react"
+import { Props as InlineSVGProps } from "react-inlinesvg"
+import type { SystemStyleObject } from "@styled-system/types"
+import { css } from "@styled-system/css"
 
-import { IconProps } from "@chakra-ui/react"
-import styled from "@emotion/styled"
+export type IconProps = InlineSVGProps
 
-export type SystemsTypeProperties = React.HTMLAttributes<HTMLDivElement> &
-    IconProps
-
-export interface IconPropsType extends SystemsTypeProperties {
+export type IconPropsType = {
     "data-icon"?: boolean
-    iconSrc?: React.ReactElement
-    iconSvg?: string
+    css?: SystemStyleObject
 }
 
-interface IconPropsTypeComponent extends IconPropsType {
-    Component: React.ComponentType
-}
+type IconPropsTypeComponent = React.PropsWithChildren<IconPropsType> &
+    React.SVGProps<SVGSVGElement>
 
 export default ({
-    Component,
-    ...iconProps
+    css: cssProp,
+    children,
+    ...props
 }: IconPropsTypeComponent): React.ReactElement => {
     const defaultProps = {
-        ...iconProps,
         role: "img",
-        display: "inline-block",
-        verticalAlign: "middle",
         "data-icon": true,
     }
 
-    const SystemComponent = styled(Component)``
-    return <SystemComponent {...defaultProps} />
+    const defaultStyles = {
+        display: "inline-block",
+        verticalAlign: "middle",
+        height: 8,
+        width: 8,
+    }
+
+    return (
+        <svg
+            {...defaultProps}
+            {...props}
+            className={css(defaultStyles, cssProp)}
+        >
+            {children}
+        </svg>
+    )
 }

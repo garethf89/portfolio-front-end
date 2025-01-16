@@ -95,13 +95,17 @@ const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
                     marginBottom="3rem"
                     level="h5"
                     override="h3"
+                    display="flex"
                 >
                     <LastFMLogo
-                        verticalAlign="middle"
-                        marginRight="1rem"
-                        marginBottom="0.4rem"
-                        opacity="0.5"
-                        width="20px"
+                        css={{
+                            verticalAlign: "middle",
+                            marginRight: "1rem",
+                            marginBottom: "0.4rem",
+                            opacity: "0.5",
+                            height: 8,
+                            width: 8,
+                        }}
                     />
                     Recently played
                 </Heading>

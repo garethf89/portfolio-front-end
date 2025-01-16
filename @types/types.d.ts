@@ -1,5 +1,5 @@
-import { ThemeType } from "../src/@chakra-ui/theme"
 import "@emotion/react"
+import { ThemeType } from "../src/@chakra-ui/theme"
 import { Asset, Maybe, Scalars } from "@schema/graphql"
 
 interface Size {

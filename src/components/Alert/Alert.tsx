@@ -51,9 +51,11 @@ const Alert = ({
     return (
         <AlertStyled role="alert" {...variantProps} {...props}>
             <Icon
-                margin="-2px 0.5rem 0 0"
-                display="inline-block"
-                width="16px"
+                css={{
+                    margin: "-2px 0.5rem 0 0",
+                    display: "inline-block",
+                    width: "16px",
+                }}
             />
             {children}
         </AlertStyled>

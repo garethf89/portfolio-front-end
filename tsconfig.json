@@ -22,7 +22,7 @@
     "noUnusedLocals": false,
     "typeRoots": [
       "node_modules/@types",
-      "/@types"
+      "@types"
     ],
     "types": [
       "jest",
@@ -58,6 +58,12 @@
       "@hooks": [
         "./src/hooks"
       ],
+      "@theme": [
+        "./src/theme"
+      ],
+      "@styled-system/*": [
+        "./src/styled-system/*"
+      ],
     },
     "plugins": [
       {
@@ -72,7 +78,8 @@
     "src/@chakra-ui/theme.ts",
     "next.config.ts",
     ".next/types/**/*.ts",
-    "@types/index.ts"
+    "@types/index.ts",
+    "panda.config.ts"
   ],
   "exclude": [
     "node_modules"

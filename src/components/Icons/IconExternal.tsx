@@ -1,49 +1,42 @@
-import { chakra } from "@chakra-ui/react"
-import styled from "@emotion/styled"
 import * as React from "react"
-import { SystemsTypeProperties } from "./Icon"
+import { IconProps } from "./Icon"
 import SVG from "react-inlinesvg"
 import { nanoid } from "nanoid"
+import { css } from "@styled-system/css"
+import type { SystemStyleObject } from "@styled-system/types"
 
-interface IconPropsType extends SystemsTypeProperties {
-    "data-icon"?: boolean
-    iconSvg: string
+type IconPropsType = IconProps & {
+    src: string
     title: string
+    styles?: SystemStyleObject
 }
 
 export const IconExternal = ({
-    iconSvg,
+    src,
     title,
+    styles = {},
     ...props
 }: IconPropsType): React.ReactElement => {
-    const defaultProps = {
-        ...props,
-        role: "img",
-        display: "inline-block",
-        verticalAlign: "middle",
-        "data-icon": true,
-    }
-
-    // Render from SVG Text or an Icon component
-    const Render = ({ ...styledProps }) => {
-        const SVGChakra = chakra(SVG)
-        return (
-            <SVGChakra
-                uniquifyIDs={true}
-                src={iconSvg}
-                title={title}
-                preProcessor={code => {
-                    return code.replace(/cls-/g, `cls-${nanoid()}-${title}`)
-                }}
-                {...styledProps}
-            >
-                {title && <title>{title}</title>}
-            </SVGChakra>
-        )
-    }
-
-    const SystemComponent = styled(Render)``
-    return <SystemComponent {...defaultProps} />
+    return (
+        <SVG
+            uniquifyIDs={true}
+            src={src}
+            title={title}
+            data-icon="true"
+            role="img"
+            preProcessor={code => {
+                return code.replace(/cls-/g, `cls-${nanoid()}-${title}`)
+            }}
+            className={css({
+                display: "inline-block",
+                verticalAlign: "middle",
+                ...styles,
+            })}
+            {...props}
+        >
+            {title && <title>{title}</title>}
+        </SVG>
+    )
 }
 
 export default IconExternal

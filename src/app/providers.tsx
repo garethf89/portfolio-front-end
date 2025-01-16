@@ -57,7 +57,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
         <Sentry.ErrorBoundary fallback={<p>An error has occurred</p>}>
             <QueryClientProvider client={queryClient}>
                 <ApolloProvider client={client}>
-                    <ChakraProvider theme={theme}>
+                    <ChakraProvider theme={theme} resetCSS={false}>
                         <ColorModeProvider
                             options={{
                                 initialColorMode: "light",
@@ -97,7 +97,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
                                             <Root>{children}</Root>
                                             <Footer />
                                         </FooterExtender>
-                                    </TransitionRouter>{" "}
+                                    </TransitionRouter>
                                 </ImageSupportProvider>
                             </GlobalsStateProvider>
                         </ColorModeProvider>

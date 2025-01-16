@@ -1,7 +1,7 @@
 import config from "../config/site"
 import { Metadata } from "next"
-
 import Providers from "./providers"
+import "../globals.css"
 
 export const metadata: Metadata = {
     title: {
@@ -46,9 +46,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <html lang="en">
             <head></head>
             <body>
-                <>
-                    <Providers>{children}</Providers>
-                </>
+                <Providers>{children}</Providers>
             </body>
         </html>
     )

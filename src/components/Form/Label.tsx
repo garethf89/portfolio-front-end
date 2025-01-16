@@ -1,22 +1,46 @@
 import * as React from "react"
-import styled from "@emotion/styled"
+import { css } from "../../styled-system/css"
 
 type LabelStyleProps = {
     error?: string
 }
 
-const LabelStyled = styled.label`
-    font-weight: 700;
-    display: block;
-    margin-bottom: 1rem;
-    color: ${(props: LabelStyleProps) => (props.error ? "#e55353" : "inherit")};
-`
+type LabelStyledProps = React.PropsWithChildren<LabelStyleProps>
 
-const Required = styled.span`
-    color: red;
-    display: inline-block;
-    margin-left: 0.25rem;
-`
+export const LabelStyled = ({
+    children,
+    error,
+    ...props
+}: LabelStyledProps): React.ReactElement => {
+    return (
+        <label
+            {...props}
+            className={css({
+                display: "block",
+                fontWeight: "bold",
+                color: error ? "error" : "inherit",
+                marginBottom: "3",
+            })}
+        >
+            {children}
+        </label>
+    )
+}
+
+export const Required = ({ children, ...props }): React.ReactElement => {
+    return (
+        <span
+            {...props}
+            className={css({
+                display: "inline-block",
+                color: "red",
+                marginLeft: "1",
+            })}
+        >
+            {children}
+        </span>
+    )
+}
 
 type LabelProps = { required: boolean } & LabelStyleProps &
     React.LabelHTMLAttributes<HTMLLabelElement>
