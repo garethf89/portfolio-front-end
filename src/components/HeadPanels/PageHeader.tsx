@@ -2,7 +2,7 @@ import { Box, useStyleConfig } from "@chakra-ui/react"
 import styled from "@emotion/styled"
 import * as React from "react"
 import { useContext, useEffect } from "react"
-import { BREAKPOINTS } from "../../@chakra-ui/theme"
+import { BREAKPOINTS } from "@theme"
 import { Asset } from "@schema"
 import { globals } from "../../state/state"
 import Lines from "../Animation/Lines"
@@ -20,14 +20,14 @@ const HeaderStyles = styled(Box)`
 const StyledTitle = styled(Heading)`
     margin: 2rem 0 2.3rem 0;
     font-weight: 700;
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         margin: 3rem 1rem 6.3rem 0;
     }
 `
 
 const InnerContainer = styled.div`
     padding: 2rem 0;
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         max-width: 50%;
         padding: 5rem 0;
     }
@@ -38,7 +38,7 @@ const PageImage = styled.div`
     position: relative;
     overflow: hidden;
 
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         padding-top: 0;
         max-width: 50%;
         width: 50%;
@@ -58,7 +58,7 @@ const PageImageElement = styled(Image)`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         width: auto;
     }
 `

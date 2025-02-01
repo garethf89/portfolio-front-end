@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { BREAKPOINTS, SPACE } from "../../@chakra-ui/theme"
+import { SPACE } from "../../@chakra-ui/theme"
 import Heading, { HeadingProps } from "../Typography/Heading"
 
 import FadeLink from "../Link/Link"
@@ -8,6 +8,7 @@ import Flex from "../Global/Container/Flex"
 import GitHubIcon from "../../svgs/github"
 import LinkedInIcon from "../../svgs/linkedin"
 import styled from "@emotion/styled"
+import { BREAKPOINTS } from "@theme"
 
 const FooterCopyright = styled.p`
     margin: 1rem 0 0;
@@ -38,7 +39,7 @@ const FooterHeading = styled(Heading)<HeadingProps>`
     margin-bottom: ${SPACE.common[3]};
     text-align: left;
 
-    @media (min-width: ${BREAKPOINTS.SMALL}) {
+    @media (min-width: ${BREAKPOINTS.sm}) {
         margin: 0;
         align-self: center;
     }
@@ -47,7 +48,7 @@ const FooterHeading = styled(Heading)<HeadingProps>`
 const FooterContainer = styled(Flex)`
     padding-top: 2rem;
     padding-bottom: 2rem;
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         padding-top: 2rem;
         padding-bottom: 2rem;
     }

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 import * as React from "react"
 import { useEffect, useState } from "react"
-import { BREAKPOINTS, SPACE } from "../../@chakra-ui/theme"
+import { SPACE } from "../../@chakra-ui/theme"
 import { random } from "../../helpers/random"
 import Image from "../Common/Image"
 import { SROnly } from "../Common/SROnly"
@@ -12,6 +12,7 @@ import { useProjects } from "../../contexts"
 import { AspectRatio } from "@chakra-ui/react"
 import { Project } from "@schema"
 import { CustomImageAsset } from "@types"
+import { BREAKPOINTS } from "@theme"
 
 const SuggestedProjectLinkContainer = styled.div`
     display: inline-block;
@@ -32,7 +33,7 @@ const SuggestedProjectLinkContainer = styled.div`
             transform: scale(1.1);
         }
     }
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         width: 44%;
         margin-bottom: 0;
         margin-right: 0;

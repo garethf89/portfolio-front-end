@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { BREAKPOINTS } from "../../../@chakra-ui/theme"
+import { BREAKPOINTS } from "@theme"
 import Heading from "../../Typography/Heading"
 import styled from "@emotion/styled"
 import { Stat } from "@schema"
@@ -10,7 +10,7 @@ const StatsContainer = styled.ul`
     margin: 0;
     padding: 0;
     position: relative;
-    @media (min-width: ${BREAKPOINTS.SMALL}) {
+    @media (min-width: ${BREAKPOINTS.sm}) {
         display: flex;
         flex-wrap: wrap;
     }
@@ -24,11 +24,11 @@ const StatList = styled.li`
     &:last-of-type {
         margin-bottom: 0;
     }
-    @media (min-width: ${BREAKPOINTS.SMALL}) {
+    @media (min-width: ${BREAKPOINTS.sm}) {
         width: 33.33%;
         margin-right: 0;
     }
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         width: 50%;
     }
 `
@@ -44,11 +44,11 @@ const StatDesc = styled.span`
     font-weight: 200;
     display: inline-block;
     margin-left: 1rem;
-    @media (min-width: ${BREAKPOINTS.SMALL}) {
+    @media (min-width: ${BREAKPOINTS.sm}) {
         display: block;
         margin-left: 0;
     }
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         margin-top: 0.5rem;
     }
 `

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import * as React from "react"
-import { BREAKPOINTS } from "../../@chakra-ui/theme"
+import { BREAKPOINTS } from "@theme"
 import { Project as ProjectType } from "@schema"
 import Image from "../Common/Image"
 import { SROnly } from "../Common/SROnly"
@@ -15,7 +15,7 @@ const ProjectsContainer = styled(Container)`
 const ProjectWrapper = styled.div`
     position: relative;
 
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -34,7 +34,7 @@ const ProjectWrapper = styled.div`
 const ProjectWrapperLower = styled.div`
     position: relative;
 
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;

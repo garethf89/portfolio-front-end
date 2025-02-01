@@ -10,7 +10,7 @@ import { useEffect, useId, useState } from "react"
 
 import { IconsProcessed } from "../../../@types/types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-import { BREAKPOINTS, SPACE } from "../../@chakra-ui/theme"
+import { SPACE } from "../../@chakra-ui/theme"
 import Image from "../Common/Image"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
@@ -24,6 +24,7 @@ import type {
     PageContentImage,
     PageContentText,
 } from "@schema"
+import { BREAKPOINTS } from "@theme"
 
 const CUSTOMBLOCKS = {
     ...BLOCKS,
@@ -52,7 +53,7 @@ export const StyledParagraphIntro = styled.p`
 
 export const ContentContainer = styled(Container)`
     max-width: ${props => props.theme.sizes.container.content};
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         max-width: calc(${props => props.theme.sizes.container.content} + 6rem);
     }
 `

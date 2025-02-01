@@ -1,10 +1,9 @@
 "use client"
 
 import { useColorMode } from "@chakra-ui/react"
-import { css } from "@emotion/react"
 import styled from "@emotion/styled"
 import * as React from "react"
-import { BREAKPOINTS, COLORS, SPACE } from "../../@chakra-ui/theme"
+import { COLORS, SPACE } from "../../@chakra-ui/theme"
 import { useIsDark } from "../../hooks/useIsDark"
 import Image from "../Common/Image"
 import Container from "../Global/Container/Container"
@@ -13,6 +12,8 @@ import Heading from "../Typography/Heading"
 import { nanoid } from "nanoid"
 import { HomePageLogosCollection } from "@schema"
 import { CustomImageAsset, IconsProcessed } from "@types"
+import { BREAKPOINTS } from "@theme"
+import { css } from "@styled-system/css"
 
 type ClientsProps = {
     mode: string
@@ -37,45 +38,37 @@ const LogoWrapper = styled.div`
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 2rem;
 
-    @media (min-width: ${BREAKPOINTS.SMALL}) {
+    @media (min-width: ${BREAKPOINTS.sm}) {
         flex-wrap: nowrap;
         grid-template-columns: repeat(5, 1fr);
     }
 `
 
-const LogoCommon = (props: ClientsProps) => css`
-    margin-bottom: 2rem;
-    filter: ${props.mode === "dark" ? "none" : "grayscale(1)"};
-    opacity: ${props.mode === "dark" ? "1" : "0.4"};
-    max-width: 75px;
-    height: auto;
-    transition: opacity 0.15s ease-in;
-    min-height: 50px;
-    margin: 0 auto;
-    position: relative;
+const Logo = () => {
+    return (
+        <div
+            className={css({
+                // filter: ${props.mode === "dark" ? "none" : "grayscale(1)"},
+                // opacity: ${props.mode === "dark" ? "1" : "0.4"},
+                maxWidth: "75px",
+                height: "auto",
+                transition: "opacity 0.15s ease-in",
+                minHeight: "50px",
+                margin: "0 auto",
+                marginBottom: ["2rem", 0],
+                position: "relative",
+                _hover: {
+                    opacity: 1,
+                },
+                "& path": {
+                    // fill: ${props.dark ? COLORS.white : ""}
+                },
+            })}
+        ></div>
+    )
+}
 
-    &:hover {
-        opacity: 1;
-    }
-    @media (min-width: ${BREAKPOINTS.SMALL}) {
-        margin-bottom: 0;
-    }
-    path {
-        fill: ${props.dark ? COLORS.white : ""};
-    }
-`
-
-const Logo = styled.div`
-    ${LogoCommon}
-    width: 100%;
-`
-
-const IconLogo = styled(IconExternal, {
-    shouldForwardProp: prop => prop !== "dark",
-})`
-    ${LogoCommon}
-    position:relative;
-`
+const IconLogo = ({ ...props }) => <IconExternal {...props} />
 
 interface ClientProps {
     data: HomePageLogosCollection["items"]

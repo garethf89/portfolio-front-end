@@ -3,7 +3,7 @@ import * as React from "react"
 import { useEffect, useState } from "react"
 import { useQueryClient } from "react-query"
 import { StyledProps } from "../../../@types/types"
-import { BREAKPOINTS } from "../../@chakra-ui/theme"
+import { BREAKPOINTS } from "@theme"
 import LastFMLogo from "../../svgs/lastfm"
 import Lines from "../Animation/Lines"
 import { OuterWrapper } from "../Common/OuterWrapper"
@@ -12,7 +12,7 @@ import Heading from "../Typography/Heading"
 import { AlbumType } from "./types"
 
 const Albums = styled.div`
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -34,7 +34,7 @@ const Album = styled.div<AlbumProps>`
     &:last-of-type {
         margin-bottom: 0;
     }
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         flex-wrap: nowrap;
         flex: 1;
         margin-right: 2rem;
@@ -45,7 +45,7 @@ const Album = styled.div<AlbumProps>`
 const AlbumInfo = styled.div`
     flex: 1;
     flex-basis: 40%;
-    @media (min-width: ${BREAKPOINTS.SMALL}) {
+    @media (min-width: ${BREAKPOINTS.SM}) {
         flex-basis: 56%;
     }
 `
@@ -55,7 +55,7 @@ const AlbumArtContainer = styled.div`
     height: auto;
     margin-right: 1rem;
     min-width: 80px;
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         flex: 1;
         flex-basis: 52%;
         margin-bottom: 0;

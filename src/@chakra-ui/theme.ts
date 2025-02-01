@@ -5,7 +5,7 @@ import {
     extendTheme,
     theme as baseTheme,
 } from "@chakra-ui/react"
-import { createBreakpoints, mode } from "@chakra-ui/theme-tools"
+import { mode } from "@chakra-ui/theme-tools"
 
 export const BREAKPOINTS = {
     SMALL: "35em",
@@ -13,13 +13,14 @@ export const BREAKPOINTS = {
     LARGE: "79.38em",
 }
 
-const breakpoints = createBreakpoints({
+const breakpoints = {
     sm: BREAKPOINTS.SMALL,
     md: BREAKPOINTS.MEDIUM,
     lg: BREAKPOINTS.LARGE,
     xl: "85em",
     "2xl": "96em",
-})
+}
+
 export const COLORS = {
     transparent: "transparent",
     black: "#000",

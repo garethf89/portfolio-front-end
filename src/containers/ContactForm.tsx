@@ -6,7 +6,7 @@ import { toFormikValidationSchema } from "zod-formik-adapter"
 import { Form, Formik, FormikHelpers } from "formik"
 
 import { Alert, Button, Flex, Input, Label, TextArea } from "@components"
-import { BREAKPOINTS } from "../@chakra-ui/theme"
+import { BREAKPOINTS } from "@theme"
 import styled from "@emotion/styled"
 import { useEmail } from "../services/email"
 import { Box, CircularProgress, Spacer } from "@chakra-ui/react"
@@ -18,7 +18,7 @@ const FormContainer = styled.div`
 const FormSection = styled.div`
     flex: 1;
     flex-basis: 100%;
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         flex-basis: 50%;
     }
 `

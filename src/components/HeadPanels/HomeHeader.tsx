@@ -1,7 +1,8 @@
 import * as React from "react"
 
-import { BREAKPOINTS, SPACE } from "../../@chakra-ui/theme"
+import { SPACE } from "../../@chakra-ui/theme"
 import { useContext, useEffect } from "react"
+import { BREAKPOINTS } from "@theme"
 
 import Button from "../Common/Button"
 import Container from "../Global/Container/Container"
@@ -17,7 +18,7 @@ const HomeHeaderStyles = styled.section`
     padding: 9rem 0 3rem;
     position: relative;
     background: ${props => props.theme.colors.sectionBackground};
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         padding: 12rem 0 8rem;
     }
 `
@@ -25,7 +26,7 @@ const HomeContainer = styled(Container)`
     position: relative;
     z-index: 1;
     color: ${props => props.theme.colors.sectionText};
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         display: flex;
         justify-content: space-between;
         padding: 0 calc(0.65rem + ${SPACE.common[0]});
@@ -33,7 +34,7 @@ const HomeContainer = styled(Container)`
 `
 
 const HomeSection = styled.div`
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         width: 60%;
         margin-right: 5.5rem;
     }
@@ -41,7 +42,7 @@ const HomeSection = styled.div`
 
 const HomeSectionStats = styled.div`
     margin-top: 3rem;
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         margin-top: 0;
         width: 40%;
     }

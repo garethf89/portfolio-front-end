@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { BREAKPOINTS } from "../../@chakra-ui/theme"
+import { BREAKPOINTS } from "@theme"
 import Heading from "../Typography/Heading"
 import IconExternal from "../Icons/IconExternal"
 import { IconProps } from "../Icons/Icon"
@@ -16,7 +16,7 @@ const SkillContainer = styled.li`
     padding: 0 0;
     margin-bottom: 2rem;
 
-    @media (min-width: ${BREAKPOINTS.SMALL}) {
+    @media (min-width: ${BREAKPOINTS.sm}) {
         width: 16.6%;
         &:nth-of-type(n + 7) {
             margin-bottom: 0;

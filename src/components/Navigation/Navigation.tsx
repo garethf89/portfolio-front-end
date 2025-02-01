@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { useEffect, useState } from "react"
 
-import { BREAKPOINTS } from "../../@chakra-ui/theme"
+import { BREAKPOINTS } from "@theme"
 import { ColorPicker, MobileMenu } from "@components"
 import NavigationLink from "./NavigationLink"
 import debounce from "../../helpers/debounce"
@@ -14,7 +14,7 @@ const NavigationStyles = styled.nav``
 
 const NavMobile = styled.div`
     display: block;
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         display: none;
     }
 `
@@ -37,7 +37,7 @@ const NavList = styled.ul<NavULProps>`
     flex-direction: column;
     justify-content: center;
     animation: ${props => (props.animate ? "fadeOut" : "fadeIn")} 0.5s;
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         animation: none;
         position: static;
         display: block;
@@ -53,7 +53,7 @@ const NavLi = styled.li`
     &:last-of-type {
         padding-bottom: 0;
     }
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         padding-left: 2rem;
     }
 `
@@ -66,10 +66,7 @@ const Navigation = (): React.ReactElement => {
     const { menuLinks } = config
 
     const checkMobile = () => {
-        if (
-            isWindow() &&
-            window.innerWidth >= parseInt(BREAKPOINTS.MEDIUM, 16)
-        ) {
+        if (isWindow() && window.innerWidth >= parseInt(BREAKPOINTS.md, 16)) {
             setMobile(false)
         } else {
             setMobile(true)

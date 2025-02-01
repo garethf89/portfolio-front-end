@@ -5,7 +5,7 @@ import {
     documentToReactComponents,
     CommonNode,
 } from "@contentful/rich-text-react-renderer"
-import { BREAKPOINTS } from "../../@chakra-ui/theme"
+import { BREAKPOINTS } from "@theme"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 import Lines from "../Animation/Lines"
@@ -26,7 +26,7 @@ const CaseStudyContainer = styled(Container)``
 const CaseStudyWrapper = styled.div`
     position: relative;
 
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         display: flex;
         justify-content: space-between;
     }
@@ -37,7 +37,7 @@ const CaseStudy = styled.div`
     &:last-of-type {
         margin-bottom: 0;
     }
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         width: 30%;
         margin-bottom: 0;
     }

@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { SerializedStyles, css } from "@emotion/react"
 
-import { BREAKPOINTS } from "../../@chakra-ui/theme"
+import { BREAKPOINTS } from "@theme"
 import styled from "@emotion/styled"
 import { supportsWebP } from "../../helpers/support/webp"
 import { useState } from "react"
@@ -48,7 +48,7 @@ const ImageCommon = () => css`
     left: 50%;
     transform: translate(-50%, -50%);
 
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         width: auto;
     }
 `
