@@ -42,7 +42,7 @@ const IconsStory = ({ color, size }: IconsStoryType): React.ReactElement => {
     return (
         <SimpleGrid minChildWidth="120px" spacing={10}>
             {IconsImports.map((Icon, k) => (
-                <Icon key={k} style={style} />
+                <Icon key={k} css={style} />
             ))}
         </SimpleGrid>
     )

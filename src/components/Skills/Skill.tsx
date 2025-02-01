@@ -54,7 +54,7 @@ const Skill = ({
             aria-labelledby={id}
             title={title}
             src={icon}
-            styles={{ margin: "0 auto", width, height }}
+            styles={{ marginX: "auto", width, height }}
         />
         <SkillText id={id} level="h4" override="p">
             {children}

@@ -27,11 +27,13 @@ export const IconExternal = ({
             preProcessor={code => {
                 return code.replace(/cls-/g, `cls-${nanoid()}-${title}`)
             }}
-            className={css({
-                display: "inline-block",
-                verticalAlign: "middle",
-                ...styles,
-            })}
+            className={css(
+                {
+                    display: "inline-block",
+                    verticalAlign: "middle",
+                },
+                styles
+            )}
             {...props}
         >
             {title && <title>{title}</title>}

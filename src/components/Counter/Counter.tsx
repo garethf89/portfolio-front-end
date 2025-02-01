@@ -15,13 +15,6 @@ const CounterStyled = styled.aside`
     color: ${props => props.theme.colors.sectionText};
 `
 
-const CounterIcon = styled(Eye)`
-    width: 1.5rem;
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 0.5rem;
-`
-
 const Counter = (): React.ReactElement => {
     const [count, setCount] = useState(1)
 
@@ -46,7 +39,14 @@ const Counter = (): React.ReactElement => {
     return (
         <CounterStyled>
             <span title={`${count} current visitors`}>
-                <CounterIcon />
+                <Eye
+                    css={{
+                        width: " 1.5rem",
+                        display: "inline-block",
+                        verticalAlign: "middle",
+                        marginRight: "0.5rem",
+                    }}
+                />
                 {count}
             </span>
         </CounterStyled>

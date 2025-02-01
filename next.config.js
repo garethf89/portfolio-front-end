@@ -1,4 +1,7 @@
 module.exports = {
+    typescript: {
+        tsconfigPath: "tsconfig.build.json",
+    },
     reactStrictMode: false,
     images: {
         disableStaticImages: true,
