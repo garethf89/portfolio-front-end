@@ -8,7 +8,7 @@ import { TransitionRouter } from "next-transition-router"
 import * as Sentry from "@sentry/react"
 import { BrowserTracing } from "@sentry/tracing"
 
-import { ColorModeProvider, ChakraProvider } from "@chakra-ui/react"
+import { ChakraProvider } from "@chakra-ui/react"
 import { QueryClient, QueryClientProvider } from "react-query"
 
 import { GlobalsStateProvider } from "../state/state"
@@ -20,6 +20,7 @@ import { Global } from "@emotion/react"
 import styled from "@emotion/styled"
 import { Footer } from "@components"
 import { ImageSupportProvider } from "../contexts"
+import { useDarkMode } from "../hooks"
 
 // React-Query
 const queryClient = new QueryClient()
@@ -39,6 +40,11 @@ const FooterExtender = styled.div`
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
     const [initGlobals, setInitGlobals] = useState(false)
+    const [colorTheme, setColorTheme] = useState("light")
+    const { isDarkMode } = useDarkMode({
+        defaultValue: false,
+        initializeWithValue: true,
+    })
 
     useEffect(() => {
         if (!initGlobals) {
@@ -53,17 +59,17 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
             setInitGlobals(true)
         }
     }, [])
+
+    useEffect(() => {
+        setColorTheme(isDarkMode ? "dark" : "light")
+    }, [isDarkMode])
+
     return (
-        <Sentry.ErrorBoundary fallback={<p>An error has occurred</p>}>
-            <QueryClientProvider client={queryClient}>
-                <ApolloProvider client={client}>
-                    <ChakraProvider theme={theme} resetCSS={false}>
-                        <ColorModeProvider
-                            options={{
-                                initialColorMode: "light",
-                                useSystemColorMode: false,
-                            }}
-                        >
+        <body data-color-mode={colorTheme}>
+            <Sentry.ErrorBoundary fallback={<p>An error has occurred</p>}>
+                <QueryClientProvider client={queryClient}>
+                    <ApolloProvider client={client}>
+                        <ChakraProvider theme={theme} resetCSS={false}>
                             <GlobalsStateProvider>
                                 <ImageSupportProvider>
                                     <Global styles={globalStyles} />
@@ -100,11 +106,11 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
                                     </TransitionRouter>
                                 </ImageSupportProvider>
                             </GlobalsStateProvider>
-                        </ColorModeProvider>
-                    </ChakraProvider>
-                </ApolloProvider>
-            </QueryClientProvider>
-        </Sentry.ErrorBoundary>
+                        </ChakraProvider>
+                    </ApolloProvider>
+                </QueryClientProvider>
+            </Sentry.ErrorBoundary>
+        </body>
     )
 }
 

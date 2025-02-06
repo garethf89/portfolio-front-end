@@ -1,45 +1,59 @@
-import * as React from "react"
+import { useEffect, useState } from "react"
 
 import Moon from "../../svgs/moon"
 import NavigationLink from "./NavigationLink"
 import Sun from "../../svgs/sun"
-import styled from "@emotion/styled"
-import { useColorMode } from "@chakra-ui/react"
+import { css } from "@styled-system/css"
+import { useDarkMode } from "../../hooks"
 
-const NavigationLinkLabel = styled.span`
-    margin-right: 0.5rem;
-`
+type themes = "dark" | "light"
 
 const ColorPicker = (): React.ReactElement => {
-    const { colorMode, toggleColorMode } = useColorMode()
+    const { isDarkMode, toggle } = useDarkMode()
+    const [colorTheme, setColorTheme] = useState<themes>("light")
 
     const buttonThemes = [
         { name: "Light", stateLink: "dark", iconLink: Sun },
         { name: "Dark", stateLink: "light", iconLink: Moon },
     ]
+
     const setTheme = () => {
-        toggleColorMode()
+        toggle()
     }
+
+    useEffect(() => {
+        setColorTheme(isDarkMode ? "dark" : "light")
+    }, [isDarkMode])
 
     return (
         <>
-            {buttonThemes.map((link, i) => {
-                if (link.stateLink === colorMode) {
-                    return false
-                }
-                const LinkIcon = link.iconLink
-                return (
-                    <NavigationLink
-                        key={`color-${i}`}
-                        button
-                        click={() => setTheme()}
-                        href="/"
-                    >
-                        <NavigationLinkLabel>Theme</NavigationLinkLabel>
-                        <LinkIcon />
-                    </NavigationLink>
-                )
-            })}
+            {buttonThemes
+                .filter(theme => theme.stateLink !== colorTheme)
+                .map((link, i) => {
+                    const LinkIcon = link.iconLink
+                    return (
+                        <NavigationLink
+                            key={`color-${i}`}
+                            button
+                            click={() => setTheme()}
+                            href="/"
+                        >
+                            <div
+                                className={css({
+                                    display: "flex",
+                                    alignItems: "center",
+                                })}
+                            >
+                                <span
+                                    className={css({ marginRight: "0.5rem" })}
+                                >
+                                    Theme
+                                </span>
+                                <LinkIcon css={{ width: "6" }} />
+                            </div>
+                        </NavigationLink>
+                    )
+                })}
         </>
     )
 }

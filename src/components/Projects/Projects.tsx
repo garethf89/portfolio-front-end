@@ -24,7 +24,7 @@ const ProjectWrapper = styled.div`
         }
     }
 
-    @media (min-width: ${BREAKPOINTS.LARGE}) {
+    @media (min-width: ${BREAKPOINTS.lg}) {
         > * {
             width: 32%;
         }
@@ -43,7 +43,7 @@ const ProjectWrapperLower = styled.div`
         }
     }
 
-    @media (min-width: ${BREAKPOINTS.LARGE}) {
+    @media (min-width: ${BREAKPOINTS.lg}) {
         > * {
             width: 24%;
             margin-bottom: 0;

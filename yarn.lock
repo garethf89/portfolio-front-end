@@ -15064,6 +15064,7 @@ __metadata:
     ts-loader: "npm:^9.3.0"
     ts-node: "npm:^10.8.1"
     typescript: "npm:5.7.2"
+    usehooks-ts: "npm:^3.1.0"
     zod: "npm:^3.21.4"
     zod-formik-adapter: "npm:^1.2.0"
   dependenciesMeta:
@@ -26368,6 +26369,17 @@ __metadata:
   version: 3.1.1
   resolution: "use@npm:3.1.1"
   checksum: 10/08a130289f5238fcbf8f59a18951286a6e660d17acccc9d58d9b69dfa0ee19aa038e8f95721b00b432c36d1629a9e32a464bf2e7e0ae6a244c42ddb30bdd8b33
+  languageName: node
+  linkType: hard
+
+"usehooks-ts@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "usehooks-ts@npm:3.1.0"
+  dependencies:
+    lodash.debounce: "npm:^4.0.8"
+  peerDependencies:
+    react: ^16.8.0  || ^17 || ^18
+  checksum: 10/6aef8affd3c053a3040b7421816dab85eb21601c5203496a705bafc32eb973fb519a2b0ddda527962e361d248f3a1c49df130620efe871c8f89e897451ed1cc7
   languageName: node
   linkType: hard
 

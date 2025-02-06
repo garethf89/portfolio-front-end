@@ -45,7 +45,7 @@ const Album = styled.div<AlbumProps>`
 const AlbumInfo = styled.div`
     flex: 1;
     flex-basis: 40%;
-    @media (min-width: ${BREAKPOINTS.SM}) {
+    @media (min-width: ${BREAKPOINTS.sm}) {
         flex-basis: 56%;
     }
 `

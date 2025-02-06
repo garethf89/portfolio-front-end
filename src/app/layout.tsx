@@ -41,13 +41,11 @@ export const metadata: Metadata = {
     },
 }
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = async ({ children }: { children: React.ReactNode }) => {
     return (
         <html lang="en">
             <head></head>
-            <body>
-                <Providers>{children}</Providers>
-            </body>
+            <Providers>{children}</Providers>
         </html>
     )
 }

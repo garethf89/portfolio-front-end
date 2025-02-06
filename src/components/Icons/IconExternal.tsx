@@ -5,7 +5,7 @@ import { nanoid } from "nanoid"
 import { css } from "@styled-system/css"
 import type { SystemStyleObject } from "@styled-system/types"
 
-type IconPropsType = IconProps & {
+export type IconPropsType = IconProps & {
     src: string
     title: string
     styles?: SystemStyleObject

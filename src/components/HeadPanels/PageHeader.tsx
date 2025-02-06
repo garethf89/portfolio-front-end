@@ -1,4 +1,3 @@
-import { Box, useStyleConfig } from "@chakra-ui/react"
 import styled from "@emotion/styled"
 import * as React from "react"
 import { useContext, useEffect } from "react"
@@ -11,11 +10,7 @@ import Button from "../Common/Button"
 import Image from "../Common/Image"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
-
-const HeaderStyles = styled(Box)`
-    overflow: hidden;
-    position: relative;
-`
+import { css } from "@styled-system/css"
 
 const StyledTitle = styled(Heading)`
     margin: 2rem 0 2.3rem 0;
@@ -83,8 +78,6 @@ const PageHeader = ({
 }: PageHeaderProps): React.ReactElement => {
     const { state, dispatch } = useContext(globals)
 
-    const styles = useStyleConfig("CustomHeader")
-
     useEffect(() => {
         if (state.logo !== "dark") {
             dispatch({ type: "LOGO", logo: "dark" })
@@ -94,7 +87,14 @@ const PageHeader = ({
     const externalLink = link ? link.replace(/http:/gi, "https:") : null
 
     return (
-        <HeaderStyles as="section" sx={styles}>
+        <section
+            className={css({
+                position: "relative",
+                overflow: "hidden",
+                bg: "sectionBackground !important",
+                color: "sectionColor !important",
+            })}
+        >
             <Lines dark id="HeaderAni" />
             {image && (
                 <PageImage>
@@ -124,7 +124,7 @@ const PageHeader = ({
                     )}
                 </InnerContainer>
             </Container>
-        </HeaderStyles>
+        </section>
     )
 }
 export default PageHeader
