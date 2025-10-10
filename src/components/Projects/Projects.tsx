@@ -4,13 +4,13 @@ import { BREAKPOINTS } from "@theme"
 import { Project as ProjectType } from "@schema"
 import Image from "../Common/Image"
 import { SROnly } from "../Common/SROnly"
-import Container from "../Global/Container/Container"
 import FadeLink from "../Link/Link"
 import Heading from "../Typography/Heading"
+import { Container } from "../Global/Container"
 
-const ProjectsContainer = styled(Container)`
-    padding-bottom: 0;
-`
+const projectsContainerStyles = {
+    paddingBottom: 0,
+}
 
 const ProjectWrapper = styled.div`
     position: relative;
@@ -121,7 +121,9 @@ const ProjectTemplate = ({
             <Heading
                 level={"h6"}
                 override="p"
-                fontSize={[24, 24, 24, lower ? 18 : 24]}
+                css={{
+                    fontSize: { base: "24px", xl: lower ? "18px" : "24px" },
+                }}
             >
                 <FadeLink href={project.slug ?? "/"}>
                     <SROnly>{project.title}</SROnly>
@@ -134,8 +136,8 @@ const ProjectTemplate = ({
 
 const Projects = ({ data }: ProjectProps): React.ReactElement<ProjectProps> => {
     return (
-        <ProjectsContainer vPadding>
-            <Heading level="h2" textAlign="center">
+        <Container css={projectsContainerStyles} vPadding>
+            <Heading level="h2" css={{ textAlign: "center" }}>
                 My Work
             </Heading>
             <ProjectWrapper>
@@ -163,7 +165,7 @@ const Projects = ({ data }: ProjectProps): React.ReactElement<ProjectProps> => {
                     )
                 })}
             </ProjectWrapperLower>
-        </ProjectsContainer>
+        </Container>
     )
 }
 

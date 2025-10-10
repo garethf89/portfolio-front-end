@@ -1,21 +1,21 @@
 import styled from "@emotion/styled"
 import * as React from "react"
 import { IconsProcessed } from "../../../@types/types"
-import { SPACE } from "../../@chakra-ui/theme"
 import { Skill as SkillType } from "@schema"
 import Skill from "../Skills/Skill"
 import Heading from "../Typography/Heading"
+import { css } from "@styled-system/css"
 
 interface PageSkillProps {
     skills: SkillType[]
     icons: IconsProcessed[]
 }
 
-const PageSkillContainer = styled.div`
-    margin-bottom: ${SPACE.common[2]};
-`
+const pageSkillContainerStyles = css({
+    marginBottom: "6",
+})
 
-const SkillContainer = styled.div`
+const SkillContainer = styled.ul`
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
@@ -23,12 +23,11 @@ const SkillContainer = styled.div`
 
 const PageSkills = ({ skills, icons }: PageSkillProps): React.ReactElement => {
     return (
-        <PageSkillContainer>
+        <div className={pageSkillContainerStyles}>
             <Heading
                 level="h3"
                 override="h2"
-                fontWeight={700}
-                marginBottom={SPACE.common[3]}
+                css={{ marginBottom: 12, fontWeight: 700 }}
             >
                 Technology Used
             </Heading>
@@ -59,7 +58,7 @@ const PageSkills = ({ skills, icons }: PageSkillProps): React.ReactElement => {
                         )
                     })}
             </SkillContainer>
-        </PageSkillContainer>
+        </div>
     )
 }
 

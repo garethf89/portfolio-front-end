@@ -1,9 +1,8 @@
 import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types"
-import styled from "@emotion/styled"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import * as React from "react"
+import { css } from "@styled-system/css"
 import { IconsProcessed } from "../../../../@types/types"
-import { SPACE } from "../../../@chakra-ui/theme"
 import Container from "../../Global/Container/Container"
 import Skill from "../../Skills/Skill"
 import Bold from "../../Typography/Bold"
@@ -12,24 +11,27 @@ import Inlinelink from "../../Typography/Inlinelink"
 import FaceImage from "../FaceImage/FaceImage"
 import { HomePageSkillsCollection, HomePageSkillsText } from "@schema"
 
-const StyledParagraph = styled(Heading)`
-    font-weight: 200;
-    margin-top: 1rem;
-`
-const Skills = styled.ul`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 0;
-    list-style-type: none;
-    margin: ${SPACE.common[4]} 0 0;
-`
+const styledParagraphStyles = {
+    fontWeight: 200,
+    marginTop: 4,
+    textAlign: "center",
+}
+const skillsStyles = css({
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    padding: 0,
+    listStyleType: "none",
+    marginBottom: "0",
+    marginX: 0,
+    marginTop: 12,
+})
 
 const Text = ({ children }: React.PropsWithChildren) => {
     return (
-        <StyledParagraph override="p" level="h3">
+        <Heading override="p" level="h3" css={styledParagraphStyles}>
             {children}
-        </StyledParagraph>
+        </Heading>
     )
 }
 
@@ -71,10 +73,10 @@ const HomeTech = ({
     icons,
 }: HomeTechProps): React.ReactElement => {
     return (
-        <Container vPadding textAlign="center">
+        <Container vPadding css={{ textAlign: "center" }}>
             <FaceImage />
             <HomeHeaderContentText text={text} />
-            <Skills>
+            <ul className={skillsStyles}>
                 {!!icons &&
                     skills.map((skill, i) => {
                         const skillIcon = icons.find(icon =>
@@ -101,7 +103,7 @@ const HomeTech = ({
                             </Skill>
                         )
                     })}
-            </Skills>
+            </ul>
         </Container>
     )
 }

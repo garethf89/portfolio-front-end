@@ -11,6 +11,7 @@ const FullWidthImageStory = ({
     type: string
     name: string
 }) => {
+    console.log("IMAGEMOCK", ImageMock)
     return (
         <ContainerBreak>
             <OutputImageComponent

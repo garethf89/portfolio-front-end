@@ -4,6 +4,7 @@ module.exports = {
         "plugin:react/recommended",
         "plugin:@next/next/recommended",
         "prettier",
+        "plugin:storybook/recommended"
     ],
     plugins: ["@typescript-eslint", "prefer-arrow", "prettier"],
     env: {

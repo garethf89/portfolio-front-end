@@ -33,11 +33,11 @@ const StatList = styled.li`
     }
 `
 
-const StatNumber = styled(Heading)`
-    margin: 0;
-    display: inline-block;
-    vertical-align: middle;
-`
+const statNumberStyles = {
+    marginBottom: 0,
+    display: "inline-block",
+    verticalAlign: "middle",
+}
 
 const StatDesc = styled.span`
     vertical-align: middle;
@@ -62,9 +62,9 @@ const Stats = ({ stats }: StatProps): React.ReactElement => {
         <StatsContainer>
             {stats.map((stat: Stat, i) => (
                 <StatList key={i}>
-                    <StatNumber className="" level="h1" override="p">
+                    <Heading css={statNumberStyles} level="h1" override="p">
                         {stat.amount}+
-                    </StatNumber>
+                    </Heading>
                     <StatDesc>{stat.description}</StatDesc>
                 </StatList>
             ))}

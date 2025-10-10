@@ -1,15 +1,8 @@
 import Circle from "../../Common/Circle"
 import * as React from "react"
-import styled from "@emotion/styled"
+import { css } from "@styled-system/css"
 import Image from "next/image"
 import { useImageSupport } from "../../../contexts"
-
-const FaceCircle = styled(Circle)`
-    position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translate(-50%, -50%);
-`
 
 const FaceImage = (): React.ReactElement => {
     const { avif, webP } = useImageSupport()
@@ -26,14 +19,21 @@ const FaceImage = (): React.ReactElement => {
     }
 
     return (
-        <FaceCircle>
+        <Circle
+            className={css({
+                position: "absolute",
+                left: "50%",
+                top: "0",
+                transform: "translate(-50%, -50%)",
+            })}
+        >
             <Image
                 alt="Gareth Ferguson face"
                 src={src}
                 width={130}
                 height={130}
             />
-        </FaceCircle>
+        </Circle>
     )
 }
 

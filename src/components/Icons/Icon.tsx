@@ -8,6 +8,8 @@ export type IconProps = InlineSVGProps
 export type IconPropsType = {
     "data-icon"?: boolean
     css?: SystemStyleObject
+    width?: string
+    height?: string
 }
 
 type IconPropsTypeComponent = React.PropsWithChildren<IconPropsType> &
@@ -26,8 +28,6 @@ export default ({
     const defaultStyles = {
         display: "inline-block",
         verticalAlign: "middle",
-        height: 8,
-        width: 8,
     }
 
     return (

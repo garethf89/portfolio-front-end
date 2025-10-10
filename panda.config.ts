@@ -4,6 +4,7 @@ import { theme } from "@theme"
 const globalCss = defineGlobalStyles({
     body: {
         base: {
+            transition: "background 0.5s ease-in-out",
             bg: "white !important",
             color: "{text} !important",
         },

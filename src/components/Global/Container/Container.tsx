@@ -1,7 +1,6 @@
-import { BoxProps, FlexProps } from "@chakra-ui/react"
 import * as React from "react"
-import Box from "./Box"
-import Flex from "./Flex"
+import Box, { BoxProps } from "./Box"
+import Flex, { FlexProps } from "./Flex"
 
 type ContainerProps = {
     children: React.ReactNode

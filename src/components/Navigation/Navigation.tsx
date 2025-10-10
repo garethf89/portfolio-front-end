@@ -9,6 +9,7 @@ import debounce from "../../helpers/debounce"
 import { isWindow } from "../../helpers/isWindow"
 import styled from "@emotion/styled"
 import config from "../../config/site"
+import { css } from "@styled-system/css"
 
 const NavigationStyles = styled.nav``
 
@@ -19,32 +20,28 @@ const NavMobile = styled.div`
     }
 `
 
-type NavULProps = { active: boolean; animate: boolean }
-
-const NavList = styled.ul<NavULProps>`
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    list-style-type: none;
-    height: 100%;
-    display: ${props => (props.active ? "flex" : "none")};
-    background: ${props => props.theme.colors.sectionBackground};
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    flex-direction: column;
-    justify-content: center;
-    animation: ${props => (props.animate ? "fadeOut" : "fadeIn")} 0.5s;
-    @media (min-width: ${BREAKPOINTS.md}) {
-        animation: none;
-        position: static;
-        display: block;
-        flex-direction: row;
-        justify-content: right;
-    }
-`
+const navListStyles = css.raw({
+    margin: 0,
+    padding: 0,
+    textAlign: "center",
+    listStyleType: "none",
+    height: "100%",
+    position: "fixed",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    top: 0,
+    flexDirection: "column",
+    justifyContent: "center",
+    background: "sectionBackground",
+    md: {
+        animation: "none",
+        position: "static",
+        display: "block",
+        flexDirection: "row",
+        justifyContent: "right",
+    },
+})
 
 const NavLi = styled.li`
     display: inline-block;
@@ -103,7 +100,15 @@ const Navigation = (): React.ReactElement => {
 
     return (
         <NavigationStyles>
-            <NavList animate={animate} active={active}>
+            <ul
+                className={css(
+                    navListStyles,
+                    css.raw({
+                        display: active ? "flex" : "none",
+                        animation: animate ? "fadeOut" : "fadeIn",
+                    })
+                )}
+            >
                 {menuLinks.map((link, i) => {
                     const internal = /^\/(?!\/)/.test(link.slug)
                     return (
@@ -120,7 +125,7 @@ const Navigation = (): React.ReactElement => {
                 <NavLi key={"color-nav"}>
                     <ColorPicker />
                 </NavLi>
-            </NavList>
+            </ul>
             {mobile && (
                 <NavMobile>
                     <MobileMenu

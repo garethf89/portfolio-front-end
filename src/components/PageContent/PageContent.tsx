@@ -7,10 +7,9 @@ import {
 import styled from "@emotion/styled"
 import * as React from "react"
 import { useEffect, useId, useState } from "react"
-
+import { css } from "@styled-system/css"
 import { IconsProcessed } from "../../../@types/types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-import { SPACE } from "../../@chakra-ui/theme"
 import Image from "../Common/Image"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
@@ -24,7 +23,6 @@ import type {
     PageContentImage,
     PageContentText,
 } from "@schema"
-import { BREAKPOINTS } from "@theme"
 
 const CUSTOMBLOCKS = {
     ...BLOCKS,
@@ -32,31 +30,30 @@ const CUSTOMBLOCKS = {
     INTRO: "intro" as TopLevelBlockEnum,
 }
 
-const ImageStyled = styled(Image)`
-    max-width: 100%;
-    margin-bottom: ${SPACE.common[2]};
-    margin-top: ${SPACE.common[3]};
-`
+const imageStyles = css({
+    maxWidth: "100%",
+    marginBottom: "8",
+    marginTop: "12",
+})
 
-export const StyledParagraph = styled.p`
-    font-size: 1.13rem;
-    line-height: 1.6;
-    font-weight: 200;
-    margin-bottom: ${SPACE.common[2]};
-`
-export const StyledParagraphIntro = styled.p`
-    font-size: 1.58rem;
-    line-height: 1.6;
-    font-weight: 700;
-    margin: ${SPACE.common[2]} 0;
-`
+const styledParagraphStyles = css({
+    lineHeight: 1.6,
+    fontWeight: 200,
+    marginBottom: 8,
+    fontSize: "1.13rem",
+})
 
-export const ContentContainer = styled(Container)`
-    max-width: ${props => props.theme.sizes.container.content};
-    @media (min-width: ${BREAKPOINTS.md}) {
-        max-width: calc(${props => props.theme.sizes.container.content} + 6rem);
-    }
-`
+const styledParagraphIntroStyles = css({
+    lineHeight: 1.6,
+    fontWeight: 700,
+    marginY: "8",
+    fontSize: "1.58rem",
+})
+
+const contentContainerStyles = {
+    maxWidth: "var(--sizes-container-content)",
+    md: { maxWidth: "calc(var(--sizes-container-content) + 6rem)" },
+}
 
 const BoldMark = styled.span`
     font-weight: 700;
@@ -78,11 +75,11 @@ const Italic = ({ children }: React.PropsWithChildren) => {
 const Underline = ({ children }: React.PropsWithChildren) => {
     return <UnderlineMark>{children}</UnderlineMark>
 }
-const Text = ({ children }: React.PropsWithChildren) => {
-    return <StyledParagraph> {children}</StyledParagraph>
+export const Text = ({ children }: React.PropsWithChildren) => {
+    return <p className={styledParagraphStyles}> {children}</p>
 }
-const IntroText = ({ children }: React.PropsWithChildren) => {
-    return <StyledParagraphIntro>{children}</StyledParagraphIntro>
+export const IntroText = ({ children }: React.PropsWithChildren) => {
+    return <p className={styledParagraphIntroStyles}>{children}</p>
 }
 
 const options = {
@@ -175,7 +172,8 @@ export const OutputImageComponent = ({
     }
 
     return (
-        <ImageStyled
+        <Image
+            className={imageStyles}
             key={`${type}-${name}`}
             alt={imageContent.title ?? ""}
             image={imageContent}
@@ -208,7 +206,7 @@ const PageContent = ({
     }
 
     return (
-        <ContentContainer>
+        <Container css={contentContainerStyles}>
             {formatContent.map((c: TextTypes, i) => {
                 const cType = c["__typename"]
                 if (cType === "PageContentText") {
@@ -250,7 +248,7 @@ const PageContent = ({
                 return <></>
             })}
             <PageSkills skills={skills} icons={icons} />
-        </ContentContainer>
+        </Container>
     )
 }
 

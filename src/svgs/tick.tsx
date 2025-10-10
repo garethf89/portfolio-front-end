@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { Icon, IconPropsType } from "@components"
+import { Icon, IconPropsType } from "../components/Icons"
 
 const Tick = ({ ...props }: IconPropsType): React.ReactElement => {
     return (

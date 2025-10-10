@@ -49,7 +49,7 @@ const ColorPicker = (): React.ReactElement => {
                                 >
                                     Theme
                                 </span>
-                                <LinkIcon css={{ width: "6" }} />
+                                <LinkIcon css={{ width: "8" }} />
                             </div>
                         </NavigationLink>
                     )

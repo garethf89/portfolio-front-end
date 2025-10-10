@@ -24,12 +24,13 @@ const SkillContainer = styled.li`
     }
 `
 
-const SkillText = styled(Heading)`
-    font-weight: 200;
-    font-size: 18px;
-    flex: 0;
-    margin: 1rem 0;
-`
+const skillTextStyles = {
+    fontWeight: 200,
+    fontSize: "18px",
+    flex: 0,
+    marginTop: 4,
+    marginBottom: 0,
+}
 
 type SkillProps = Omit<IconProps, "height" | "width" | "src"> & {
     children: React.ReactNode
@@ -54,11 +55,11 @@ const Skill = ({
             aria-labelledby={id}
             title={title}
             src={icon}
-            styles={{ marginX: "auto", width, height }}
+            css={{ marginX: "auto", width, height }}
         />
-        <SkillText id={id} level="h4" override="p">
+        <Heading id={id} level="h4" override="p" css={skillTextStyles}>
             {children}
-        </SkillText>
+        </Heading>
     </SkillContainer>
 )
 

@@ -8,15 +8,11 @@ import { TransitionRouter } from "next-transition-router"
 import * as Sentry from "@sentry/react"
 import { BrowserTracing } from "@sentry/tracing"
 
-import { ChakraProvider } from "@chakra-ui/react"
 import { QueryClient, QueryClientProvider } from "react-query"
 
 import { GlobalsStateProvider } from "../state/state"
-import theme from "../@chakra-ui/theme"
 import { ApolloProvider } from "@apollo/client"
 import { client } from "../queries/apolloClient"
-import globalStyles from "../styles/globals"
-import { Global } from "@emotion/react"
 import styled from "@emotion/styled"
 import { Footer } from "@components"
 import { ImageSupportProvider } from "../contexts"
@@ -28,7 +24,6 @@ const queryClient = new QueryClient()
 const Root = styled.main`
     max-width: 100%;
     overflow-x: hidden;
-    font-family: ${props => props.theme.fonts.body};
 `
 
 const FooterExtender = styled.div`
@@ -69,44 +64,41 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
             <Sentry.ErrorBoundary fallback={<p>An error has occurred</p>}>
                 <QueryClientProvider client={queryClient}>
                     <ApolloProvider client={client}>
-                        <ChakraProvider theme={theme} resetCSS={false}>
-                            <GlobalsStateProvider>
-                                <ImageSupportProvider>
-                                    <Global styles={globalStyles} />
-                                    <TransitionRouter
-                                        leave={next => {
-                                            const tween = gsap.fromTo(
-                                                "main",
-                                                { autoAlpha: 1 },
-                                                {
-                                                    autoAlpha: 0,
-                                                    onComplete: next,
-                                                    duration: 0.2,
-                                                }
-                                            )
-                                            return () => tween.kill()
-                                        }}
-                                        enter={next => {
-                                            const tween = gsap.fromTo(
-                                                "main",
-                                                { autoAlpha: 0 },
-                                                {
-                                                    autoAlpha: 1,
-                                                    onComplete: next,
-                                                    duration: 0.2,
-                                                }
-                                            )
-                                            return () => tween.kill()
-                                        }}
-                                    >
-                                        <FooterExtender>
-                                            <Root>{children}</Root>
-                                            <Footer />
-                                        </FooterExtender>
-                                    </TransitionRouter>
-                                </ImageSupportProvider>
-                            </GlobalsStateProvider>
-                        </ChakraProvider>
+                        <GlobalsStateProvider>
+                            <ImageSupportProvider>
+                                <TransitionRouter
+                                    leave={next => {
+                                        const tween = gsap.fromTo(
+                                            "main",
+                                            { autoAlpha: 1 },
+                                            {
+                                                autoAlpha: 0,
+                                                onComplete: next,
+                                                duration: 0.2,
+                                            }
+                                        )
+                                        return () => tween.kill()
+                                    }}
+                                    enter={next => {
+                                        const tween = gsap.fromTo(
+                                            "main",
+                                            { autoAlpha: 0 },
+                                            {
+                                                autoAlpha: 1,
+                                                onComplete: next,
+                                                duration: 0.2,
+                                            }
+                                        )
+                                        return () => tween.kill()
+                                    }}
+                                >
+                                    <FooterExtender>
+                                        <Root>{children}</Root>
+                                        <Footer />
+                                    </FooterExtender>
+                                </TransitionRouter>
+                            </ImageSupportProvider>
+                        </GlobalsStateProvider>
                     </ApolloProvider>
                 </QueryClientProvider>
             </Sentry.ErrorBoundary>

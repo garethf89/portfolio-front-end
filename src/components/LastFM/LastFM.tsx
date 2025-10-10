@@ -91,11 +91,13 @@ const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
             <Lines id="LFMAni" />
             <Container vPadding>
                 <Heading
-                    marginTop={0}
-                    marginBottom="3rem"
+                    css={{
+                        marginTop: 0,
+                        display: "flex",
+                        marginBottom: "12",
+                    }}
                     level="h5"
                     override="h3"
-                    display="flex"
                 >
                     <LastFMLogo
                         css={{
@@ -129,14 +131,22 @@ const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
                                 </AlbumArtContainer>
                                 <AlbumInfo>
                                     <Heading
-                                        marginTop={0}
-                                        marginBottom={"1rem"}
+                                        css={{
+                                            marginTop: 0,
+                                            marginBottom: 4,
+                                        }}
                                         level="h6"
                                         override="p"
                                     >
                                         {album.name}
                                     </Heading>
-                                    <Heading level="h6" override="p" margin={0}>
+                                    <Heading
+                                        level="h6"
+                                        override="p"
+                                        css={{
+                                            margin: 0,
+                                        }}
+                                    >
                                         {album.artist.name}
                                     </Heading>
                                 </AlbumInfo>

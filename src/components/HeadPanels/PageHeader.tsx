@@ -12,13 +12,17 @@ import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 import { css } from "@styled-system/css"
 
-const StyledTitle = styled(Heading)`
-    margin: 2rem 0 2.3rem 0;
-    font-weight: 700;
-    @media (min-width: ${BREAKPOINTS.md}) {
-        margin: 3rem 1rem 6.3rem 0;
-    }
-`
+const styledTitleStyles = css.raw({
+    marginX: 0,
+    marginY: 4,
+    fontWeight: 700,
+    color: "sectionColor",
+    md: {
+        marginBottom: 16,
+        marginTop: 8,
+        marginRight: 4,
+    },
+})
 
 const InnerContainer = styled.div`
     padding: 2rem 0;
@@ -91,8 +95,8 @@ const PageHeader = ({
             className={css({
                 position: "relative",
                 overflow: "hidden",
-                bg: "sectionBackground !important",
-                color: "sectionColor !important",
+                bg: "sectionBackgroundPage",
+                color: "sectionColor",
             })}
         >
             <Lines dark id="HeaderAni" />
@@ -103,13 +107,14 @@ const PageHeader = ({
                         sizes="(min-width: 50em) 50vw, 100vw"
                         fill
                         image={image}
+                        style={{ objectFit: "cover", objectPosition: "center" }}
                     />
                 </PageImage>
             )}
             <Container>
                 <InnerContainer>
                     <BackLink />
-                    <StyledTitle level="h1" text={text} />
+                    <Heading level="h1" text={text} css={styledTitleStyles} />
                     {!!externalLink && (
                         <ButtonWrapper>
                             <Button

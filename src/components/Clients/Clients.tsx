@@ -14,9 +14,9 @@ import { css } from "@styled-system/css"
 import { useIsDark } from "../../hooks"
 import type { SystemStyleObject } from "@styled-system/types"
 
-const ClientsContainer = styled(Container)`
-    margin-top: 2rem;
-`
+const clientsContainerStyles = {
+    paddingTop: "24",
+}
 
 const LogoWrapper = styled.div`
     position: relative;
@@ -77,12 +77,15 @@ const Clients = ({
     icons,
 }: ClientProps): React.ReactElement<ClientProps> => {
     return (
-        <ClientsContainer vPadding>
+        <Container css={clientsContainerStyles} vPadding>
             <Heading
                 level="h3"
                 override="h2"
-                textAlign="center"
-                marginBottom={`var(--spacing-10)`}
+                css={{
+                    textAlign: "center",
+                    marginBottom: 12,
+                    paddingBottom: 4,
+                }}
             >
                 Clients I have worked with
             </Heading>
@@ -113,7 +116,7 @@ const Clients = ({
                                     src={iconSvg.url}
                                     width={logoFields.width ?? ""}
                                     height={logoFields.height ?? ""}
-                                    styles={LogoStyles({ dark: isDark })}
+                                    css={LogoStyles({ dark: isDark })}
                                 />
                             </div>
                         )
@@ -140,7 +143,7 @@ const Clients = ({
                     )
                 })}
             </LogoWrapper>
-        </ClientsContainer>
+        </Container>
     )
 }
 

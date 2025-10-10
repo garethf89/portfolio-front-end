@@ -2,19 +2,18 @@ import * as React from "react"
 import { IconProps } from "./Icon"
 import SVG from "react-inlinesvg"
 import { nanoid } from "nanoid"
-import { css } from "@styled-system/css"
-import type { SystemStyleObject } from "@styled-system/types"
+import { css, Styles } from "@styled-system/css"
 
 export type IconPropsType = IconProps & {
     src: string
     title: string
-    styles?: SystemStyleObject
+    css?: Styles
 }
 
 export const IconExternal = ({
     src,
     title,
-    styles = {},
+    css: cssProp = {},
     ...props
 }: IconPropsType): React.ReactElement => {
     return (
@@ -32,7 +31,7 @@ export const IconExternal = ({
                     display: "inline-block",
                     verticalAlign: "middle",
                 },
-                styles
+                cssProp
             )}
             {...props}
         >

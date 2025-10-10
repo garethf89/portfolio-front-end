@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { SPACE } from "../../@chakra-ui/theme"
+import { css } from "@styled-system/css"
 import { useContext, useEffect } from "react"
 import { BREAKPOINTS } from "@theme"
 
@@ -14,31 +14,30 @@ import { globals } from "../../state/state"
 import styled from "@emotion/styled"
 import { HomePageIntroText, HomePageStatsCollection } from "@schema"
 
-const HomeHeaderStyles = styled.section`
-    padding: 9rem 0 3rem;
-    position: relative;
-    background: ${props => props.theme.colors.sectionBackground};
-    @media (min-width: ${BREAKPOINTS.md}) {
-        padding: 12rem 0 8rem;
-    }
-`
-const HomeContainer = styled(Container)`
-    position: relative;
-    z-index: 1;
-    color: ${props => props.theme.colors.sectionText};
-    @media (min-width: ${BREAKPOINTS.md}) {
-        display: flex;
-        justify-content: space-between;
-        padding: 0 calc(0.65rem + ${SPACE.common[0]});
-    }
-`
+const homeHeaderStyles = css({
+    padding: "9rem 0 3rem",
+    position: "relative",
+    background: "sectionBackground",
+    md: {
+        padding: "12rem 0 8rem",
+    },
+})
 
-const HomeSection = styled.div`
-    @media (min-width: ${BREAKPOINTS.md}) {
-        width: 60%;
-        margin-right: 5.5rem;
-    }
-`
+const homeContainerStyles = {
+    position: "relative",
+    zIndex: 1,
+    color: "sectionText",
+    md: {
+        display: "flex",
+        justifyContent: "space-between",
+        paddingX: "0.65rem",
+    },
+}
+
+const homeSectionStyles = css({
+    maxWidth: "container.content",
+    md: { width: "60%", marginRight: "7" },
+})
 
 const HomeSectionStats = styled.div`
     margin-top: 3rem;
@@ -63,10 +62,10 @@ const HomeHeader = ({ text, stats }: HomeHeaderProps): React.ReactElement => {
     }, [])
 
     return (
-        <HomeHeaderStyles>
+        <section className={homeHeaderStyles}>
             <Lines id="HeaderAni" />
-            <HomeContainer>
-                <HomeSection>
+            <Container css={homeContainerStyles}>
+                <div className={homeSectionStyles}>
                     <HomeHeaderContent text={text} />
                     <Button
                         as="a"
@@ -79,15 +78,15 @@ const HomeHeader = ({ text, stats }: HomeHeaderProps): React.ReactElement => {
                     >
                         Download CV
                     </Button>
-                </HomeSection>
+                </div>
                 <HomeSectionStats>
                     <Stats stats={stats} />
                 </HomeSectionStats>
-            </HomeContainer>
-            <HomeContainer as="div">
+            </Container>
+            <Container css={homeContainerStyles}>
                 <Counter />
-            </HomeContainer>
-        </HomeHeaderStyles>
+            </Container>
+        </section>
     )
 }
 export default HomeHeader
