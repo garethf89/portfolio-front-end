@@ -166,7 +166,6 @@ export const OutputImageComponent = ({
     type,
 }: OutputImageComponentProps): React.ReactElement => {
     const { image: imageContent } = image
-
     if (!imageContent) {
         return <></>
     }

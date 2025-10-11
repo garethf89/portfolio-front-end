@@ -7,14 +7,13 @@ type BoldProps = {
 
 const Bold = ({ children }: BoldProps): React.ReactElement => (
     <>
-        <strong
+        <span
             className={css({
-                fontWeight: "bold",
                 color: "sectionText",
             })}
         >
             {children}
-        </strong>
+        </span>
         <br />
     </>
 )

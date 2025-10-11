@@ -23,9 +23,7 @@ const config: StorybookConfig = {
         name: "@storybook/nextjs",
         options: {},
     },
-    docs: {
-        autodocs: "tag",
-    },
+    docs: {},
     webpackFinal: async config => {
         if (!config?.resolve) {
             return config
