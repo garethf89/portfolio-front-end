@@ -9,7 +9,6 @@ type InputStyledProps = React.PropsWithChildren<{
     error?: string
 }>
 
-// REMOVE IMPORTANT AFTER CHAKRA
 export const InputStyled = ({
     children,
     error,
@@ -24,7 +23,7 @@ export const InputStyled = ({
                 background: "transparent",
                 border: "none",
                 borderBottom: "2px solid",
-                borderBottomColor: error ? "error" + "!important" : "text",
+                borderBottomColor: error ? "error" : "text",
                 outline: "none",
                 paddingBottom: "3",
                 width: "100%",

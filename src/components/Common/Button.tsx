@@ -130,9 +130,10 @@ const button = cva({
             primary: {
                 color: "buttonColorPrimary",
                 bg: "buttonBackgroundPrimary",
-                borderColor: "buttonBorderPrimary" + "!important",
+                borderColor: "buttonBorderPrimary",
                 _hover: {
                     bg: "rgba(0, 0, 0, 0.1)",
+                    color: "buttonColorPrimaryHover",
                 },
                 "& svg": {
                     "& polyline": {
@@ -143,7 +144,7 @@ const button = cva({
             secondary: {
                 color: "buttonColorSecondary",
                 bg: "buttonBackgroundSecondary",
-                borderColor: "buttonBorderSecondary" + "!important",
+                borderColor: "buttonBorderSecondary",
                 "_:hover": {
                     bg: "rgba(0, 0, 0, 0.6)",
                 },

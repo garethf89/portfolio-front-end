@@ -59,7 +59,7 @@ export const theme = {
         },
         colors: {
             backgroundDark: { value: palette.darkColor2 },
-            buttonBorderPrimary: { value: palette.darkColor1 },
+            black: { value: palette.black },
             buttonColorPrimary: { value: palette.black },
             buttonBackgroundPrimary: { value: palette.lightGrey1 },
             buttonBorderSecondary: { value: palette.white },
@@ -101,6 +101,18 @@ export const theme = {
                 },
             },
             sectionColor: {
+                value: {
+                    _dark: "{colors.white}",
+                    base: "{colors.darkText}",
+                },
+            },
+            buttonBorderPrimary: {
+                value: {
+                    _dark: "{colors.black}",
+                    base: "{colors.darkText}",
+                },
+            },
+            buttonColorPrimaryHover: {
                 value: {
                     _dark: "{colors.white}",
                     base: "{colors.darkText}",
