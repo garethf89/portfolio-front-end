@@ -21,6 +21,7 @@ import type { HomePage, HomePageCollection, HomeQuery } from "@schema"
 import { AlbumType } from "@components"
 import { notFound } from "next/navigation"
 import type { IconsProcessed } from "@types"
+import { Metadata } from "next"
 
 type HomePageProps = {
     title: string
@@ -107,6 +108,13 @@ const getHome = async (): Promise<HomePageProps> => {
         icons: icons,
         page: homePage,
         albums: result.albums,
+    }
+}
+
+export const generateMetadata = async (): Promise<Metadata> => {
+    return {
+        title: config.title,
+        description: config.description,
     }
 }
 

@@ -11,6 +11,7 @@ import { addPlaceholderSingle } from "../../utils"
 import { IconsProcessed } from "@types"
 import { PageHeader, PageContent } from "@components"
 import { notFound } from "next/navigation"
+import { Metadata } from "next"
 
 export const generateStaticParams = async () => {
     const { data } = await client.query<
@@ -97,6 +98,16 @@ const getProject = async ({
         title: project.title!,
         icons: icons,
         page: project,
+    }
+}
+
+export const generateMetadata = async ({ params }): Promise<Metadata> => {
+    const { id } = await params
+    const { page } = await getProject({ id })
+
+    return {
+        title: page.title!,
+        description: page.headline || `Project: ${page.title}`,
     }
 }
 
