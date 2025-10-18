@@ -106,6 +106,16 @@ const Clients = ({
                         )
 
                         if (!iconSvg) {
+                            console.error(
+                                `Icon not found for URL: ${logoFields.url}`
+                            )
+                            return <></>
+                        }
+
+                        if (!iconSvg.icon || iconSvg.icon.trim() === "") {
+                            console.error(
+                                `Icon content is empty for URL: ${logoFields.url}`
+                            )
                             return <></>
                         }
 
