@@ -4,8 +4,8 @@ module.exports = {
     },
     reactStrictMode: false,
     images: {
-        disableStaticImages: true,
-        formats: ["image/webp"],
+        loader: "custom",
+        loaderFile: "./imageLoader.ts",
         remotePatterns: [
             {
                 protocol: "https",
@@ -13,6 +13,5 @@ module.exports = {
                 pathname: "/**",
             },
         ],
-        unoptimized: true,
     },
 }
