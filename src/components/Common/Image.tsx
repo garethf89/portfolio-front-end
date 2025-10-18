@@ -42,7 +42,6 @@ const Image = ({
             ? ("blur" as PlaceholderValue)
             : ("empty" as PlaceholderValue),
         blurDataURL: image.blurURL,
-        crossOrigin: "anonymous" as const,
         style: {
             transition: "0.5s",
             height: fill ? undefined : "auto",

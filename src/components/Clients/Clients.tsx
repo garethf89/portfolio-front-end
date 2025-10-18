@@ -113,7 +113,7 @@ const Clients = ({
                             <div key={`client-${nanoid()}`}>
                                 <IconExternal
                                     title={logo.name ?? ""}
-                                    src={iconSvg.url}
+                                    src={iconSvg.icon}
                                     width={logoFields.width ?? ""}
                                     height={logoFields.height ?? ""}
                                     css={LogoStyles({ dark: isDark })}
