@@ -4,6 +4,7 @@ module.exports = {
     },
     reactStrictMode: false,
     images: {
+        unoptimized: true,
         remotePatterns: [
             {
                 protocol: "https",
