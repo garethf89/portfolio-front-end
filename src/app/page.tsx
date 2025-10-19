@@ -92,8 +92,8 @@ const getHome = async (): Promise<HomePageProps> => {
                 }
                 const iconText = await resp.text()
                 return { url: item.url, icon: iconText }
-            } catch (error) {
-                console.error(`Error fetching icon: ${item.url}`, error)
+            } catch (e) {
+                console.error(`Error fetching icon: ${item.url}`, e)
                 return { url: item.url, icon: "" }
             }
         })
