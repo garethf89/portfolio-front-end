@@ -52,7 +52,7 @@ export const PROJECT_QUERY = gql`
                                 title
                                 blurURL: url(
                                     transform: {
-                                        resizeStrategy: FIT
+                                        resizeStrategy: PAD
                                         width: 1
                                         format: JPG
                                         quality: 1
@@ -60,14 +60,14 @@ export const PROJECT_QUERY = gql`
                                 )
                                 url(
                                     transform: {
-                                        resizeStrategy: FIT
+                                        resizeStrategy: PAD
                                         width: 2200
                                         quality: 90
                                     }
                                 )
                                 avifUrl: url(
                                     transform: {
-                                        resizeStrategy: FIT
+                                        resizeStrategy: PAD
                                         width: 2200
                                         format: AVIF
                                         quality: 90
@@ -75,7 +75,7 @@ export const PROJECT_QUERY = gql`
                                 )
                                 webPUrl: url(
                                     transform: {
-                                        resizeStrategy: FIT
+                                        resizeStrategy: PAD
                                         width: 2200
                                         format: WEBP
                                         quality: 90
@@ -93,7 +93,7 @@ export const PROJECT_QUERY = gql`
                                 title
                                 blurURL: url(
                                     transform: {
-                                        resizeStrategy: FIT
+                                        resizeStrategy: PAD
                                         width: 1
                                         format: JPG
                                         quality: 1
@@ -101,14 +101,14 @@ export const PROJECT_QUERY = gql`
                                 )
                                 url(
                                     transform: {
-                                        resizeStrategy: FIT
+                                        resizeStrategy: PAD
                                         width: 2200
                                         quality: 90
                                     }
                                 )
                                 avifUrl: url(
                                     transform: {
-                                        resizeStrategy: FIT
+                                        resizeStrategy: PAD
                                         width: 2200
                                         format: AVIF
                                         quality: 90
@@ -116,7 +116,7 @@ export const PROJECT_QUERY = gql`
                                 )
                                 webPUrl: url(
                                     transform: {
-                                        resizeStrategy: FIT
+                                        resizeStrategy: PAD
                                         width: 2200
                                         format: WEBP
                                         quality: 90
@@ -135,7 +135,7 @@ export const PROJECT_QUERY = gql`
                     title
                     blurURL: url(
                         transform: {
-                            resizeStrategy: FIT
+                            resizeStrategy: PAD
                             width: 1
                             format: JPG
                             quality: 1
@@ -143,14 +143,14 @@ export const PROJECT_QUERY = gql`
                     )
                     url(
                         transform: {
-                            resizeStrategy: FIT
+                            resizeStrategy: PAD
                             width: 2200
                             quality: 90
                         }
                     )
                     avifUrl: url(
                         transform: {
-                            resizeStrategy: FIT
+                            resizeStrategy: PAD
                             width: 2200
                             format: AVIF
                             quality: 90
@@ -158,7 +158,7 @@ export const PROJECT_QUERY = gql`
                     )
                     webPUrl: url(
                         transform: {
-                            resizeStrategy: FIT
+                            resizeStrategy: PAD
                             width: 2200
                             format: WEBP
                             quality: 90
@@ -185,7 +185,7 @@ export const MULTIPLE_PROJECTS_QUERY = gql`
                     title
                     blurURL: url(
                         transform: {
-                            resizeStrategy: FIT
+                            resizeStrategy: PAD
                             width: 1
                             format: JPG
                             quality: 1
@@ -193,14 +193,14 @@ export const MULTIPLE_PROJECTS_QUERY = gql`
                     )
                     url(
                         transform: {
-                            resizeStrategy: FIT
+                            resizeStrategy: PAD
                             width: 2200
                             quality: 90
                         }
                     )
                     avifUrl: url(
                         transform: {
-                            resizeStrategy: FIT
+                            resizeStrategy: PAD
                             width: 2200
                             format: AVIF
                             quality: 90
@@ -208,7 +208,7 @@ export const MULTIPLE_PROJECTS_QUERY = gql`
                     )
                     webPUrl: url(
                         transform: {
-                            resizeStrategy: FIT
+                            resizeStrategy: PAD
                             width: 2200
                             format: WEBP
                             quality: 90

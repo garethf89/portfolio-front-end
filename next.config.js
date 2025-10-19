@@ -4,8 +4,6 @@ module.exports = {
     },
     reactStrictMode: false,
     images: {
-        loader: "custom",
-        loaderFile: "./imageLoader.ts",
         remotePatterns: [
             {
                 protocol: "https",

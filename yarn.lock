@@ -2281,7 +2281,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@contentful/content-source-maps@npm:^0.11.0, @contentful/content-source-maps@npm:^0.11.33, @contentful/content-source-maps@npm:^0.11.6":
+"@contentful/content-source-maps@npm:^0.11.0, @contentful/content-source-maps@npm:^0.11.33":
   version: 0.11.37
   resolution: "@contentful/content-source-maps@npm:0.11.37"
   dependencies:
@@ -10399,7 +10399,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"contentful-import@npm:^9.4.72":
+"contentful-import@npm:^9.4.122":
   version: 9.4.122
   resolution: "contentful-import@npm:9.4.122"
   dependencies:
@@ -10424,7 +10424,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"contentful-management@npm:^11.31.6, contentful-management@npm:^11.38.0, contentful-management@npm:^11.48.1, contentful-management@npm:^11.60.4":
+"contentful-management@npm:^11.31.6, contentful-management@npm:^11.48.1, contentful-management@npm:^11.60.4":
   version: 11.60.4
   resolution: "contentful-management@npm:11.60.4"
   dependencies:
@@ -10476,18 +10476,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"contentful@npm:11.2.2":
-  version: 11.2.2
-  resolution: "contentful@npm:11.2.2"
+"contentful@npm:11.8.6, contentful@npm:^11.5.10":
+  version: 11.8.6
+  resolution: "contentful@npm:11.8.6"
   dependencies:
-    "@contentful/content-source-maps": "npm:^0.11.6"
+    "@contentful/content-source-maps": "npm:^0.11.33"
     "@contentful/rich-text-types": "npm:^16.6.1"
-    axios: "npm:^1.7.4"
-    contentful-resolve-response: "npm:^1.9.0"
-    contentful-sdk-core: "npm:^8.3.1"
+    axios: "npm:^1.12.2"
+    contentful-resolve-response: "npm:^1.9.4"
+    contentful-sdk-core: "npm:^9.0.1"
     json-stringify-safe: "npm:^5.0.1"
     type-fest: "npm:^4.0.0"
-  checksum: 10/e640d27b034cf9eab5dbede5a5e75c6dffa39e37294fc51495de4f602c3356120e2f4b23b8f6281d53990aa8fdc2dc031822d9d78ebad188a7cbd129fe8b6e2e
+  checksum: 10/821dc997a4feb080fa3b00a7fc13e8c379dd058d400d089a678d209a08b0cb5a995f5f76b54bc74230570563c08beb79c80d3faafc8d2f12a3533b229c14f1ba
   languageName: node
   linkType: hard
 
@@ -10503,21 +10503,6 @@ __metadata:
     json-stringify-safe: "npm:^5.0.1"
     type-fest: "npm:^4.0.0"
   checksum: 10/eb913a79e38d87bc7fb3a79952e4d7c5a1de5cccfbe0a012e8131c9c1e5a0a525cfcb7eaea971b02fb9e57b9e49c71ce96dd7096c3f65483992017ef70de80e5
-  languageName: node
-  linkType: hard
-
-"contentful@npm:^11.5.10":
-  version: 11.8.6
-  resolution: "contentful@npm:11.8.6"
-  dependencies:
-    "@contentful/content-source-maps": "npm:^0.11.33"
-    "@contentful/rich-text-types": "npm:^16.6.1"
-    axios: "npm:^1.12.2"
-    contentful-resolve-response: "npm:^1.9.4"
-    contentful-sdk-core: "npm:^9.0.1"
-    json-stringify-safe: "npm:^5.0.1"
-    type-fest: "npm:^4.0.0"
-  checksum: 10/821dc997a4feb080fa3b00a7fc13e8c379dd058d400d089a678d209a08b0cb5a995f5f76b54bc74230570563c08beb79c80d3faafc8d2f12a3533b229c14f1ba
   languageName: node
   linkType: hard
 
@@ -13274,9 +13259,9 @@ __metadata:
     babel-preset-react-app: "npm:^10.0.1"
     cf-content-types-generator: "npm:^2.15.5"
     commitizen: "npm:^4.3.1"
-    contentful: "npm:11.2.2"
-    contentful-import: "npm:^9.4.72"
-    contentful-management: "npm:^11.38.0"
+    contentful: "npm:11.8.6"
+    contentful-import: "npm:^9.4.122"
+    contentful-management: "npm:^11.60.4"
     csstype: "npm:^3.1.0"
     dotenv: "npm:^16.0.1"
     eslint: "npm:^8.57.1"
