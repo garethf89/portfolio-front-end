@@ -21,6 +21,7 @@ import type { HomePage, HomePageCollection, HomeQuery } from "@schema"
 import { AlbumType } from "@components"
 import { notFound } from "next/navigation"
 import type { IconsProcessed } from "@types"
+import { Metadata } from "next"
 
 type HomePageProps = {
     title: string
@@ -81,8 +82,20 @@ const getHome = async (): Promise<HomePageProps> => {
 
     const icons: IconsProcessed[] = await Promise.all(
         [...ICON_REQUESTS_SKILL, ...ICON_REQUESTS_LOGOS].map(async item => {
-            const resp = await fetch(item.url)
-            return { url: item.url, icon: await resp.text() }
+            try {
+                const resp = await fetch(item.url)
+                if (!resp.ok) {
+                    console.error(
+                        `Failed to fetch icon: ${item.url} - Status: ${resp.status}`
+                    )
+                    return { url: item.url, icon: "" }
+                }
+                const iconText = await resp.text()
+                return { url: item.url, icon: iconText }
+            } catch (e) {
+                console.error(`Error fetching icon: ${item.url}`, e)
+                return { url: item.url, icon: "" }
+            }
         })
     )
 
@@ -107,6 +120,13 @@ const getHome = async (): Promise<HomePageProps> => {
         icons: icons,
         page: homePage,
         albums: result.albums,
+    }
+}
+
+export const generateMetadata = async (): Promise<Metadata> => {
+    return {
+        title: config.title,
+        description: config.description,
     }
 }
 

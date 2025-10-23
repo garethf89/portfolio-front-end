@@ -1,38 +1,37 @@
 import * as React from "react"
+import { css, Styles } from "@styled-system/css"
 
-import { FlexProps as ChakraFlexProps, chakra } from "@chakra-ui/react"
+const flexStyles = {
+    position: "relative",
+    margin: "0 auto auto",
+    width: "100%",
+    textAlign: "left",
+    display: "flex",
+    flexDirection: { base: "column", lg: "row" },
+    maxWidth: "container.xl",
+    paddingX: { base: "6", lg: "12" },
+}
 
-import { SPACE } from "../../../@chakra-ui/theme"
-import { useTheme } from "@emotion/react"
-
-const FlexElement = chakra("section", {
-    baseStyle: {
-        position: "relative",
-        margin: "0 auto auto",
-        width: "100%",
-        textAlign: "left",
-        display: "flex",
-    },
-})
-
-type FlexProps = {
+export type FlexProps = {
     vPadding?: boolean
     children: React.ReactNode
-} & ChakraFlexProps
+    css?: Styles
+} & React.ComponentProps<"section">
 
-const Flex = ({ children, ...props }: FlexProps): React.ReactElement => {
-    const theme = useTheme()
+const Flex = ({
+    children,
+    vPadding,
+    css: cssProp,
+    ...props
+}: FlexProps): React.ReactElement => {
+    const yPadding = { paddingY: vPadding ? "16" : "0" }
+    const merged = css([flexStyles, yPadding, cssProp])
+
     return (
-        <FlexElement
-            flexDirection={["column", "column", "row"]}
-            maxW={theme.sizes.container.xl}
-            paddingY={props.vPadding ? SPACE.common[4] : "0"}
-            paddingX={[SPACE.common[1], SPACE.common[1], SPACE.common[3]]}
-            as="section"
-            {...props}
-        >
+        <section className={merged} {...props}>
             {children}
-        </FlexElement>
+        </section>
     )
 }
+
 export default Flex

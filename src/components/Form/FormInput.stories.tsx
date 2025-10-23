@@ -4,7 +4,7 @@ import { LightContainer } from "../../stories/LightContainer"
 import * as React from "react"
 import { Spacer } from "../../stories/Spacer"
 import TextArea from "./Textarea"
-import { withFormik } from "storybook-formik"
+import withFormik from "@bbbtech/storybook-formik"
 
 type FormStoryProps = {
     nameLabel: string

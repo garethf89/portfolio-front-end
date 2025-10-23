@@ -12,8 +12,7 @@ import {
     Sun,
     Tick,
 } from "../../svgs/index"
-
-import { SimpleGrid } from "@chakra-ui/react"
+import { css } from "../../styled-system/css"
 
 const IconsImports = [
     Cross,
@@ -33,18 +32,27 @@ type IconsStoryType = {
     size: number
 }
 
+const iconGridStyle = css({
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr));",
+    gap: 16,
+})
+
 const IconsStory = ({ color, size }: IconsStoryType): React.ReactElement => {
     const style = {
         color,
-        width: `${size}px`,
-        height: `${size}px`,
     }
     return (
-        <SimpleGrid minChildWidth="120px" spacing={10}>
+        <div className={iconGridStyle}>
             {IconsImports.map((Icon, k) => (
-                <Icon key={k} style={style} />
+                <Icon
+                    key={k}
+                    css={style}
+                    width={`${size}px`}
+                    height={`${size}px`}
+                />
             ))}
-        </SimpleGrid>
+        </div>
     )
 }
 

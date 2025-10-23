@@ -1,11 +1,10 @@
 import * as React from "react"
 
-import { Icon as ChakraIcon, IconProps } from "@chakra-ui/react"
-import { Icon, IconPropsType } from "@components"
+import { Icon, IconPropsType } from "../components/Icons"
 
-const Sun = (props: IconProps): React.ReactElement => {
+const Sun = ({ ...props }: IconPropsType): React.ReactElement => {
     return (
-        <ChakraIcon viewBox="0 0 512 512" {...props}>
+        <Icon viewBox="0 0 512 512" {...props}>
             <path
                 fill="none"
                 stroke="currentColor"
@@ -24,9 +23,8 @@ const Sun = (props: IconProps): React.ReactElement => {
                 strokeMiterlimit={10}
                 strokeWidth={32}
             />
-        </ChakraIcon>
+        </Icon>
     )
 }
 
-export default (props: IconPropsType): React.ReactElement =>
-    Icon({ Component: Sun, ...props })
+export default Sun

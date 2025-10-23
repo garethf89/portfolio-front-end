@@ -5,24 +5,40 @@ import FadeLink from "../Link/Link"
 import { Logo as animationData } from "../../animations/Logo"
 import { globals } from "../../state/state"
 import lottie, { AnimationItem } from "lottie-web"
-import styled from "@emotion/styled"
+import { css } from "@styled-system/css"
 
-const HeaderLink = styled(FadeLink)`
-    z-index: 3;
-    pointer-events: auto;
-    cursor: pointer;
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-    height: 3rem;
-    width: 3rem;
-    outline: 0;
-    svg path {
-        transition: stroke 0.5s ease-in-out;
-        stroke: ${props =>
-            props.dark === "true" ? props.theme.colors.logoDark : ""};
-    }
-`
+const headerLinkStyles = css({
+    "& a": {
+        zIndex: "3",
+        width: "12",
+        height: "12",
+        outline: "0",
+        cursor: "pointer",
+        pointerEvents: "auto",
+        verticalAlign: "top",
+        position: "relative",
+        display: "inline-block",
+        "& svg path": {
+            transition: "stroke 0.5s ease-in-out",
+        },
+    },
+})
+// = styled(FadeLink)`
+//     z-index: 3;
+//     pointer-events: auto;
+//     cursor: pointer;
+//     position: relative;
+//     display: inline-block;
+//     vertical-align: top;
+//     height: 3rem;
+//     width: 3rem;
+//     outline: 0;
+//     svg path {
+//         transition: stroke 0.5s ease-in-out;
+//         stroke: ${props =>
+//             props.dark === "true" ? props.theme.colors.logoDark : ""};
+//     }
+// `
 
 interface LogoProps {
     siteTitle: string
@@ -57,14 +73,16 @@ const Logo = ({ siteTitle }: LogoProps): React.ReactElement => {
     }
 
     return (
-        <HeaderLink
-            tab-index={1}
-            aria-label={siteTitle}
-            href="/"
-            onMouseEnter={hover}
-            id="HeaderLogo"
-            dark={isDark}
-        ></HeaderLink>
+        <div className={headerLinkStyles}>
+            <FadeLink
+                tab-index={1}
+                aria-label={siteTitle}
+                href="/"
+                onMouseEnter={hover}
+                id="HeaderLogo"
+                dark={isDark}
+            />
+        </div>
     )
 }
 

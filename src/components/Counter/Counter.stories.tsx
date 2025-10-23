@@ -1,16 +1,16 @@
 import CounterComponent from "./Counter"
+import { DarkBackground } from "../../stories/DarkBackground"
 
 export default {
     title: "Components /Counter",
-    parameters: {
-        backgrounds: {
-            default: "dark",
-            values: [
-                { name: "light", value: "#eeeeee" },
-                { name: "dark", value: "#222222", default: true },
-            ],
-        },
-    },
+    component: CounterComponent,
+    decorators: [
+        Story => (
+            <DarkBackground>
+                <Story />
+            </DarkBackground>
+        ),
+    ],
 }
 
 export const Counter = CounterComponent.bind({})

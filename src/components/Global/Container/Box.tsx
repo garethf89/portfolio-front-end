@@ -1,34 +1,36 @@
 import * as React from "react"
+import { css, Styles } from "@styled-system/css"
 
-import { chakra, useTheme } from "@chakra-ui/react"
-
-import { SPACE } from "../../../@chakra-ui/theme"
-
-const BoxElement = chakra("section", {
-    baseStyle: {
-        position: "relative",
-        margin: "0 auto auto",
-        width: "100%",
-        textAlign: "left",
-    },
-})
-
-type BoxType = {
-    children: React.ReactNode
-    vPadding?: boolean
+const boxStyles = {
+    position: "relative",
+    margin: "0 auto auto",
+    width: "100%",
+    textAlign: "left",
+    maxWidth: "container.xl",
+    paddingX: { base: "6", lg: "12" },
 }
 
-const Box = ({ children, vPadding, ...props }: BoxType): React.ReactElement => {
-    const theme = useTheme()
+export type BoxProps = {
+    vPadding?: boolean
+    children: React.ReactNode
+    css?: Styles
+} & React.ComponentProps<"section">
+
+const Box = ({
+    children,
+    vPadding,
+    css: cssProp,
+    ...props
+}: BoxProps): React.ReactElement => {
+    const merged = css([
+        boxStyles,
+        { paddingY: vPadding ? "16" : "0" },
+        cssProp,
+    ])
     return (
-        <BoxElement
-            maxW={theme.sizes.container.xl}
-            paddingY={vPadding ? SPACE.common[4] : "0"}
-            paddingX={[SPACE.common[1], SPACE.common[1], SPACE.common[3]]}
-            {...props}
-        >
+        <section className={merged} {...props}>
             {children}
-        </BoxElement>
+        </section>
     )
 }
 

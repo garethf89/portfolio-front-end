@@ -1,6 +1,6 @@
 import Container from "../Global/Container/Container"
 import { Fragment } from "react"
-import { StyledParagraphIntro } from "./PageContent"
+import { IntroText } from "./PageContent"
 
 const TextIntroStory = ({
     container,
@@ -12,7 +12,7 @@ const TextIntroStory = ({
     const Wrap = container ? Container : Fragment
     return (
         <Wrap>
-            <StyledParagraphIntro>{text}</StyledParagraphIntro>
+            <IntroText>{text}</IntroText>
         </Wrap>
     )
 }

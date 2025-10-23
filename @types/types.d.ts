@@ -1,16 +1,9 @@
-import { ThemeType } from "../src/@chakra-ui/theme"
 import "@emotion/react"
 import { Asset, Maybe, Scalars } from "@schema/graphql"
 
 interface Size {
     [key: string]: string
     container: Record<"sm" | "xl" | "md" | "lg" | "content", string>
-}
-
-declare module "@emotion/react" {
-    export interface Theme extends ThemeType {
-        sizes: Size
-    }
 }
 
 export interface StyledProps {

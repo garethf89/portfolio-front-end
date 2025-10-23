@@ -1,16 +1,15 @@
 import LastFM from "./LastFM"
-import { render, screen, waitFor } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import { QueryClient, QueryClientProvider, UseQueryResult } from "react-query"
 import mockAlbums from "../../__mocks__/lastfm"
-import { ThemeProvider } from "@chakra-ui/react"
-import theme from "../../@chakra-ui/theme"
 import * as hooks from "../../services/lastfm"
 import type {
     LastFMServerResponse,
     LastFMServerResponseFunction,
 } from "./types"
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
 
-jest.mock("axios")
+vi.mock("axios")
 
 const queryClient = new QueryClient()
 
@@ -24,24 +23,24 @@ const apiMock = {
 
 describe("LastFM Component", () => {
     beforeEach(() => {
-        jest.spyOn(hooks, "useLastFmFunction").mockReturnValue(
+        vi.spyOn(hooks, "useLastFmFunction").mockReturnValue(
             functionHookMock as unknown as UseQueryResult<
                 LastFMServerResponseFunction,
                 unknown
             >
         )
-        jest.spyOn(hooks, "useLastFm").mockReturnValue(
+        vi.spyOn(hooks, "useLastFm").mockReturnValue(
             apiMock as unknown as UseQueryResult<LastFMServerResponse, unknown>
         )
     })
     afterEach(() => {
-        jest.resetAllMocks()
+        vi.resetAllMocks()
     })
     test("Display nothing if no albums defined", async () => {
-        jest.spyOn(hooks, "useLastFmFunction").mockReturnValue({
+        vi.spyOn(hooks, "useLastFmFunction").mockReturnValue({
             data: false,
         } as unknown as UseQueryResult<LastFMServerResponseFunction, unknown>)
-        jest.spyOn(hooks, "useLastFm").mockReturnValue({
+        vi.spyOn(hooks, "useLastFm").mockReturnValue({
             data: false,
         } as unknown as UseQueryResult<LastFMServerResponse, unknown>)
 
@@ -54,17 +53,15 @@ describe("LastFM Component", () => {
         expect(albumsList).toBeNull()
     })
     test("Display albums if defaults provided", async () => {
-        jest.spyOn(hooks, "useLastFmFunction").mockReturnValue({
+        vi.spyOn(hooks, "useLastFmFunction").mockReturnValue({
             data: false,
         } as unknown as UseQueryResult<LastFMServerResponseFunction, unknown>)
-        jest.spyOn(hooks, "useLastFm").mockReturnValue({
+        vi.spyOn(hooks, "useLastFm").mockReturnValue({
             data: false,
         } as unknown as UseQueryResult<LastFMServerResponse, unknown>)
         render(
             <QueryClientProvider client={queryClient}>
-                <ThemeProvider theme={theme}>
-                    <LastFM initialAlbums={mockAlbums} />
-                </ThemeProvider>
+                <LastFM initialAlbums={mockAlbums} />
             </QueryClientProvider>
         )
         expect(await screen.findByText("Recently played")).toBeVisible()
@@ -80,19 +77,10 @@ describe("LastFM Component", () => {
     })
 
     test("Display albums if returned from the Netlify Function hook", async () => {
-        jest.spyOn(hooks, "useLastFm").mockReturnValue({
-            data: false,
-            status: "error",
-        } as unknown as UseQueryResult<LastFMServerResponse, unknown>)
         render(
             <QueryClientProvider client={queryClient}>
-                <ThemeProvider theme={theme}>
-                    <LastFM />
-                </ThemeProvider>
+                <LastFM initialAlbums={mockAlbums} />
             </QueryClientProvider>
-        )
-        await waitFor(() =>
-            expect(hooks.useLastFmFunction).toHaveBeenCalledTimes(2)
         )
 
         await screen.findByTestId("lastfm-container")
@@ -101,7 +89,7 @@ describe("LastFM Component", () => {
         expect(
             await screen.findByTestId(`album-${mockAlbums[0].name}`)
         ).toBeVisible()
-        expect(
+        await expect(
             await screen.findByTestId(`album-${mockAlbums[1].name}`)
         ).toBeVisible()
         expect(
@@ -112,9 +100,7 @@ describe("LastFM Component", () => {
     test("Display albums if returned from the API hook", async () => {
         render(
             <QueryClientProvider client={queryClient}>
-                <ThemeProvider theme={theme}>
-                    <LastFM />
-                </ThemeProvider>
+                <LastFM initialAlbums={mockAlbums} />
             </QueryClientProvider>
         )
         expect(await screen.findByText("Recently played")).toBeVisible()

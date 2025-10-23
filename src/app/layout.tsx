@@ -1,7 +1,15 @@
 import config from "../config/site"
 import { Metadata } from "next"
-
 import Providers from "./providers"
+import "../globals.css"
+import { Ubuntu } from "next/font/google"
+
+const ubuntuFont = Ubuntu({
+    weight: ["300", "400", "700"],
+    subsets: ["latin"],
+    display: "swap",
+    variable: "--font-ubuntu",
+})
 
 export const metadata: Metadata = {
     title: {
@@ -41,15 +49,11 @@ export const metadata: Metadata = {
     },
 }
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = async ({ children }: { children: React.ReactNode }) => {
     return (
-        <html lang="en">
+        <html className={ubuntuFont.className} lang="en">
             <head></head>
-            <body>
-                <>
-                    <Providers>{children}</Providers>
-                </>
-            </body>
+            <Providers>{children}</Providers>
         </html>
     )
 }

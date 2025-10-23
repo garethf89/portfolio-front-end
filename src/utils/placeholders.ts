@@ -13,10 +13,26 @@ export const addPlaceholder = async <T>(
 ): Promise<T[]> => {
     const modifiedData = await Promise.all(
         data.map(async item => {
-            const response = await generatePlaceholders(item[path].url)
-            return {
-                ...item,
-                [path]: { ...item[path], blurURL: response.base64 },
+            // Add validation here
+            const imageUrl = item[path]?.url
+
+            if (!imageUrl) {
+                console.warn(`Missing image URL at path: ${path}`, item)
+                return item // Return item without placeholder
+            }
+
+            try {
+                const response = await generatePlaceholders(imageUrl)
+                return {
+                    ...item,
+                    [path]: { ...item[path], blurURL: response.base64 },
+                }
+            } catch (error) {
+                console.error(
+                    `Failed to generate placeholder for: ${imageUrl}`,
+                    error
+                )
+                return item
             }
         })
     )
@@ -27,9 +43,21 @@ export const addPlaceholderSingle = async <T>(
     data: T,
     path: string
 ): Promise<T> => {
-    const response = await generatePlaceholders(data[path].url)
-    return {
-        ...data,
-        [path]: { ...data[path], blurURL: response.base64 },
+    const imageUrl = data[path]?.url
+
+    if (!imageUrl) {
+        console.warn(`Missing image URL at path: ${path}`, data)
+        return data
+    }
+
+    try {
+        const response = await generatePlaceholders(imageUrl)
+        return {
+            ...data,
+            [path]: { ...data[path], blurURL: response.base64 },
+        }
+    } catch (error) {
+        console.error(`Failed to generate placeholder for: ${imageUrl}`, error)
+        return data
     }
 }

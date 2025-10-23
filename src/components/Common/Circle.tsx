@@ -1,21 +1,30 @@
 import * as React from "react"
-import styled from "@emotion/styled"
+import { css, cx } from "@styled-system/css"
 
-const Wrapper = styled.div`
-    display: inline-block;
-    img {
-        border-radius: 50%;
-    }
-`
-interface CircleProps {
+interface CircleProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode
 }
 
-const Circle = (props: CircleProps): React.ReactElement => {
+const Circle = ({
+    children,
+    className,
+    ...props
+}: CircleProps): React.ReactElement => {
     return (
-        <Wrapper className="" {...props}>
-            {props.children}
-        </Wrapper>
+        <div
+            className={cx(
+                css({
+                    display: "inline-block",
+                    "& img": {
+                        borderRadius: "50%",
+                    },
+                }),
+                className
+            )}
+            {...props}
+        >
+            {children}
+        </div>
     )
 }
 

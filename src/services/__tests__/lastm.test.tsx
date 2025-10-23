@@ -1,16 +1,35 @@
-import { renderHook } from "@testing-library/react-hooks/dom"
+import { renderHook, waitFor } from "@testing-library/react"
 import { QueryClient, QueryClientProvider } from "react-query"
-import { useLastFm, useLastFmFunction } from "../lastfm"
 import mockAlbums from "../../__mocks__/lastfm"
-import { waitFor } from "@testing-library/react"
-jest.mock("axios", () => ({
-    post: jest.fn().mockImplementation(() => ({
+import { describe, expect, test, vi } from "vitest"
+
+// Mock axios before importing the service
+vi.mock("axios", () => ({
+    default: {
+        post: vi.fn().mockResolvedValue({
+            data: mockAlbums,
+        }),
+        get: vi.fn().mockResolvedValue({
+            data: {
+                data: {
+                    album: mockAlbums,
+                },
+            },
+        }),
+    },
+    post: vi.fn().mockResolvedValue({
         data: mockAlbums,
-    })),
-    get: jest.fn().mockImplementation(() => ({
-        data: mockAlbums,
-    })),
+    }),
+    get: vi.fn().mockResolvedValue({
+        data: {
+            data: {
+                album: mockAlbums,
+            },
+        },
+    }),
 }))
+
+import { useLastFm, useLastFmFunction } from "../lastfm"
 
 const queryClient = new QueryClient()
 const wrapper = ({ children }) => (
@@ -22,7 +41,11 @@ describe("LastFM Service", () => {
         const { result } = renderHook(() => useLastFm({}), {
             wrapper,
         })
-        await waitFor(() => result.current.status === "success")
+
+        await waitFor(() => {
+            expect(result.current.status).toBe("success")
+        })
+
         expect(result.current.data).toEqual(mockAlbums)
     })
 
@@ -30,7 +53,11 @@ describe("LastFM Service", () => {
         const { result } = renderHook(() => useLastFmFunction({}), {
             wrapper,
         })
-        await waitFor(() => result.current.status === "success")
+
+        await waitFor(() => {
+            expect(result.current.status).toBe("success")
+        })
+
         expect(result.current.data).toEqual(mockAlbums)
     })
 })

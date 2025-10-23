@@ -87,3 +87,7 @@ coverage
 
 build
 tsconfig.json
+
+## Panda
+styled-system
+styled-system-studio

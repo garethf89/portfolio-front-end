@@ -1,8 +1,7 @@
 import * as React from "react"
 
-import { SerializedStyles, css } from "@emotion/react"
-
-import { BREAKPOINTS } from "../../@chakra-ui/theme"
+import { css, Styles } from "@styled-system/css"
+import { BREAKPOINTS } from "@theme"
 import styled from "@emotion/styled"
 import { supportsWebP } from "../../helpers/support/webp"
 import { useState } from "react"
@@ -35,10 +34,28 @@ interface ProgressiveImageProps {
     alt: string
     absolute?: boolean
     loadingImage?: boolean
-    styles?: (props) => SerializedStyles
+    css?: Styles
 }
 
-const ImageCommon = () => css`
+const mainImgStyles = {
+    transition: "opacity 0.25s ease-in",
+    display: "block",
+}
+
+const imageCommonStyles = {
+    width: "100%",
+    position: "absolute",
+    objectFit: "cover",
+    minWidth: "100%",
+    minHeight: "100%",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+}
+
+const imageBlockStyles = { maxWidth: "100%" }
+
+const BlurryImage = styled.img`
     width: 100%;
     position: absolute;
     object-fit: cover;
@@ -48,30 +65,9 @@ const ImageCommon = () => css`
     left: 50%;
     transform: translate(-50%, -50%);
 
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         width: auto;
     }
-`
-const ImageBlock = () => css`
-    max-width: 100%;
-`
-
-interface ImgProps extends React.ComponentProps<"img"> {
-    loaded?: boolean
-    absolute?: boolean
-    styles?: (props) => SerializedStyles
-}
-
-const MainImage = styled.img<ImgProps>`
-    ${(props: ImgProps) => props.styles}
-    ${(props: ImgProps) => (props.absolute ? ImageCommon : ImageBlock)}
-    opacity: ${(props: ImgProps) => (props.loaded ? 1 : 0)};
-    transition: opacity 0.25s ease-in;
-    display: block;
-`
-
-const BlurryImage = styled.img`
-    ${ImageCommon}
     filter: blur(20px);
     &[aria-hidden="true"] {
         display: none;
@@ -84,7 +80,7 @@ const ProgressiveImage = ({
     absolute,
     loadingImage,
     sizes = "100vw",
-    styles,
+    css: cssProp,
 }: ProgressiveImageProps): React.ReactElement => {
     const [loaded, setLoaded] = useState(false)
 
@@ -99,21 +95,26 @@ const ProgressiveImage = ({
       ${webp ? image.L.srcWebp : image.L2X.src} 1100w, 
       ${webp ? image.L2X.srcWebp : image.L2X.src} 2200w
     `
+
+    const conditionalStyle = absolute ? imageCommonStyles : imageBlockStyles
+
+    const opacity = { opacity: loaded ? "1" : "0" }
+
+    const merged = css([mainImgStyles, cssProp, conditionalStyle, opacity])
+
     return (
         <div>
             {loadingImage && (
                 <BlurryImage alt={alt} src={blurrySrc} aria-hidden={!!loaded} />
             )}
-            <MainImage
+            <img
                 alt={alt}
                 onLoad={() => setLoaded(true)}
-                loaded={loaded}
                 sizes={sizes}
                 src={fallbackSrc}
                 srcSet={srcSet}
                 aria-hidden={!loaded}
-                absolute={absolute}
-                styles={styles}
+                className={merged}
             />
         </div>
     )

@@ -1,6 +1,6 @@
 import Container from "../Global/Container/Container"
 import { Fragment } from "react"
-import { StyledParagraph } from "./PageContent"
+import { Text } from "./PageContent"
 
 const TextStory = ({
     container,
@@ -12,7 +12,7 @@ const TextStory = ({
     const Wrap = container ? Container : Fragment
     return (
         <Wrap>
-            <StyledParagraph>{text}</StyledParagraph>
+            <Text>{text}</Text>
         </Wrap>
     )
 }

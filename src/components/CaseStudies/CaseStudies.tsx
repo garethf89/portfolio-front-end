@@ -5,7 +5,7 @@ import {
     documentToReactComponents,
     CommonNode,
 } from "@contentful/rich-text-react-renderer"
-import { BREAKPOINTS } from "../../@chakra-ui/theme"
+import { BREAKPOINTS } from "@theme"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 import Lines from "../Animation/Lines"
@@ -14,19 +14,17 @@ import ReadMore from "../Typography/ReadMore"
 import styled from "@emotion/styled"
 import { HomePageCaseStudiesCollection, Project, ProjectIntro } from "@schema"
 
-const StyledParagraph = styled(Heading)`
-    font-weight: 300;
-    margin-top: 0;
-    margin-bottom: 1rem;
-    color: ${props => props.theme.colors.sectionText};
-`
-
-const CaseStudyContainer = styled(Container)``
+const styledParagraphStyles = {
+    fontWeight: 300,
+    marginTop: 0,
+    marginBottom: 4,
+    color: "sectionText",
+}
 
 const CaseStudyWrapper = styled.div`
     position: relative;
 
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         display: flex;
         justify-content: space-between;
     }
@@ -37,7 +35,7 @@ const CaseStudy = styled.div`
     &:last-of-type {
         margin-bottom: 0;
     }
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         width: 30%;
         margin-bottom: 0;
     }
@@ -51,9 +49,9 @@ const Text = ({
     children,
 }: BlockParams): React.ReactElement<CaseStudyTextProps> => {
     return (
-        <StyledParagraph level="h5" override="p">
+        <Heading level="h5" override="p" css={styledParagraphStyles}>
             {children}
-        </StyledParagraph>
+        </Heading>
     )
 }
 
@@ -92,11 +90,9 @@ export const CaseStudyText = ({
 const CaseStudies = ({ data }: CSProps): React.ReactElement<CSProps> => {
     return (
         <OuterWrapper>
-            <CaseStudyContainer vPadding>
+            <Container vPadding>
                 <Lines id="LinesCaseStudies" />
-                <Heading level="h2" position="relative">
-                    Case Studies
-                </Heading>
+                <Heading level="h2">Case Studies</Heading>
                 <CaseStudyWrapper>
                     {data.map((project: Project, i: number) => {
                         if (!project) {
@@ -114,7 +110,7 @@ const CaseStudies = ({ data }: CSProps): React.ReactElement<CSProps> => {
                         )
                     })}
                 </CaseStudyWrapper>
-            </CaseStudyContainer>
+            </Container>
         </OuterWrapper>
     )
 }

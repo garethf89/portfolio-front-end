@@ -1,9 +1,9 @@
 import * as React from "react"
 
-import { BREAKPOINTS } from "../../@chakra-ui/theme"
+import { BREAKPOINTS } from "@theme"
 import Heading from "../Typography/Heading"
 import IconExternal from "../Icons/IconExternal"
-import { SystemsTypeProperties } from "../Icons/Icon"
+import { IconProps } from "../Icons/Icon"
 import styled from "@emotion/styled"
 
 const SkillContainer = styled.li`
@@ -16,7 +16,7 @@ const SkillContainer = styled.li`
     padding: 0 0;
     margin-bottom: 2rem;
 
-    @media (min-width: ${BREAKPOINTS.SMALL}) {
+    @media (min-width: ${BREAKPOINTS.sm}) {
         width: 16.6%;
         &:nth-of-type(n + 7) {
             margin-bottom: 0;
@@ -24,18 +24,21 @@ const SkillContainer = styled.li`
     }
 `
 
-const SkillText = styled(Heading)`
-    font-weight: 200;
-    font-size: 18px;
-    flex: 0;
-    margin: 1rem 0;
-`
+const skillTextStyles = {
+    fontWeight: 200,
+    fontSize: "18px",
+    flex: 0,
+    marginTop: 4,
+    marginBottom: 0,
+}
 
-interface SkillProps extends SystemsTypeProperties {
+type SkillProps = Omit<IconProps, "height" | "width" | "src"> & {
     children: React.ReactNode
     icon: string
     id: string
     title: string
+    height: number[]
+    width: number[]
 }
 
 const Skill = ({
@@ -43,20 +46,20 @@ const Skill = ({
     id,
     icon,
     title,
-    boxSize,
+    width,
+    height,
 }: SkillProps): React.ReactElement => (
     <SkillContainer>
         <IconExternal
             aria-describedby={id}
             aria-labelledby={id}
             title={title}
-            margin="0 auto"
-            iconSvg={icon}
-            boxSize={boxSize}
+            src={icon}
+            css={{ marginX: "auto", width, height }}
         />
-        <SkillText id={id} level="h4" override="p">
+        <Heading id={id} level="h4" override="p" css={skillTextStyles}>
             {children}
-        </SkillText>
+        </Heading>
     </SkillContainer>
 )
 

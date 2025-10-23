@@ -2,49 +2,46 @@ import * as React from "react"
 
 import { useEffect, useState } from "react"
 
-import { BREAKPOINTS } from "../../@chakra-ui/theme"
+import { BREAKPOINTS } from "@theme"
 import { ColorPicker, MobileMenu } from "@components"
 import NavigationLink from "./NavigationLink"
 import debounce from "../../helpers/debounce"
 import { isWindow } from "../../helpers/isWindow"
 import styled from "@emotion/styled"
 import config from "../../config/site"
+import { css } from "@styled-system/css"
 
 const NavigationStyles = styled.nav``
 
 const NavMobile = styled.div`
     display: block;
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         display: none;
     }
 `
 
-type NavULProps = { active: boolean; animate: boolean }
-
-const NavList = styled.ul<NavULProps>`
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    list-style-type: none;
-    height: 100%;
-    display: ${props => (props.active ? "flex" : "none")};
-    background: ${props => props.theme.colors.sectionBackground};
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    flex-direction: column;
-    justify-content: center;
-    animation: ${props => (props.animate ? "fadeOut" : "fadeIn")} 0.5s;
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
-        animation: none;
-        position: static;
-        display: block;
-        flex-direction: row;
-        justify-content: right;
-    }
-`
+const navListStyles = css.raw({
+    margin: 0,
+    padding: 0,
+    textAlign: "center",
+    listStyleType: "none",
+    height: "100%",
+    position: "fixed",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    top: 0,
+    flexDirection: "column",
+    justifyContent: "center",
+    background: "sectionBackground",
+    md: {
+        animation: "none",
+        position: "static",
+        display: "block",
+        flexDirection: "row",
+        justifyContent: "right",
+    },
+})
 
 const NavLi = styled.li`
     display: inline-block;
@@ -53,27 +50,18 @@ const NavLi = styled.li`
     &:last-of-type {
         padding-bottom: 0;
     }
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         padding-left: 2rem;
     }
 `
 
 const Navigation = (): React.ReactElement => {
-    const [mobile, setMobile] = useState(false)
     const [active, setActive] = useState(false)
     const [animate, setAnimate] = useState(false)
 
     const { menuLinks } = config
 
     const checkMobile = () => {
-        if (
-            isWindow() &&
-            window.innerWidth >= parseInt(BREAKPOINTS.MEDIUM, 16)
-        ) {
-            setMobile(false)
-        } else {
-            setMobile(true)
-        }
         setActive(false)
     }
 
@@ -106,7 +94,15 @@ const Navigation = (): React.ReactElement => {
 
     return (
         <NavigationStyles>
-            <NavList animate={animate} active={active}>
+            <ul
+                className={css(
+                    navListStyles,
+                    css.raw({
+                        display: active ? "flex" : "none",
+                        animation: animate ? "fadeOut" : "fadeIn",
+                    })
+                )}
+            >
                 {menuLinks.map((link, i) => {
                     const internal = /^\/(?!\/)/.test(link.slug)
                     return (
@@ -123,17 +119,15 @@ const Navigation = (): React.ReactElement => {
                 <NavLi key={"color-nav"}>
                     <ColorPicker />
                 </NavLi>
-            </NavList>
-            {mobile && (
-                <NavMobile>
-                    <MobileMenu
-                        scale={0.5}
-                        onClick={() => {
-                            toggle(!active)
-                        }}
-                    />
-                </NavMobile>
-            )}
+            </ul>
+            <NavMobile>
+                <MobileMenu
+                    scale={0.5}
+                    onClick={() => {
+                        toggle(!active)
+                    }}
+                />
+            </NavMobile>
         </NavigationStyles>
     )
 }

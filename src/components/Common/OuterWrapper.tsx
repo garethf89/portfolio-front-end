@@ -1,8 +1,15 @@
-import styled from "@emotion/styled"
+import { css } from "@styled-system/css"
 
-export const OuterWrapper = styled.div`
-    position: relative;
-    overflow: hidden;
-    background: ${props => props.theme.colors.sectionBackground};
-    color: ${props => props.theme.colors.sectionText};
-`
+export const OuterWrapper = ({ children, ...props }) => (
+    <div
+        className={css({
+            position: "relative",
+            overflow: "hidden",
+            bg: "sectionBackground",
+            color: "sectionText",
+        })}
+        {...props}
+    >
+        {children}
+    </div>
+)

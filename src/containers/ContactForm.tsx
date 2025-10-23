@@ -4,12 +4,24 @@ import * as React from "react"
 import { z } from "zod"
 import { toFormikValidationSchema } from "zod-formik-adapter"
 import { Form, Formik, FormikHelpers } from "formik"
-
+import { css } from "@styled-system/css"
+import { PulseLoader } from "react-spinners"
 import { Alert, Button, Flex, Input, Label, TextArea } from "@components"
-import { BREAKPOINTS } from "../@chakra-ui/theme"
+import { BREAKPOINTS } from "@theme"
 import styled from "@emotion/styled"
 import { useEmail } from "../services/email"
-import { Box, CircularProgress, Spacer } from "@chakra-ui/react"
+
+const buttonContainerStyles = css({
+    display: "flex",
+    alignItems: "center",
+    gap: "4",
+})
+
+const fieldContainerStyles = {
+    flexWrap: "wrap",
+    padding: 0,
+    paddingX: { base: "0", lg: "0" },
+}
 
 const FormContainer = styled.div`
     margin-bottom: 2.5rem;
@@ -18,7 +30,7 @@ const FormContainer = styled.div`
 const FormSection = styled.div`
     flex: 1;
     flex-basis: 100%;
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         flex-basis: 50%;
     }
 `
@@ -76,7 +88,7 @@ export const ContactForm = (): React.ReactElement => {
                                 </Alert>
                             )}
                             {status !== "success" && (
-                                <Flex flexWrap="wrap" padding={[0, 0, 0]}>
+                                <Flex css={fieldContainerStyles}>
                                     <FormSection>
                                         <FormContainer>
                                             <Label
@@ -134,12 +146,7 @@ export const ContactForm = (): React.ReactElement => {
                                                 type="textarea"
                                             />
                                         </FormContainer>
-                                        <Box
-                                            p={0}
-                                            alignItems="center"
-                                            paddingInline={0}
-                                            display="flex"
-                                        >
+                                        <div className={buttonContainerStyles}>
                                             <Button
                                                 variant="primary"
                                                 disabled={
@@ -149,15 +156,12 @@ export const ContactForm = (): React.ReactElement => {
                                                 type="submit"
                                             >
                                                 Submit
-                                            </Button>
-                                            <Spacer />
-                                            {status === "pending" && (
-                                                <CircularProgress
-                                                    isIndeterminate
-                                                    color="green.300"
-                                                />
-                                            )}
-                                        </Box>
+                                            </Button>{" "}
+                                            <PulseLoader
+                                                loading={status === "pending"}
+                                                size={8}
+                                            />
+                                        </div>
                                     </FormSection>
                                 </Flex>
                             )}

@@ -11,21 +11,23 @@ import {
 } from "@contentful/rich-text-react-renderer"
 import Bold from "../../Typography/Bold"
 import Heading from "../../Typography/Heading"
-import styled from "@emotion/styled"
 
-const StyledParagraph = styled(Heading)`
-    font-weight: 200;
-    margin-top: 0;
-    color: ${props => props.theme.colors.sectionTextSecondary};
-    max-width: ${props => props.theme.sizes.container.content};
-`
+const styledParagraphStyles = {
+    fontWeight: 200,
+    marginTop: 0,
+    color: "sectionTextSecondary",
+}
 
 interface BlockParams {
     children?: React.ReactNode
 }
 
 const Text = ({ children }: BlockParams): React.ReactElement => {
-    return <StyledParagraph level="h1">{children}</StyledParagraph>
+    return (
+        <Heading css={styledParagraphStyles} level="h1">
+            {children}
+        </Heading>
+    )
 }
 
 const options = {

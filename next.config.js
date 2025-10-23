@@ -1,8 +1,10 @@
 module.exports = {
+    typescript: {
+        tsconfigPath: "tsconfig.build.json",
+    },
     reactStrictMode: false,
     images: {
-        disableStaticImages: true,
-        formats: ["image/webp"],
+        unoptimized: true,
         remotePatterns: [
             {
                 protocol: "https",

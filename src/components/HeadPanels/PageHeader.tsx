@@ -1,8 +1,7 @@
-import { Box, useStyleConfig } from "@chakra-ui/react"
 import styled from "@emotion/styled"
 import * as React from "react"
 import { useContext, useEffect } from "react"
-import { BREAKPOINTS } from "../../@chakra-ui/theme"
+import { BREAKPOINTS } from "@theme"
 import { Asset } from "@schema"
 import { globals } from "../../state/state"
 import Lines from "../Animation/Lines"
@@ -11,23 +10,23 @@ import Button from "../Common/Button"
 import Image from "../Common/Image"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
+import { css } from "@styled-system/css"
 
-const HeaderStyles = styled(Box)`
-    overflow: hidden;
-    position: relative;
-`
-
-const StyledTitle = styled(Heading)`
-    margin: 2rem 0 2.3rem 0;
-    font-weight: 700;
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
-        margin: 3rem 1rem 6.3rem 0;
-    }
-`
+const styledTitleStyles = css.raw({
+    marginX: 0,
+    marginY: 4,
+    fontWeight: 700,
+    color: "sectionColor",
+    md: {
+        marginBottom: 16,
+        marginTop: 8,
+        marginRight: 4,
+    },
+})
 
 const InnerContainer = styled.div`
     padding: 2rem 0;
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         max-width: 50%;
         padding: 5rem 0;
     }
@@ -38,7 +37,7 @@ const PageImage = styled.div`
     position: relative;
     overflow: hidden;
 
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         padding-top: 0;
         max-width: 50%;
         width: 50%;
@@ -58,7 +57,7 @@ const PageImageElement = styled(Image)`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
+    @media (min-width: ${BREAKPOINTS.md}) {
         width: auto;
     }
 `
@@ -83,8 +82,6 @@ const PageHeader = ({
 }: PageHeaderProps): React.ReactElement => {
     const { state, dispatch } = useContext(globals)
 
-    const styles = useStyleConfig("CustomHeader")
-
     useEffect(() => {
         if (state.logo !== "dark") {
             dispatch({ type: "LOGO", logo: "dark" })
@@ -94,7 +91,14 @@ const PageHeader = ({
     const externalLink = link ? link.replace(/http:/gi, "https:") : null
 
     return (
-        <HeaderStyles as="section" sx={styles}>
+        <section
+            className={css({
+                position: "relative",
+                overflow: "hidden",
+                bg: "sectionBackgroundPage",
+                color: "sectionColor",
+            })}
+        >
             <Lines dark id="HeaderAni" />
             {image && (
                 <PageImage>
@@ -103,13 +107,14 @@ const PageHeader = ({
                         sizes="(min-width: 50em) 50vw, 100vw"
                         fill
                         image={image}
+                        style={{ objectFit: "cover", objectPosition: "center" }}
                     />
                 </PageImage>
             )}
             <Container>
                 <InnerContainer>
                     <BackLink />
-                    <StyledTitle level="h1" text={text} />
+                    <Heading level="h1" text={text} css={styledTitleStyles} />
                     {!!externalLink && (
                         <ButtonWrapper>
                             <Button
@@ -124,7 +129,7 @@ const PageHeader = ({
                     )}
                 </InnerContainer>
             </Container>
-        </HeaderStyles>
+        </section>
     )
 }
 export default PageHeader

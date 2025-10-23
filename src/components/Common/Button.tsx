@@ -1,40 +1,44 @@
-import { chakra, useStyleConfig } from "@chakra-ui/react"
-import styled from "@emotion/styled"
 import * as React from "react"
-import { BREAKPOINTS } from "../../@chakra-ui/theme"
 import { Download } from "../../svgs/index"
 import ArrowLight from "../../svgs/light-arrow"
-import { useTheme } from "@chakra-ui/react"
+import { css, cva } from "@styled-system/css"
+import { ButtonObjectProps, ButtonProps, ButtonTypes } from "./Button.types"
 
-type ButtonObjectProps = {
-    lineBorderColor: string
-    header?: boolean
-    as?: React.ElementType
+const ButtonIcon = ({
+    children,
+    variant = "primary",
+}: React.PropsWithChildren<ButtonObjectProps>): React.ReactElement => {
+    return (
+        <span
+            className={css({
+                display: "block",
+                position: "absolute",
+                right: 0,
+                top: 0,
+                bottom: 0,
+                padding: ["1em 0.75rem", "1em"],
+                borderLeft: `1px solid`,
+                borderLeftColor:
+                    variant === "primary"
+                        ? "buttonBorderPrimary" + "!important"
+                        : "buttonBorderSecondary" + "!important",
+            })}
+        >
+            {children}
+        </span>
+    )
 }
 
-const ButtonIcon = styled.span<ButtonObjectProps>`
-    display: block;
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    padding: 1em 0.75rem;
-    border-left: 1px solid ${props => props.lineBorderColor};
-
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
-        padding: 1em;
-    }
-`
-
-const ButtonContent = styled.span`
-    padding: 1rem 1.25rem;
-    display: block;
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
-        padding: 1rem 1.25rem 1.7rem;
-    }
-`
-
-const ButtonStyled = chakra("button")
+const ButtonContent = ({ children }) => (
+    <span
+        className={css({
+            padding: ["1rem 1.25rem", "1rem 1.25rem 1.7rem"],
+            display: "block",
+        })}
+    >
+        {children}
+    </span>
+)
 
 const ButtonIcons = {
     Arrow: ArrowLight,
@@ -47,43 +51,132 @@ const renderButton = (icon: ButtonTypes) => {
     return <ButtonToUse />
 }
 
-export type ButtonTypes = "Download" | "Arrow"
+const Border = ({ ...props }: React.ComponentProps<"svg">) => {
+    return (
+        <svg
+            {...props}
+            className={css({
+                position: "absolute",
+                left: "-1px",
+                top: "-1px",
+                height: "calc(100% + 2px)",
+                width: " calc(100% + 2px)",
+                fill: "none",
+                zIndex: 1,
+                "& polyline": {
+                    strokeWidth: "2px",
+                    strokeDasharray: "40 480",
+                    strokeDashoffset: "40",
+                    transition: " all 0.8s ease-in-out",
+                    width: "100%",
+                },
+            })}
+        ></svg>
+    )
+}
 
-type ButtonProps = {
-    icon?: ButtonTypes
-    type?: "button" | "submit" | "reset"
-    children: React.ReactElement | string
-    color?: string
-    header?: boolean
-    disabled?: boolean
-    click?: () => void
-    href?: string
-    as?: React.ElementType
-    variant: string
-    download?: boolean
-} & (
-    | React.ButtonHTMLAttributes<HTMLButtonElement>
-    | React.AnchorHTMLAttributes<HTMLAnchorElement>
+const BorderLine = ({ ...props }: React.ComponentProps<"polyline">) => (
+    <polyline {...props} />
 )
 
-const Border = styled("svg")`
-    position: absolute;
-    left: -1px;
-    top: -1px;
-    height: calc(100% + 2px);
-    width: calc(100% + 2px);
-    fill: none;
-    z-index: 1;
-    polyline {
-        stroke-width: 2px;
-        stroke-dasharray: 40 480;
-        stroke-dashoffset: 40;
-        transition: all 0.8s ease-in-out;
-        width: 100%;
-    }
-`
+const button = cva({
+    base: {
+        textTransform: "uppercase",
+        textAlign: "left",
+        textDecoration: "none",
+        position: "relative",
+        overflow: "hidden",
+        width: "auto",
+        borderWidth: "1px",
+        borderStyle: "solid",
+        fontSize: "16px",
+        letterSpacing: "2px",
+        fontWeight: 300,
+        padding: 0,
+        paddingEnd: 0,
+        paddingStart: 0,
+        cursor: "pointer",
+        transition: " 0.5s ease-in-out",
+        display: "inline-block",
+        height: "auto",
+        paddingRight: ["3rem", "5rem"],
+        borderRadius: 0,
+        _focus: {
+            outline: 0,
+        },
+        _active: {
+            outline: 0,
+        },
+        _hover: {
+            outline: 0,
+            "& svg": {
+                "& polyline": {
+                    strokeDashoffset: -480,
+                },
+            },
+        },
+    },
+    variants: {
+        header: {
+            header: {
+                minWidth: [0, "314px"],
+            },
+            none: {
+                minWidth: [0],
+            },
+        },
+        visual: {
+            base: {},
+            primary: {
+                color: "buttonColorPrimary",
+                bg: "buttonBackgroundPrimary",
+                borderColor: "buttonBorderPrimary",
+                _hover: {
+                    bg: "rgba(0, 0, 0, 0.1)",
+                    color: "buttonColorPrimaryHover",
+                },
+                "& svg": {
+                    "& polyline": {
+                        stroke: "buttonBorderPrimary",
+                    },
+                },
+            },
+            secondary: {
+                color: "buttonColorSecondary",
+                bg: "buttonBackgroundSecondary",
+                borderColor: "buttonBorderSecondary",
+                "_:hover": {
+                    bg: "rgba(0, 0, 0, 0.6)",
+                },
+                "& svg": {
+                    "& polyline": {
+                        stroke: "buttonBorderSecondary",
+                    },
+                },
+            },
+        },
+    },
+})
 
-const BorderLine = styled("polyline")``
+type ButtonInnerProps = React.PropsWithChildren<Partial<ButtonProps>>
+
+const ButtonInner = ({
+    children,
+    icon,
+    variant,
+}: ButtonInnerProps): React.ReactElement => {
+    return (
+        <>
+            <Border viewBox="0 0 180 60" preserveAspectRatio="none">
+                <BorderLine points="179,1 179,59 1,59 1,1 179,1" />
+            </Border>
+            <ButtonContent>{children}</ButtonContent>
+            {icon && (
+                <ButtonIcon variant={variant}>{renderButton(icon)}</ButtonIcon>
+            )}
+        </>
+    )
+}
 
 const Button = ({
     as = "button",
@@ -93,45 +186,47 @@ const Button = ({
     header,
     disabled,
     href,
-    variant,
+    variant = "primary",
     click,
     ...props
 }: ButtonProps): React.ReactElement => {
-    const theme = useTheme()
-
-    const { components } = theme
-
-    const borderColors = components.MyButton.variants[variant].borderColor
-
-    const lineBorderColor = theme.colors[borderColors] ?? "#fff"
-
-    const styles = useStyleConfig("MyButton", {
-        header,
-        variant,
-        lineBorderColor,
-    })
-    return (
-        <>
-            <ButtonStyled
-                as={as}
+    if (as === "a") {
+        return (
+            <a
                 href={href}
-                onClick={click ? () => click() : null}
-                type={as === "a" ? null : type}
-                disabled={disabled}
-                sx={styles}
-                {...props}
+                className={button({
+                    header: header ? "header" : "none",
+                    visual: variant,
+                })}
+                {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
             >
-                <Border viewBox="0 0 180 60" preserveAspectRatio="none">
-                    <BorderLine points="179,1 179,59 1,59 1,1 179,1" />
-                </Border>
-                <ButtonContent>{children}</ButtonContent>
-                {icon && (
-                    <ButtonIcon lineBorderColor={lineBorderColor}>
-                        {renderButton(icon)}
-                    </ButtonIcon>
-                )}
-            </ButtonStyled>
-        </>
+                <ButtonInner variant={variant} icon={icon}>
+                    {children}
+                </ButtonInner>
+            </a>
+        )
+    }
+
+    return (
+        <button
+            onClick={e => {
+                if (click) {
+                    e.preventDefault()
+                    click()
+                }
+            }}
+            type={type}
+            disabled={disabled}
+            className={button({
+                header: header ? "header" : "none",
+                visual: variant,
+            })}
+            {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+        >
+            <ButtonInner variant={variant} icon={icon}>
+                {children}
+            </ButtonInner>
+        </button>
     )
 }
 

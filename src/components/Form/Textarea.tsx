@@ -1,23 +1,38 @@
 import * as React from "react"
 
 import { Field, useField } from "formik"
-
-import { COLORS } from "../../@chakra-ui/theme"
 import { FormError } from "./FormError"
-import styled from "@emotion/styled"
-import { useStyleConfig } from "@chakra-ui/react"
+import { css } from "../../styled-system/css"
 
-const TextAreaStyled = styled(Field)`
-    display: block;
-    outline: none;
-    border: 2px solid ${props => (props.error ? "#e55353" : props.border)};
-    padding: 0.5rem;
-    width: 100%;
-    max-width: 400px;
-    height: 10rem;
-    resize: none;
-    background: ${COLORS.transparent};
-`
+type InputStyledProps = React.PropsWithChildren<{
+    error?: string | null
+}>
+
+export const TextAreaStyled = ({
+    children,
+    error,
+    ...props
+}: InputStyledProps): React.ReactElement => {
+    return (
+        <Field
+            {...props}
+            className={css({
+                display: "block",
+                background: "transparent",
+                border: "2px solid",
+                borderColor: error ? "error" + "!important" : "text",
+                outline: "none",
+                padding: "2",
+                width: "100%",
+                maxWidth: "400px",
+                height: "10rem",
+                resize: "none",
+            })}
+        >
+            {children}
+        </Field>
+    )
+}
 
 type InputProps = React.HTMLProps<HTMLTextAreaElement> & {
     as?: string
@@ -27,15 +42,10 @@ type InputProps = React.HTMLProps<HTMLTextAreaElement> & {
 
 const TextArea = ({ children, ...props }: InputProps): React.ReactElement => {
     const [_field, meta] = useField(props.name)
-    const styles = useStyleConfig("ColorText")
 
     return (
         <>
-            <TextAreaStyled
-                border={styles.border}
-                error={meta.touched ? meta.error : null}
-                {...props}
-            >
+            <TextAreaStyled error={meta.touched ? meta.error : null} {...props}>
                 {children}
             </TextAreaStyled>
             {meta.touched && meta.error && (

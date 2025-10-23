@@ -1,80 +1,79 @@
 import * as React from "react"
-
-import { BREAKPOINTS, SPACE } from "../../@chakra-ui/theme"
-import Heading, { HeadingProps } from "../Typography/Heading"
-
+import Heading from "../Typography/Heading"
 import FadeLink from "../Link/Link"
-import Flex from "../Global/Container/Flex"
 import GitHubIcon from "../../svgs/github"
 import LinkedInIcon from "../../svgs/linkedin"
-import styled from "@emotion/styled"
+import { css } from "@styled-system/css"
+import { Flex } from "../Global/Container"
 
-const FooterCopyright = styled.p`
-    margin: 1rem 0 0;
-    color: ${props => props.theme.colors.sectionTextSecondary};
-`
+const footerOuterStyles = css({
+    background: "footerBg",
+    color: "sectionText",
+})
 
-const FooterOuter = styled.footer`
-    background: ${props => props.theme.colors.footerBg};
-    color: ${props => props.theme.colors.sectionText};
-`
+const footerContainerStyles = {
+    paddingTop: "8",
+    paddingBottom: "8",
+    display: "flex",
+    justifyContent: "space-between",
+}
 
-const FooterLink = styled.a`
-    color: ${props => props.theme.colors.sectionText};
-    margin-right: 1rem;
-    &:last-of-type {
-        margin-right: 0;
-    }
-`
+const footerHeadingStyles = {
+    marginBottom: 12,
+    marginTop: "25px",
+    textAlign: "left",
+    lg: { alignSelf: "center", margin: 0 },
+}
 
-const FooterContent = styled.div``
+const footerLinkStyles = css({
+    color: "sectionText",
+    marginRight: "1rem",
+    _last: { marginRight: 0 },
+})
 
-const FooterHeading = styled(Heading)<HeadingProps>`
-    margin-bottom: ${SPACE.common[3]};
-    text-align: left;
+const footerContentIconsStyles = css({
+    display: "flex",
+    gap: "0.25rem",
+})
 
-    @media (min-width: ${BREAKPOINTS.SMALL}) {
-        margin: 0;
-        align-self: center;
-    }
-`
-
-const FooterContainer = styled(Flex)`
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    @media (min-width: ${BREAKPOINTS.MEDIUM}) {
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-    }
-`
+const footerCopyrightStyles = css({
+    margin: "1rem 0 0",
+    color: "sectionTextSecondary",
+})
 
 const Footer = (): React.ReactElement<HTMLDivElement> => {
     const year = new Date().getFullYear()
     return (
-        <FooterOuter>
-            <FooterContainer justifyContent="space-between">
-                <FooterHeading level="h3" marginTop="25px">
+        <footer className={footerOuterStyles}>
+            <Flex css={footerContainerStyles}>
+                <Heading css={footerHeadingStyles} level="h3">
                     <FadeLink href="/contact">Contact Me</FadeLink>
-                </FooterHeading>
-                <FooterContent>
-                    <FooterLink
-                        rel="noopener"
-                        aria-label="LinkedIn"
-                        href="//uk.linkedin.com/in/garethferguson1"
-                    >
-                        <LinkedInIcon boxSize={8} />
-                    </FooterLink>
-                    <FooterLink
-                        rel="noopener"
-                        aria-label="Github"
-                        href="//github.com/garethf89"
-                    >
-                        <GitHubIcon boxSize={8} />
-                    </FooterLink>
-                    <FooterCopyright>Gareth Ferguson {year}</FooterCopyright>
-                </FooterContent>
-            </FooterContainer>
-        </FooterOuter>
+                </Heading>
+                <div>
+                    <div className={footerContentIconsStyles}>
+                        <a
+                            className={footerLinkStyles}
+                            rel="noopener"
+                            aria-label="LinkedIn"
+                            href="//uk.linkedin.com/in/garethferguson1"
+                        >
+                            <LinkedInIcon css={{ height: 8, width: 8 }} />
+                        </a>
+                        <a
+                            className={footerLinkStyles}
+                            rel="noopener"
+                            aria-label="Github"
+                            href="//github.com/garethf89"
+                        >
+                            <GitHubIcon css={{ height: 8, width: 8 }} />
+                        </a>
+                    </div>
+                    <p className={footerCopyrightStyles}>
+                        Gareth Ferguson {year}
+                    </p>
+                </div>
+            </Flex>
+        </footer>
     )
 }
 

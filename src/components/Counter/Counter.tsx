@@ -1,26 +1,19 @@
-import styled from "@emotion/styled"
 import * as React from "react"
 import { useEffect, useState } from "react"
 import { httpUrlToWebSockeUrl } from "../../helpers/sockets"
 import Eye from "../../svgs/eye"
+import { css } from "@styled-system/css"
 
 const connectionString = httpUrlToWebSockeUrl(
     process.env.NEXT_PUBLIC_REACT_APP_API_URL ?? ""
 )
 
-const CounterStyled = styled.aside`
-    display: block;
-    width: 100%;
-    text-align: right;
-    color: ${props => props.theme.colors.sectionText};
-`
-
-const CounterIcon = styled(Eye)`
-    width: 1.5rem;
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 0.5rem;
-`
+const counterStyles = css({
+    display: "block",
+    width: "100%",
+    textAlign: "right",
+    color: "sectionText",
+})
 
 const Counter = (): React.ReactElement => {
     const [count, setCount] = useState(1)
@@ -44,12 +37,19 @@ const Counter = (): React.ReactElement => {
     }, [])
 
     return (
-        <CounterStyled>
+        <aside className={counterStyles}>
             <span title={`${count} current visitors`}>
-                <CounterIcon />
+                <Eye
+                    css={{
+                        width: " 1.5rem",
+                        display: "inline-block",
+                        verticalAlign: "middle",
+                        marginRight: "0.5rem",
+                    }}
+                />
                 {count}
             </span>
-        </CounterStyled>
+        </aside>
     )
 }
 
