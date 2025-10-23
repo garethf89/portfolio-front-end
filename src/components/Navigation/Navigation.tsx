@@ -56,18 +56,12 @@ const NavLi = styled.li`
 `
 
 const Navigation = (): React.ReactElement => {
-    const [mobile, setMobile] = useState(false)
     const [active, setActive] = useState(false)
     const [animate, setAnimate] = useState(false)
 
     const { menuLinks } = config
 
     const checkMobile = () => {
-        if (isWindow() && window.innerWidth >= parseInt(BREAKPOINTS.md, 16)) {
-            setMobile(false)
-        } else {
-            setMobile(true)
-        }
         setActive(false)
     }
 
@@ -126,16 +120,14 @@ const Navigation = (): React.ReactElement => {
                     <ColorPicker />
                 </NavLi>
             </ul>
-            {mobile && (
-                <NavMobile>
-                    <MobileMenu
-                        scale={0.5}
-                        onClick={() => {
-                            toggle(!active)
-                        }}
-                    />
-                </NavMobile>
-            )}
+            <NavMobile>
+                <MobileMenu
+                    scale={0.5}
+                    onClick={() => {
+                        toggle(!active)
+                    }}
+                />
+            </NavMobile>
         </NavigationStyles>
     )
 }

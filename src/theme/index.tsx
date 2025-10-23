@@ -11,7 +11,7 @@ const palette = {
 
 export const BREAKPOINTS = {
     sm: "35em",
-    md: "50em",
+    md: "50rem",
     lg: "79.38em",
     xl: "85em",
     "2xl": "96em",
@@ -24,25 +24,14 @@ export const theme = {
         light: "[data-color-mode=light] &",
         dark: "[data-color-mode=dark] &",
     },
-    theme: {
-        extend: {
-            breakpoints: BREAKPOINTS,
-            keyframes: {
-                float: {
-                    "0%": { transform: "translateY(0)" },
-                    "50%": { transform: "translateY(-8px)" },
-                    "100%": { transform: "translateY(0)" },
-                },
-            },
 
-            fonts: {
-                ubuntu: {
-                    value: "Ubuntu, Roboto, Helvetica, Arial, sans-serif",
-                },
-            },
-        },
-    },
+    breakpoints: BREAKPOINTS,
     keyframes: {
+        float: {
+            "0%": { transform: "translateY(0)" },
+            "50%": { transform: "translateY(-8px)" },
+            "100%": { transform: "translateY(0)" },
+        },
         fadeIn: {
             from: { opacity: "0" },
             to: { opacity: "1" },
@@ -50,6 +39,11 @@ export const theme = {
         fadeOut: {
             from: { opacity: "1" },
             to: { opacity: "0" },
+        },
+    },
+    fonts: {
+        ubuntu: {
+            value: "Ubuntu, Roboto, Helvetica, Arial, sans-serif",
         },
     },
     tokens: {
