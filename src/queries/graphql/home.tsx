@@ -53,7 +53,7 @@ export const HOME_QUERY = gql`
                                     resizeStrategy: PAD
                                     width: 1100
                                     format: JPG
-                                    quality: 90
+                                    quality: 75
                                 }
                             )
                             avifUrl: url(
@@ -61,7 +61,7 @@ export const HOME_QUERY = gql`
                                     resizeStrategy: PAD
                                     width: 1100
                                     format: AVIF
-                                    quality: 90
+                                    quality: 75
                                 }
                             )
                             webPUrl: url(
@@ -69,7 +69,7 @@ export const HOME_QUERY = gql`
                                     resizeStrategy: PAD
                                     width: 1100
                                     format: WEBP
-                                    quality: 90
+                                    quality: 75
                                 }
                             )
                         }
@@ -90,7 +90,7 @@ export const HOME_QUERY = gql`
                                 transform: {
                                     resizeStrategy: PAD
                                     width: 200
-                                    quality: 90
+                                    quality: 75
                                 }
                             )
                             avifUrl: url(
@@ -98,7 +98,7 @@ export const HOME_QUERY = gql`
                                     resizeStrategy: PAD
                                     width: 200
                                     format: AVIF
-                                    quality: 90
+                                    quality: 75
                                 }
                             )
                             webPUrl: url(
@@ -106,7 +106,7 @@ export const HOME_QUERY = gql`
                                     resizeStrategy: PAD
                                     width: 200
                                     format: WEBP
-                                    quality: 90
+                                    quality: 75
                                 }
                             )
                         }

@@ -62,7 +62,7 @@ export const PROJECT_QUERY = gql`
                                     transform: {
                                         resizeStrategy: PAD
                                         width: 2200
-                                        quality: 90
+                                        quality: 75
                                     }
                                 )
                                 avifUrl: url(
@@ -70,7 +70,7 @@ export const PROJECT_QUERY = gql`
                                         resizeStrategy: PAD
                                         width: 2200
                                         format: AVIF
-                                        quality: 90
+                                        quality: 75
                                     }
                                 )
                                 webPUrl: url(
@@ -78,7 +78,7 @@ export const PROJECT_QUERY = gql`
                                         resizeStrategy: PAD
                                         width: 2200
                                         format: WEBP
-                                        quality: 90
+                                        quality: 75
                                     }
                                 )
                             }
@@ -103,7 +103,7 @@ export const PROJECT_QUERY = gql`
                                     transform: {
                                         resizeStrategy: PAD
                                         width: 2200
-                                        quality: 90
+                                        quality: 75
                                     }
                                 )
                                 avifUrl: url(
@@ -111,7 +111,7 @@ export const PROJECT_QUERY = gql`
                                         resizeStrategy: PAD
                                         width: 2200
                                         format: AVIF
-                                        quality: 90
+                                        quality: 75
                                     }
                                 )
                                 webPUrl: url(
@@ -119,7 +119,7 @@ export const PROJECT_QUERY = gql`
                                         resizeStrategy: PAD
                                         width: 2200
                                         format: WEBP
-                                        quality: 90
+                                        quality: 75
                                     }
                                 )
                             }
@@ -145,7 +145,7 @@ export const PROJECT_QUERY = gql`
                         transform: {
                             resizeStrategy: PAD
                             width: 2200
-                            quality: 90
+                            quality: 75
                         }
                     )
                     avifUrl: url(
@@ -153,7 +153,7 @@ export const PROJECT_QUERY = gql`
                             resizeStrategy: PAD
                             width: 2200
                             format: AVIF
-                            quality: 90
+                            quality: 75
                         }
                     )
                     webPUrl: url(
@@ -161,7 +161,7 @@ export const PROJECT_QUERY = gql`
                             resizeStrategy: PAD
                             width: 2200
                             format: WEBP
-                            quality: 90
+                            quality: 75
                         }
                     )
                 }
@@ -195,7 +195,7 @@ export const MULTIPLE_PROJECTS_QUERY = gql`
                         transform: {
                             resizeStrategy: PAD
                             width: 2200
-                            quality: 90
+                            quality: 75
                         }
                     )
                     avifUrl: url(
@@ -203,7 +203,7 @@ export const MULTIPLE_PROJECTS_QUERY = gql`
                             resizeStrategy: PAD
                             width: 2200
                             format: AVIF
-                            quality: 90
+                            quality: 75
                         }
                     )
                     webPUrl: url(
@@ -211,7 +211,7 @@ export const MULTIPLE_PROJECTS_QUERY = gql`
                             resizeStrategy: PAD
                             width: 2200
                             format: WEBP
-                            quality: 90
+                            quality: 75
                         }
                     )
                 }
