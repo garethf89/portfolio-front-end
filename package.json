@@ -34,7 +34,6 @@
     "react-inlinesvg": "^4.2.0",
     "react-query": "^3.39.2",
     "react-spinners": "^0.17.0",
-    "sharp": "0.33.5",
     "usehooks-ts": "^3.1.1",
     "zod": "^3.21.4",
     "zod-formik-adapter": "^1.2.0"
@@ -136,7 +135,8 @@
     "contentful-typegen": "cf-content-types-generator contentful-export.json --v10 --out @types/generated --response   && prettier @types/generated --write"
   },
   "optionalDependencies": {
-    "fsevents": "^2.3.2"
+    "fsevents": "^2.3.2",
+    "sharp": "0.33.5"
   },
   "repository": {
     "type": "git"
