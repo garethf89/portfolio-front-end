@@ -1,6 +1,5 @@
 "use client"
 
-import styled from "@emotion/styled"
 import * as React from "react"
 import Image from "../Common/Image"
 import Container from "../Global/Container/Container"
@@ -9,7 +8,6 @@ import Heading from "../Typography/Heading"
 import { nanoid } from "nanoid"
 import { HomePageLogosCollection } from "@schema"
 import { CustomImageAsset, IconsProcessed } from "@types"
-import { BREAKPOINTS } from "@theme"
 import { css } from "@styled-system/css"
 import { useIsDark } from "../../hooks"
 import type { SystemStyleObject } from "@styled-system/types"
@@ -18,25 +16,20 @@ const clientsContainerStyles = {
     paddingTop: "24",
 }
 
-const LogoWrapper = styled.div`
-    position: relative;
-    max-width: 700px;
-    text-align: center;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    border-radius: 5px;
-    align-items: center;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 2rem;
-
-    @media (min-width: ${BREAKPOINTS.sm}) {
-        flex-wrap: nowrap;
-        grid-template-columns: repeat(5, 1fr);
-    }
-`
+const logoWrapperStyles = css({
+    position: "relative",
+    maxWidth: "700px",
+    textAlign: "center",
+    margin: "0 auto",
+    borderRadius: "5px",
+    alignItems: "center",
+    display: "grid",
+    gridTemplateColumns: "repeat(2, 1fr)",
+    gridGap: "2rem",
+    sm: {
+        gridTemplateColumns: "repeat(5, 1fr)",
+    },
+})
 
 type LogoProps = React.PropsWithChildren<{
     css?: SystemStyleObject
@@ -89,7 +82,7 @@ const Clients = ({
             >
                 Clients I have worked with
             </Heading>
-            <LogoWrapper>
+            <div className={logoWrapperStyles}>
                 {data.map((logo, i: number) => {
                     const logoFields = logo?.logo as CustomImageAsset
 
@@ -152,7 +145,7 @@ const Clients = ({
                         </div>
                     )
                 })}
-            </LogoWrapper>
+            </div>
         </Container>
     )
 }

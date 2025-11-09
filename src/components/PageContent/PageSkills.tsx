@@ -1,4 +1,3 @@
-import styled from "@emotion/styled"
 import * as React from "react"
 import { IconsProcessed } from "../../../@types/types"
 import { Skill as SkillType } from "@schema"
@@ -15,11 +14,11 @@ const pageSkillContainerStyles = css({
     marginBottom: "6",
 })
 
-const SkillContainer = styled.ul`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
-`
+const skillContainerStyles = css({
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "start",
+})
 
 const PageSkills = ({ skills, icons }: PageSkillProps): React.ReactElement => {
     return (
@@ -31,7 +30,7 @@ const PageSkills = ({ skills, icons }: PageSkillProps): React.ReactElement => {
             >
                 Technology Used
             </Heading>
-            <SkillContainer>
+            <ul className={skillContainerStyles}>
                 {skills &&
                     skills.map((skill, i) => {
                         const skillIcon = icons.find(icon =>
@@ -57,7 +56,7 @@ const PageSkills = ({ skills, icons }: PageSkillProps): React.ReactElement => {
                             </Skill>
                         )
                     })}
-            </SkillContainer>
+            </ul>
         </div>
     )
 }

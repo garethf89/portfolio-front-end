@@ -2,7 +2,6 @@ import * as React from "react"
 
 import { css } from "@styled-system/css"
 import { useContext, useEffect } from "react"
-import { BREAKPOINTS } from "@theme"
 
 import Button from "../Common/Button"
 import Container from "../Global/Container/Container"
@@ -11,7 +10,6 @@ import HomeHeaderContent from "../Home/HomeHeader/HomeHeaderContent"
 import Lines from "../Animation/Lines"
 import Stats from "../Home/HomeHeader/Stats"
 import { globals } from "../../state/state"
-import styled from "@emotion/styled"
 import { HomePageIntroText, HomePageStatsCollection } from "@schema"
 
 const homeHeaderStyles = css({
@@ -39,13 +37,10 @@ const homeSectionStyles = css({
     md: { width: "60%", marginRight: "7" },
 })
 
-const HomeSectionStats = styled.div`
-    margin-top: 3rem;
-    @media (min-width: ${BREAKPOINTS.md}) {
-        margin-top: 0;
-        width: 40%;
-    }
-`
+const homeSectionStatsStyles = css({
+    marginTop: "3rem",
+    md: { marginTop: 0, width: "40%" },
+})
 
 interface HomeHeaderProps {
     text: HomePageIntroText
@@ -79,9 +74,9 @@ const HomeHeader = ({ text, stats }: HomeHeaderProps): React.ReactElement => {
                         Download CV
                     </Button>
                 </div>
-                <HomeSectionStats>
+                <div className={homeSectionStatsStyles}>
                     <Stats stats={stats} />
-                </HomeSectionStats>
+                </div>
             </Container>
             <Container css={homeContainerStyles}>
                 <Counter />

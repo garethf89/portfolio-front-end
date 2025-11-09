@@ -13,25 +13,25 @@ import { QueryClient, QueryClientProvider } from "react-query"
 import { GlobalsStateProvider } from "../state/state"
 import { ApolloProvider } from "@apollo/client"
 import { client } from "../queries/apolloClient"
-import styled from "@emotion/styled"
 import { Footer } from "@components"
 import { ImageSupportProvider } from "../contexts"
 import { useDarkMode } from "../hooks"
+import { css } from "@styled-system/css"
 
 // React-Query
 const queryClient = new QueryClient()
 
-const Root = styled.main`
-    max-width: 100%;
-    overflow-x: hidden;
-`
+const rootStyles = css({
+    maxWidth: "100%",
+    overflowX: "hidden",
+})
 
-const FooterExtender = styled.div`
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-`
+const footerExtenderStyles = css({
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+})
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
     const [initGlobals, setInitGlobals] = useState(false)
@@ -92,10 +92,12 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
                                         return () => tween.kill()
                                     }}
                                 >
-                                    <FooterExtender>
-                                        <Root>{children}</Root>
+                                    <div className={footerExtenderStyles}>
+                                        <main className={rootStyles}>
+                                            {children}
+                                        </main>
                                         <Footer />
-                                    </FooterExtender>
+                                    </div>
                                 </TransitionRouter>
                             </ImageSupportProvider>
                         </GlobalsStateProvider>

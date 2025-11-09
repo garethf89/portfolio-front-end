@@ -1,4 +1,3 @@
-import "@emotion/react"
 import { Asset, Maybe, Scalars } from "@schema/graphql"
 
 interface Size {

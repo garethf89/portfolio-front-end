@@ -7,8 +7,6 @@ import { Form, Formik, FormikHelpers } from "formik"
 import { css } from "@styled-system/css"
 import { PulseLoader } from "react-spinners"
 import { Alert, Button, Flex, Input, Label, TextArea } from "@components"
-import { BREAKPOINTS } from "@theme"
-import styled from "@emotion/styled"
 import { useEmail } from "../services/email"
 
 const buttonContainerStyles = css({
@@ -23,17 +21,15 @@ const fieldContainerStyles = {
     paddingX: { base: "0", lg: "0" },
 }
 
-const FormContainer = styled.div`
-    margin-bottom: 2.5rem;
-`
+const formSectionStyles = css({
+    marginBottom: 6,
+})
 
-const FormSection = styled.div`
-    flex: 1;
-    flex-basis: 100%;
-    @media (min-width: ${BREAKPOINTS.md}) {
-        flex-basis: 50%;
-    }
-`
+const formContainerStyles = css({
+    flex: 1,
+    flexBasis: "",
+    md: { flexBasis: "50%" },
+})
 
 interface Values {
     personName: string
@@ -89,8 +85,8 @@ export const ContactForm = (): React.ReactElement => {
                             )}
                             {status !== "success" && (
                                 <Flex css={fieldContainerStyles}>
-                                    <FormSection>
-                                        <FormContainer>
+                                    <div className={formSectionStyles}>
+                                        <div className={formContainerStyles}>
                                             <Label
                                                 error={
                                                     touched.personName
@@ -106,8 +102,8 @@ export const ContactForm = (): React.ReactElement => {
                                                 id="personName"
                                                 name="personName"
                                             />
-                                        </FormContainer>
-                                        <FormContainer>
+                                        </div>
+                                        <div className={formContainerStyles}>
                                             <Label
                                                 error={
                                                     touched.personEmail
@@ -124,10 +120,10 @@ export const ContactForm = (): React.ReactElement => {
                                                 name="personEmail"
                                                 type="email"
                                             />
-                                        </FormContainer>
-                                    </FormSection>
-                                    <FormSection>
-                                        <FormContainer>
+                                        </div>
+                                    </div>
+                                    <div className={formSectionStyles}>
+                                        <div className={formContainerStyles}>
                                             <Label
                                                 required
                                                 htmlFor="personEnq"
@@ -145,7 +141,7 @@ export const ContactForm = (): React.ReactElement => {
                                                 name="personEnq"
                                                 type="textarea"
                                             />
-                                        </FormContainer>
+                                        </div>
                                         <div className={buttonContainerStyles}>
                                             <Button
                                                 variant="primary"
@@ -162,7 +158,7 @@ export const ContactForm = (): React.ReactElement => {
                                                 size={8}
                                             />
                                         </div>
-                                    </FormSection>
+                                    </div>
                                 </Flex>
                             )}
                         </Form>

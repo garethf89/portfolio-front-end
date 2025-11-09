@@ -1,37 +1,35 @@
 import * as React from "react"
-
-import { BREAKPOINTS } from "@theme"
 import Heading from "../../Typography/Heading"
-import styled from "@emotion/styled"
 import { Stat } from "@schema"
+import { css } from "@styled-system/css"
 
-const StatsContainer = styled.ul`
-    list-style-type: 0;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    @media (min-width: ${BREAKPOINTS.sm}) {
-        display: flex;
-        flex-wrap: wrap;
-    }
-`
+const statsContainerStyles = css({
+    listStyleType: "none",
+    margin: 0,
+    padding: 0,
+    position: "relative",
+    sm: {
+        display: "flex",
+        flexWrap: "wrap",
+    },
+})
 
-const StatList = styled.li`
-    list-style-type: none;
-    padding: 0;
-    display: inline-block;
-    margin: 0 1rem 2rem 0;
-    &:last-of-type {
-        margin-bottom: 0;
-    }
-    @media (min-width: ${BREAKPOINTS.sm}) {
-        width: 33.33%;
-        margin-right: 0;
-    }
-    @media (min-width: ${BREAKPOINTS.md}) {
-        width: 50%;
-    }
-`
+const statListStyles = css({
+    listStyleType: "none",
+    padding: 0,
+    display: "inline-block",
+    margin: "0 1rem 2rem 0",
+    "&:last-of-type": {
+        marginBottom: 0,
+    },
+    sm: {
+        width: "33.33%",
+        marginRight: 0,
+    },
+    md: {
+        width: "50%",
+    },
+})
 
 const statNumberStyles = {
     marginBottom: 0,
@@ -39,19 +37,19 @@ const statNumberStyles = {
     verticalAlign: "middle",
 }
 
-const StatDesc = styled.span`
-    vertical-align: middle;
-    font-weight: 200;
-    display: inline-block;
-    margin-left: 1rem;
-    @media (min-width: ${BREAKPOINTS.sm}) {
-        display: block;
-        margin-left: 0;
-    }
-    @media (min-width: ${BREAKPOINTS.md}) {
-        margin-top: 0.5rem;
-    }
-`
+const statDescStyles = css({
+    verticalAlign: "middle",
+    fontWeight: "200",
+    display: "inline-block",
+    marginLeft: "1rem",
+    sm: {
+        display: "block",
+        marginLeft: 0,
+    },
+    md: {
+        marginTop: "0.5rem",
+    },
+})
 
 interface StatProps {
     stats: Stat[]
@@ -59,16 +57,17 @@ interface StatProps {
 
 const Stats = ({ stats }: StatProps): React.ReactElement => {
     return (
-        <StatsContainer>
+        <ul className={statsContainerStyles}>
             {stats.map((stat: Stat, i) => (
-                <StatList key={i}>
+                <li key={i} className={statListStyles}>
                     <Heading css={statNumberStyles} level="h1" override="p">
                         {stat.amount}+
                     </Heading>
-                    <StatDesc>{stat.description}</StatDesc>
-                </StatList>
+                    <span className={statDescStyles}>{stat.description}</span>
+                </li>
             ))}
-        </StatsContainer>
+        </ul>
     )
 }
+
 export default Stats

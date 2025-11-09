@@ -2,9 +2,10 @@ import { Handler } from "@netlify/functions"
 import { MongoClient } from "mongodb"
 
 const handler: Handler = async () => {
+    let client: MongoClient | null = null
     try {
         const connStr = `mongodb+srv://${process.env.MONGO}`
-        const client = new MongoClient(connStr)
+        client = new MongoClient(connStr)
         await client.connect()
 
         const database = client.db("garethferguson")
@@ -15,7 +16,17 @@ const handler: Handler = async () => {
 
         return { body: JSON.stringify(values), statusCode: 200 }
     } catch (e) {
-        throw new Error("Lastfm fetch error")
+        console.error("LastFM fetch error:", e)
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ error: "Lastfm fetch error" }),
+        }
+    } finally {
+        if (client) {
+            await client.close().catch(err => {
+                console.error("Error closing MongoDB connection:", err)
+            })
+        }
     }
 }
 

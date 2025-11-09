@@ -7,18 +7,13 @@ import { ColorPicker, MobileMenu } from "@components"
 import NavigationLink from "./NavigationLink"
 import debounce from "../../helpers/debounce"
 import { isWindow } from "../../helpers/isWindow"
-import styled from "@emotion/styled"
 import config from "../../config/site"
 import { css } from "@styled-system/css"
 
-const NavigationStyles = styled.nav``
-
-const NavMobile = styled.div`
-    display: block;
-    @media (min-width: ${BREAKPOINTS.md}) {
-        display: none;
-    }
-`
+const mobileNavStyles = css({
+    display: "block",
+    md: { display: "none" },
+})
 
 const navListStyles = css.raw({
     margin: 0,
@@ -43,17 +38,17 @@ const navListStyles = css.raw({
     },
 })
 
-const NavLi = styled.li`
-    display: inline-block;
-    width: auto;
-    padding-bottom: 2rem;
-    &:last-of-type {
-        padding-bottom: 0;
-    }
-    @media (min-width: ${BREAKPOINTS.md}) {
-        padding-left: 2rem;
-    }
-`
+const navListItemStyles = css({
+    display: "inline-block",
+    width: "auto",
+    paddingBottom: 8,
+    "&:last-of-type": {
+        paddingBottom: 0,
+    },
+    md: {
+        paddingLeft: 8,
+    },
+})
 
 const Navigation = (): React.ReactElement => {
     const [active, setActive] = useState(false)
@@ -93,7 +88,7 @@ const Navigation = (): React.ReactElement => {
     }
 
     return (
-        <NavigationStyles>
+        <nav>
             <ul
                 className={css(
                     navListStyles,
@@ -106,29 +101,29 @@ const Navigation = (): React.ReactElement => {
                 {menuLinks.map((link, i) => {
                     const internal = /^\/(?!\/)/.test(link.slug)
                     return (
-                        <NavLi key={link.name + i}>
+                        <li key={link.name + i} className={navListItemStyles}>
                             <NavigationLink
                                 internal={internal}
                                 href={link.slug}
                             >
                                 <span>{link.name}</span>
                             </NavigationLink>
-                        </NavLi>
+                        </li>
                     )
                 })}
-                <NavLi key={"color-nav"}>
+                <li key={"color-nav"} className={navListItemStyles}>
                     <ColorPicker />
-                </NavLi>
+                </li>
             </ul>
-            <NavMobile>
+            <div className={mobileNavStyles}>
                 <MobileMenu
                     scale={0.5}
                     onClick={() => {
                         toggle(!active)
                     }}
                 />
-            </NavMobile>
-        </NavigationStyles>
+            </div>
+        </nav>
     )
 }
 
