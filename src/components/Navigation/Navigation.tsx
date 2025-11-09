@@ -2,7 +2,6 @@ import * as React from "react"
 
 import { useEffect, useState } from "react"
 
-import { BREAKPOINTS } from "@theme"
 import { ColorPicker, MobileMenu } from "@components"
 import NavigationLink from "./NavigationLink"
 import debounce from "../../helpers/debounce"
