@@ -13269,8 +13269,6 @@ __metadata:
   dependenciesMeta:
     fsevents:
       optional: true
-    sharp:
-      optional: true
   languageName: unknown
   linkType: soft
 
