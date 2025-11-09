@@ -1,6 +1,10 @@
 import { NextRequest } from "next/server"
 import { revalidatePath } from "next/cache"
 
+if (process.env.NETLIFY) {
+    process.env.SHARP_IGNORE_GLOBAL_LIBVIPS = "1"
+}
+
 export async function GET(request: NextRequest): Promise<Response> {
     const secret = request.nextUrl.searchParams.get("secret")
 
