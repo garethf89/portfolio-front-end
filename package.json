@@ -133,8 +133,7 @@
     "codegen": "DOTENV_CONFIG_PATH=.env.development graphql-codegen --config codegen.ts -r dotenv/config",
     "previewSetup": "cp -f preview.toml netlify.tomyarn",
     "contentful-export": "contentful space export --config contentful/export-config.json --management-token %CONTENTFUL_MANAGEMENT_PAT% --space-id %CONTENTFUL_SPACE_ID%",
-    "contentful-typegen": "cf-content-types-generator contentful-export.json --v10 --out @types/generated --response   && prettier @types/generated --write",
-    "postinstall": "yarn rebuild sharp || true"
+    "contentful-typegen": "cf-content-types-generator contentful-export.json --v10 --out @types/generated --response   && prettier @types/generated --write"
   },
   "optionalDependencies": {
     "fsevents": "^2.3.2"
