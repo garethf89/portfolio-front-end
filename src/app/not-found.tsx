@@ -3,7 +3,6 @@ import * as React from "react"
 import { MULTIPLE_PROJECTS_QUERY } from "../queries"
 import { client } from "../queries/apolloClient"
 import ProjectProvider from "../contexts/Projects"
-import { addPlaceholder } from "../utils"
 import type { AllProjectsQuery, Project } from "@schema"
 
 type NotFoundPageProps = Promise<{ projects?: Project[] }>
@@ -22,15 +21,12 @@ export const getProjects = async (): NotFoundPageProps => {
 
     const projects = data.project!.items as Project[]
 
-    // Create blur images
-    const projectsFormatted = await addPlaceholder(projects, "coverImage")
-
     if (error) {
         console.error(error)
     }
 
     return {
-        projects: projectsFormatted,
+        projects,
     }
 }
 

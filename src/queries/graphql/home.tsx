@@ -48,6 +48,14 @@ export const HOME_QUERY = gql`
                             title
                             width
                             height
+                            blurURL: url(
+                                transform: {
+                                    resizeStrategy: PAD
+                                    width: 8
+                                    format: JPG
+                                    quality: 80
+                                }
+                            )
                             url(
                                 transform: {
                                     resizeStrategy: PAD

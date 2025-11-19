@@ -26,5 +26,8 @@ jobs:
       - name: Install modules
         run: yarn
 
+      - name: Prepare
+        run: yarn prepare
+
       - name: Typescript
         run: yarn tsc --project tsconfig.build.json

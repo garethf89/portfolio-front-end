@@ -16,7 +16,6 @@ import config from "../config/site"
 import lastFmMock from "../__mocks__/lastfm"
 import { functionGet } from "../constants/lastfm"
 import axios from "axios"
-import { addPlaceholder } from "../utils"
 import type { HomePage, HomePageCollection, HomeQuery } from "@schema"
 import { AlbumType } from "@components"
 import { notFound } from "next/navigation"
@@ -54,12 +53,6 @@ const getHome = async (): Promise<HomePageProps> => {
 
     if (!homePage) {
         return notFound()
-    }
-
-    // Create Blur images
-    const projects = homePage.projectsCollection
-    if (projects && projects.items) {
-        projects.items = await addPlaceholder(projects.items, "coverImage")
     }
 
     // Request SVGS and set to strings

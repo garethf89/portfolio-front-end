@@ -7,7 +7,6 @@ import {
     ProjectQueryVariables,
 } from "@schema"
 import { client, PROJECT_PATHS, PROJECT_QUERY, getSingleItem } from "@queries"
-import { addPlaceholderSingle } from "../../utils"
 import { IconsProcessed } from "@types"
 import { PageHeader, PageContent } from "@components"
 import { notFound } from "next/navigation"
@@ -75,12 +74,9 @@ const getProject = async ({
         return notFound()
     }
 
-    const projectSingle = getSingleItem<ProjectCollection, Project>(
+    const project = getSingleItem<ProjectCollection, Project>(
         data.project as unknown as ProjectCollection
     )
-
-    // Create blur images
-    const project = await addPlaceholderSingle(projectSingle, "coverImage")
 
     // Request SVGS and set to strings - TODO
     const ICON_REQUESTS_SKILL = project.skillsCollection?.items.map(item => {

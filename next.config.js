@@ -13,9 +13,4 @@ module.exports = {
             },
         ],
     },
-    experimental: {
-        outputFileTracingExcludes: {
-            "/api/**": ["node_modules/sharp/**"],
-        },
-    },
 }
