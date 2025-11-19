@@ -4616,13 +4616,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@netlify/plugin-nextjs@npm:^5.14.5":
-  version: 5.14.5
-  resolution: "@netlify/plugin-nextjs@npm:5.14.5"
-  checksum: 10/8471e1fa3c956d19d852b258ea462e48cda94c55186c1ea0834c45f41ae41c4c17bf1ae98b6619a2c81528ff9c83a711fd19d63b2d97b4f3736894b857fd5b53
-  languageName: node
-  linkType: hard
-
 "@next/env@npm:13.5.11":
   version: 13.5.11
   resolution: "@next/env@npm:13.5.11"
@@ -13183,7 +13176,6 @@ __metadata:
     "@graphql-codegen/typescript-operations": "npm:^4.3.1"
     "@mdx-js/react": "npm:^2.1.1"
     "@netlify/functions": "npm:^1.6.0"
-    "@netlify/plugin-nextjs": "npm:^5.14.5"
     "@next/eslint-plugin-next": "npm:^13.5.7"
     "@pandacss/dev": "npm:^0.51.1"
     "@sentry/react": "npm:^7.28.0"
