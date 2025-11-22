@@ -4,7 +4,6 @@ import {
     MARKS,
     TopLevelBlockEnum,
 } from "@contentful/rich-text-types"
-import styled from "@emotion/styled"
 import * as React from "react"
 import { useEffect, useId, useState } from "react"
 import { css } from "@styled-system/css"
@@ -55,29 +54,34 @@ const contentContainerStyles = {
     md: { maxWidth: "calc(var(--sizes-container-content) + 6rem)" },
 }
 
-const BoldMark = styled.span`
-    font-weight: 700;
-`
-const UnderlineMark = styled.span`
-    text-decoration: underline;
-`
-const ItalicMark = styled.span`
-    font-style: italic;
-`
+const boldStyles = css({
+    fontWeight: 700,
+})
+
+const underlineStyles = css({
+    textDecoration: "underline",
+})
+
+const italicStyles = css({
+    fontStyle: "italic",
+})
 
 const Bold = ({ children }: React.PropsWithChildren) => {
-    return <BoldMark>{children}</BoldMark>
+    return <span className={boldStyles}>{children}</span>
 }
+
 const Italic = ({ children }: React.PropsWithChildren) => {
-    return <ItalicMark>{children}</ItalicMark>
+    return <span className={italicStyles}>{children}</span>
 }
 
 const Underline = ({ children }: React.PropsWithChildren) => {
-    return <UnderlineMark>{children}</UnderlineMark>
+    return <span className={underlineStyles}>{children}</span>
 }
+
 export const Text = ({ children }: React.PropsWithChildren) => {
     return <p className={styledParagraphStyles}> {children}</p>
 }
+
 export const IntroText = ({ children }: React.PropsWithChildren) => {
     return <p className={styledParagraphIntroStyles}>{children}</p>
 }
@@ -137,6 +141,7 @@ interface OutputTextComponentProps {
     text: PageContentText
     name: number | string
 }
+
 const OutputTextComponent = ({
     text,
     name,

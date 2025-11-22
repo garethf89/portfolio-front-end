@@ -3,10 +3,9 @@ module.exports = {
         "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended",
         "plugin:@next/next/recommended",
-        "prettier",
-        "plugin:storybook/recommended"
+        "plugin:storybook/recommended",
     ],
-    plugins: ["@typescript-eslint", "prefer-arrow", "prettier"],
+    plugins: ["@typescript-eslint", "prefer-arrow"],
     env: {
         es6: true,
         browser: true,
@@ -29,7 +28,7 @@ module.exports = {
         },
     },
     rules: {
-        "prettier/prettier": "error",
+        "@next/next/no-img-element": "off",
         "no-unsafe-finally": "off",
         curly: "error",
         "dot-notation": "off",
@@ -84,6 +83,7 @@ module.exports = {
         "@typescript-eslint/no-unused-vars": [
             "error",
             {
+                caughtErrors: "none",
                 vars: "all",
                 args: "after-used",
                 ignoreRestSiblings: true,
@@ -92,19 +92,6 @@ module.exports = {
             },
         ],
         "@typescript-eslint/no-explicit-any": "error",
-        "@typescript-eslint/member-delimiter-style": [
-            "off",
-            {
-                multiline: {
-                    delimiter: "semi",
-                    requireLast: true,
-                },
-                singleline: {
-                    delimiter: "semi",
-                    requireLast: false,
-                },
-            },
-        ],
         "react/display-name": "off",
         "react/react-in-jsx-scope": "off",
         "@typescript-eslint/no-non-null-assertion": "off",

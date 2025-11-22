@@ -1,28 +1,25 @@
 import * as React from "react"
-
-import { BREAKPOINTS } from "@theme"
 import Heading from "../Typography/Heading"
 import IconExternal from "../Icons/IconExternal"
 import { IconProps } from "../Icons/Icon"
-import styled from "@emotion/styled"
+import { css } from "@styled-system/css"
 
-const SkillContainer = styled.li`
-    width: 33.33%;
-    word-break: break-word;
-    text-align: center;
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    padding: 0 0;
-    margin-bottom: 2rem;
-
-    @media (min-width: ${BREAKPOINTS.sm}) {
-        width: 16.6%;
-        &:nth-of-type(n + 7) {
-            margin-bottom: 0;
-        }
-    }
-`
+const skillContainerStyles = css({
+    width: "33.33%",
+    wordBreak: "break-word",
+    textAlign: "center",
+    display: "flex",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+    padding: "0 0",
+    marginBottom: "2rem",
+    sm: {
+        width: "16.6%",
+        "&:nth-of-type(n + 7)": {
+            marginBottom: 0,
+        },
+    },
+})
 
 const skillTextStyles = {
     fontWeight: 200,
@@ -49,7 +46,7 @@ const Skill = ({
     width,
     height,
 }: SkillProps): React.ReactElement => (
-    <SkillContainer>
+    <li className={skillContainerStyles}>
         <IconExternal
             aria-describedby={id}
             aria-labelledby={id}
@@ -60,7 +57,7 @@ const Skill = ({
         <Heading id={id} level="h4" override="p" css={skillTextStyles}>
             {children}
         </Heading>
-    </SkillContainer>
+    </li>
 )
 
 export default Skill

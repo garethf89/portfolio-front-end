@@ -1,4 +1,3 @@
-import styled from "@emotion/styled"
 import * as React from "react"
 import { useEffect, useState } from "react"
 import { random } from "../../helpers/random"
@@ -9,7 +8,6 @@ import Heading from "../Typography/Heading"
 import Link from "../Link/Link"
 import { useProjects } from "../../contexts"
 import { Project } from "@schema"
-import { CustomImageAsset } from "@types"
 import { css } from "@styled-system/css"
 
 const suggestedProjectLinkContainerStyles = css({
@@ -27,16 +25,10 @@ const suggestedProjectLinkContainerStyles = css({
     md: { width: "40%", marginBottom: 0, marginRight: 0 },
 })
 
-const SuggestedProjectLink = styled(Link)``
-
-type SuggestedProjectLinkBGProps = {
-    image?: CustomImageAsset
-}
-
-const SuggestedProjectLinkBG = styled(Image)<SuggestedProjectLinkBGProps>`
-    transition: all 0.5s ease-in-out;
-    object-fit: cover;
-`
+const suggestedProjectLinkBGStyles = css({
+    transition: "all 0.5s ease-in-out",
+    objectFit: "cover",
+})
 
 const aspectContainerStyles = css({
     position: "relative",
@@ -79,12 +71,10 @@ const SuggestedProjects = (): React.ReactElement => {
                             className={suggestedProjectLinkContainerStyles}
                             key={i}
                         >
-                            <SuggestedProjectLink
-                                href={`/${project.slug}`}
-                                className=""
-                            >
+                            <Link href={`/${project.slug}`}>
                                 <div className={aspectContainerStyles}>
-                                    <SuggestedProjectLinkBG
+                                    <Image
+                                        className={suggestedProjectLinkBGStyles}
                                         alt={project.title!}
                                         image={project.coverImage!}
                                         fill
@@ -96,12 +86,12 @@ const SuggestedProjects = (): React.ReactElement => {
                                     />
                                 </div>
                                 <SROnly>{project.title}</SROnly>
-                            </SuggestedProjectLink>
+                            </Link>
                             <Heading
                                 level="h3"
                                 css={css.raw({ marginTop: "6" })}
                             >
-                                <Link className="" href={`/${project.slug}`}>
+                                <Link href={`/${project.slug}`}>
                                     {project.title}
                                 </Link>
                             </Heading>
@@ -110,7 +100,7 @@ const SuggestedProjects = (): React.ReactElement => {
                                 override="p"
                                 css={{ margin: 0 }}
                             >
-                                <Link className="" href={`/${project.slug}`}>
+                                <Link href={`/${project.slug}`}>
                                     {project.headline}
                                 </Link>
                             </Heading>

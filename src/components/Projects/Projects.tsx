@@ -1,85 +1,80 @@
-import styled from "@emotion/styled"
 import * as React from "react"
-import { BREAKPOINTS } from "@theme"
 import { Project as ProjectType } from "@schema"
 import Image from "../Common/Image"
 import { SROnly } from "../Common/SROnly"
 import FadeLink from "../Link/Link"
 import Heading from "../Typography/Heading"
 import { Container } from "../Global/Container"
+import { css } from "@styled-system/css"
 
 const projectsContainerStyles = {
     paddingBottom: 0,
 }
 
-const ProjectWrapper = styled.div`
-    position: relative;
+const projectWrapperStyles = css({
+    position: "relative",
+    md: {
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+        "& > *": {
+            width: "48%",
+        },
+    },
+    lg: {
+        "& > *": {
+            width: "32%",
+        },
+    },
+})
 
-    @media (min-width: ${BREAKPOINTS.md}) {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        > * {
-            width: 48%;
-        }
-    }
+const projectWrapperLowerStyles = css({
+    position: "relative",
+    md: {
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+        "& > *": {
+            width: "48%",
+        },
+    },
+    lg: {
+        "& > *": {
+            width: "24%",
+            marginBottom: 0,
+        },
+    },
+})
 
-    @media (min-width: ${BREAKPOINTS.lg}) {
-        > * {
-            width: 32%;
-        }
-    }
-`
+const projectStyles = css({
+    marginBottom: "3rem",
+    transition: "all 0.5s ease-out",
+    "& p": {
+        marginBottom: 0,
+    },
+    "&:hover": {
+        opacity: 0.9,
+    },
+})
 
-const ProjectWrapperLower = styled.div`
-    position: relative;
+const projectImageContainerStyles = css({
+    paddingTop: "56.25%",
+    position: "relative",
+    overflow: "hidden",
+    marginBottom: "2rem",
+})
 
-    @media (min-width: ${BREAKPOINTS.md}) {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        > * {
-            width: 48%;
-        }
-    }
-
-    @media (min-width: ${BREAKPOINTS.lg}) {
-        > * {
-            width: 24%;
-            margin-bottom: 0;
-        }
-    }
-`
-
-const Project = styled.div`
-    margin-bottom: 3rem;
-    transition: all 0.5s ease-out;
-    p {
-        margin-bottom: 0;
-    }
-    &:hover {
-        opacity: 0.9;
-    }
-`
-
-const ProjectImageContainer = styled.div`
-    padding-top: 56.25%;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 2rem;
-`
-
-const ProjectImage = styled(Image)`
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    transition: all 0.5s ease-in-out;
-    &:hover {
-        transform: scale(1.1);
-    }
-`
+const projectImageStyles = css({
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    transition: "all 0.5s ease-in-out",
+    "&:hover": {
+        transform: "scale(1.1)",
+    },
+})
 
 interface ProjectProps {
     data: ProjectType[]
@@ -101,22 +96,22 @@ const ProjectTemplate = ({
     }
 
     return (
-        <Project key={index}>
+        <div className={projectStyles} key={index}>
             <FadeLink href={project.slug ?? ""}>
                 <SROnly>{project.title}</SROnly>
-                <ProjectImageContainer>
-                    <ProjectImage
+                <div className={projectImageContainerStyles}>
+                    <Image
+                        className={projectImageStyles}
                         alt={project.title ?? ""}
                         image={coverImage}
                         fill
-                        sizes="(max-width: 800) 50vw,
-              33vw"
+                        sizes="(max-width: 800) 50vw, 33vw"
                         style={{
                             objectFit: "cover",
                             height: "100%",
                         }}
                     />
-                </ProjectImageContainer>
+                </div>
             </FadeLink>
             <Heading
                 level={"h6"}
@@ -130,7 +125,7 @@ const ProjectTemplate = ({
                     {project.headline}
                 </FadeLink>
             </Heading>
-        </Project>
+        </div>
     )
 }
 
@@ -140,7 +135,7 @@ const Projects = ({ data }: ProjectProps): React.ReactElement<ProjectProps> => {
             <Heading level="h2" css={{ textAlign: "center" }}>
                 My Work
             </Heading>
-            <ProjectWrapper>
+            <div className={projectWrapperStyles}>
                 {data.map((project: ProjectType, i: number) => {
                     if (i >= data.length - 4) {
                         return null
@@ -149,8 +144,8 @@ const Projects = ({ data }: ProjectProps): React.ReactElement<ProjectProps> => {
                         <ProjectTemplate key={i} index={i} project={project} />
                     )
                 })}
-            </ProjectWrapper>
-            <ProjectWrapperLower>
+            </div>
+            <div className={projectWrapperLowerStyles}>
                 {data.map((project: ProjectType, i: number) => {
                     if (i < data.length - 4) {
                         return null
@@ -164,7 +159,7 @@ const Projects = ({ data }: ProjectProps): React.ReactElement<ProjectProps> => {
                         />
                     )
                 })}
-            </ProjectWrapperLower>
+            </div>
         </Container>
     )
 }

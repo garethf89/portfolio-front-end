@@ -1,18 +1,16 @@
 import * as React from "react"
-
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import {
     documentToReactComponents,
     CommonNode,
 } from "@contentful/rich-text-react-renderer"
-import { BREAKPOINTS } from "@theme"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 import Lines from "../Animation/Lines"
 import { OuterWrapper } from "../Common/OuterWrapper"
 import ReadMore from "../Typography/ReadMore"
-import styled from "@emotion/styled"
 import { HomePageCaseStudiesCollection, Project, ProjectIntro } from "@schema"
+import { css } from "@styled-system/css"
 
 const styledParagraphStyles = {
     fontWeight: 300,
@@ -21,25 +19,24 @@ const styledParagraphStyles = {
     color: "sectionText",
 }
 
-const CaseStudyWrapper = styled.div`
-    position: relative;
+const caseStudyWrapperStyles = css({
+    position: "relative",
+    md: {
+        display: "flex",
+        justifyContent: "space-between",
+    },
+})
 
-    @media (min-width: ${BREAKPOINTS.md}) {
-        display: flex;
-        justify-content: space-between;
-    }
-`
-
-const CaseStudy = styled.div`
-    margin-bottom: 3rem;
-    &:last-of-type {
-        margin-bottom: 0;
-    }
-    @media (min-width: ${BREAKPOINTS.md}) {
-        width: 30%;
-        margin-bottom: 0;
-    }
-`
+const caseStudyStyles = css({
+    marginBottom: "3rem",
+    "&:last-of-type": {
+        marginBottom: 0,
+    },
+    md: {
+        width: "30%",
+        marginBottom: 0,
+    },
+})
 
 interface BlockParams {
     children?: React.ReactNode
@@ -55,9 +52,13 @@ const Text = ({
     )
 }
 
-const Bold = styled.span`
-    font-weight: 700;
-`
+const boldStyles = css({
+    fontWeight: 700,
+})
+
+const Bold = ({ children }: { children: React.ReactNode }) => (
+    <span className={boldStyles}>{children}</span>
+)
 
 const options = {
     renderMark: {
@@ -93,23 +94,23 @@ const CaseStudies = ({ data }: CSProps): React.ReactElement<CSProps> => {
             <Container vPadding>
                 <Lines id="LinesCaseStudies" />
                 <Heading level="h2">Case Studies</Heading>
-                <CaseStudyWrapper>
+                <div className={caseStudyWrapperStyles}>
                     {data.map((project: Project, i: number) => {
                         if (!project) {
                             return <></>
                         }
                         return (
-                            <CaseStudy key={i}>
+                            <div key={i} className={caseStudyStyles}>
                                 <CaseStudyText
                                     data={project.intro as ProjectIntro}
                                 />
                                 <ReadMore href={`/${project.slug}`}>
                                     Read more about {project.title}
                                 </ReadMore>
-                            </CaseStudy>
+                            </div>
                         )
                     })}
-                </CaseStudyWrapper>
+                </div>
             </Container>
         </OuterWrapper>
     )

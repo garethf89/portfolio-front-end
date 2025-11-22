@@ -1,5 +1,5 @@
 import config from "../config/site"
-import { Metadata } from "next"
+import { Metadata, Viewport } from "next"
 import Providers from "./providers"
 import "../globals.css"
 import { Ubuntu } from "next/font/google"
@@ -43,10 +43,11 @@ export const metadata: Metadata = {
         description: config.description,
         images: [config.image],
     },
-    viewport: {
-        width: "device-width",
-        initialScale: 1,
-    },
+}
+
+export const viewport: Viewport = {
+    width: "device-width",
+    initialScale: 1,
 }
 
 const Layout = async ({ children }: { children: React.ReactNode }) => {

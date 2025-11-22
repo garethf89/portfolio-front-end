@@ -1,71 +1,76 @@
-import styled from "@emotion/styled"
 import * as React from "react"
 import { useEffect, useState } from "react"
 import { useQueryClient } from "react-query"
-import { StyledProps } from "../../../@types/types"
-import { BREAKPOINTS } from "@theme"
 import LastFMLogo from "../../svgs/lastfm"
 import Lines from "../Animation/Lines"
 import { OuterWrapper } from "../Common/OuterWrapper"
 import Container from "../Global/Container/Container"
 import Heading from "../Typography/Heading"
 import { AlbumType } from "./types"
+import { css, cva } from "@styled-system/css"
 
-const Albums = styled.div`
-    @media (min-width: ${BREAKPOINTS.md}) {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        margin-top: 2rem;
-    }
-`
+const albumsStyles = css({
+    display: "block",
+    md: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginTop: "2rem",
+    },
+})
 
-interface AlbumProps extends StyledProps {
-    last?: boolean
-    bg?: string
-}
+const albumStyles = cva({
+    base: {
+        flexBasis: "31%",
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+        marginBottom: "2rem",
+        "&:last-of-type": {
+            marginBottom: 0,
+        },
+    },
+    variants: {
+        size: {
+            default: {
+                md: {
+                    flexWrap: "nowrap",
+                    flex: 1,
+                    marginRight: "2rem",
+                    marginBottom: 0,
+                },
+            },
+        },
+    },
+    defaultVariants: {
+        size: "default",
+    },
+})
 
-const Album = styled.div<AlbumProps>`
-    flex-basis: 31%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-    &:last-of-type {
-        margin-bottom: 0;
-    }
-    @media (min-width: ${BREAKPOINTS.md}) {
-        flex-wrap: nowrap;
-        flex: 1;
-        margin-right: 2rem;
-        margin-bottom: 0;
-    }
-`
+const albumInfoStyles = css({
+    flex: 1,
+    flexBasis: "40%",
+    sm: {
+        flexBasis: "56%",
+    },
+})
 
-const AlbumInfo = styled.div`
-    flex: 1;
-    flex-basis: 40%;
-    @media (min-width: ${BREAKPOINTS.sm}) {
-        flex-basis: 56%;
-    }
-`
+const albumArtContainerStyles = css({
+    maxWidth: "80px",
+    height: "auto",
+    marginRight: "1rem",
+    minWidth: "80px",
+    md: {
+        flex: 1,
+        flexBasis: "52%",
+        marginBottom: 0,
+    },
+})
 
-const AlbumArtContainer = styled.div`
-    max-width: 80px;
-    height: auto;
-    margin-right: 1rem;
-    min-width: 80px;
-    @media (min-width: ${BREAKPOINTS.md}) {
-        flex: 1;
-        flex-basis: 52%;
-        margin-bottom: 0;
-    }
-`
-
-const AlbumArtInner = styled.img`
-    max-width: 100%;
-    height: auto;
-`
+const albumArtInnerStyles = css({
+    maxWidth: "100%",
+    height: "auto",
+})
 
 type LastFmProps = {
     initialAlbums?: AlbumType[]
@@ -111,16 +116,17 @@ const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
                     />
                     Recently played
                 </Heading>
-                <Albums>
+                <div className={albumsStyles}>
                     {albums &&
                         albums.map((album, i) => (
-                            <Album
+                            <div
                                 key={i}
                                 data-testid={`album-${album.name}`}
-                                last={i === 2}
+                                className={albumStyles()}
                             >
-                                <AlbumArtContainer>
-                                    <AlbumArtInner
+                                <div className={albumArtContainerStyles}>
+                                    <img
+                                        className={albumArtInnerStyles}
                                         loading="lazy"
                                         alt={`${album.name} cover`}
                                         src={
@@ -128,8 +134,8 @@ const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
                                             album.image[3]["#text"]
                                         }
                                     />
-                                </AlbumArtContainer>
-                                <AlbumInfo>
+                                </div>
+                                <div className={albumInfoStyles}>
                                     <Heading
                                         css={{
                                             marginTop: 0,
@@ -149,10 +155,10 @@ const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
                                     >
                                         {album.artist.name}
                                     </Heading>
-                                </AlbumInfo>
-                            </Album>
+                                </div>
+                            </div>
                         ))}
-                </Albums>
+                </div>
             </Container>
         </OuterWrapper>
     )

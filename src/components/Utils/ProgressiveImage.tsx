@@ -1,8 +1,5 @@
 import * as React from "react"
-
 import { css, Styles } from "@styled-system/css"
-import { BREAKPOINTS } from "@theme"
-import styled from "@emotion/styled"
 import { supportsWebP } from "../../helpers/support/webp"
 import { useState } from "react"
 import { CustomImageAsset } from "@types"
@@ -55,24 +52,23 @@ const imageCommonStyles = {
 
 const imageBlockStyles = { maxWidth: "100%" }
 
-const BlurryImage = styled.img`
-    width: 100%;
-    position: absolute;
-    object-fit: cover;
-    min-width: 100%;
-    min-height: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    @media (min-width: ${BREAKPOINTS.md}) {
-        width: auto;
-    }
-    filter: blur(20px);
-    &[aria-hidden="true"] {
-        display: none;
-    }
-`
+const blurryImageStyles = css({
+    width: "100%",
+    position: "absolute",
+    objectFit: "cover",
+    minWidth: "100%",
+    minHeight: "100%",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    filter: "blur(20px)",
+    "&[aria-hidden='true']": {
+        display: "none",
+    },
+    md: {
+        width: "auto",
+    },
+})
 
 const ProgressiveImage = ({
     image,
@@ -105,7 +101,12 @@ const ProgressiveImage = ({
     return (
         <div>
             {loadingImage && (
-                <BlurryImage alt={alt} src={blurrySrc} aria-hidden={!!loaded} />
+                <img
+                    className={blurryImageStyles}
+                    alt={alt}
+                    src={blurrySrc}
+                    aria-hidden={!!loaded}
+                />
             )}
             <img
                 alt={alt}

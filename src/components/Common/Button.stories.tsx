@@ -17,52 +17,30 @@ const ButtonStory = ({
     label,
     variant,
     icons,
-}: ButtonStoryProps): React.ReactElement => (
-    <>
-        {variant === "primary" && (
-            <DarkBackground>
-                {Buttons.map(button => (
-                    <>
-                        <Button
-                            click={() => alert("CLICKED")}
-                            icon={
-                                icons ? (button.icon as ButtonTypes) : undefined
-                            }
-                            type="submit"
-                            variant="secondary"
-                            as="a"
-                            href="/"
-                        >
-                            {label}
-                        </Button>
-                        <Spacer />
-                    </>
-                ))}
-            </DarkBackground>
-        )}
-        {variant === "secondary" && (
-            <LightContainer>
-                {Buttons.map(button => (
-                    <>
-                        <Button
-                            click={() => alert("CLICKED")}
-                            icon={
-                                icons ? (button.icon as ButtonTypes) : undefined
-                            }
-                            type="submit"
-                            variant="primary"
-                            as="a"
-                            href="/"
-                        >
-                            {label}
-                        </Button>
-                        <Spacer />
-                    </>
-                ))}
-            </LightContainer>
-        )}
-    </>
-)
+}: ButtonStoryProps): React.ReactElement => {
+    const Background = variant === "primary" ? DarkBackground : LightContainer
+    const buttonVariant = variant === "primary" ? "secondary" : "primary"
+
+    return (
+        <Background>
+            {Buttons.map((button, index) => (
+                <React.Fragment key={index}>
+                    <Button
+                        click={() => alert("CLICKED")}
+                        icon={icons ? (button.icon as ButtonTypes) : undefined}
+                        type="submit"
+                        variant={buttonVariant}
+                        as="a"
+                        href="/"
+                    >
+                        {label}
+                    </Button>
+                    <Spacer />
+                </React.Fragment>
+            ))}
+        </Background>
+    )
+}
 
 export default {
     title: "Common /Button",

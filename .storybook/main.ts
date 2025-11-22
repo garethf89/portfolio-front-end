@@ -5,9 +5,8 @@ const config: StorybookConfig = {
     stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
     addons: [
         "@storybook/addon-links",
-        "@storybook/addon-essentials",
         "@storybook/addon-onboarding",
-        "@storybook/addon-interactions",
+        "@storybook/addon-docs"
     ],
     typescript: {
         check: false,
@@ -39,6 +38,10 @@ const config: StorybookConfig = {
         config.resolve.alias = {
             ...config.resolve.alias,
             "@storybook-home-dir": require("path").resolve(__dirname, "."),
+            "next/navigation": require("path").resolve(
+                __dirname,
+                "./mocks/next-navigation.js"
+            ),
         }
 
         return config
