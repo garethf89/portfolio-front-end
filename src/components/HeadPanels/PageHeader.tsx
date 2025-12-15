@@ -1,7 +1,5 @@
-import styled from "@emotion/styled"
 import * as React from "react"
 import { useContext, useEffect } from "react"
-import { BREAKPOINTS } from "@theme"
 import { Asset } from "@schema"
 import { globals } from "../../state/state"
 import Lines from "../Animation/Lines"
@@ -24,48 +22,47 @@ const styledTitleStyles = css.raw({
     },
 })
 
-const InnerContainer = styled.div`
-    padding: 2rem 0;
-    @media (min-width: ${BREAKPOINTS.md}) {
-        max-width: 50%;
-        padding: 5rem 0;
-    }
-`
+const InnerContainerStyles = css({
+    padding: 8,
+    md: {
+        maxWidth: "50%",
+        paddingX: 0,
+        paddingY: 20,
+    },
+})
 
-const PageImage = styled.div`
-    padding-top: 75%;
-    position: relative;
-    overflow: hidden;
+const PageImageStyles = css({
+    paddingTop: "75%",
+    overflow: "hidden",
+    position: "relative",
+    md: {
+        paddingTop: 0,
+        maxWidth: "50%",
+        height: "100%",
+        position: "absolute",
+        top: "0",
+        right: "0",
+    },
+})
 
-    @media (min-width: ${BREAKPOINTS.md}) {
-        padding-top: 0;
-        max-width: 50%;
-        width: 50%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        right: 0;
-    }
-`
+const PageImageElementStyles = css({
+    width: "100%",
+    position: "absolute",
+    objectFit: "cover",
+    minWidth: "100%",
+    minHeight: "100%",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    md: {
+        width: "auto",
+    },
+})
 
-const PageImageElement = styled(Image)`
-    width: 100%;
-    position: absolute;
-    object-fit: cover;
-    min-width: 100%;
-    min-height: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    @media (min-width: ${BREAKPOINTS.md}) {
-        width: auto;
-    }
-`
-
-const ButtonWrapper = styled.div`
-    max-width: 320px;
-    margin-bottom: 1rem;
-`
+const ButtonWrapperStyles = css({
+    maxWidth: "320px",
+    marginBottom: 4,
+})
 
 interface PageHeaderProps {
     text: string
@@ -101,22 +98,22 @@ const PageHeader = ({
         >
             <Lines dark id="HeaderAni" />
             {image && (
-                <PageImage>
-                    <PageImageElement
+                <div className={PageImageStyles}>
+                    <Image
                         alt={`Background image for ${title}`}
                         sizes="(min-width: 50em) 50vw, 100vw"
                         fill
                         image={image}
-                        style={{ objectFit: "cover", objectPosition: "center" }}
+                        className={PageImageElementStyles}
                     />
-                </PageImage>
+                </div>
             )}
             <Container>
-                <InnerContainer>
+                <div className={InnerContainerStyles}>
                     <BackLink />
                     <Heading level="h1" text={text} css={styledTitleStyles} />
                     {!!externalLink && (
-                        <ButtonWrapper>
+                        <div className={ButtonWrapperStyles}>
                             <Button
                                 variant="primary"
                                 href={externalLink}
@@ -125,9 +122,9 @@ const PageHeader = ({
                             >
                                 {"Visit Site"}
                             </Button>
-                        </ButtonWrapper>
+                        </div>
                     )}
-                </InnerContainer>
+                </div>
             </Container>
         </section>
     )

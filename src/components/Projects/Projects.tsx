@@ -13,7 +13,7 @@ const projectsContainerStyles = {
 
 const projectWrapperStyles = css({
     position: "relative",
-    md: {
+    sm: {
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "space-between",
@@ -21,7 +21,7 @@ const projectWrapperStyles = css({
             width: "48%",
         },
     },
-    lg: {
+    md: {
         "& > *": {
             width: "32%",
         },
@@ -30,7 +30,7 @@ const projectWrapperStyles = css({
 
 const projectWrapperLowerStyles = css({
     position: "relative",
-    md: {
+    sm: {
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "space-between",
@@ -38,7 +38,7 @@ const projectWrapperLowerStyles = css({
             width: "48%",
         },
     },
-    lg: {
+    md: {
         "& > *": {
             width: "24%",
             marginBottom: 0,
@@ -117,7 +117,7 @@ const ProjectTemplate = ({
                 level={"h6"}
                 override="p"
                 css={{
-                    fontSize: { base: "24px", xl: lower ? "18px" : "24px" },
+                    fontSize: { base: "24px", lg: lower ? "18px" : "24px" },
                 }}
             >
                 <FadeLink href={project.slug ?? "/"}>

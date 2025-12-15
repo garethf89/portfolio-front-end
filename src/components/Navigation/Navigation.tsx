@@ -116,7 +116,6 @@ const Navigation = (): React.ReactElement => {
             </ul>
             <div className={mobileNavStyles}>
                 <MobileMenu
-                    scale={0.5}
                     onClick={() => {
                         toggle(!active)
                     }}

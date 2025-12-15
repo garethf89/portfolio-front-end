@@ -11,7 +11,7 @@ const palette = {
 
 export const BREAKPOINTS = {
     sm: "35em",
-    md: "50rem",
+    md: "50em",
     lg: "79.38em",
     xl: "85em",
     "2xl": "96em",

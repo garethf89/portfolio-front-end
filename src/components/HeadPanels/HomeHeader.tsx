@@ -28,7 +28,6 @@ const homeContainerStyles = {
     md: {
         display: "flex",
         justifyContent: "space-between",
-        paddingX: "0.65rem",
     },
 }
 

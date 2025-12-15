@@ -68,7 +68,7 @@ const Image = ({
             <NextImage
                 alt={alt}
                 src={src!}
-                onLoadingComplete={() => setLoading(false)}
+                onLoad={() => setLoading(false)}
                 {...imageProps}
                 {...rest}
                 style={{
