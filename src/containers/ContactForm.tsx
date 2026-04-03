@@ -23,12 +23,14 @@ const fieldContainerStyles = {
 
 const formSectionStyles = css({
     marginBottom: 6,
+    flex: 1,
 })
 
 const formContainerStyles = css({
     flex: 1,
     flexBasis: "",
-    md: { flexBasis: "50%" },
+    marginBottom: 5,
+    md: { flexBasis: "50%", marginBottom: 12 },
 })
 
 interface Values {

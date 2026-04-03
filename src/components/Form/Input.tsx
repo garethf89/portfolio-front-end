@@ -7,6 +7,7 @@ import { css } from "../../styled-system/css"
 
 type InputStyledProps = React.PropsWithChildren<{
     error?: string
+    id?: string
 }>
 
 export const InputStyled = ({
@@ -47,6 +48,7 @@ const Input = ({ id, ...props }: InputProps): React.ReactElement => {
         <>
             <InputStyled
                 error={error ? "true" : undefined}
+                id={id}
                 aria-describedby={error ? `${id}-error` : null}
                 {...props}
             >

@@ -50,7 +50,7 @@
     "@mdx-js/react": "^2.1.1",
     "@netlify/functions": "^1.6.0",
     "@next/eslint-plugin-next": "^14.2.33",
-    "@pandacss/dev": "^0.51.1",
+    "@pandacss/dev": "^1.9.1",
     "@storybook/addon-a11y": "9.1.16",
     "@storybook/addon-docs": "9.1.16",
     "@storybook/addon-graphql": "^6.2.9",
