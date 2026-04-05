@@ -134,7 +134,8 @@
   },
   "resolutions": {
     "graphql": "^15.4.0",
-    "webpack": "^5.62.0"
+    "webpack": "^5.62.0",
+    "@csstools/postcss-cascade-layers": "^4.0.0"
   },
   "config": {
     "commitizen": {
