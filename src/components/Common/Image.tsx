@@ -54,7 +54,8 @@ const Image = ({
             {!!fill && !!willBlur && (
                 <NextImage
                     alt={alt}
-                    src={image.blurURL!}
+                    // @ts-expect-error - next/image is not typed correctly, should accept blob
+                    src={image.blurURL}
                     aria-hidden="true"
                     {...imageProps}
                     {...rest}
@@ -67,6 +68,7 @@ const Image = ({
             )}
             <NextImage
                 alt={alt}
+                // @ts-expect-error - next/image is not typed correctly, should accept blob
                 src={src!}
                 onLoad={() => setLoading(false)}
                 {...imageProps}
