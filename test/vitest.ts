@@ -11,11 +11,3 @@ vi.mock("lottie-web", () => ({
         })),
     },
 }))
-
-vi.mock("next-transition-router", () => ({
-    TransitionRouter: ({ children }: { children: React.ReactNode }) => children,
-    Link: ({ children, href, ...props }: any) => {
-        const React = require("react")
-        return React.createElement("a", { href, ...props }, children)
-    },
-}))

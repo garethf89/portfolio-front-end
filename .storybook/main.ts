@@ -1,49 +1,31 @@
-import type { StorybookConfig } from "@storybook/nextjs"
-import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin"
+import { fileURLToPath } from "node:url"
+import { dirname } from "node:path"
+import type { StorybookConfig } from "@storybook/nextjs-vite"
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 const config: StorybookConfig = {
     stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
     addons: [
         "@storybook/addon-links",
         "@storybook/addon-onboarding",
-        "@storybook/addon-docs"
+        "@storybook/addon-docs",
     ],
     typescript: {
         check: false,
-        checkOptions: {},
         reactDocgen: false,
-        reactDocgenTypescriptOptions: {
-            shouldExtractLiteralValuesFromEnum: true,
-            propFilter: prop =>
-                prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
-        },
     },
     framework: {
-        name: "@storybook/nextjs",
+        name: "@storybook/nextjs-vite",
         options: {},
     },
-    docs: {},
-    webpackFinal: async config => {
-        if (!config?.resolve) {
-            return config
-        }
-        config.resolve.plugins = [
-            ...(config.resolve.plugins || []),
-            new TsconfigPathsPlugin({
-                extensions: config.resolve.extensions,
-            }),
-        ]
-
-        // Add aliases for Storybook
+    viteFinal: async config => {
+        config.resolve = config.resolve || {}
         config.resolve.alias = {
-            ...config.resolve.alias,
-            "@storybook-home-dir": require("path").resolve(__dirname, "."),
-            "next/navigation": require("path").resolve(
-                __dirname,
-                "./mocks/next-navigation.js"
-            ),
+            ...(config.resolve.alias || {}),
+            "@storybook-home-dir": __dirname,
         }
-
         return config
     },
 }

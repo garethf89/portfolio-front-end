@@ -1,6 +1,6 @@
 import * as React from "react"
 import { LinkProps as NextLinkProps } from "next/link"
-import { Link } from "next-transition-router"
+import { Link } from "next-view-transitions"
 
 type LinkProps = NextLinkProps &
     React.HTMLAttributes<HTMLAnchorElement> & {

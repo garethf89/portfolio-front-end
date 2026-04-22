@@ -4,7 +4,7 @@ import { LightContainer } from "../../stories/LightContainer"
 import * as React from "react"
 import { Spacer } from "../../stories/Spacer"
 import TextArea from "./Textarea"
-import withFormik from "@bbbtech/storybook-formik"
+import { Formik } from "formik"
 
 type FormStoryProps = {
     nameLabel: string
@@ -31,7 +31,22 @@ const FormStory = ({
 export default {
     title: "Form /Form Elements",
     component: FormStory,
-    decorators: [withFormik],
+    decorators: [
+        (Story: React.ComponentType, context: { parameters?: any }) => {
+            const initialValues = context.parameters?.formik?.initialValues ?? {
+                name: "",
+                message: "",
+            }
+
+            return (
+                <Formik initialValues={initialValues} onSubmit={() => undefined}>
+                    <form>
+                        <Story />
+                    </form>
+                </Formik>
+            )
+        },
+    ],
 }
 
 export const Form = FormStory.bind({})
@@ -43,7 +58,8 @@ Form.args = {
 Form.parameters = {
     formik: {
         initialValues: {
-            foo: "Initialized",
+            name: "Initialized",
+            message: "Initialized",
         },
     },
 }

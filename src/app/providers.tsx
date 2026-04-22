@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react"
 
 import { gsap } from "gsap"
-import { TransitionRouter } from "next-transition-router"
+
+import { ViewTransitions } from "next-view-transitions"
 
 import * as Sentry from "@sentry/react"
 import { BrowserTracing } from "@sentry/tracing"
@@ -66,39 +67,14 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
                     <ApolloProvider client={client}>
                         <GlobalsStateProvider>
                             <ImageSupportProvider>
-                                <TransitionRouter
-                                    leave={next => {
-                                        const tween = gsap.fromTo(
-                                            "main",
-                                            { autoAlpha: 1 },
-                                            {
-                                                autoAlpha: 0,
-                                                onComplete: next,
-                                                duration: 0.2,
-                                            }
-                                        )
-                                        return () => tween.kill()
-                                    }}
-                                    enter={next => {
-                                        const tween = gsap.fromTo(
-                                            "main",
-                                            { autoAlpha: 0 },
-                                            {
-                                                autoAlpha: 1,
-                                                onComplete: next,
-                                                duration: 0.2,
-                                            }
-                                        )
-                                        return () => tween.kill()
-                                    }}
-                                >
+                                <ViewTransitions>
                                     <div className={footerExtenderStyles}>
                                         <main className={rootStyles}>
                                             {children}
                                         </main>
                                         <Footer />
                                     </div>
-                                </TransitionRouter>
+                                </ViewTransitions>
                             </ImageSupportProvider>
                         </GlobalsStateProvider>
                     </ApolloProvider>

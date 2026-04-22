@@ -1,4 +1,6 @@
-module.exports = {
+import type { NextConfig } from "next"
+
+const nextConfig: NextConfig = {
     typescript: {
         tsconfigPath: "tsconfig.build.json",
     },
@@ -13,4 +15,9 @@ module.exports = {
             },
         ],
     },
+    turbopack: {
+        root: process.cwd(),
+    },
 }
+
+export default nextConfig
