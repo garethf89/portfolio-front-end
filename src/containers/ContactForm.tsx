@@ -2,12 +2,13 @@
 
 import * as React from "react"
 import { z } from "zod"
-import { toFormikValidationSchema } from "zod-formik-adapter"
-import { Form, Formik, FormikHelpers } from "formik"
+
 import { css } from "@styled-system/css"
 import { PulseLoader } from "react-spinners"
 import { Alert, Button, Flex, Input, Label, TextArea } from "@components"
 import { useEmail } from "../services/email"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 const buttonContainerStyles = css({
     display: "flex",
@@ -33,140 +34,119 @@ const formContainerStyles = css({
     md: { flexBasis: "50%", marginBottom: 12 },
 })
 
-interface Values {
-    personName: string
-    personEnq: string
-    personEmail: string
-}
-
 const ContactSchema = z.object({
-    personName: z.string({ required_error: "Name is required" }),
+    personName: z.string().min(1, "Name is required"),
     personEmail: z
-        .string({ required_error: "Email is required" })
+        .string()
+        .min(1, "Email is required")
         .email("Invalid email format"),
-    personEnq: z.string({
-        required_error: "You need to enter a message, come on man!",
-    }),
+    personEnq: z.string().min(1, "You need to enter a message, come on man!"),
 })
+
+type Values = z.infer<typeof ContactSchema>
 
 export const ContactForm = (): React.ReactElement => {
     const { submit, status, error } = useEmail()
-    const submitForm = async (
-        values: Values,
-        { setSubmitting }: FormikHelpers<Values>
-    ) => {
+
+    const submitForm = async (values: Values) => {
         await submit(values)
-        setSubmitting(false)
     }
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting, isValidating, touchedFields },
+    } = useForm({
+        resolver: zodResolver(ContactSchema),
+        defaultValues: {
+            personEmail: "",
+            personEnq: "",
+            personName: "",
+        },
+    })
 
     return (
         <>
-            <Formik
-                initialValues={{
-                    personEmail: "",
-                    personEnq: "",
-                    personName: "",
-                }}
-                validationSchema={toFormikValidationSchema(ContactSchema)}
-                onSubmit={submitForm}
-            >
-                {({ errors, touched, isSubmitting, isValidating }) => {
-                    return (
-                        <Form noValidate>
-                            {error && (
-                                <Alert variant="error">
-                                    {
-                                        "There has been a problem submitting the form, please contact me direct at gareth.f@hotmail.co.uk"
-                                    }
-                                </Alert>
-                            )}
-                            {status === "success" && (
-                                <Alert variant="success">
-                                    Thank you for your enquiry!
-                                </Alert>
-                            )}
-                            {status !== "success" && (
-                                <Flex css={fieldContainerStyles}>
-                                    <div className={formSectionStyles}>
-                                        <div className={formContainerStyles}>
-                                            <Label
-                                                error={
-                                                    touched.personName
-                                                        ? errors.personName
-                                                        : undefined
-                                                }
-                                                required
-                                                htmlFor="personName"
-                                            >
-                                                Name
-                                            </Label>
-                                            <Input
-                                                id="personName"
-                                                name="personName"
-                                            />
-                                        </div>
-                                        <div className={formContainerStyles}>
-                                            <Label
-                                                error={
-                                                    touched.personEmail
-                                                        ? errors.personEmail
-                                                        : undefined
-                                                }
-                                                required
-                                                htmlFor="personEmail"
-                                            >
-                                                Email
-                                            </Label>
-                                            <Input
-                                                id="personEmail"
-                                                name="personEmail"
-                                                type="email"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className={formSectionStyles}>
-                                        <div className={formContainerStyles}>
-                                            <Label
-                                                required
-                                                htmlFor="personEnq"
-                                                error={
-                                                    touched.personEnq
-                                                        ? errors.personEnq
-                                                        : undefined
-                                                }
-                                            >
-                                                Message
-                                            </Label>
-                                            <TextArea
-                                                as="textarea"
-                                                id="personEnq"
-                                                name="personEnq"
-                                                type="textarea"
-                                            />
-                                        </div>
-                                        <div className={buttonContainerStyles}>
-                                            <Button
-                                                variant="primary"
-                                                disabled={
-                                                    isValidating || isSubmitting
-                                                }
-                                                icon="Arrow"
-                                                type="submit"
-                                            >
-                                                Submit
-                                            </Button>{" "}
-                                            <PulseLoader
-                                                loading={status === "pending"}
-                                                size={8}
-                                            />
-                                        </div>
-                                    </div>
-                                </Flex>
-                            )}
-                        </Form>
-                    )
-                }}
-            </Formik>
+            <form onSubmit={handleSubmit(submitForm)} noValidate>
+                {error && (
+                    <Alert variant="error">
+                        {
+                            "There has been a problem submitting the form, please contact me direct at gareth.f@hotmail.co.uk"
+                        }
+                    </Alert>
+                )}
+                {status === "success" && (
+                    <Alert variant="success">Thank you for your enquiry!</Alert>
+                )}
+                {status !== "success" && (
+                    <Flex css={fieldContainerStyles}>
+                        <div className={formSectionStyles}>
+                            <div className={formContainerStyles}>
+                                <Label
+                                    error={errors.personName}
+                                    required
+                                    htmlFor="personName"
+                                >
+                                    Name
+                                </Label>
+                                <Input
+                                    error={errors.personName}
+                                    touched={touchedFields.personName}
+                                    id="personName"
+                                    {...register("personName")}
+                                />
+                            </div>
+                            <div className={formContainerStyles}>
+                                <Label
+                                    error={errors.personEmail}
+                                    required
+                                    htmlFor="personEmail"
+                                >
+                                    Email
+                                </Label>
+                                <Input
+                                    error={errors.personEmail}
+                                    id="personEmail"
+                                    type="email"
+                                    touched={touchedFields.personEmail}
+                                    {...register("personEmail")}
+                                />
+                            </div>
+                        </div>
+                        <div className={formSectionStyles}>
+                            <div className={formContainerStyles}>
+                                <Label
+                                    required
+                                    htmlFor="personEnq"
+                                    error={errors.personEnq}
+                                >
+                                    Message
+                                </Label>
+                                <TextArea
+                                    error={errors.personEnq}
+                                    id="personEnq"
+                                    touched={touchedFields.personEnq}
+                                    {...register("personEnq")}
+                                />
+                            </div>
+                            <div className={buttonContainerStyles}>
+                                <Button
+                                    variant="primary"
+                                    disabled={isValidating || isSubmitting}
+                                    icon="Arrow"
+                                    type="submit"
+                                >
+                                    Submit
+                                </Button>{" "}
+                                <PulseLoader
+                                    loading={status === "pending"}
+                                    size={8}
+                                />
+                            </div>
+                        </div>
+                    </Flex>
+                )}
+            </form>
         </>
     )
 }

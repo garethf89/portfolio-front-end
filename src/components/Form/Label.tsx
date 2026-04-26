@@ -1,8 +1,9 @@
 import * as React from "react"
 import { css } from "../../styled-system/css"
+import type { FieldError } from "react-hook-form"
 
 type LabelStyleProps = {
-    error?: string
+    error?: FieldError
 }
 
 type LabelStyledProps = React.PropsWithChildren<LabelStyleProps>

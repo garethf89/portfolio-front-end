@@ -1,11 +1,11 @@
 import * as React from "react"
 
-import { Field, useField } from "formik"
 import { FormError } from "./FormError"
 import { css } from "../../styled-system/css"
+import type { FieldError } from "react-hook-form"
 
 type InputStyledProps = React.PropsWithChildren<{
-    error?: string | null
+    error?: FieldError
 }>
 
 export const TextAreaStyled = ({
@@ -14,7 +14,7 @@ export const TextAreaStyled = ({
     ...props
 }: InputStyledProps): React.ReactElement => {
     return (
-        <Field
+        <textarea
             {...props}
             className={css({
                 display: "block",
@@ -30,27 +30,31 @@ export const TextAreaStyled = ({
             })}
         >
             {children}
-        </Field>
+        </textarea>
     )
 }
 
 type InputProps = React.HTMLProps<HTMLTextAreaElement> & {
-    as?: string
     name: string
     id?: string
+    error?: FieldError
+    touched?: Boolean
 }
 
-const TextArea = ({ children, ...props }: InputProps): React.ReactElement => {
-    const [_field, meta] = useField(props.name)
-
+const TextArea = ({
+    children,
+    touched,
+    error,
+    ...props
+}: InputProps): React.ReactElement => {
     return (
         <>
-            <TextAreaStyled error={meta.touched ? meta.error : null} {...props}>
+            <TextAreaStyled error={touched ? error : undefined} {...props}>
                 {children}
             </TextAreaStyled>
-            {meta.touched && meta.error && (
+            {error && (
                 <FormError id={`${props.id}-error`} role="alert">
-                    {meta.error}
+                    {error.message}
                 </FormError>
             )}
         </>

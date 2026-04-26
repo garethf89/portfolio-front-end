@@ -1,12 +1,11 @@
 import * as React from "react"
 
-import { Field, useField } from "formik"
-
 import { FormError } from "./FormError"
 import { css } from "../../styled-system/css"
+import type { FieldError } from "react-hook-form"
 
 type InputStyledProps = React.PropsWithChildren<{
-    error?: string
+    error?: FieldError
     id?: string
 }>
 
@@ -16,7 +15,7 @@ export const InputStyled = ({
     ...props
 }: InputStyledProps): React.ReactElement => {
     return (
-        <Field
+        <input
             {...props}
             data-error={error}
             className={css({
@@ -32,31 +31,37 @@ export const InputStyled = ({
             })}
         >
             {children}
-        </Field>
+        </input>
     )
 }
 
-type InputProps = React.InputHTMLAttributes<HTMLInputElement> & { id?: string }
+type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
+    id?: string
+    error?: FieldError
+    touched?: Boolean
+}
 
-const Input = ({ id, ...props }: InputProps): React.ReactElement => {
+const Input = ({
+    id,
+    error,
+    touched,
+    ...props
+}: InputProps): React.ReactElement => {
     const name = props.name ?? ""
-
-    const [_field, meta] = useField<string>(name ?? "")
-    const error = meta.touched && meta.error
-
+    console.log(error)
     return (
         <>
             <InputStyled
-                error={error ? "true" : undefined}
+                error={error}
                 id={id}
                 aria-describedby={error ? `${id}-error` : null}
                 {...props}
             >
                 {props.children}
             </InputStyled>
-            {meta.touched && meta.error && (
+            {error && (
                 <FormError id={`${id}-error`} role="alert">
-                    {meta.error}
+                    {error.message}
                 </FormError>
             )}
         </>

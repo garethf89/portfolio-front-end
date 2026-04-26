@@ -4,7 +4,7 @@ import { LightContainer } from "../../stories/LightContainer"
 import * as React from "react"
 import { Spacer } from "../../stories/Spacer"
 import TextArea from "./Textarea"
-import { Formik } from "formik"
+import { FormProvider, useForm } from "react-hook-form"
 
 type FormStoryProps = {
     nameLabel: string
@@ -33,17 +33,19 @@ export default {
     component: FormStory,
     decorators: [
         (Story: React.ComponentType, context: { parameters?: any }) => {
-            const initialValues = context.parameters?.formik?.initialValues ?? {
-                name: "",
-                message: "",
-            }
+            const methods = useForm({
+                defaultValues: {
+                    name: "",
+                    message: "",
+                },
+            })
 
             return (
-                <Formik initialValues={initialValues} onSubmit={() => undefined}>
+                <FormProvider {...methods}>
                     <form>
                         <Story />
                     </form>
-                </Formik>
+                </FormProvider>
             )
         },
     ],
