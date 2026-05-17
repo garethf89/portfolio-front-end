@@ -32,31 +32,28 @@ const InnerContainerStyles = css({
 })
 
 const PageImageStyles = css({
-    paddingTop: "75%",
-    overflow: "hidden",
     position: "relative",
+    aspectRatio: "4 / 3",
+    overflow: "hidden",
+    width: "100%",
     md: {
-        paddingTop: 0,
+        aspectRatio: "unset",
         maxWidth: "50%",
-        height: "100%",
+        width: "50%",
         position: "absolute",
-        top: "0",
-        right: "0",
+        top: 0,
+        right: 0,
+        bottom: 0,
     },
 })
 
 const PageImageElementStyles = css({
-    width: "100%",
     position: "absolute",
+    inset: 0,
+    width: "100%",
+    height: "100%",
     objectFit: "cover",
-    minWidth: "100%",
-    minHeight: "100%",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    md: {
-        width: "auto",
-    },
+    objectPosition: "center",
 })
 
 const ButtonWrapperStyles = css({
@@ -105,6 +102,10 @@ const PageHeader = ({
                         fill
                         image={image}
                         className={PageImageElementStyles}
+                        style={{
+                            objectFit: "cover",
+                            height: "100%",
+                        }}
                     />
                 </div>
             )}
