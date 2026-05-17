@@ -1,6 +1,7 @@
 import { Handler, HandlerContext, HandlerEvent } from "@netlify/functions"
 import { SQSClient, SendMessageCommand } from "@aws-sdk/client-sqs"
 import { z } from "zod"
+import { isbot } from "isbot"
 
 const fromDefault = process.env.DEFAULT_EMAIL
 
@@ -36,6 +37,15 @@ const handler: Handler = async (
     try {
         if (!event.body) {
             throw new Error("No values have been passed to function")
+        }
+
+        const userAgent = event.headers["user-agent"] || ""
+
+        if (isbot(userAgent)) {
+            return {
+                statusCode: 200,
+                body: JSON.stringify({ message: "Bots not allowed" }),
+            }
         }
 
         const values = JSON.parse(event.body) as MailOptions

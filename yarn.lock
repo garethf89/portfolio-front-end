@@ -4271,10 +4271,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/env@npm:16.2.2":
-  version: 16.2.2
-  resolution: "@next/env@npm:16.2.2"
-  checksum: 10/4525e4ed943d9d437f9519efd95569fef53c6f3ddf381a0f06abfb6ae813a1514f3e6854da829b526d490c3306b44f8da526ba99986eca8bb1ea9cf0c0fdf6c3
+"@next/env@npm:16.2.6":
+  version: 16.2.6
+  resolution: "@next/env@npm:16.2.6"
+  checksum: 10/c8a0b7f09a7446a46d678798488ace125c5eec78fb0b3b19adb3fde1332f39bf41e1856b3fad19635c5b316ed3afc6ab4839702fe0f57b381c95f7d7ba2a36cf
   languageName: node
   linkType: hard
 
@@ -4287,58 +4287,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-arm64@npm:16.2.2":
-  version: 16.2.2
-  resolution: "@next/swc-darwin-arm64@npm:16.2.2"
+"@next/swc-darwin-arm64@npm:16.2.6":
+  version: 16.2.6
+  resolution: "@next/swc-darwin-arm64@npm:16.2.6"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-x64@npm:16.2.2":
-  version: 16.2.2
-  resolution: "@next/swc-darwin-x64@npm:16.2.2"
+"@next/swc-darwin-x64@npm:16.2.6":
+  version: 16.2.6
+  resolution: "@next/swc-darwin-x64@npm:16.2.6"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-gnu@npm:16.2.2":
-  version: 16.2.2
-  resolution: "@next/swc-linux-arm64-gnu@npm:16.2.2"
+"@next/swc-linux-arm64-gnu@npm:16.2.6":
+  version: 16.2.6
+  resolution: "@next/swc-linux-arm64-gnu@npm:16.2.6"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-musl@npm:16.2.2":
-  version: 16.2.2
-  resolution: "@next/swc-linux-arm64-musl@npm:16.2.2"
+"@next/swc-linux-arm64-musl@npm:16.2.6":
+  version: 16.2.6
+  resolution: "@next/swc-linux-arm64-musl@npm:16.2.6"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-gnu@npm:16.2.2":
-  version: 16.2.2
-  resolution: "@next/swc-linux-x64-gnu@npm:16.2.2"
+"@next/swc-linux-x64-gnu@npm:16.2.6":
+  version: 16.2.6
+  resolution: "@next/swc-linux-x64-gnu@npm:16.2.6"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-musl@npm:16.2.2":
-  version: 16.2.2
-  resolution: "@next/swc-linux-x64-musl@npm:16.2.2"
+"@next/swc-linux-x64-musl@npm:16.2.6":
+  version: 16.2.6
+  resolution: "@next/swc-linux-x64-musl@npm:16.2.6"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@next/swc-win32-arm64-msvc@npm:16.2.2":
-  version: 16.2.2
-  resolution: "@next/swc-win32-arm64-msvc@npm:16.2.2"
+"@next/swc-win32-arm64-msvc@npm:16.2.6":
+  version: 16.2.6
+  resolution: "@next/swc-win32-arm64-msvc@npm:16.2.6"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-win32-x64-msvc@npm:16.2.2":
-  version: 16.2.2
-  resolution: "@next/swc-win32-x64-msvc@npm:16.2.2"
+"@next/swc-win32-x64-msvc@npm:16.2.6":
+  version: 16.2.6
+  resolution: "@next/swc-win32-x64-msvc@npm:16.2.6"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -6765,6 +6765,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"agent-base@npm:6":
+  version: 6.0.2
+  resolution: "agent-base@npm:6.0.2"
+  dependencies:
+    debug: "npm:4"
+  checksum: 10/21fb903e0917e5cb16591b4d0ef6a028a54b83ac30cd1fca58dece3d4e0990512a8723f9f83130d88a41e2af8b1f7be1386fda3ea2d181bb1a62155e75e95e23
+  languageName: node
+  linkType: hard
+
 "agent-base@npm:^7.1.0, agent-base@npm:^7.1.2":
   version: 7.1.4
   resolution: "agent-base@npm:7.1.4"
@@ -7175,6 +7184,18 @@ __metadata:
     form-data: "npm:^4.0.5"
     proxy-from-env: "npm:^2.1.0"
   checksum: 10/c3444e9e3da1714916e4ddd7cda05bb41a5d5d80e3e27b099a116439684c63f2280c88503d1acd65841698b63af0b542b4d5780454e28fd0aed2d783ef90943e
+  languageName: node
+  linkType: hard
+
+"axios@npm:^1.15.0":
+  version: 1.16.1
+  resolution: "axios@npm:1.16.1"
+  dependencies:
+    follow-redirects: "npm:^1.16.0"
+    form-data: "npm:^4.0.5"
+    https-proxy-agent: "npm:^5.0.1"
+    proxy-from-env: "npm:^2.1.0"
+  checksum: 10/9b6218cf96321cfbbf8f160658d695367114bcf4fb62492bdc1ccd647f184b5c71ae400e5ecaaf41079bc561de2ecbaf1fec63f398b3ec53389beff7694df64c
   languageName: node
   linkType: hard
 
@@ -8223,30 +8244,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"contentful-import@npm:^9.4.122":
-  version: 9.4.140
-  resolution: "contentful-import@npm:9.4.140"
+"contentful-import@npm:^10.0.5":
+  version: 10.0.5
+  resolution: "contentful-import@npm:10.0.5"
   dependencies:
     "@discoveryjs/json-ext": "npm:^0.6.3"
     bluebird: "npm:^3.7.2"
     cli-table3: "npm:^0.6.5"
     contentful-batch-libs: "npm:^9.7.0"
-    contentful-management: "npm:^11.74.0"
+    contentful-management: "npm:^12.3.2"
     date-fns: "npm:^2.30.0"
-    joi: "npm:^18.0.2"
+    joi: "npm:^18.1.2"
     listr: "npm:^0.14.3"
     listr-update-renderer: "npm:^0.5.0"
     listr-verbose-renderer: "npm:^0.6.0"
-    lodash: "npm:^4.17.23"
+    lodash: "npm:^4.18.1"
     p-queue: "npm:^6.6.2"
     yargs: "npm:^17.7.2"
   bin:
     contentful-import: bin/contentful-import
-  checksum: 10/f6805d904a4f24e21722e37b36922e1c534491eca8f9015ca92cfe58bc523622e8a964af23aab5ae6ae9fc42db2bdef376859d06984da0ad90099c38aa940b3e
+  checksum: 10/69853c39571d8d1a939ecb8c1d54f6fe3233db3b16760fa2b416b87dbbd2b1c9a8011bdd47befa8c045921061a1fa8891113dc773bdc194ab386607ae00a8d23
   languageName: node
   linkType: hard
 
-"contentful-management@npm:^11.31.6, contentful-management@npm:^11.48.1, contentful-management@npm:^11.60.4, contentful-management@npm:^11.74.0":
+"contentful-management@npm:^11.31.6, contentful-management@npm:^11.48.1, contentful-management@npm:^11.60.4":
   version: 11.75.0
   resolution: "contentful-management@npm:11.75.0"
   dependencies:
@@ -8256,6 +8277,20 @@ __metadata:
     fast-copy: "npm:^3.0.0"
     globals: "npm:^15.15.0"
   checksum: 10/cf736010cfae7ef59a1e599f483bcc8a742338340a7d11aedd02b695ffa1ce869bf90cfa289baa0b0d66db0f48c8a444047e9586d6b3ae120cce22392b342804
+  languageName: node
+  linkType: hard
+
+"contentful-management@npm:^12.3.2":
+  version: 12.5.0
+  resolution: "contentful-management@npm:12.5.0"
+  dependencies:
+    "@contentful/rich-text-types": "npm:^16.6.1"
+    axios: "npm:^1.15.0"
+    contentful-sdk-core: "npm:^9.4.4"
+    fast-copy: "npm:^3.0.0"
+    globals: "npm:^15.15.0"
+    process: "npm:^0.11.10"
+  checksum: 10/60230e7c908f714b3a721e17cd6ba64482b572b1363fe7d425a19adb0eb3e3ea322beb277c7f3a72bf1ccd8be8a7c3ac0ca81d3b4e4b4f84e465b96ffc31c529
   languageName: node
   linkType: hard
 
@@ -10165,6 +10200,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"follow-redirects@npm:^1.16.0":
+  version: 1.16.0
+  resolution: "follow-redirects@npm:1.16.0"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: 10/3fbe3d80b3b544c22705d837aa5d4a0d07a740d913534a2620b0a004c610af4148e3b58723536dd099aaa1c9d3a155964bde9665d6e5cb331460809a1fc572fd
+  languageName: node
+  linkType: hard
+
 "for-each@npm:^0.3.3, for-each@npm:^0.3.5":
   version: 0.3.5
   resolution: "for-each@npm:0.3.5"
@@ -10384,7 +10429,7 @@ __metadata:
     cf-content-types-generator: "npm:^2.15.5"
     commitizen: "npm:^4.3.1"
     contentful: "npm:11.8.6"
-    contentful-import: "npm:^9.4.122"
+    contentful-import: "npm:^10.0.5"
     contentful-management: "npm:^11.60.4"
     csstype: "npm:^3.1.0"
     dotenv: "npm:^16.0.1"
@@ -10400,12 +10445,13 @@ __metadata:
     graphql: "npm:^16.6.0"
     gsap: "npm:^3.12.5"
     inquirer: "npm:^8.2.4"
+    isbot: "npm:^5.1.40"
     jsdom: "npm:^27.0.0"
     lodash: "npm:^4.17.21"
     lottie-web: "npm:^5.12.2"
     mongodb: "npm:^4.6.0"
-    nanoid: "npm:^4.0.0"
-    next: "npm:16.2.2"
+    nanoid: "npm:^5.1.11"
+    next: "npm:16.2.6"
     next-view-transitions: "npm:^0.3.5"
     path: "npm:^0.12.7"
     postcss: "npm:^8.4.49"
@@ -10416,7 +10462,7 @@ __metadata:
     react-dom: "npm:19.2.4"
     react-hook-form: "npm:^7.73.1"
     react-inlinesvg: "npm:^4.3.0"
-    react-query: "npm:^3.39.2"
+    react-query: "npm:^3.39.3"
     react-spinners: "npm:^0.17.0"
     react-test-renderer: "npm:^17.0.2"
     sharp: "npm:0.33.5"
@@ -10974,6 +11020,16 @@ __metadata:
     agent-base: "npm:^7.1.0"
     debug: "npm:^4.3.4"
   checksum: 10/d062acfa0cb82beeb558f1043c6ba770ea892b5fb7b28654dbc70ea2aeea55226dd34c02a294f6c1ca179a5aa483c4ea641846821b182edbd9cc5d89b54c6848
+  languageName: node
+  linkType: hard
+
+"https-proxy-agent@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "https-proxy-agent@npm:5.0.1"
+  dependencies:
+    agent-base: "npm:6"
+    debug: "npm:4"
+  checksum: 10/f0dce7bdcac5e8eaa0be3c7368bb8836ed010fb5b6349ffb412b172a203efe8f807d9a6681319105ea1b6901e1972c7b5ea899672a7b9aad58309f766dcbe0df
   languageName: node
   linkType: hard
 
@@ -11707,6 +11763,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"isbot@npm:^5.1.40":
+  version: 5.1.40
+  resolution: "isbot@npm:5.1.40"
+  checksum: 10/b22fcd3c82599b3a73b8a91f4173054130488fe8756f0c05ee253376545e2d0150d5b1d54770d0bd306a6728ecb51082df39158cd169ac9895d507788f959ff8
+  languageName: node
+  linkType: hard
+
 "isexe@npm:^2.0.0":
   version: 2.0.0
   resolution: "isexe@npm:2.0.0"
@@ -11798,9 +11861,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"joi@npm:^18.0.2":
-  version: 18.1.2
-  resolution: "joi@npm:18.1.2"
+"joi@npm:^18.1.2":
+  version: 18.2.1
+  resolution: "joi@npm:18.2.1"
   dependencies:
     "@hapi/address": "npm:^5.1.1"
     "@hapi/formula": "npm:^3.0.2"
@@ -11809,7 +11872,7 @@ __metadata:
     "@hapi/tlds": "npm:^1.1.1"
     "@hapi/topo": "npm:^6.0.2"
     "@standard-schema/spec": "npm:^1.1.0"
-  checksum: 10/a045c12e1f2326406ad004af09545cb037d153eac8c4c76ada8a671a0c4abccc051e31ea72b4b78d5cf5bce01ed287ae3db3182944278746f45e75142030f9e6
+  checksum: 10/1525745571b0b0c60fdb51a8cb6f2e5717241b04314872259f68e10ea729e456d2d4883812013fc03913b03eb2b6cbca9d40d144bbd29e7b02fb57797edb0357
   languageName: node
   linkType: hard
 
@@ -12530,7 +12593,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.17.23":
+"lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.17.23, lodash@npm:^4.18.1":
   version: 4.18.1
   resolution: "lodash@npm:4.18.1"
   checksum: 10/306fea53dfd39dad1f03d45ba654a2405aebd35797b673077f401edb7df2543623dc44b9effbb98f69b32152295fff725a4cec99c684098947430600c6af0c3f
@@ -13184,12 +13247,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^4.0.0":
-  version: 4.0.2
-  resolution: "nanoid@npm:4.0.2"
+"nanoid@npm:^5.1.11":
+  version: 5.1.11
+  resolution: "nanoid@npm:5.1.11"
   bin:
     nanoid: bin/nanoid.js
-  checksum: 10/8c0c267de44cddcad79c3361d2cbd281694c36bf7ab6a163f36dd8f6e6ee43e9783561302c55fab2986a2fa847e7a6b30fedabd1e117fdb8aecc5ab21555428d
+  checksum: 10/d5971a1d39f68bd9845565c70a27733c832ba1bd73caad3c7b999a366c0355b6fcc65064f3b0179bca6cd36b50cacd5747d4482c303f026b58d62ebe31df9868
   languageName: node
   linkType: hard
 
@@ -13241,19 +13304,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:16.2.2":
-  version: 16.2.2
-  resolution: "next@npm:16.2.2"
+"next@npm:16.2.6":
+  version: 16.2.6
+  resolution: "next@npm:16.2.6"
   dependencies:
-    "@next/env": "npm:16.2.2"
-    "@next/swc-darwin-arm64": "npm:16.2.2"
-    "@next/swc-darwin-x64": "npm:16.2.2"
-    "@next/swc-linux-arm64-gnu": "npm:16.2.2"
-    "@next/swc-linux-arm64-musl": "npm:16.2.2"
-    "@next/swc-linux-x64-gnu": "npm:16.2.2"
-    "@next/swc-linux-x64-musl": "npm:16.2.2"
-    "@next/swc-win32-arm64-msvc": "npm:16.2.2"
-    "@next/swc-win32-x64-msvc": "npm:16.2.2"
+    "@next/env": "npm:16.2.6"
+    "@next/swc-darwin-arm64": "npm:16.2.6"
+    "@next/swc-darwin-x64": "npm:16.2.6"
+    "@next/swc-linux-arm64-gnu": "npm:16.2.6"
+    "@next/swc-linux-arm64-musl": "npm:16.2.6"
+    "@next/swc-linux-x64-gnu": "npm:16.2.6"
+    "@next/swc-linux-x64-musl": "npm:16.2.6"
+    "@next/swc-win32-arm64-msvc": "npm:16.2.6"
+    "@next/swc-win32-x64-msvc": "npm:16.2.6"
     "@swc/helpers": "npm:0.5.15"
     baseline-browser-mapping: "npm:^2.9.19"
     caniuse-lite: "npm:^1.0.30001579"
@@ -13297,7 +13360,7 @@ __metadata:
       optional: true
   bin:
     next: dist/bin/next
-  checksum: 10/925ae5ba2490009ea76061700919cfc21eb73594d92af704d8a50da8400ea09b627470c450820db240ca2446bdeb7d18258ef25dfbe9e83aae6c69833e5930d4
+  checksum: 10/41b2079b4788250e081d0d5e3db5923a61a660f11ad141673b956572fa465ea956322f9d79ddad1c3ad9fd75820a9f26f64c18bcdc1b731f43426ea2e1e08051
   languageName: node
   linkType: hard
 
@@ -14512,7 +14575,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-query@npm:^3.39.2":
+"react-query@npm:^3.39.3":
   version: 3.39.3
   resolution: "react-query@npm:3.39.3"
   dependencies:
