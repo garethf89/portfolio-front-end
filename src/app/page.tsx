@@ -157,6 +157,7 @@ const IndexPage = async (): Promise<React.ReactElement> => {
                 stats={page.statsCollection.items}
                 text={page.introText}
             />
+            <Clients data={page.logosCollection.items} icons={icons} />
             <HomeTech
                 text={page.skillsText}
                 icons={icons}
@@ -164,7 +165,6 @@ const IndexPage = async (): Promise<React.ReactElement> => {
             />
             <CaseStudies data={page.caseStudiesCollection.items} />
             <Projects data={page.projectsCollection.items} />
-            <Clients data={page.logosCollection.items} icons={icons} />
             <LastFM initialAlbums={albums} />
         </>
     )

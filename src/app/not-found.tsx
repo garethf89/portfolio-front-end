@@ -43,7 +43,7 @@ const NotFoundPage = async (): Promise<React.ReactElement> => {
         <ProjectProvider value={projects}>
             <PageHeader title="404" text={headerText} />
             {!!projects && (
-                <Container vPadding>
+                <Container options={{ largePadding: true }}>
                     <Heading level="h2">Try these pages instead</Heading>
                     <SuggestedProjects />
                 </Container>

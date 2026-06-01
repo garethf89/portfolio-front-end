@@ -7,6 +7,7 @@ const palette = {
     darkColor3: "#14161F",
     lightGrey1: "#F6F6F6",
     lightGrey2: "#4A4A4A",
+    offsetGrey: "#F7F8F8",
 }
 
 export const BREAKPOINTS = {
@@ -72,6 +73,7 @@ export const theme = {
             sectionSecondaryBackground: { value: palette.lightGrey1 },
             sectionBackground: { value: palette.darkColor1 },
             sectionBackgroundPageLight: { value: palette.lightGrey1 },
+            offsetSectionBackgroundColor: { value: palette.offsetGrey },
         },
         sizes: {
             container: {
@@ -98,6 +100,12 @@ export const theme = {
                 value: {
                     _dark: "{colors.white}",
                     base: "{colors.darkText}",
+                },
+            },
+            offsetSectionBackground: {
+                value: {
+                    _dark: "{colors.darkText}",
+                    base: "{colors.offsetSectionBackgroundColor}",
                 },
             },
             buttonBorderPrimary: {

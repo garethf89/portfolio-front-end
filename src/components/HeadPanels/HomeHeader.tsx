@@ -8,7 +8,6 @@ import Container from "../Global/Container/Container"
 import Counter from "../Counter/Counter"
 import HomeHeaderContent from "../Home/HomeHeader/HomeHeaderContent"
 import Lines from "../Animation/Lines"
-import Stats from "../Home/HomeHeader/Stats"
 import { globals } from "../../state/state"
 import { HomePageIntroText, HomePageStatsCollection } from "@schema"
 
@@ -17,7 +16,7 @@ const homeHeaderStyles = css({
     position: "relative",
     background: "sectionBackground",
     md: {
-        padding: "12rem 0 8rem",
+        padding: "12rem 0 4rem",
     },
 })
 
@@ -73,9 +72,7 @@ const HomeHeader = ({ text, stats }: HomeHeaderProps): React.ReactElement => {
                         Download CV
                     </Button>
                 </div>
-                <div className={homeSectionStatsStyles}>
-                    <Stats stats={stats} />
-                </div>
+                <div className={homeSectionStatsStyles}></div>
             </Container>
             <Container css={homeContainerStyles}>
                 <Counter />

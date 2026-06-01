@@ -24,7 +24,26 @@ export const IconExternal = ({
             data-icon="true"
             role="img"
             preProcessor={code => {
-                return code.replace(/cls-/g, `cls-${nanoid()}-${title}`)
+                let processed = code.replace(
+                    /cls-/g,
+                    `cls-${nanoid()}-${title}`
+                )
+                processed = processed.replace(
+                    /<svg([^>]*)>/,
+                    (_match, attrs) => {
+                        const viewBoxMatch = attrs.match(/viewBox="([^"]*)"/)
+                        const widthMatch = attrs.match(/width="([^"]*)"/)
+                        const heightMatch = attrs.match(/height="([^"]*)"/)
+                        let newAttrs = attrs
+                            .replace(/\s*width="[^"]*"/, "")
+                            .replace(/\s*height="[^"]*"/, "")
+                        if (!viewBoxMatch && widthMatch && heightMatch) {
+                            newAttrs += ` viewBox="0 0 ${widthMatch[1]} ${heightMatch[1]}"`
+                        }
+                        return `<svg${newAttrs}>`
+                    }
+                )
+                return processed
             }}
             className={css(
                 {

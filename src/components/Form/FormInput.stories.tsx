@@ -32,7 +32,7 @@ export default {
     title: "Form /Form Elements",
     component: FormStory,
     decorators: [
-        (Story: React.ComponentType, context: { parameters?: any }) => {
+        (Story: React.ComponentType) => {
             const methods = useForm({
                 defaultValues: {
                     name: "",

@@ -4,60 +4,122 @@ import * as React from "react"
 import Image from "../Common/Image"
 import Container from "../Global/Container/Container"
 import IconExternal from "../Icons/IconExternal"
-import Heading from "../Typography/Heading"
-import { nanoid } from "nanoid"
-import { HomePageLogosCollection } from "@schema"
+import { HomePageLogosCollection, Logo } from "@schema"
 import { CustomImageAsset, IconsProcessed } from "@types"
 import { css } from "@styled-system/css"
-import { useIsDark } from "../../hooks"
+import { useDarkMode } from "../../hooks"
 import type { SystemStyleObject } from "@styled-system/types"
+import { Subheading } from "../Typography/Subheading"
+import { OuterWrapper } from "../Common"
 
-const clientsContainerStyles = {
-    paddingTop: "24",
-}
-
-const logoWrapperStyles = css({
+const logoWrapperCommonStyles = {
     position: "relative",
-    maxWidth: "700px",
     textAlign: "center",
     margin: "0 auto",
     borderRadius: "5px",
-    alignItems: "center",
-    display: "grid",
-    gridTemplateColumns: "repeat(2, 1fr)",
-    gridGap: "2rem",
-    sm: {
-        gridTemplateColumns: "repeat(5, 1fr)",
-    },
+    justifyContent: "space-around",
+    display: "flex",
+    gap: 12,
+    md: { gap: 8 },
+}
+
+const logoWrapperStylesUpper = css({
+    ...logoWrapperCommonStyles,
+    maxWidth: "700px",
+    marginBottom: "4",
 })
 
-type LogoProps = React.PropsWithChildren<{
-    css?: SystemStyleObject
-    dark?: boolean
-}>
+const logoWrapperStyleLower = css({
+    ...logoWrapperCommonStyles,
+    maxWidth: "900px",
+})
 
-const LogoStyles = ({ dark }: LogoProps) => {
-    return css.raw({
-        filter: dark ? "none" : "grayscale(1)",
-        opacity: dark ? "1" : "0.4",
+type LogoStyleProps = {
+    dark?: boolean
+    darkIcon?: boolean
+}
+
+const logoStyles = ({ dark, darkIcon }: LogoStyleProps) =>
+    css.raw({
+        filter: dark ? "grayscale(0)" : "grayscale(1)",
+        opacity: dark ? 1 : "0.5",
         maxWidth: "75px",
         height: "auto",
-        transition: "opacity 0.15s ease-in",
+        transition: "opacity 0.25s ease-in",
         minHeight: "50px",
-        margin: "0 auto",
+        margin: "0",
         marginBottom: ["2rem", 0],
         position: "relative",
+        flex: 1,
         _hover: {
             opacity: 1,
         },
         "& path": {
-            fill: dark ? "svgFill" : "",
+            fill: darkIcon && dark ? "#fff!" : "",
         },
     })
+
+const getLogoKey = (logo: Logo): string => {
+    const logoFields = logo.logo as CustomImageAsset | null | undefined
+    return logoFields?.url ?? logo.name ?? logo.sys.id
 }
 
-const Logo = ({ css: cssProp, children, dark }: LogoProps) => {
-    return <div className={css(LogoStyles({ dark }), cssProp)}>{children}</div>
+type ClientLogoProps = {
+    logo: Logo
+    icons: IconsProcessed[]
+    css?: SystemStyleObject
+}
+
+const ClientLogo = ({
+    logo,
+    icons,
+    css: cssProp,
+}: ClientLogoProps): React.ReactElement | null => {
+    const logoFields = logo.logo as CustomImageAsset | null | undefined
+    const { isDarkMode } = useDarkMode({ initializeWithValue: false })
+    const isDarkIcon = isDarkMode && !!logo.dark
+
+    if (!logoFields) {
+        return null
+    }
+
+    const styles = logoStyles({ dark: isDarkMode, darkIcon: isDarkIcon })
+
+    if (logoFields.contentType === "image/svg+xml") {
+        const iconSvg = icons.find(icon => icon.url === logoFields.url)
+
+        if (!iconSvg) {
+            console.error(`Icon not found for URL: ${logoFields.url}`)
+            return null
+        }
+
+        if (!iconSvg.icon || iconSvg.icon.trim() === "") {
+            console.error(`Icon content is empty for URL: ${logoFields.url}`)
+            return null
+        }
+
+        return (
+            <IconExternal
+                title={logo.name ?? ""}
+                src={iconSvg.icon}
+                css={css.raw(styles, cssProp)}
+            />
+        )
+    }
+
+    return (
+        <div className={css(styles, cssProp)}>
+            <Image
+                image={logoFields}
+                alt={logo.name ?? ""}
+                style={{
+                    objectFit: "contain",
+                    height: "100%",
+                }}
+                fill
+            />
+        </div>
+    )
 }
 
 interface ClientProps {
@@ -65,88 +127,42 @@ interface ClientProps {
     icons: IconsProcessed[]
 }
 
+const renderClientLogos = (
+    data: HomePageLogosCollection["items"],
+    icons: IconsProcessed[]
+) =>
+    data.map(logo => {
+        if (!logo) {
+            return null
+        }
+
+        return <ClientLogo key={getLogoKey(logo)} logo={logo} icons={icons} />
+    })
+
 const Clients = ({
     data,
     icons,
 }: ClientProps): React.ReactElement<ClientProps> => {
     return (
-        <Container css={clientsContainerStyles} vPadding>
-            <Heading
-                level="h3"
-                override="h2"
-                css={{
-                    textAlign: "center",
-                    marginBottom: 12,
-                    paddingBottom: 4,
-                }}
-            >
-                Clients I have worked with
-            </Heading>
-            <div className={logoWrapperStyles}>
-                {data.map((logo, i: number) => {
-                    const logoFields = logo?.logo as CustomImageAsset
-
-                    if (!logoFields || !logo) {
-                        return <></>
-                    }
-
-                    const svg = logoFields.contentType === "image/svg+xml"
-                    const isDark = useIsDark(!!logo.dark)
-
-                    if (svg) {
-                        const iconSvg = icons.find(
-                            icon => icon.url === logoFields.url
-                        )
-
-                        if (!iconSvg) {
-                            console.error(
-                                `Icon not found for URL: ${logoFields.url}`
-                            )
-                            return <></>
-                        }
-
-                        if (!iconSvg.icon || iconSvg.icon.trim() === "") {
-                            console.error(
-                                `Icon content is empty for URL: ${logoFields.url}`
-                            )
-                            return <></>
-                        }
-
-                        return (
-                            <div key={`client-${nanoid()}`}>
-                                <IconExternal
-                                    title={logo.name ?? ""}
-                                    src={iconSvg.icon}
-                                    width={logoFields.width ?? ""}
-                                    height={logoFields.height ?? ""}
-                                    css={LogoStyles({ dark: isDark })}
-                                />
-                            </div>
-                        )
-                    }
-
-                    return (
-                        <div key={`client-${nanoid()}`}>
-                            <Logo
-                                dark={isDark}
-                                key={`client-${i}`}
-                                css={{ maxHeight: "50px" }}
-                            >
-                                <Image
-                                    image={logoFields}
-                                    alt={logo.name ?? ""}
-                                    style={{
-                                        objectFit: "contain",
-                                        height: "100%",
-                                    }}
-                                    fill
-                                />
-                            </Logo>
-                        </div>
-                    )
-                })}
-            </div>
-        </Container>
+        <OuterWrapper offsetBg>
+            <Container options={{ smallPadding: true }}>
+                <Subheading
+                    css={{
+                        display: "flex",
+                        width: "100%",
+                        justifyContent: "center",
+                    }}
+                >
+                    Clients I have worked with
+                </Subheading>
+                <div className={logoWrapperStylesUpper}>
+                    {renderClientLogos(data.slice(0, 6), icons)}
+                </div>
+                <div className={logoWrapperStyleLower}>
+                    {renderClientLogos(data.slice(6), icons)}
+                </div>
+            </Container>
+        </OuterWrapper>
     )
 }
 

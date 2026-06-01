@@ -7,7 +7,7 @@ const ContactPage = (): React.ReactElement => {
     return (
         <>
             <PageHeader title="Contact" text={headerText} />
-            <Container vPadding>
+            <Container options={{ largePadding: true }}>
                 <ContactForm />
             </Container>
         </>

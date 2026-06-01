@@ -7,10 +7,6 @@ import Heading from "../Typography/Heading"
 import { Container } from "../Global/Container"
 import { css } from "@styled-system/css"
 
-const projectsContainerStyles = {
-    paddingBottom: 0,
-}
-
 const projectWrapperStyles = css({
     position: "relative",
     sm: {
@@ -131,7 +127,7 @@ const ProjectTemplate = ({
 
 const Projects = ({ data }: ProjectProps): React.ReactElement<ProjectProps> => {
     return (
-        <Container css={projectsContainerStyles} vPadding>
+        <Container options={{ largePadding: true }}>
             <Heading level="h2" css={{ textAlign: "center" }}>
                 My Work
             </Heading>

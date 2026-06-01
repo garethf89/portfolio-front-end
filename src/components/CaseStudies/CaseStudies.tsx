@@ -91,7 +91,7 @@ export const CaseStudyText = ({
 const CaseStudies = ({ data }: CSProps): React.ReactElement<CSProps> => {
     return (
         <OuterWrapper>
-            <Container vPadding>
+            <Container options={{ largePadding: true }}>
                 <Lines id="LinesCaseStudies" />
                 <Heading level="h2">Case Studies</Heading>
                 <div className={caseStudyWrapperStyles}>

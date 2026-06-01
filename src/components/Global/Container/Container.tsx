@@ -5,7 +5,6 @@ import Flex, { FlexProps } from "./Flex"
 type ContainerProps = {
     children: React.ReactNode
     useflex?: boolean
-    vPadding?: boolean
     as?: string
 } & BoxProps &
     FlexProps

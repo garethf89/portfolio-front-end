@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react"
 
-import { gsap } from "gsap"
-
 import { ViewTransitions } from "next-view-transitions"
 
 import * as Sentry from "@sentry/react"

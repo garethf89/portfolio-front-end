@@ -94,7 +94,7 @@ const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
     return (
         <OuterWrapper data-testid="lastfm-container">
             <Lines id="LFMAni" />
-            <Container vPadding>
+            <Container options={{ largePadding: true }}>
                 <Heading
                     css={{
                         marginTop: 0,

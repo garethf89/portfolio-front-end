@@ -1,5 +1,6 @@
 import * as React from "react"
 import { css, Styles } from "@styled-system/css"
+import { ContainerOptions } from "./Flex"
 
 const boxStyles = {
     position: "relative",
@@ -11,22 +12,21 @@ const boxStyles = {
 }
 
 export type BoxProps = {
-    vPadding?: boolean
+    options?: ContainerOptions
     children: React.ReactNode
     css?: Styles
 } & React.ComponentProps<"section">
 
 const Box = ({
     children,
-    vPadding,
+    options,
     css: cssProp,
     ...props
 }: BoxProps): React.ReactElement => {
-    const merged = css([
-        boxStyles,
-        { paddingY: vPadding ? "16" : "0" },
-        cssProp,
-    ])
+    const { largePadding, smallPadding } = options ?? {}
+
+    const paddingY = largePadding ? "16" : smallPadding ? "8" : "0"
+    const merged = css([boxStyles, { paddingY }, cssProp])
     return (
         <section className={merged} {...props}>
             {children}

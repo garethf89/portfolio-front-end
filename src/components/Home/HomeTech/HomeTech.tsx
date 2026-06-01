@@ -1,65 +1,27 @@
-import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import * as React from "react"
 import { css } from "@styled-system/css"
 import { IconsProcessed } from "../../../../@types/types"
 import Container from "../../Global/Container/Container"
-import Skill from "../../Skills/Skill"
-import Bold from "../../Typography/Bold"
-import Heading from "../../Typography/Heading"
-import Inlinelink from "../../Typography/Inlinelink"
-import FaceImage from "../FaceImage/FaceImage"
+import HomeSkill from "../../Skills/HomeSkill"
+import { Subheading } from "../../Typography/Subheading"
 import { HomePageSkillsCollection, HomePageSkillsText } from "@schema"
 
-const styledParagraphStyles = {
-    fontWeight: 200,
-    marginTop: 4,
-    textAlign: "center",
-}
 const skillsStyles = css({
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "space-between",
+    justifyContent: "center",
     padding: 0,
+    gap: 12,
     listStyleType: "none",
     marginBottom: "0",
-    marginX: 0,
+    marginX: "auto",
     marginTop: 12,
+    md: {
+        flexWrap: "nowrap",
+        gap: 8,
+        justifyContent: "space-between",
+    },
 })
-
-const Text = ({ children }: React.PropsWithChildren) => {
-    return (
-        <Heading override="p" level="h3" css={styledParagraphStyles}>
-            {children}
-        </Heading>
-    )
-}
-
-const options = {
-    renderMark: {
-        [MARKS.BOLD]: text => <Bold>{text}</Bold>,
-    },
-    renderNode: {
-        [BLOCKS.PARAGRAPH]: (node, children) => {
-            return <Text>{children}</Text>
-        },
-        [INLINES.HYPERLINK]: (node, children) => {
-            return (
-                <Inlinelink href={String(node.data.uri)}>{children}</Inlinelink>
-            )
-        },
-    },
-}
-
-interface TextProps {
-    text: HomePageSkillsText
-}
-
-export const HomeHeaderContentText = ({
-    text,
-}: TextProps): React.ReactElement => {
-    return documentToReactComponents(text.json, options) as React.ReactElement
-}
 
 interface HomeTechProps {
     skills: HomePageSkillsCollection["items"]
@@ -67,15 +29,21 @@ interface HomeTechProps {
     icons: IconsProcessed[]
 }
 
-const HomeTech = ({
-    skills,
-    text,
-    icons,
-}: HomeTechProps): React.ReactElement => {
+const HomeTech = ({ skills, icons }: HomeTechProps): React.ReactElement => {
     return (
-        <Container vPadding css={{ textAlign: "center" }}>
-            <FaceImage />
-            <HomeHeaderContentText text={text} />
+        <Container
+            css={{ textAlign: "center" }}
+            options={{ smallPadding: true }}
+        >
+            <Subheading
+                css={{
+                    display: "flex",
+                    width: "100%",
+                    justifyContent: "center",
+                }}
+            >
+                Skills
+            </Subheading>
             <ul className={skillsStyles}>
                 {!!icons &&
                     skills.map((skill, i) => {
@@ -91,16 +59,14 @@ const HomeTech = ({
                         }
 
                         return (
-                            <Skill
+                            <HomeSkill
                                 key={i}
                                 id={`skill${i}`}
                                 icon={skillIcon}
                                 title={skill.name!}
-                                width={[14, 14, 20]}
-                                height={[14, 14, 20]}
                             >
                                 {skill.name}
-                            </Skill>
+                            </HomeSkill>
                         )
                     })}
             </ul>

@@ -38,7 +38,7 @@ export const InputStyled = ({
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
     id?: string
     error?: FieldError
-    touched?: Boolean
+    touched?: boolean
 }
 
 const Input = ({
@@ -47,8 +47,6 @@ const Input = ({
     touched,
     ...props
 }: InputProps): React.ReactElement => {
-    const name = props.name ?? ""
-    console.log(error)
     return (
         <>
             <InputStyled

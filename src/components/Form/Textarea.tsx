@@ -38,7 +38,7 @@ type InputProps = React.HTMLProps<HTMLTextAreaElement> & {
     name: string
     id?: string
     error?: FieldError
-    touched?: Boolean
+    touched?: boolean
 }
 
 const TextArea = ({
