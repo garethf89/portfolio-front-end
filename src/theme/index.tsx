@@ -74,6 +74,7 @@ export const theme = {
             sectionBackground: { value: palette.darkColor1 },
             sectionBackgroundPageLight: { value: palette.lightGrey1 },
             offsetSectionBackgroundColor: { value: palette.offsetGrey },
+            headerBorderColor: { value: palette.lightGrey2 },
         },
         sizes: {
             container: {

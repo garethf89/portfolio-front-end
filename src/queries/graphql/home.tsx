@@ -9,6 +9,16 @@ export const HOME_QUERY = gql`
                 introText {
                     json
                 }
+                homeIntroTextCollection {
+                    items {
+                        text
+                        icon {
+                            fileName
+                            url
+                            title
+                        }
+                    }
+                }
                 statsCollection {
                     items {
                         amount

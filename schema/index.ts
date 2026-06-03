@@ -11,7 +11,7 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
 }
 export type MakeEmpty<
     T extends { [key: string]: unknown },
-    K extends keyof T
+    K extends keyof T,
 > = { [_ in K]?: never }
 export type Incremental<T> =
     | T
@@ -53,21 +53,25 @@ export type Asset = {
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetContentTypeArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetDescriptionArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetFileNameArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetHeightArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** Represents a binary file in a space. An asset can be any file type. */
@@ -78,22 +82,26 @@ export type AssetLinkedFromArgs = {
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetSizeArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetTitleArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetUrlArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
     transform?: InputMaybe<ImageTransformOptions>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type AssetWidthArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type AssetCollection = {
@@ -102,6 +110,13 @@ export type AssetCollection = {
     limit: Scalars["Int"]["output"]
     skip: Scalars["Int"]["output"]
     total: Scalars["Int"]["output"]
+}
+
+export type AssetCursorCollection = {
+    __typename?: "AssetCursorCollection"
+    items: Array<Maybe<Asset>>
+    limit: Scalars["Int"]["output"]
+    pages: CursorPages
 }
 
 export type AssetFilter = {
@@ -180,11 +195,19 @@ export type AssetFilter = {
 export type AssetLinkingCollections = {
     __typename?: "AssetLinkingCollections"
     entryCollection?: Maybe<EntryCollection>
+    entryCursorCollection?: Maybe<EntryCursorCollection>
+    homeIntroCollection?: Maybe<HomeIntroCollection>
+    homeIntroCursorCollection?: Maybe<HomeIntroCursorCollection>
     logoCollection?: Maybe<LogoCollection>
+    logoCursorCollection?: Maybe<LogoCursorCollection>
     pageContentFullSizeImageCollection?: Maybe<PageContentFullSizeImageCollection>
+    pageContentFullSizeImageCursorCollection?: Maybe<PageContentFullSizeImageCursorCollection>
     pageContentImageCollection?: Maybe<PageContentImageCollection>
+    pageContentImageCursorCollection?: Maybe<PageContentImageCursorCollection>
     projectCollection?: Maybe<ProjectCollection>
+    projectCursorCollection?: Maybe<ProjectCursorCollection>
     skillCollection?: Maybe<SkillCollection>
+    skillCursorCollection?: Maybe<SkillCursorCollection>
 }
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
@@ -192,6 +215,33 @@ export type AssetLinkingCollectionsEntryCollectionArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type AssetLinkingCollectionsEntryCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type AssetLinkingCollectionsHomeIntroCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type AssetLinkingCollectionsHomeIntroCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type AssetLinkingCollectionsLogoCollectionArgs = {
@@ -199,6 +249,16 @@ export type AssetLinkingCollectionsLogoCollectionArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type AssetLinkingCollectionsLogoCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type AssetLinkingCollectionsPageContentFullSizeImageCollectionArgs = {
@@ -206,13 +266,34 @@ export type AssetLinkingCollectionsPageContentFullSizeImageCollectionArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
+
+export type AssetLinkingCollectionsPageContentFullSizeImageCursorCollectionArgs =
+    {
+        limit?: InputMaybe<Scalars["Int"]["input"]>
+        locale?: InputMaybe<Scalars["String"]["input"]>
+        pageNext?: InputMaybe<Scalars["String"]["input"]>
+        pagePrev?: InputMaybe<Scalars["String"]["input"]>
+        preview?: InputMaybe<Scalars["Boolean"]["input"]>
+        useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    }
 
 export type AssetLinkingCollectionsPageContentImageCollectionArgs = {
     limit?: InputMaybe<Scalars["Int"]["input"]>
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type AssetLinkingCollectionsPageContentImageCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type AssetLinkingCollectionsProjectCollectionArgs = {
@@ -220,6 +301,16 @@ export type AssetLinkingCollectionsProjectCollectionArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type AssetLinkingCollectionsProjectCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type AssetLinkingCollectionsSkillCollectionArgs = {
@@ -227,6 +318,16 @@ export type AssetLinkingCollectionsSkillCollectionArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type AssetLinkingCollectionsSkillCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export enum AssetOrder {
@@ -294,6 +395,12 @@ export type ContentfulTag = {
     name?: Maybe<Scalars["String"]["output"]>
 }
 
+export type CursorPages = {
+    __typename?: "CursorPages"
+    next?: Maybe<Scalars["String"]["output"]>
+    prev?: Maybe<Scalars["String"]["output"]>
+}
+
 export type Entry = {
     contentfulMetadata: ContentfulMetadata
     sys: Sys
@@ -305,6 +412,13 @@ export type EntryCollection = {
     limit: Scalars["Int"]["output"]
     skip: Scalars["Int"]["output"]
     total: Scalars["Int"]["output"]
+}
+
+export type EntryCursorCollection = {
+    __typename?: "EntryCursorCollection"
+    items: Array<Maybe<Entry>>
+    limit: Scalars["Int"]["output"]
+    pages: CursorPages
 }
 
 export type EntryFilter = {
@@ -325,21 +439,177 @@ export enum EntryOrder {
     SysPublishedVersionDesc = "sys_publishedVersion_DESC",
 }
 
+/** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/homeIntro) */
+export type HomeIntro = Entry &
+    _Node & {
+        __typename?: "HomeIntro"
+        _id: Scalars["ID"]["output"]
+        contentfulMetadata: ContentfulMetadata
+        icon?: Maybe<Asset>
+        linkedFrom?: Maybe<HomeIntroLinkingCollections>
+        sys: Sys
+        text?: Maybe<Scalars["String"]["output"]>
+    }
+
+/** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/homeIntro) */
+export type HomeIntroIconArgs = {
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+/** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/homeIntro) */
+export type HomeIntroLinkedFromArgs = {
+    allowedLocales?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>
+}
+
+/** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/homeIntro) */
+export type HomeIntroTextArgs = {
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type HomeIntroCollection = {
+    __typename?: "HomeIntroCollection"
+    items: Array<Maybe<HomeIntro>>
+    limit: Scalars["Int"]["output"]
+    skip: Scalars["Int"]["output"]
+    total: Scalars["Int"]["output"]
+}
+
+export type HomeIntroCursorCollection = {
+    __typename?: "HomeIntroCursorCollection"
+    items: Array<Maybe<HomeIntro>>
+    limit: Scalars["Int"]["output"]
+    pages: CursorPages
+}
+
+export type HomeIntroFilter = {
+    AND?: InputMaybe<Array<InputMaybe<HomeIntroFilter>>>
+    OR?: InputMaybe<Array<InputMaybe<HomeIntroFilter>>>
+    contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>
+    icon_exists?: InputMaybe<Scalars["Boolean"]["input"]>
+    sys?: InputMaybe<SysFilter>
+    text?: InputMaybe<Scalars["String"]["input"]>
+    text_contains?: InputMaybe<Scalars["String"]["input"]>
+    text_exists?: InputMaybe<Scalars["Boolean"]["input"]>
+    text_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>
+    text_not?: InputMaybe<Scalars["String"]["input"]>
+    text_not_contains?: InputMaybe<Scalars["String"]["input"]>
+    text_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>
+}
+
+export type HomeIntroLinkingCollections = {
+    __typename?: "HomeIntroLinkingCollections"
+    entryCollection?: Maybe<EntryCollection>
+    entryCursorCollection?: Maybe<EntryCursorCollection>
+    homePageCollection?: Maybe<HomePageCollection>
+    homePageCursorCollection?: Maybe<HomePageCursorCollection>
+}
+
+export type HomeIntroLinkingCollectionsEntryCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type HomeIntroLinkingCollectionsEntryCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type HomeIntroLinkingCollectionsHomePageCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<
+        Array<InputMaybe<HomeIntroLinkingCollectionsHomePageCollectionOrder>>
+    >
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type HomeIntroLinkingCollectionsHomePageCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<
+        Array<
+            InputMaybe<HomeIntroLinkingCollectionsHomePageCursorCollectionOrder>
+        >
+    >
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export enum HomeIntroLinkingCollectionsHomePageCollectionOrder {
+    SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+    SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+    SysIdAsc = "sys_id_ASC",
+    SysIdDesc = "sys_id_DESC",
+    SysPublishedAtAsc = "sys_publishedAt_ASC",
+    SysPublishedAtDesc = "sys_publishedAt_DESC",
+    SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+    SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+    TitleAsc = "title_ASC",
+    TitleDesc = "title_DESC",
+}
+
+export enum HomeIntroLinkingCollectionsHomePageCursorCollectionOrder {
+    SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+    SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+    SysIdAsc = "sys_id_ASC",
+    SysIdDesc = "sys_id_DESC",
+    SysPublishedAtAsc = "sys_publishedAt_ASC",
+    SysPublishedAtDesc = "sys_publishedAt_DESC",
+    SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+    SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+    TitleAsc = "title_ASC",
+    TitleDesc = "title_DESC",
+}
+
+export enum HomeIntroOrder {
+    SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+    SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+    SysIdAsc = "sys_id_ASC",
+    SysIdDesc = "sys_id_DESC",
+    SysPublishedAtAsc = "sys_publishedAt_ASC",
+    SysPublishedAtDesc = "sys_publishedAt_DESC",
+    SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+    SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+    TextAsc = "text_ASC",
+    TextDesc = "text_DESC",
+}
+
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/homePage) */
 export type HomePage = Entry &
     _Node & {
         __typename?: "HomePage"
         _id: Scalars["ID"]["output"]
         caseStudiesCollection?: Maybe<HomePageCaseStudiesCollection>
+        caseStudiesCursorCollection?: Maybe<HomePageCaseStudiesCursorCollection>
         contentfulMetadata: ContentfulMetadata
         description?: Maybe<Scalars["String"]["output"]>
+        homeIntroTextCollection?: Maybe<HomePageHomeIntroTextCollection>
+        homeIntroTextCursorCollection?: Maybe<HomePageHomeIntroTextCursorCollection>
         introText?: Maybe<HomePageIntroText>
         linkedFrom?: Maybe<HomePageLinkingCollections>
         logosCollection?: Maybe<HomePageLogosCollection>
+        logosCursorCollection?: Maybe<HomePageLogosCursorCollection>
         projectsCollection?: Maybe<HomePageProjectsCollection>
+        projectsCursorCollection?: Maybe<HomePageProjectsCursorCollection>
         skillsCollection?: Maybe<HomePageSkillsCollection>
+        skillsCursorCollection?: Maybe<HomePageSkillsCursorCollection>
         skillsText?: Maybe<HomePageSkillsText>
         statsCollection?: Maybe<HomePageStatsCollection>
+        statsCursorCollection?: Maybe<HomePageStatsCursorCollection>
         sys: Sys
         title?: Maybe<Scalars["String"]["output"]>
     }
@@ -351,17 +621,59 @@ export type HomePageCaseStudiesCollectionArgs = {
     order?: InputMaybe<Array<InputMaybe<HomePageCaseStudiesCollectionOrder>>>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<ProjectFilter>
+}
+
+/** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/homePage) */
+export type HomePageCaseStudiesCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<
+        Array<InputMaybe<HomePageCaseStudiesCursorCollectionOrder>>
+    >
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
     where?: InputMaybe<ProjectFilter>
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/homePage) */
 export type HomePageDescriptionArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+/** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/homePage) */
+export type HomePageHomeIntroTextCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<Array<InputMaybe<HomePageHomeIntroTextCollectionOrder>>>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<HomeIntroFilter>
+}
+
+/** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/homePage) */
+export type HomePageHomeIntroTextCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<
+        Array<InputMaybe<HomePageHomeIntroTextCursorCollectionOrder>>
+    >
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<HomeIntroFilter>
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/homePage) */
 export type HomePageIntroTextArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/homePage) */
@@ -376,6 +688,19 @@ export type HomePageLogosCollectionArgs = {
     order?: InputMaybe<Array<InputMaybe<HomePageLogosCollectionOrder>>>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<LogoFilter>
+}
+
+/** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/homePage) */
+export type HomePageLogosCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<Array<InputMaybe<HomePageLogosCursorCollectionOrder>>>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
     where?: InputMaybe<LogoFilter>
 }
 
@@ -386,6 +711,19 @@ export type HomePageProjectsCollectionArgs = {
     order?: InputMaybe<Array<InputMaybe<HomePageProjectsCollectionOrder>>>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<ProjectFilter>
+}
+
+/** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/homePage) */
+export type HomePageProjectsCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<Array<InputMaybe<HomePageProjectsCursorCollectionOrder>>>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
     where?: InputMaybe<ProjectFilter>
 }
 
@@ -396,12 +734,26 @@ export type HomePageSkillsCollectionArgs = {
     order?: InputMaybe<Array<InputMaybe<HomePageSkillsCollectionOrder>>>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<SkillFilter>
+}
+
+/** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/homePage) */
+export type HomePageSkillsCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<Array<InputMaybe<HomePageSkillsCursorCollectionOrder>>>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
     where?: InputMaybe<SkillFilter>
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/homePage) */
 export type HomePageSkillsTextArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/homePage) */
@@ -411,12 +763,26 @@ export type HomePageStatsCollectionArgs = {
     order?: InputMaybe<Array<InputMaybe<HomePageStatsCollectionOrder>>>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<StatFilter>
+}
+
+/** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/homePage) */
+export type HomePageStatsCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<Array<InputMaybe<HomePageStatsCursorCollectionOrder>>>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
     where?: InputMaybe<StatFilter>
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/homePage) */
 export type HomePageTitleArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type HomePageCaseStudiesCollection = {
@@ -446,12 +812,45 @@ export enum HomePageCaseStudiesCollectionOrder {
     TitleDesc = "title_DESC",
 }
 
+export type HomePageCaseStudiesCursorCollection = {
+    __typename?: "HomePageCaseStudiesCursorCollection"
+    items: Array<Maybe<Project>>
+    limit: Scalars["Int"]["output"]
+    pages: CursorPages
+}
+
+export enum HomePageCaseStudiesCursorCollectionOrder {
+    HeadlineAsc = "headline_ASC",
+    HeadlineDesc = "headline_DESC",
+    LinkAsc = "link_ASC",
+    LinkDesc = "link_DESC",
+    SlugAsc = "slug_ASC",
+    SlugDesc = "slug_DESC",
+    SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+    SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+    SysIdAsc = "sys_id_ASC",
+    SysIdDesc = "sys_id_DESC",
+    SysPublishedAtAsc = "sys_publishedAt_ASC",
+    SysPublishedAtDesc = "sys_publishedAt_DESC",
+    SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+    SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+    TitleAsc = "title_ASC",
+    TitleDesc = "title_DESC",
+}
+
 export type HomePageCollection = {
     __typename?: "HomePageCollection"
     items: Array<Maybe<HomePage>>
     limit: Scalars["Int"]["output"]
     skip: Scalars["Int"]["output"]
     total: Scalars["Int"]["output"]
+}
+
+export type HomePageCursorCollection = {
+    __typename?: "HomePageCursorCollection"
+    items: Array<Maybe<HomePage>>
+    limit: Scalars["Int"]["output"]
+    pages: CursorPages
 }
 
 export type HomePageFilter = {
@@ -469,6 +868,8 @@ export type HomePageFilter = {
     description_not_in?: InputMaybe<
         Array<InputMaybe<Scalars["String"]["input"]>>
     >
+    homeIntroText?: InputMaybe<CfHomeIntroNestedFilter>
+    homeIntroTextCollection_exists?: InputMaybe<Scalars["Boolean"]["input"]>
     introText_contains?: InputMaybe<Scalars["String"]["input"]>
     introText_exists?: InputMaybe<Scalars["Boolean"]["input"]>
     introText_not_contains?: InputMaybe<Scalars["String"]["input"]>
@@ -491,6 +892,47 @@ export type HomePageFilter = {
     title_not?: InputMaybe<Scalars["String"]["input"]>
     title_not_contains?: InputMaybe<Scalars["String"]["input"]>
     title_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>
+}
+
+export type HomePageHomeIntroTextCollection = {
+    __typename?: "HomePageHomeIntroTextCollection"
+    items: Array<Maybe<HomeIntro>>
+    limit: Scalars["Int"]["output"]
+    skip: Scalars["Int"]["output"]
+    total: Scalars["Int"]["output"]
+}
+
+export enum HomePageHomeIntroTextCollectionOrder {
+    SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+    SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+    SysIdAsc = "sys_id_ASC",
+    SysIdDesc = "sys_id_DESC",
+    SysPublishedAtAsc = "sys_publishedAt_ASC",
+    SysPublishedAtDesc = "sys_publishedAt_DESC",
+    SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+    SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+    TextAsc = "text_ASC",
+    TextDesc = "text_DESC",
+}
+
+export type HomePageHomeIntroTextCursorCollection = {
+    __typename?: "HomePageHomeIntroTextCursorCollection"
+    items: Array<Maybe<HomeIntro>>
+    limit: Scalars["Int"]["output"]
+    pages: CursorPages
+}
+
+export enum HomePageHomeIntroTextCursorCollectionOrder {
+    SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+    SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+    SysIdAsc = "sys_id_ASC",
+    SysIdDesc = "sys_id_DESC",
+    SysPublishedAtAsc = "sys_publishedAt_ASC",
+    SysPublishedAtDesc = "sys_publishedAt_DESC",
+    SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+    SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+    TextAsc = "text_ASC",
+    TextDesc = "text_DESC",
 }
 
 export type HomePageIntroText = {
@@ -544,6 +986,7 @@ export type HomePageIntroTextResourcesInline = ResourceLink & {
 export type HomePageLinkingCollections = {
     __typename?: "HomePageLinkingCollections"
     entryCollection?: Maybe<EntryCollection>
+    entryCursorCollection?: Maybe<EntryCursorCollection>
 }
 
 export type HomePageLinkingCollectionsEntryCollectionArgs = {
@@ -551,6 +994,16 @@ export type HomePageLinkingCollectionsEntryCollectionArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type HomePageLinkingCollectionsEntryCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type HomePageLogosCollection = {
@@ -562,6 +1015,28 @@ export type HomePageLogosCollection = {
 }
 
 export enum HomePageLogosCollectionOrder {
+    DarkAsc = "dark_ASC",
+    DarkDesc = "dark_DESC",
+    NameAsc = "name_ASC",
+    NameDesc = "name_DESC",
+    SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+    SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+    SysIdAsc = "sys_id_ASC",
+    SysIdDesc = "sys_id_DESC",
+    SysPublishedAtAsc = "sys_publishedAt_ASC",
+    SysPublishedAtDesc = "sys_publishedAt_DESC",
+    SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+    SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+}
+
+export type HomePageLogosCursorCollection = {
+    __typename?: "HomePageLogosCursorCollection"
+    items: Array<Maybe<Logo>>
+    limit: Scalars["Int"]["output"]
+    pages: CursorPages
+}
+
+export enum HomePageLogosCursorCollectionOrder {
     DarkAsc = "dark_ASC",
     DarkDesc = "dark_DESC",
     NameAsc = "name_ASC",
@@ -616,6 +1091,32 @@ export enum HomePageProjectsCollectionOrder {
     TitleDesc = "title_DESC",
 }
 
+export type HomePageProjectsCursorCollection = {
+    __typename?: "HomePageProjectsCursorCollection"
+    items: Array<Maybe<Project>>
+    limit: Scalars["Int"]["output"]
+    pages: CursorPages
+}
+
+export enum HomePageProjectsCursorCollectionOrder {
+    HeadlineAsc = "headline_ASC",
+    HeadlineDesc = "headline_DESC",
+    LinkAsc = "link_ASC",
+    LinkDesc = "link_DESC",
+    SlugAsc = "slug_ASC",
+    SlugDesc = "slug_DESC",
+    SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+    SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+    SysIdAsc = "sys_id_ASC",
+    SysIdDesc = "sys_id_DESC",
+    SysPublishedAtAsc = "sys_publishedAt_ASC",
+    SysPublishedAtDesc = "sys_publishedAt_DESC",
+    SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+    SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+    TitleAsc = "title_ASC",
+    TitleDesc = "title_DESC",
+}
+
 export type HomePageSkillsCollection = {
     __typename?: "HomePageSkillsCollection"
     items: Array<Maybe<Skill>>
@@ -625,6 +1126,26 @@ export type HomePageSkillsCollection = {
 }
 
 export enum HomePageSkillsCollectionOrder {
+    NameAsc = "name_ASC",
+    NameDesc = "name_DESC",
+    SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+    SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+    SysIdAsc = "sys_id_ASC",
+    SysIdDesc = "sys_id_DESC",
+    SysPublishedAtAsc = "sys_publishedAt_ASC",
+    SysPublishedAtDesc = "sys_publishedAt_DESC",
+    SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+    SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+}
+
+export type HomePageSkillsCursorCollection = {
+    __typename?: "HomePageSkillsCursorCollection"
+    items: Array<Maybe<Skill>>
+    limit: Scalars["Int"]["output"]
+    pages: CursorPages
+}
+
+export enum HomePageSkillsCursorCollectionOrder {
     NameAsc = "name_ASC",
     NameDesc = "name_DESC",
     SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
@@ -708,7 +1229,30 @@ export enum HomePageStatsCollectionOrder {
     SysPublishedVersionDesc = "sys_publishedVersion_DESC",
 }
 
+export type HomePageStatsCursorCollection = {
+    __typename?: "HomePageStatsCursorCollection"
+    items: Array<Maybe<Stat>>
+    limit: Scalars["Int"]["output"]
+    pages: CursorPages
+}
+
+export enum HomePageStatsCursorCollectionOrder {
+    AmountAsc = "amount_ASC",
+    AmountDesc = "amount_DESC",
+    DescriptionAsc = "description_ASC",
+    DescriptionDesc = "description_DESC",
+    SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+    SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+    SysIdAsc = "sys_id_ASC",
+    SysIdDesc = "sys_id_DESC",
+    SysPublishedAtAsc = "sys_publishedAt_ASC",
+    SysPublishedAtDesc = "sys_publishedAt_DESC",
+    SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+    SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+}
+
 export enum ImageFormat {
+    /** AVIF image format. */
     Avif = "AVIF",
     /** JPG image format. */
     Jpg = "JPG",
@@ -819,6 +1363,7 @@ export type Logo = Entry &
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/logo) */
 export type LogoDarkArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/logo) */
@@ -830,11 +1375,13 @@ export type LogoLinkedFromArgs = {
 export type LogoLogoArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/logo) */
 export type LogoNameArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type LogoCollection = {
@@ -843,6 +1390,13 @@ export type LogoCollection = {
     limit: Scalars["Int"]["output"]
     skip: Scalars["Int"]["output"]
     total: Scalars["Int"]["output"]
+}
+
+export type LogoCursorCollection = {
+    __typename?: "LogoCursorCollection"
+    items: Array<Maybe<Logo>>
+    limit: Scalars["Int"]["output"]
+    pages: CursorPages
 }
 
 export type LogoFilter = {
@@ -866,7 +1420,9 @@ export type LogoFilter = {
 export type LogoLinkingCollections = {
     __typename?: "LogoLinkingCollections"
     entryCollection?: Maybe<EntryCollection>
+    entryCursorCollection?: Maybe<EntryCursorCollection>
     homePageCollection?: Maybe<HomePageCollection>
+    homePageCursorCollection?: Maybe<HomePageCursorCollection>
 }
 
 export type LogoLinkingCollectionsEntryCollectionArgs = {
@@ -874,6 +1430,16 @@ export type LogoLinkingCollectionsEntryCollectionArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type LogoLinkingCollectionsEntryCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type LogoLinkingCollectionsHomePageCollectionArgs = {
@@ -884,9 +1450,35 @@ export type LogoLinkingCollectionsHomePageCollectionArgs = {
     >
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type LogoLinkingCollectionsHomePageCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<
+        Array<InputMaybe<LogoLinkingCollectionsHomePageCursorCollectionOrder>>
+    >
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export enum LogoLinkingCollectionsHomePageCollectionOrder {
+    SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+    SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+    SysIdAsc = "sys_id_ASC",
+    SysIdDesc = "sys_id_DESC",
+    SysPublishedAtAsc = "sys_publishedAt_ASC",
+    SysPublishedAtDesc = "sys_publishedAt_DESC",
+    SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+    SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+    TitleAsc = "title_ASC",
+    TitleDesc = "title_DESC",
+}
+
+export enum LogoLinkingCollectionsHomePageCursorCollectionOrder {
     SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
     SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
     SysIdAsc = "sys_id_ASC",
@@ -930,6 +1522,7 @@ export type PageContentFullSizeImage = Entry &
 export type PageContentFullSizeImageImageArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/pageContentFullSizeImage) */
@@ -940,6 +1533,7 @@ export type PageContentFullSizeImageLinkedFromArgs = {
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/pageContentFullSizeImage) */
 export type PageContentFullSizeImageTitleArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type PageContentFullSizeImageCollection = {
@@ -948,6 +1542,13 @@ export type PageContentFullSizeImageCollection = {
     limit: Scalars["Int"]["output"]
     skip: Scalars["Int"]["output"]
     total: Scalars["Int"]["output"]
+}
+
+export type PageContentFullSizeImageCursorCollection = {
+    __typename?: "PageContentFullSizeImageCursorCollection"
+    items: Array<Maybe<PageContentFullSizeImage>>
+    limit: Scalars["Int"]["output"]
+    pages: CursorPages
 }
 
 export type PageContentFullSizeImageFilter = {
@@ -968,7 +1569,9 @@ export type PageContentFullSizeImageFilter = {
 export type PageContentFullSizeImageLinkingCollections = {
     __typename?: "PageContentFullSizeImageLinkingCollections"
     entryCollection?: Maybe<EntryCollection>
+    entryCursorCollection?: Maybe<EntryCursorCollection>
     projectCollection?: Maybe<ProjectCollection>
+    projectCursorCollection?: Maybe<ProjectCursorCollection>
 }
 
 export type PageContentFullSizeImageLinkingCollectionsEntryCollectionArgs = {
@@ -976,7 +1579,18 @@ export type PageContentFullSizeImageLinkingCollectionsEntryCollectionArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
+
+export type PageContentFullSizeImageLinkingCollectionsEntryCursorCollectionArgs =
+    {
+        limit?: InputMaybe<Scalars["Int"]["input"]>
+        locale?: InputMaybe<Scalars["String"]["input"]>
+        pageNext?: InputMaybe<Scalars["String"]["input"]>
+        pagePrev?: InputMaybe<Scalars["String"]["input"]>
+        preview?: InputMaybe<Scalars["Boolean"]["input"]>
+        useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    }
 
 export type PageContentFullSizeImageLinkingCollectionsProjectCollectionArgs = {
     limit?: InputMaybe<Scalars["Int"]["input"]>
@@ -988,9 +1602,44 @@ export type PageContentFullSizeImageLinkingCollectionsProjectCollectionArgs = {
     >
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
+export type PageContentFullSizeImageLinkingCollectionsProjectCursorCollectionArgs =
+    {
+        limit?: InputMaybe<Scalars["Int"]["input"]>
+        locale?: InputMaybe<Scalars["String"]["input"]>
+        order?: InputMaybe<
+            Array<
+                InputMaybe<PageContentFullSizeImageLinkingCollectionsProjectCursorCollectionOrder>
+            >
+        >
+        pageNext?: InputMaybe<Scalars["String"]["input"]>
+        pagePrev?: InputMaybe<Scalars["String"]["input"]>
+        preview?: InputMaybe<Scalars["Boolean"]["input"]>
+        useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    }
+
 export enum PageContentFullSizeImageLinkingCollectionsProjectCollectionOrder {
+    HeadlineAsc = "headline_ASC",
+    HeadlineDesc = "headline_DESC",
+    LinkAsc = "link_ASC",
+    LinkDesc = "link_DESC",
+    SlugAsc = "slug_ASC",
+    SlugDesc = "slug_DESC",
+    SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+    SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+    SysIdAsc = "sys_id_ASC",
+    SysIdDesc = "sys_id_DESC",
+    SysPublishedAtAsc = "sys_publishedAt_ASC",
+    SysPublishedAtDesc = "sys_publishedAt_DESC",
+    SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+    SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+    TitleAsc = "title_ASC",
+    TitleDesc = "title_DESC",
+}
+
+export enum PageContentFullSizeImageLinkingCollectionsProjectCursorCollectionOrder {
     HeadlineAsc = "headline_ASC",
     HeadlineDesc = "headline_DESC",
     LinkAsc = "link_ASC",
@@ -1038,6 +1687,7 @@ export type PageContentImage = Entry &
 export type PageContentImageImageArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/pageContentImage) */
@@ -1048,6 +1698,7 @@ export type PageContentImageLinkedFromArgs = {
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/pageContentImage) */
 export type PageContentImageTitleArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type PageContentImageCollection = {
@@ -1056,6 +1707,13 @@ export type PageContentImageCollection = {
     limit: Scalars["Int"]["output"]
     skip: Scalars["Int"]["output"]
     total: Scalars["Int"]["output"]
+}
+
+export type PageContentImageCursorCollection = {
+    __typename?: "PageContentImageCursorCollection"
+    items: Array<Maybe<PageContentImage>>
+    limit: Scalars["Int"]["output"]
+    pages: CursorPages
 }
 
 export type PageContentImageFilter = {
@@ -1076,7 +1734,9 @@ export type PageContentImageFilter = {
 export type PageContentImageLinkingCollections = {
     __typename?: "PageContentImageLinkingCollections"
     entryCollection?: Maybe<EntryCollection>
+    entryCursorCollection?: Maybe<EntryCursorCollection>
     projectCollection?: Maybe<ProjectCollection>
+    projectCursorCollection?: Maybe<ProjectCursorCollection>
 }
 
 export type PageContentImageLinkingCollectionsEntryCollectionArgs = {
@@ -1084,6 +1744,16 @@ export type PageContentImageLinkingCollectionsEntryCollectionArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type PageContentImageLinkingCollectionsEntryCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type PageContentImageLinkingCollectionsProjectCollectionArgs = {
@@ -1096,9 +1766,43 @@ export type PageContentImageLinkingCollectionsProjectCollectionArgs = {
     >
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type PageContentImageLinkingCollectionsProjectCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<
+        Array<
+            InputMaybe<PageContentImageLinkingCollectionsProjectCursorCollectionOrder>
+        >
+    >
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export enum PageContentImageLinkingCollectionsProjectCollectionOrder {
+    HeadlineAsc = "headline_ASC",
+    HeadlineDesc = "headline_DESC",
+    LinkAsc = "link_ASC",
+    LinkDesc = "link_DESC",
+    SlugAsc = "slug_ASC",
+    SlugDesc = "slug_DESC",
+    SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+    SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+    SysIdAsc = "sys_id_ASC",
+    SysIdDesc = "sys_id_DESC",
+    SysPublishedAtAsc = "sys_publishedAt_ASC",
+    SysPublishedAtDesc = "sys_publishedAt_DESC",
+    SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+    SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+    TitleAsc = "title_ASC",
+    TitleDesc = "title_DESC",
+}
+
+export enum PageContentImageLinkingCollectionsProjectCursorCollectionOrder {
     HeadlineAsc = "headline_ASC",
     HeadlineDesc = "headline_DESC",
     LinkAsc = "link_ASC",
@@ -1145,6 +1849,7 @@ export type PageContentText = Entry &
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/pageContentText) */
 export type PageContentTextBodyArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/pageContentText) */
@@ -1155,6 +1860,7 @@ export type PageContentTextLinkedFromArgs = {
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/pageContentText) */
 export type PageContentTextTitleArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type PageContentTextBody = {
@@ -1213,6 +1919,13 @@ export type PageContentTextCollection = {
     total: Scalars["Int"]["output"]
 }
 
+export type PageContentTextCursorCollection = {
+    __typename?: "PageContentTextCursorCollection"
+    items: Array<Maybe<PageContentText>>
+    limit: Scalars["Int"]["output"]
+    pages: CursorPages
+}
+
 export type PageContentTextFilter = {
     AND?: InputMaybe<Array<InputMaybe<PageContentTextFilter>>>
     OR?: InputMaybe<Array<InputMaybe<PageContentTextFilter>>>
@@ -1233,7 +1946,9 @@ export type PageContentTextFilter = {
 export type PageContentTextLinkingCollections = {
     __typename?: "PageContentTextLinkingCollections"
     entryCollection?: Maybe<EntryCollection>
+    entryCursorCollection?: Maybe<EntryCursorCollection>
     projectCollection?: Maybe<ProjectCollection>
+    projectCursorCollection?: Maybe<ProjectCursorCollection>
 }
 
 export type PageContentTextLinkingCollectionsEntryCollectionArgs = {
@@ -1241,6 +1956,16 @@ export type PageContentTextLinkingCollectionsEntryCollectionArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type PageContentTextLinkingCollectionsEntryCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type PageContentTextLinkingCollectionsProjectCollectionArgs = {
@@ -1253,9 +1978,43 @@ export type PageContentTextLinkingCollectionsProjectCollectionArgs = {
     >
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type PageContentTextLinkingCollectionsProjectCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<
+        Array<
+            InputMaybe<PageContentTextLinkingCollectionsProjectCursorCollectionOrder>
+        >
+    >
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export enum PageContentTextLinkingCollectionsProjectCollectionOrder {
+    HeadlineAsc = "headline_ASC",
+    HeadlineDesc = "headline_DESC",
+    LinkAsc = "link_ASC",
+    LinkDesc = "link_DESC",
+    SlugAsc = "slug_ASC",
+    SlugDesc = "slug_DESC",
+    SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+    SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+    SysIdAsc = "sys_id_ASC",
+    SysIdDesc = "sys_id_DESC",
+    SysPublishedAtAsc = "sys_publishedAt_ASC",
+    SysPublishedAtDesc = "sys_publishedAt_DESC",
+    SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+    SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+    TitleAsc = "title_ASC",
+    TitleDesc = "title_DESC",
+}
+
+export enum PageContentTextLinkingCollectionsProjectCursorCollectionOrder {
     HeadlineAsc = "headline_ASC",
     HeadlineDesc = "headline_DESC",
     LinkAsc = "link_ASC",
@@ -1299,7 +2058,9 @@ export type Project = Entry &
         link?: Maybe<Scalars["String"]["output"]>
         linkedFrom?: Maybe<ProjectLinkingCollections>
         pageContentCollection?: Maybe<ProjectPageContentCollection>
+        pageContentCursorCollection?: Maybe<ProjectPageContentCursorCollection>
         skillsCollection?: Maybe<ProjectSkillsCollection>
+        skillsCursorCollection?: Maybe<ProjectSkillsCursorCollection>
         slug?: Maybe<Scalars["String"]["output"]>
         sys: Sys
         title?: Maybe<Scalars["String"]["output"]>
@@ -1309,21 +2070,25 @@ export type Project = Entry &
 export type ProjectCoverImageArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/project) */
 export type ProjectHeadlineArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/project) */
 export type ProjectIntroArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/project) */
 export type ProjectLinkArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/project) */
@@ -1337,6 +2102,18 @@ export type ProjectPageContentCollectionArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<ProjectPageContentFilter>
+}
+
+/** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/project) */
+export type ProjectPageContentCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
     where?: InputMaybe<ProjectPageContentFilter>
 }
 
@@ -1347,17 +2124,32 @@ export type ProjectSkillsCollectionArgs = {
     order?: InputMaybe<Array<InputMaybe<ProjectSkillsCollectionOrder>>>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<SkillFilter>
+}
+
+/** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/project) */
+export type ProjectSkillsCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<Array<InputMaybe<ProjectSkillsCursorCollectionOrder>>>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
     where?: InputMaybe<SkillFilter>
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/project) */
 export type ProjectSlugArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/project) */
 export type ProjectTitleArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type ProjectCollection = {
@@ -1366,6 +2158,13 @@ export type ProjectCollection = {
     limit: Scalars["Int"]["output"]
     skip: Scalars["Int"]["output"]
     total: Scalars["Int"]["output"]
+}
+
+export type ProjectCursorCollection = {
+    __typename?: "ProjectCursorCollection"
+    items: Array<Maybe<Project>>
+    limit: Scalars["Int"]["output"]
+    pages: CursorPages
 }
 
 export type ProjectFilter = {
@@ -1462,7 +2261,9 @@ export type ProjectIntroResourcesInline = ResourceLink & {
 export type ProjectLinkingCollections = {
     __typename?: "ProjectLinkingCollections"
     entryCollection?: Maybe<EntryCollection>
+    entryCursorCollection?: Maybe<EntryCursorCollection>
     homePageCollection?: Maybe<HomePageCollection>
+    homePageCursorCollection?: Maybe<HomePageCursorCollection>
 }
 
 export type ProjectLinkingCollectionsEntryCollectionArgs = {
@@ -1470,6 +2271,16 @@ export type ProjectLinkingCollectionsEntryCollectionArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type ProjectLinkingCollectionsEntryCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type ProjectLinkingCollectionsHomePageCollectionArgs = {
@@ -1480,9 +2291,37 @@ export type ProjectLinkingCollectionsHomePageCollectionArgs = {
     >
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type ProjectLinkingCollectionsHomePageCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<
+        Array<
+            InputMaybe<ProjectLinkingCollectionsHomePageCursorCollectionOrder>
+        >
+    >
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export enum ProjectLinkingCollectionsHomePageCollectionOrder {
+    SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+    SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+    SysIdAsc = "sys_id_ASC",
+    SysIdDesc = "sys_id_DESC",
+    SysPublishedAtAsc = "sys_publishedAt_ASC",
+    SysPublishedAtDesc = "sys_publishedAt_DESC",
+    SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+    SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+    TitleAsc = "title_ASC",
+    TitleDesc = "title_DESC",
+}
+
+export enum ProjectLinkingCollectionsHomePageCursorCollectionOrder {
     SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
     SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
     SysIdAsc = "sys_id_ASC",
@@ -1520,6 +2359,13 @@ export type ProjectPageContentCollection = {
     limit: Scalars["Int"]["output"]
     skip: Scalars["Int"]["output"]
     total: Scalars["Int"]["output"]
+}
+
+export type ProjectPageContentCursorCollection = {
+    __typename?: "ProjectPageContentCursorCollection"
+    items: Array<Maybe<ProjectPageContentItem>>
+    limit: Scalars["Int"]["output"]
+    pages: CursorPages
 }
 
 export type ProjectPageContentFilter = {
@@ -1562,40 +2408,83 @@ export enum ProjectSkillsCollectionOrder {
     SysPublishedVersionDesc = "sys_publishedVersion_DESC",
 }
 
+export type ProjectSkillsCursorCollection = {
+    __typename?: "ProjectSkillsCursorCollection"
+    items: Array<Maybe<Skill>>
+    limit: Scalars["Int"]["output"]
+    pages: CursorPages
+}
+
+export enum ProjectSkillsCursorCollectionOrder {
+    NameAsc = "name_ASC",
+    NameDesc = "name_DESC",
+    SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+    SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+    SysIdAsc = "sys_id_ASC",
+    SysIdDesc = "sys_id_DESC",
+    SysPublishedAtAsc = "sys_publishedAt_ASC",
+    SysPublishedAtDesc = "sys_publishedAt_DESC",
+    SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+    SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+}
+
 export type Query = {
     __typename?: "Query"
     _node?: Maybe<_Node>
+    _nodes: Array<Maybe<_Node>>
     asset?: Maybe<Asset>
     assetCollection?: Maybe<AssetCollection>
+    assetCursorCollection?: Maybe<AssetCursorCollection>
     entryCollection?: Maybe<EntryCollection>
+    entryCursorCollection?: Maybe<EntryCursorCollection>
+    homeIntro?: Maybe<HomeIntro>
+    homeIntroCollection?: Maybe<HomeIntroCollection>
+    homeIntroCursorCollection?: Maybe<HomeIntroCursorCollection>
     homePage?: Maybe<HomePage>
     homePageCollection?: Maybe<HomePageCollection>
+    homePageCursorCollection?: Maybe<HomePageCursorCollection>
     logo?: Maybe<Logo>
     logoCollection?: Maybe<LogoCollection>
+    logoCursorCollection?: Maybe<LogoCursorCollection>
     pageContentFullSizeImage?: Maybe<PageContentFullSizeImage>
     pageContentFullSizeImageCollection?: Maybe<PageContentFullSizeImageCollection>
+    pageContentFullSizeImageCursorCollection?: Maybe<PageContentFullSizeImageCursorCollection>
     pageContentImage?: Maybe<PageContentImage>
     pageContentImageCollection?: Maybe<PageContentImageCollection>
+    pageContentImageCursorCollection?: Maybe<PageContentImageCursorCollection>
     pageContentText?: Maybe<PageContentText>
     pageContentTextCollection?: Maybe<PageContentTextCollection>
+    pageContentTextCursorCollection?: Maybe<PageContentTextCursorCollection>
     project?: Maybe<Project>
     projectCollection?: Maybe<ProjectCollection>
+    projectCursorCollection?: Maybe<ProjectCursorCollection>
     skill?: Maybe<Skill>
     skillCollection?: Maybe<SkillCollection>
+    skillCursorCollection?: Maybe<SkillCursorCollection>
     stat?: Maybe<Stat>
     statCollection?: Maybe<StatCollection>
+    statCursorCollection?: Maybe<StatCursorCollection>
 }
 
 export type Query_NodeArgs = {
     id: Scalars["ID"]["input"]
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type Query_NodesArgs = {
+    ids: Array<Scalars["ID"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type QueryAssetArgs = {
     id: Scalars["String"]["input"]
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type QueryAssetCollectionArgs = {
@@ -1604,6 +2493,18 @@ export type QueryAssetCollectionArgs = {
     order?: InputMaybe<Array<InputMaybe<AssetOrder>>>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<AssetFilter>
+}
+
+export type QueryAssetCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<Array<InputMaybe<AssetOrder>>>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
     where?: InputMaybe<AssetFilter>
 }
 
@@ -1613,13 +2514,54 @@ export type QueryEntryCollectionArgs = {
     order?: InputMaybe<Array<InputMaybe<EntryOrder>>>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
     where?: InputMaybe<EntryFilter>
+}
+
+export type QueryEntryCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<Array<InputMaybe<EntryOrder>>>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<EntryFilter>
+}
+
+export type QueryHomeIntroArgs = {
+    id: Scalars["String"]["input"]
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type QueryHomeIntroCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<Array<InputMaybe<HomeIntroOrder>>>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<HomeIntroFilter>
+}
+
+export type QueryHomeIntroCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<Array<InputMaybe<HomeIntroOrder>>>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<HomeIntroFilter>
 }
 
 export type QueryHomePageArgs = {
     id: Scalars["String"]["input"]
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type QueryHomePageCollectionArgs = {
@@ -1628,6 +2570,18 @@ export type QueryHomePageCollectionArgs = {
     order?: InputMaybe<Array<InputMaybe<HomePageOrder>>>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<HomePageFilter>
+}
+
+export type QueryHomePageCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<Array<InputMaybe<HomePageOrder>>>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
     where?: InputMaybe<HomePageFilter>
 }
 
@@ -1635,6 +2589,7 @@ export type QueryLogoArgs = {
     id: Scalars["String"]["input"]
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type QueryLogoCollectionArgs = {
@@ -1643,6 +2598,18 @@ export type QueryLogoCollectionArgs = {
     order?: InputMaybe<Array<InputMaybe<LogoOrder>>>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<LogoFilter>
+}
+
+export type QueryLogoCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<Array<InputMaybe<LogoOrder>>>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
     where?: InputMaybe<LogoFilter>
 }
 
@@ -1650,6 +2617,7 @@ export type QueryPageContentFullSizeImageArgs = {
     id: Scalars["String"]["input"]
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type QueryPageContentFullSizeImageCollectionArgs = {
@@ -1658,6 +2626,18 @@ export type QueryPageContentFullSizeImageCollectionArgs = {
     order?: InputMaybe<Array<InputMaybe<PageContentFullSizeImageOrder>>>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<PageContentFullSizeImageFilter>
+}
+
+export type QueryPageContentFullSizeImageCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<Array<InputMaybe<PageContentFullSizeImageOrder>>>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
     where?: InputMaybe<PageContentFullSizeImageFilter>
 }
 
@@ -1665,6 +2645,7 @@ export type QueryPageContentImageArgs = {
     id: Scalars["String"]["input"]
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type QueryPageContentImageCollectionArgs = {
@@ -1673,6 +2654,18 @@ export type QueryPageContentImageCollectionArgs = {
     order?: InputMaybe<Array<InputMaybe<PageContentImageOrder>>>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<PageContentImageFilter>
+}
+
+export type QueryPageContentImageCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<Array<InputMaybe<PageContentImageOrder>>>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
     where?: InputMaybe<PageContentImageFilter>
 }
 
@@ -1680,6 +2673,7 @@ export type QueryPageContentTextArgs = {
     id: Scalars["String"]["input"]
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type QueryPageContentTextCollectionArgs = {
@@ -1688,6 +2682,18 @@ export type QueryPageContentTextCollectionArgs = {
     order?: InputMaybe<Array<InputMaybe<PageContentTextOrder>>>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<PageContentTextFilter>
+}
+
+export type QueryPageContentTextCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<Array<InputMaybe<PageContentTextOrder>>>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
     where?: InputMaybe<PageContentTextFilter>
 }
 
@@ -1695,6 +2701,7 @@ export type QueryProjectArgs = {
     id: Scalars["String"]["input"]
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type QueryProjectCollectionArgs = {
@@ -1703,6 +2710,18 @@ export type QueryProjectCollectionArgs = {
     order?: InputMaybe<Array<InputMaybe<ProjectOrder>>>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<ProjectFilter>
+}
+
+export type QueryProjectCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<Array<InputMaybe<ProjectOrder>>>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
     where?: InputMaybe<ProjectFilter>
 }
 
@@ -1710,6 +2729,7 @@ export type QuerySkillArgs = {
     id: Scalars["String"]["input"]
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type QuerySkillCollectionArgs = {
@@ -1718,6 +2738,18 @@ export type QuerySkillCollectionArgs = {
     order?: InputMaybe<Array<InputMaybe<SkillOrder>>>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<SkillFilter>
+}
+
+export type QuerySkillCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<Array<InputMaybe<SkillOrder>>>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
     where?: InputMaybe<SkillFilter>
 }
 
@@ -1725,6 +2757,7 @@ export type QueryStatArgs = {
     id: Scalars["String"]["input"]
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type QueryStatCollectionArgs = {
@@ -1733,6 +2766,18 @@ export type QueryStatCollectionArgs = {
     order?: InputMaybe<Array<InputMaybe<StatOrder>>>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+    where?: InputMaybe<StatFilter>
+}
+
+export type QueryStatCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<Array<InputMaybe<StatOrder>>>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
     where?: InputMaybe<StatFilter>
 }
 
@@ -1762,6 +2807,7 @@ export type Skill = Entry &
 export type SkillIconArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/skill) */
@@ -1772,6 +2818,7 @@ export type SkillLinkedFromArgs = {
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/skill) */
 export type SkillNameArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type SkillCollection = {
@@ -1780,6 +2827,13 @@ export type SkillCollection = {
     limit: Scalars["Int"]["output"]
     skip: Scalars["Int"]["output"]
     total: Scalars["Int"]["output"]
+}
+
+export type SkillCursorCollection = {
+    __typename?: "SkillCursorCollection"
+    items: Array<Maybe<Skill>>
+    limit: Scalars["Int"]["output"]
+    pages: CursorPages
 }
 
 export type SkillFilter = {
@@ -1800,8 +2854,11 @@ export type SkillFilter = {
 export type SkillLinkingCollections = {
     __typename?: "SkillLinkingCollections"
     entryCollection?: Maybe<EntryCollection>
+    entryCursorCollection?: Maybe<EntryCursorCollection>
     homePageCollection?: Maybe<HomePageCollection>
+    homePageCursorCollection?: Maybe<HomePageCursorCollection>
     projectCollection?: Maybe<ProjectCollection>
+    projectCursorCollection?: Maybe<ProjectCursorCollection>
 }
 
 export type SkillLinkingCollectionsEntryCollectionArgs = {
@@ -1809,6 +2866,16 @@ export type SkillLinkingCollectionsEntryCollectionArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type SkillLinkingCollectionsEntryCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type SkillLinkingCollectionsHomePageCollectionArgs = {
@@ -1819,6 +2886,19 @@ export type SkillLinkingCollectionsHomePageCollectionArgs = {
     >
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type SkillLinkingCollectionsHomePageCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<
+        Array<InputMaybe<SkillLinkingCollectionsHomePageCursorCollectionOrder>>
+    >
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type SkillLinkingCollectionsProjectCollectionArgs = {
@@ -1829,6 +2909,19 @@ export type SkillLinkingCollectionsProjectCollectionArgs = {
     >
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type SkillLinkingCollectionsProjectCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<
+        Array<InputMaybe<SkillLinkingCollectionsProjectCursorCollectionOrder>>
+    >
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export enum SkillLinkingCollectionsHomePageCollectionOrder {
@@ -1844,7 +2937,39 @@ export enum SkillLinkingCollectionsHomePageCollectionOrder {
     TitleDesc = "title_DESC",
 }
 
+export enum SkillLinkingCollectionsHomePageCursorCollectionOrder {
+    SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+    SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+    SysIdAsc = "sys_id_ASC",
+    SysIdDesc = "sys_id_DESC",
+    SysPublishedAtAsc = "sys_publishedAt_ASC",
+    SysPublishedAtDesc = "sys_publishedAt_DESC",
+    SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+    SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+    TitleAsc = "title_ASC",
+    TitleDesc = "title_DESC",
+}
+
 export enum SkillLinkingCollectionsProjectCollectionOrder {
+    HeadlineAsc = "headline_ASC",
+    HeadlineDesc = "headline_DESC",
+    LinkAsc = "link_ASC",
+    LinkDesc = "link_DESC",
+    SlugAsc = "slug_ASC",
+    SlugDesc = "slug_DESC",
+    SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+    SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+    SysIdAsc = "sys_id_ASC",
+    SysIdDesc = "sys_id_DESC",
+    SysPublishedAtAsc = "sys_publishedAt_ASC",
+    SysPublishedAtDesc = "sys_publishedAt_DESC",
+    SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+    SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+    TitleAsc = "title_ASC",
+    TitleDesc = "title_DESC",
+}
+
+export enum SkillLinkingCollectionsProjectCursorCollectionOrder {
     HeadlineAsc = "headline_ASC",
     HeadlineDesc = "headline_DESC",
     LinkAsc = "link_ASC",
@@ -1891,11 +3016,13 @@ export type Stat = Entry &
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/stat) */
 export type StatAmountArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/stat) */
 export type StatDescriptionArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 /** [See type definition](https://app.contentful.com/spaces/z41luxcckja5/content_types/stat) */
@@ -1909,6 +3036,13 @@ export type StatCollection = {
     limit: Scalars["Int"]["output"]
     skip: Scalars["Int"]["output"]
     total: Scalars["Int"]["output"]
+}
+
+export type StatCursorCollection = {
+    __typename?: "StatCursorCollection"
+    items: Array<Maybe<Stat>>
+    limit: Scalars["Int"]["output"]
+    pages: CursorPages
 }
 
 export type StatFilter = {
@@ -1939,7 +3073,9 @@ export type StatFilter = {
 export type StatLinkingCollections = {
     __typename?: "StatLinkingCollections"
     entryCollection?: Maybe<EntryCollection>
+    entryCursorCollection?: Maybe<EntryCursorCollection>
     homePageCollection?: Maybe<HomePageCollection>
+    homePageCursorCollection?: Maybe<HomePageCursorCollection>
 }
 
 export type StatLinkingCollectionsEntryCollectionArgs = {
@@ -1947,6 +3083,16 @@ export type StatLinkingCollectionsEntryCollectionArgs = {
     locale?: InputMaybe<Scalars["String"]["input"]>
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type StatLinkingCollectionsEntryCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export type StatLinkingCollectionsHomePageCollectionArgs = {
@@ -1957,9 +3103,35 @@ export type StatLinkingCollectionsHomePageCollectionArgs = {
     >
     preview?: InputMaybe<Scalars["Boolean"]["input"]>
     skip?: InputMaybe<Scalars["Int"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
+}
+
+export type StatLinkingCollectionsHomePageCursorCollectionArgs = {
+    limit?: InputMaybe<Scalars["Int"]["input"]>
+    locale?: InputMaybe<Scalars["String"]["input"]>
+    order?: InputMaybe<
+        Array<InputMaybe<StatLinkingCollectionsHomePageCursorCollectionOrder>>
+    >
+    pageNext?: InputMaybe<Scalars["String"]["input"]>
+    pagePrev?: InputMaybe<Scalars["String"]["input"]>
+    preview?: InputMaybe<Scalars["Boolean"]["input"]>
+    useFallbackLocale?: InputMaybe<Scalars["Boolean"]["input"]>
 }
 
 export enum StatLinkingCollectionsHomePageCollectionOrder {
+    SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
+    SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
+    SysIdAsc = "sys_id_ASC",
+    SysIdDesc = "sys_id_DESC",
+    SysPublishedAtAsc = "sys_publishedAt_ASC",
+    SysPublishedAtDesc = "sys_publishedAt_DESC",
+    SysPublishedVersionAsc = "sys_publishedVersion_ASC",
+    SysPublishedVersionDesc = "sys_publishedVersion_DESC",
+    TitleAsc = "title_ASC",
+    TitleDesc = "title_DESC",
+}
+
+export enum StatLinkingCollectionsHomePageCursorCollectionOrder {
     SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
     SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
     SysIdAsc = "sys_id_ASC",
@@ -2047,7 +3219,7 @@ export type SysFilter = {
 }
 
 /**
- * Represents a tag entity for finding and organizing content easily.
+ * Represents a taxonomy concept entity for finding and organizing content easily.
  *         Find out more here: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/content-concepts
  */
 export type TaxonomyConcept = {
@@ -2055,8 +3227,30 @@ export type TaxonomyConcept = {
     id?: Maybe<Scalars["String"]["output"]>
 }
 
+export type TimelineFilterInput = {
+    /** Preview content starting from a given release date */
+    release_lte?: InputMaybe<Scalars["String"]["input"]>
+    /** Preview content starting from a given timestamp */
+    timestamp_lte?: InputMaybe<Scalars["DateTime"]["input"]>
+}
+
 export type _Node = {
     _id: Scalars["ID"]["output"]
+}
+
+export type CfHomeIntroNestedFilter = {
+    AND?: InputMaybe<Array<InputMaybe<CfHomeIntroNestedFilter>>>
+    OR?: InputMaybe<Array<InputMaybe<CfHomeIntroNestedFilter>>>
+    contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>
+    icon_exists?: InputMaybe<Scalars["Boolean"]["input"]>
+    sys?: InputMaybe<SysFilter>
+    text?: InputMaybe<Scalars["String"]["input"]>
+    text_contains?: InputMaybe<Scalars["String"]["input"]>
+    text_exists?: InputMaybe<Scalars["Boolean"]["input"]>
+    text_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>
+    text_not?: InputMaybe<Scalars["String"]["input"]>
+    text_not_contains?: InputMaybe<Scalars["String"]["input"]>
+    text_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>
 }
 
 export type CfLogoNestedFilter = {
@@ -2231,6 +3425,7 @@ export type HomeQuery = {
                         width?: number
                         height?: number
                         url?: string
+                        blurURL?: string
                         avifUrl?: string
                         webPUrl?: string
                     }

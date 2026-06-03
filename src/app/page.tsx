@@ -129,7 +129,7 @@ const IndexPage = async (): Promise<React.ReactElement> => {
 
     if (
         !page.skillsCollection ||
-        !page.statsCollection ||
+        !page.homeIntroTextCollection ||
         !page.introText ||
         !page.skillsText ||
         !page.caseStudiesCollection ||
@@ -154,7 +154,7 @@ const IndexPage = async (): Promise<React.ReactElement> => {
            `}</Script>
             <Header nav siteTitle={title} />
             <HomeHeader
-                stats={page.statsCollection.items}
+                introText={page.homeIntroTextCollection.items}
                 text={page.introText}
             />
             <Clients data={page.logosCollection.items} icons={icons} />

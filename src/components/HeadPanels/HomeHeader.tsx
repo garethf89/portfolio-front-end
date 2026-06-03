@@ -9,7 +9,8 @@ import Counter from "../Counter/Counter"
 import HomeHeaderContent from "../Home/HomeHeader/HomeHeaderContent"
 import Lines from "../Animation/Lines"
 import { globals } from "../../state/state"
-import { HomePageIntroText, HomePageStatsCollection } from "@schema"
+import { HomePageHomeIntroTextCollection, HomePageIntroText } from "@schema"
+import HomeHeaderIntroText from "../Home/HomeHeader/HomeHeaderIntroText"
 
 const homeHeaderStyles = css({
     padding: "9rem 0 3rem",
@@ -37,15 +38,18 @@ const homeSectionStyles = css({
 
 const homeSectionStatsStyles = css({
     marginTop: "3rem",
-    md: { marginTop: 0, width: "40%" },
+    md: { marginTop: 0, width: "35%" },
 })
 
 interface HomeHeaderProps {
     text: HomePageIntroText
-    stats: HomePageStatsCollection["items"]
+    introText: HomePageHomeIntroTextCollection["items"]
 }
 
-const HomeHeader = ({ text, stats }: HomeHeaderProps): React.ReactElement => {
+const HomeHeader = ({
+    text,
+    introText,
+}: HomeHeaderProps): React.ReactElement => {
     const { state, dispatch } = useContext(globals)
 
     useEffect(() => {
@@ -72,7 +76,9 @@ const HomeHeader = ({ text, stats }: HomeHeaderProps): React.ReactElement => {
                         Download CV
                     </Button>
                 </div>
-                <div className={homeSectionStatsStyles}></div>
+                <div className={homeSectionStatsStyles}>
+                    <HomeHeaderIntroText intro={introText} />
+                </div>
             </Container>
             <Container css={homeContainerStyles}>
                 <Counter />
