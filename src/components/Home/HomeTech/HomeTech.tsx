@@ -7,8 +7,8 @@ import { Subheading } from "../../Typography/Subheading"
 import { HomePageSkillsCollection, HomePageSkillsText } from "@schema"
 
 const skillsStyles = css({
-    display: "flex",
-    flexWrap: "wrap",
+    display: "grid",
+    gridTemplateColumns: "repeat(5, 1fr)",
     justifyContent: "center",
     padding: 0,
     gap: 12,
@@ -17,6 +17,7 @@ const skillsStyles = css({
     marginX: "auto",
     marginTop: 12,
     md: {
+        display: "flex",
         flexWrap: "nowrap",
         gap: 8,
         justifyContent: "space-between",

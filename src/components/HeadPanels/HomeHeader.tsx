@@ -16,7 +16,7 @@ const homeHeaderStyles = css({
     padding: "9rem 0 3rem",
     position: "relative",
     background: "sectionBackground",
-    md: {
+    lg: {
         padding: "12rem 0 4rem",
     },
 })
@@ -33,12 +33,14 @@ const homeContainerStyles = {
 
 const homeSectionStyles = css({
     maxWidth: "container.content",
-    md: { width: "60%", marginRight: "7" },
+    md: { width: "50%", marginRight: "12" },
+    lg: { width: "60%", marginRight: "7" },
 })
 
 const homeSectionStatsStyles = css({
-    marginTop: "3rem",
-    md: { marginTop: 0, width: "35%" },
+    marginTop: "4",
+    md: { marginTop: 0, width: "45%" },
+    lg: { marginTop: 0, width: "35%" },
 })
 
 interface HomeHeaderProps {

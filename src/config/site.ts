@@ -1,5 +1,5 @@
 export default {
-    title: "Gareth Ferguson",
+    title: "Gareth Ferguson - Portfolio",
     description:
         "Portfolio site for Gareth Ferguson, a full-stack engineer based in Newcastle. View my skills and project experience, or contact using the form.",
     siteUrl: "https://garethferguson.co.uk",

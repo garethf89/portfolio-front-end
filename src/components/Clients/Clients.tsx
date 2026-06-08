@@ -17,10 +17,18 @@ const logoWrapperCommonStyles = {
     textAlign: "center",
     margin: "0 auto",
     borderRadius: "5px",
-    justifyContent: "space-around",
-    display: "flex",
-    gap: 12,
-    md: { gap: 8 },
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    alignItems: "center",
+    "& > *:nth-child(3n+1)": { justifySelf: "start" },
+    "& > *:nth-child(3n+2)": { justifySelf: "center" },
+    "& > *:nth-child(3n+3)": { justifySelf: "end" },
+    gap: 4,
+    md: {
+        gap: 12,
+        justifyContent: "space-around",
+        display: "flex",
+    },
 }
 
 const logoWrapperStylesUpper = css({
@@ -44,6 +52,7 @@ const logoStyles = ({ dark, darkIcon }: LogoStyleProps) =>
         filter: dark ? "grayscale(0)" : "grayscale(1)",
         opacity: dark ? 1 : "0.5",
         maxWidth: "75px",
+        width: "100%",
         height: "auto",
         transition: "opacity 0.25s ease-in",
         minHeight: "50px",
