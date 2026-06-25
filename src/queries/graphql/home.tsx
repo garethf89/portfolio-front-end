@@ -28,7 +28,7 @@ export const HOME_QUERY = gql`
                 skillsText {
                     json
                 }
-                skillsCollection(limit: 12) {
+                skillsCollection(limit: 16) {
                     items {
                         name
                         icon {
@@ -46,9 +46,47 @@ export const HOME_QUERY = gql`
                         }
                         slug
                         title
+                        coverImage {
+                            fileName
+                            title
+                            width
+                            height
+                            blurURL: url(
+                                transform: {
+                                    resizeStrategy: PAD
+                                    width: 8
+                                    format: JPG
+                                    quality: 80
+                                }
+                            )
+                            url(
+                                transform: {
+                                    resizeStrategy: PAD
+                                    width: 1100
+                                    format: JPG
+                                    quality: 75
+                                }
+                            )
+                            avifUrl: url(
+                                transform: {
+                                    resizeStrategy: PAD
+                                    width: 1100
+                                    format: AVIF
+                                    quality: 75
+                                }
+                            )
+                            webPUrl: url(
+                                transform: {
+                                    resizeStrategy: PAD
+                                    width: 1100
+                                    format: WEBP
+                                    quality: 75
+                                }
+                            )
+                        }
                     }
                 }
-                projectsCollection(limit: 11) {
+                projectsCollection(limit: 16) {
                     items {
                         slug
                         headline

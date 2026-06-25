@@ -9,6 +9,8 @@ import { css } from "@styled-system/css"
 
 const projectWrapperStyles = css({
     position: "relative",
+    rowGap: 12,
+    marginBottom: 12,
     sm: {
         display: "flex",
         flexWrap: "wrap",
@@ -18,14 +20,17 @@ const projectWrapperStyles = css({
         },
     },
     md: {
+        gap: 2,
+        flexWrap: "nowrap",
         "& > *": {
-            width: "32%",
+            width: "25%",
         },
     },
 })
 
 const projectWrapperLowerStyles = css({
     position: "relative",
+    rowGap: 12,
     sm: {
         display: "flex",
         flexWrap: "wrap",
@@ -35,6 +40,8 @@ const projectWrapperLowerStyles = css({
         },
     },
     md: {
+        flexWrap: "nowrap",
+        gap: 4,
         "& > *": {
             width: "24%",
             marginBottom: 0,
@@ -43,7 +50,7 @@ const projectWrapperLowerStyles = css({
 })
 
 const projectStyles = css({
-    marginBottom: "3rem",
+    marginBottom: 0,
     transition: "all 0.5s ease-out",
     "& p": {
         marginBottom: 0,
@@ -54,18 +61,13 @@ const projectStyles = css({
 })
 
 const projectImageContainerStyles = css({
-    paddingTop: "56.25%",
+    aspectRatio: "16/9",
     position: "relative",
     overflow: "hidden",
     marginBottom: "2rem",
 })
 
 const projectImageStyles = css({
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
     transition: "all 0.5s ease-in-out",
     "&:hover": {
         transform: "scale(1.1)",
@@ -79,7 +81,7 @@ interface ProjectProps {
 const ProjectTemplate = ({
     project,
     index,
-    lower = false,
+    lower,
 }: {
     project: ProjectType
     index: number
@@ -95,6 +97,7 @@ const ProjectTemplate = ({
         <div className={projectStyles} key={index}>
             <FadeLink href={project.slug ?? ""}>
                 <SROnly>{project.title}</SROnly>
+
                 <div className={projectImageContainerStyles}>
                     <Image
                         className={projectImageStyles}
@@ -113,7 +116,7 @@ const ProjectTemplate = ({
                 level={"h6"}
                 override="p"
                 css={{
-                    fontSize: { base: "24px", lg: lower ? "18px" : "24px" },
+                    fontSize: { base: "18px", md: lower ? "16px" : "18px" },
                 }}
             >
                 <FadeLink href={project.slug ?? "/"}>
@@ -125,17 +128,18 @@ const ProjectTemplate = ({
     )
 }
 
+const topRowAmount = 4
+
 const Projects = ({ data }: ProjectProps): React.ReactElement<ProjectProps> => {
+    const topRow = data.splice(0, topRowAmount)
+
     return (
         <Container options={{ largePadding: true }}>
             <Heading level="h2" css={{ textAlign: "center" }}>
                 My Work
             </Heading>
             <div className={projectWrapperStyles}>
-                {data.map((project: ProjectType, i: number) => {
-                    if (i >= data.length - 4) {
-                        return null
-                    }
+                {topRow.map((project: ProjectType, i: number) => {
                     return (
                         <ProjectTemplate key={i} index={i} project={project} />
                     )
@@ -143,15 +147,12 @@ const Projects = ({ data }: ProjectProps): React.ReactElement<ProjectProps> => {
             </div>
             <div className={projectWrapperLowerStyles}>
                 {data.map((project: ProjectType, i: number) => {
-                    if (i < data.length - 4) {
-                        return null
-                    }
                     return (
                         <ProjectTemplate
+                            lower={true}
                             key={i}
                             index={i}
                             project={project}
-                            lower={true}
                         />
                     )
                 })}

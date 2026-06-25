@@ -8,6 +8,8 @@ const palette = {
     lightGrey1: "#F6F6F6",
     lightGrey2: "#4A4A4A",
     offsetGrey: "#F7F8F8",
+    opacityOffset: "rgba(30, 34, 36, 0.8)",
+    blue: "#5A78D2",
 }
 
 export const BREAKPOINTS = {
@@ -75,11 +77,13 @@ export const theme = {
             sectionBackgroundPageLight: { value: palette.lightGrey1 },
             offsetSectionBackgroundColor: { value: palette.offsetGrey },
             headerBorderColor: { value: palette.lightGrey2 },
+            opacityOffset: { value: palette.opacityOffset },
+            linkBlue: { value: palette.blue },
         },
         sizes: {
             container: {
                 xl: { value: "1160px" },
-                content: { value: "" },
+                content: { value: "686px" },
             },
         },
     },
@@ -120,6 +124,15 @@ export const theme = {
                     _dark: "{colors.white}",
                     base: "{colors.darkText}",
                 },
+            },
+            caseStudyBackgroundColor: {
+                value: {
+                    _dark: "{colors.opacityOffset}",
+                    base: "{colors.opacityOffset}",
+                },
+            },
+            caseStudyBorderColor: {
+                value: { _dark: "#303436", base: "#303436" },
             },
         },
         sizes: {

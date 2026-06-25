@@ -33,13 +33,22 @@ const logoWrapperCommonStyles = {
 
 const logoWrapperStylesUpper = css({
     ...logoWrapperCommonStyles,
-    maxWidth: "700px",
+    maxWidth: "500px",
     marginBottom: "4",
+    md: {
+        ...logoWrapperCommonStyles.md,
+
+        maxWidth: "700px",
+    },
 })
 
 const logoWrapperStyleLower = css({
     ...logoWrapperCommonStyles,
-    maxWidth: "900px",
+    maxWidth: "500px",
+    md: {
+        ...logoWrapperCommonStyles.md,
+        maxWidth: "900px",
+    },
 })
 
 type LogoStyleProps = {

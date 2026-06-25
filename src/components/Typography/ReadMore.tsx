@@ -1,5 +1,6 @@
 import * as React from "react"
 import { css } from "@styled-system/css"
+import Arrow from "../../svgs/light-arrow"
 
 import FadeLink from "../Link/Link"
 
@@ -16,18 +17,28 @@ const ReadMore = ({
     <FadeLink
         href={href}
         className={css({
-            fontWeight: "400",
+            textTransform: "uppercase",
+            fontWeight: "600",
             display: "inline",
             position: "relative",
             overflow: "visible",
-            color: "#ffffff",
+            color: "linkBlue",
+            transition: "opacity 0.25s",
+            "&:hover": { opacity: 0.75 },
             "&:active, &:visited": {
-                color: "#ffffff",
+                color: "linkBlue",
             },
         })}
         {...props}
     >
         {children}
+        <Arrow
+            aria-hidden="true"
+            css={{
+                verticalAlign: "middle",
+                marginLeft: "0.5rem",
+            }}
+        />
     </FadeLink>
 )
 
