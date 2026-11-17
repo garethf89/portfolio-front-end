@@ -157,13 +157,14 @@ const IndexPage = async (): Promise<React.ReactElement> => {
                 introText={page.homeIntroTextCollection.items}
                 text={page.introText}
             />
-            <Clients data={page.logosCollection.items} icons={icons} />
             <HomeTech
                 text={page.skillsText}
                 icons={icons}
                 skills={page.skillsCollection.items}
             />
             <CaseStudies data={page.caseStudiesCollection.items} />
+            <Clients data={page.logosCollection.items} icons={icons} />
+
             <Projects data={page.projectsCollection.items} />
             <LastFM initialAlbums={albums} />
         </>
