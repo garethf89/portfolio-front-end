@@ -86,6 +86,7 @@ const Bold = ({ children }: { children: React.ReactNode }) => (
 )
 
 const options = {
+    stripEmptyTrailingParagraph: true,
     renderMark: {
         [MARKS.BOLD]: (text: React.ReactNode) => <Bold>{text}</Bold>,
     },

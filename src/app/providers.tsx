@@ -17,7 +17,6 @@ import { ImageSupportProvider } from "../contexts"
 import { useDarkMode } from "../hooks"
 import { css } from "@styled-system/css"
 
-// React-Query
 const queryClient = new QueryClient()
 
 const rootStyles = css({

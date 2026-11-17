@@ -31,6 +31,7 @@ const Text = ({ children }: BlockParams): React.ReactElement => {
 }
 
 const options = {
+    stripEmptyTrailingParagraph: true,
     renderMark: {
         [MARKS.BOLD]: (text: React.ReactNode) => <Bold>{text}</Bold>,
     },

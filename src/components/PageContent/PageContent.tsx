@@ -87,6 +87,7 @@ export const IntroText = ({ children }: React.PropsWithChildren) => {
 }
 
 const options = {
+    stripEmptyTrailingParagraph: true,
     renderMark: {
         [MARKS.UNDERLINE]: text => <Underline>{text}</Underline>,
         [MARKS.ITALIC]: text => <Italic>{text}</Italic>,
