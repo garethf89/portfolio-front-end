@@ -40,11 +40,7 @@ export const Subheading: FC<SubheadingProps> = ({
     return (
         <h2
             className={cx(
-                css(
-                    styles.root,
-                    accentLine && styles.accentLine,
-                    cssProp
-                ),
+                css(styles.root, accentLine && styles.accentLine, cssProp),
                 className
             )}
         >

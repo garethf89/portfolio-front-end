@@ -1,5 +1,5 @@
 import { renderHook, waitFor } from "@testing-library/react"
-import { QueryClient, QueryClientProvider } from "react-query"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import mockAlbums from "../../__mocks__/lastfm"
 import { describe, expect, test, vi } from "vitest"
 

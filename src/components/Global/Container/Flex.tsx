@@ -31,7 +31,9 @@ const Flex = ({
 }: FlexProps): React.ReactElement => {
     const { largePadding, smallPadding } = options ?? {}
 
-    const yPadding = { paddingY: largePadding ? "16" : smallPadding ? "8" : "0" }
+    const yPadding = {
+        paddingY: largePadding ? "16" : smallPadding ? "8" : "0",
+    }
     const merged = css([flexStyles, yPadding, cssProp])
 
     return (

@@ -1,6 +1,10 @@
 import LastFM from "./LastFM"
 import { render, screen } from "@testing-library/react"
-import { QueryClient, QueryClientProvider, UseQueryResult } from "react-query"
+import {
+    QueryClient,
+    QueryClientProvider,
+    UseQueryResult,
+} from "@tanstack/react-query"
 import mockAlbums from "../../__mocks__/lastfm"
 import * as hooks from "../../services/lastfm"
 import type {
@@ -24,13 +28,10 @@ const apiMock = {
 describe("LastFM Component", () => {
     beforeEach(() => {
         vi.spyOn(hooks, "useLastFmFunction").mockReturnValue(
-            functionHookMock as unknown as UseQueryResult<
-                LastFMServerResponseFunction,
-                unknown
-            >
+            functionHookMock as unknown as UseQueryResult<LastFMServerResponseFunction>
         )
         vi.spyOn(hooks, "useLastFm").mockReturnValue(
-            apiMock as unknown as UseQueryResult<LastFMServerResponse, unknown>
+            apiMock as unknown as UseQueryResult<LastFMServerResponse>
         )
     })
     afterEach(() => {
@@ -39,10 +40,10 @@ describe("LastFM Component", () => {
     test("Display nothing if no albums defined", async () => {
         vi.spyOn(hooks, "useLastFmFunction").mockReturnValue({
             data: false,
-        } as unknown as UseQueryResult<LastFMServerResponseFunction, unknown>)
+        } as unknown as UseQueryResult<LastFMServerResponseFunction>)
         vi.spyOn(hooks, "useLastFm").mockReturnValue({
             data: false,
-        } as unknown as UseQueryResult<LastFMServerResponse, unknown>)
+        } as unknown as UseQueryResult<LastFMServerResponse>)
 
         render(
             <QueryClientProvider client={queryClient}>
@@ -55,10 +56,10 @@ describe("LastFM Component", () => {
     test("Display albums if defaults provided", async () => {
         vi.spyOn(hooks, "useLastFmFunction").mockReturnValue({
             data: false,
-        } as unknown as UseQueryResult<LastFMServerResponseFunction, unknown>)
+        } as unknown as UseQueryResult<LastFMServerResponseFunction>)
         vi.spyOn(hooks, "useLastFm").mockReturnValue({
             data: false,
-        } as unknown as UseQueryResult<LastFMServerResponse, unknown>)
+        } as unknown as UseQueryResult<LastFMServerResponse>)
         render(
             <QueryClientProvider client={queryClient}>
                 <LastFM initialAlbums={mockAlbums} />

@@ -7,7 +7,7 @@ import { ViewTransitions } from "next-view-transitions"
 import * as Sentry from "@sentry/react"
 import { BrowserTracing } from "@sentry/tracing"
 
-import { QueryClient, QueryClientProvider } from "react-query"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
 import { GlobalsStateProvider } from "../state/state"
 import { ApolloProvider } from "@apollo/client"

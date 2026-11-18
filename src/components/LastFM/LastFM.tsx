@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useEffect, useState } from "react"
-import { useQueryClient } from "react-query"
+import { useQueryClient } from "@tanstack/react-query"
 import LastFMLogo from "../../svgs/lastfm"
 import Lines from "../Animation/Lines"
 import { OuterWrapper } from "../Common/OuterWrapper"
@@ -83,7 +83,7 @@ const LastFM = ({ initialAlbums }: LastFmProps): React.ReactElement => {
     // Time limit before using the fallback
     useEffect(() => {
         const timer = setTimeout(() => {
-            queryClient.cancelQueries("lastfm", { exact: true })
+            queryClient.cancelQueries({ queryKey: ["lastfm"], exact: true })
         }, 2000)
         return () => clearTimeout(timer)
     }, [])
